@@ -1,0 +1,25 @@
+&INPUTPH
+! tr2_ph: Convergence threshold for phonons (linear-response SCF cycle).
+!         Smaller values = more precise but slower. 1.0d-14 is tight.
+  tr2_ph = 1.0d-14,
+
+! prefix: Must match the prefix used in the preceding pw.x SCF calculation.
+!         This tells ph.x where to find the required data files.
+  prefix = 'pto',
+
+! outdir: Directory where QE stores temporary files (charge density, wavefunctions).
+!         Should match the outdir used in pw.x, typically './tmp/' or similar.
+  outdir = './tmp/',
+
+! fildyn: Base name for the output dynamical matrix file.
+!         Creates 'pto.gamma.dyn' for gamma point (q=0).
+  fildyn = 'pto.gamma.dyn',
+
+! epsil: If .true., calculates the dielectric constant (effective charges).
+!        Set to .true. for piezo/ferroelectric materials, .false. otherwise.
+  epsil  = .true.
+/
+
+! q-point: The phonon wavevector in crystal coordinates.
+!          (0 0 0) = gamma point (zone center)
+0.0 0.0 0.0

@@ -1,0 +1,58 @@
+
+     Program DYNMAT v.7.3 starts on  1Apr2026 at 16:41:29 
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI & OpenMP), running on      32 processor cores
+     Number of MPI processes:                 4
+     Threads/MPI process:                     8
+
+     MPI processes distributed on     1 nodes
+     R & G space division:  proc/nbgrp/npool/nimage =       4
+     40741 MiB available memory on the printing compute node when the environment starts
+ 
+
+     Reading Dynamical Matrix from file pto.gamma.dyn
+     ...Force constants read
+     ...epsilon and Z* read
+
+     Polarizability (A^3 units)
+     multiply by 0.331503 for Clausius-Mossotti correction
+        31.321869    0.000000    0.000000
+         0.000000   31.321869    0.000000
+         0.000000    0.000000   28.522019
+
+     IR activities are in (D/A)^2/amu units
+
+# mode   [cm-1]    [THz]      IR
+    1     -0.00   -0.0000    0.0000
+    2      0.00    0.0000    0.0000
+    3      0.00    0.0000    0.0000
+    4     89.73    2.6899   11.5280
+    5    119.82    3.5920    0.1338
+    6    152.90    4.5837    6.9464
+    7    209.19    6.2713   45.3435
+    8    274.01    8.2146    0.0098
+    9    274.53    8.2301    0.3726
+   10    275.99    8.2738    0.0000
+   11    360.70   10.8134   18.7464
+   12    417.24   12.5086    7.7676
+   13    498.60   14.9475   15.4198
+   14    667.25   20.0036   28.4477
+   15    671.99   20.1457   64.7527
+ 
+     DYNMAT       :      0.00s CPU      0.01s WALL
+
+ 
+   This run was terminated on:  16:41:29   1Apr2026            
+
+=------------------------------------------------------------------------------=
+   JOB DONE.
+=------------------------------------------------------------------------------=
