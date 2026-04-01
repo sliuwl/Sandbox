@@ -1,0 +1,20 @@
+Symmetry analysis summary
+=========================
+Input file: /Users/sliutheory/Sandbox/qe.vasp
+Reduced formula: TiPbO3
+Input sites: 5
+Output sites: 5
+Symmetry tolerance (symprec): 0.005
+Angle tolerance: 5.0
+Requested output structure: conventional
+Space group symbol: P4mm
+Space group number: 99
+Crystal system: tetragonal
+Lattice type: tetragonal
+Point group: 4mm
+
+Generated files:
+- /Users/sliutheory/Sandbox/qe_symmetrized_conventional_sg099_P4mm.vasp
+- /Users/sliutheory/Sandbox/qe_symmetrized_conventional_sg099_P4mm.cif
+- /Users/sliutheory/Sandbox/qe_symmetrized_conventional_sg099_P4mm.struc.in
+- /Users/sliutheory/Sandbox/qe_symmetrized_conventional_sg099_P4mm.symmetry.txt
