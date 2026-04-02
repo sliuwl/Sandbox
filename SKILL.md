@@ -7,7 +7,56 @@ description: 当用户要求创建、更新、同步或存放用户生成的脚�
 
 - Unless the user explicitly requests it, never automatically update this root skill file `~/Sandbox/SKILL.md`.
 - Store user-generated scripts and skills under `~/Sandbox/.sliu_skills`.
-- Put scripts in `~/Sandbox/.sliu_skills/scripts/`.
-- Put reference docs in `~/Sandbox/.sliu_skills/references/` when needed.
-- For related tasks, first check `~/Sandbox/.sliu_skills/references/scripts.md`, then prefer using scripts in `~/Sandbox/.sliu_skills/scripts/`.
-- Only when the task cannot be achieved with the documented scripts should new scripts be written, mainly in Python with some bash only when needed.
+
+## Organizational Principle
+
+### Scripts → `~/Sandbox/.sliu_skills/scripts/`
+
+Executable scripts (Python, Bash, etc.) go here:
+- Utility scripts for data processing
+- Wrapper scripts for external software
+- Plotting and visualization scripts
+
+### Skill Documentation → `~/Sandbox/.sliu_skills/references/`
+
+Detailed documentation for specific workflows or tools:
+- Each major topic gets its own markdown file (e.g., `QE.md`, `VASP.md`)
+- Include parameter explanations, usage examples, and troubleshooting
+- Reference the scripts in `scripts/` folder
+
+## Directory Structure
+
+```
+.sliu_skills/
+├── backup.md              # Special skills (e.g., backup workflow)
+└── references/
+    ├── QE.md              # Quantum Espresso phonon workflow
+    ├── VASP.md            # VASP-related workflows
+    ├── scripts.md         # General script utilities
+    └── ...
+└── scripts/
+    ├── plot_phonon.py     # QE phonon plotting
+    ├── parse_phonon.py    # QE phonon output parser
+    ├── split_modes.py     # Phonon mode visualization
+    └── ...
+```
+
+## How to Organize New Skills
+
+**For code-related skills** (e.g., software workflows like QE, VASP):
+1. Create/update a reference markdown file in `references/` (e.g., `software.md`)
+2. Document the workflow, parameters, and usage
+3. Put helper scripts in `scripts/`
+4. Reference scripts from the documentation
+
+**For utility skills** (e.g., file conversion, backup):
+1. Create a simple skill markdown file at root level if standalone
+2. Or integrate into existing reference file
+
+## Usage Pattern
+
+When working on a task:
+1. Check `~/Sandbox/.sliu_skills/references/` for relevant documentation
+2. Use existing scripts in `~/Sandbox/.sliu_skills/scripts/` when possible
+3. Only write new scripts when existing ones cannot accomplish the task
+4. Write new scripts primarily in Python; use Bash only when necessary
