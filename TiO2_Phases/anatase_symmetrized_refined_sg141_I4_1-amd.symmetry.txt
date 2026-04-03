@@ -1,0 +1,20 @@
+Symmetry analysis summary
+=========================
+Input file: /Users/sliutheory/Sandbox/TiO2_Phases/anatase.cif
+Reduced formula: TiO2
+Input sites: 12
+Output sites: 12
+Symmetry tolerance (symprec): 0.005
+Angle tolerance: 5.0
+Requested output structure: refined
+Space group symbol: I4_1/amd
+Space group number: 141
+Crystal system: tetragonal
+Lattice type: tetragonal
+Point group: 4/mmm
+
+Generated files:
+- /Users/sliutheory/Sandbox/TiO2_Phases/anatase_symmetrized_refined_sg141_I4_1-amd.vasp
+- /Users/sliutheory/Sandbox/TiO2_Phases/anatase_symmetrized_refined_sg141_I4_1-amd.cif
+- /Users/sliutheory/Sandbox/TiO2_Phases/anatase_symmetrized_refined_sg141_I4_1-amd.struc.in
+- /Users/sliutheory/Sandbox/TiO2_Phases/anatase_symmetrized_refined_sg141_I4_1-amd.symmetry.txt

@@ -1,0 +1,20 @@
+Symmetry analysis summary
+=========================
+Input file: /Users/sliutheory/Sandbox/TiO2_Phases/rutile.cif
+Reduced formula: TiO2
+Input sites: 6
+Output sites: 6
+Symmetry tolerance (symprec): 0.005
+Angle tolerance: 5.0
+Requested output structure: refined
+Space group symbol: P4_2/mnm
+Space group number: 136
+Crystal system: tetragonal
+Lattice type: tetragonal
+Point group: 4/mmm
+
+Generated files:
+- /Users/sliutheory/Sandbox/TiO2_Phases/rutile_symmetrized_refined_sg136_P4_2-mnm.vasp
+- /Users/sliutheory/Sandbox/TiO2_Phases/rutile_symmetrized_refined_sg136_P4_2-mnm.cif
+- /Users/sliutheory/Sandbox/TiO2_Phases/rutile_symmetrized_refined_sg136_P4_2-mnm.struc.in
+- /Users/sliutheory/Sandbox/TiO2_Phases/rutile_symmetrized_refined_sg136_P4_2-mnm.symmetry.txt

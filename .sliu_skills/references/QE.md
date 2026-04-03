@@ -153,6 +153,36 @@ For better convergence, you can perform multiple relaxation steps:
 
 Use `conv_thr = 1.0d-9` for the final run to get precise forces.
 
+### Create Doped Supercell
+
+Use `make_doped_supercell.py` to create supercells with dopants:
+
+```bash
+# Create 2x2x1 La-doped anatase supercell (24 atoms)
+python make_doped_supercell.py anatase.cif La 1 -r "2 2 1" -o La_anatase.vasp
+
+# Generate QE vc-relax.in automatically
+python make_doped_supercell.py anatase.cif La 1 -r "2 1 1" --generate-qe
+
+# Custom k-points and ecutwfc
+python make_doped_supercell.py rutile.cif Nb 2 -r "2 2 1" -k 4 4 6 -e 60
+
+# Multiple dopant atoms, random positions
+python make_doped_supercell.py TiO2.cif Fe 3 -r "2 2 2" -s random
+```
+
+**Options:**
+
+| Option | Description |
+|--------|-------------|
+| `-r, --repeat` | Supercell repetition (e.g., "2 2 1") |
+| `-s, --site` | Site selection: first, last, random |
+| `-k, --kpoints` | K-points grid (default: 6 6 6) |
+| `-e, --ecutwfc` | Plane-wave cutoff in Ry (default: 50) |
+| `--generate-qe` | Generate QE vc-relax.in file |
+
+**Supported input formats:** CIF, POSCAR, CONTCAR, and other pymatgen-supported formats.
+
 ---
 
 ## Phonon Calculation Workflow
@@ -411,6 +441,7 @@ The number of labels must match the number of high-symmetry points defined in yo
 | [generate_vcrelax.py](scripts/generate_vcrelax.py) | Generate structure optimization input files |
 | [generate_phonon_workflow.py](scripts/generate_phonon_workflow.py) | Generate complete phonon dispersion workflow |
 | [make_heterostructure.py](scripts/make_heterostructure.py) | Create heterostructures/superlattices with termination control |
+| [make_doped_supercell.py](scripts/make_doped_supercell.py) | Create doped supercells by replacing host atoms with dopants |
 | [qe_out_to_vasp.py](scripts/qe_out_to_vasp.py) | Extract final structure from QE output to VASP |
 | [find_sym.py](scripts/find_sym.py) | Analyze and symmetrize crystal structures |
 | [analyze_results.py](scripts/analyze_results.py) | Analyze findMetal.py database results |
