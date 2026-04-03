@@ -57,7 +57,7 @@ Detailed documentation for specific workflows or tools:
 
 When working on a task:
 1. Check `~/Sandbox/.sliu_skills/references/` for relevant documentation
-2. Use existing scripts in `~/Sandbox/.sliu_skills/scripts/` when possible
+2. **Prefer reusing existing scripts first**: By default, use the existing scripts in `~/Sandbox/.sliu_skills/scripts/` to complete the task. Do not turn temporary scripts in the working directory into stable entry points for the skill.
 3. Only write new scripts when existing ones cannot accomplish the task
 4. Write new scripts primarily in Python; use Bash only when necessary
 
