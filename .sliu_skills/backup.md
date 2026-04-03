@@ -1,6 +1,6 @@
 ---
 name: backup-skill
-description: 当用户说"backup SKILL.md"或"备份"时，备份 SKILL.md 和 .sliu_skills 到远程 Git 仓库
+description: 当用户说"backup SKILL.md"或"备份技能"时，备份 SKILL.md 和 .sliu_skills 到远程 Git 仓库
 trigger: 备份 SKILL.md
 ---
 

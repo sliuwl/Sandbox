@@ -60,3 +60,23 @@ When working on a task:
 2. Use existing scripts in `~/Sandbox/.sliu_skills/scripts/` when possible
 3. Only write new scripts when existing ones cannot accomplish the task
 4. Write new scripts primarily in Python; use Bash only when necessary
+
+## Important: Analyzing QE Optimized Structures
+
+When asked to analyze or extract optimized structures from QE output files:
+- **Always use the scripts** in `~/Sandbox/.sliu_skills/scripts/`:
+  1. `qe_out_to_vasp.py` - Extract last structure from QE output → VASP format
+  2. `find_sym.py` - Analyze symmetry (space group, lattice parameters)
+
+Do NOT manually parseQE output with grep/sed for structure extraction.
+
+Example workflow:
+```bash
+# Step 1: Extract VASP from QE output
+python3 ~/Sandbox/.sliu_skills/scripts/qe_out_to_vasp.py qe.out -o structure.vasp
+
+# Step 2: Analyze symmetry
+python3 ~/Sandbox/.sliu_skills/scripts/find_sym.py structure.vasp -k conventional
+```
+
+See `~/Sandbox/.sliu_skills/references/scripts.md` for details.
