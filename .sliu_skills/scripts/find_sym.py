@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Analyze symmetry for a POSCAR-format file and write symmetrized outputs.
+"""Analyze symmetry for structure files and write symmetrized outputs.
 
-The input file may have any name as long as the content follows the standard
-VASP POSCAR/CONTCAR format.
+Supports VASP POSCAR/CONTCAR, CIF, and other formats supported by pymatgen.
+The input file may have any name as long as the content follows a supported format.
 """
 
 from __future__ import annotations
@@ -12,6 +12,7 @@ import re
 import sys
 from pathlib import Path
 
+from pymatgen.core import Structure
 from pymatgen.io.cif import CifWriter
 from pymatgen.io.vasp.inputs import Poscar
 from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
@@ -34,7 +35,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "input_file",
         type=Path,
-        help="Path to a POSCAR-format structure file. The file name can be arbitrary.",
+        help="Path to a structure file (CIF, POSCAR, CONTCAR, etc.). The file name can be arbitrary.",
     )
     parser.add_argument(
         "-s",
@@ -110,12 +111,25 @@ def get_reduced_formula(structure) -> str:
         return composition.reduced_formula
 
 
-def read_poscar_structure(input_file: Path):
-    """Read a POSCAR-format structure regardless of the file name."""
+def read_structure(input_file: Path):
+    """Read a structure file in any supported format (POSCAR, CIF, etc.).
+
+    Automatically detects format based on file extension and content.
+    """
+    # Try pymatgen's auto-detection first (works for CIF, POSCAR, and many others)
+    try:
+        return Structure.from_file(str(input_file))
+    except Exception:
+        pass
+
+    # Fallback: try POSCAR explicitly (for files without proper extension)
     try:
         return Poscar.from_file(str(input_file)).structure
-    except Exception as exc:  # pragma: no cover - depends on user input data
-        raise SystemExit(f"Failed to read POSCAR-format file '{input_file}': {exc}") from exc
+    except Exception as exc:
+        raise SystemExit(
+            f"Failed to read structure from '{input_file}': {exc}\n"
+            f"Supported formats: CIF, POSCAR, CONTCAR, and other pymatgen-supported formats"
+        ) from exc
 
 
 def get_symmetrized_structure(analyzer: SpacegroupAnalyzer, structure_kind: str):
@@ -214,7 +228,7 @@ def main() -> int:
     output_dir = (args.output_dir or input_file.parent).expanduser().resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    input_structure = read_poscar_structure(input_file)
+    input_structure = read_structure(input_file)
     analyzer = SpacegroupAnalyzer(
         input_structure,
         symprec=args.symprec,
