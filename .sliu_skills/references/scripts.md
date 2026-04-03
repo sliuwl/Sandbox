@@ -2,6 +2,35 @@
 
 This file documents the Python scripts stored in `~/Sandbox/.sliu_skills/scripts`.
 
+## Workflow: Analyzing QE Optimized Structures
+
+> **IMPORTANT**: When analyzing optimized structures from QE output files, always use these scripts in sequence.
+
+### Prerequisites
+```bash
+pip3 install ase pymatgen
+```
+
+### Step 1: Extract VASP file from QE output
+
+### Step 1: Extract VASP file from QE output
+```bash
+python3 ~/Sandbox/.sliu_skills/scripts/qe_out_to_vasp.py QE_OUTPUT -o output.vasp
+```
+
+### Step 2: Analyze symmetry
+```bash
+python3 ~/Sandbox/.sliu_skills/scripts/find_sym.py output.vasp -k conventional
+```
+
+This workflow automatically generates:
+- VASP file (for visualization)
+- CIF file (for detailed lattice parameters)
+- QE structure file (`.struc.in`)
+- Symmetry report (`.symmetry.txt`)
+
+**Why use scripts?** Manual extraction misses symmetry analysis and proper format conversion.
+
 ## `find_sym.py`
 
 Purpose:

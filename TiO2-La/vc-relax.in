@@ -1,0 +1,85 @@
+! TiO2 + La doping (1x1x2 supercell)
+! 1 La replaces 1 Ti: La1Ti7O16
+! Space group: Pca21
+
+&CONTROL
+  calculation    = 'vc-relax'
+  prefix         = 'tio2_la'
+  pseudo_dir     = './psps'
+  outdir         = './tmp/'
+  tstress        = .true.
+  tprnfor        = .true.
+  etot_conv_thr  = 1.0d-5
+  forc_conv_thr  = 1.0d-4
+  nstep          = 100
+/
+
+&SYSTEM
+  nosym          = .false.         ! Enable symmetry
+  ibrav          = 0
+  nat            = 24
+  ntyp           = 3
+  ecutwfc        = 50.0
+  ecutrho        = 250.0
+  occupations    = 'smearing'
+  smearing       = 'mv'
+  degauss        = 0.001
+/
+
+&ELECTRONS
+  mixing_mode    = 'plain'
+  mixing_beta    = 0.5
+  conv_thr       = 1.0d-8
+/
+
+&IONS
+  ion_dynamics   = 'bfgs'
+  upscale        = 100.D0
+/
+
+&CELL
+  cell_dynamics  = 'bfgs'
+  press_conv_thr = 0.5d0
+  cell_dofree    = 'xyz'
+/
+
+ATOMIC_SPECIES
+La  138.905  la_pbesol_v1.uspp.F.UPF
+Ti  47.867  ti_pbesol_v1.4.uspp.F.UPF
+O   15.999  o_pbesol_v1.2.uspp.F.UPF
+
+K_POINTS {automatic}
+6 6 4 0 0 0
+
+! 1x1x2 supercell
+CELL_PARAMETERS (angstrom)
+   4.86177554     0.00000000     0.00000000
+   0.00000000     4.63286274     0.00000000
+   0.00000000     0.00000000     9.42936372
+
+! Atomic positions (crystal) - from 1x1x2 supercell, 1 La replaces 1 Ti
+ATOMIC_POSITIONS (crystal)
+La       0.03899742     0.22747736     0.47652098
+Ti       0.46100258     0.22747736     0.22652098
+Ti       0.53899742     0.77252264     0.47652098
+Ti       0.96100258     0.77252264     0.22652098
+O        0.76461628     0.05008108     0.10323281
+O        0.37594812     0.42508717     0.42024754
+O        0.73538372     0.05008108     0.35323281
+O        0.12405188     0.42508717     0.17024754
+O        0.23538372     0.94991892     0.35323281
+O        0.62405188     0.57491283     0.17024754
+O        0.26461628     0.94991892     0.10323281
+O        0.87594812     0.57491283     0.42024754
+Ti       0.03899742     0.22747736     0.97652098
+Ti       0.46100258     0.22747736     0.72652097
+Ti       0.53899742     0.77252264     0.97652098
+Ti       0.96100258     0.77252264     0.72652097
+O        0.76461628     0.05008108     0.60323281
+O        0.37594812     0.42508717     0.92024754
+O        0.73538372     0.05008108     0.85323281
+O        0.12405188     0.42508717     0.67024754
+O        0.23538372     0.94991892     0.85323281
+O        0.62405188     0.57491283     0.67024754
+O        0.26461628     0.94991892     0.60323281
+O        0.87594812     0.57491283     0.92024754

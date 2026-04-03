@@ -7,12 +7,16 @@ This file documents Quantum Espresso related tools, workflows, and skills for ph
 ## Table of Contents
 
 1. [Quick Reference](#quick-reference)
-2. [Phonon Calculation Workflow](#phonon-calculation-workflow)
-3. [SCF Input Generation](#scf-input-generation)
-4. [Phonon Input Generation](#phonon-input-generation)
-5. [Parsing Phonon Outputs](#parsing-phonon-outputs)
-6. [Plotting Phonon Dispersion](#plotting-phonon-dispersion)
-7. [Helper Scripts](#helper-scripts)
+2. [Structure Optimization](#structure-optimization)
+   - [Variable-Cell Relaxation (vc-relax)](#variable-cell-relaxation-vc-relax)
+   - [Extract Final Structure](#extract-final-structure)
+   - [Re-optimization](#re-optimization)
+3. [Phonon Calculation Workflow](#phonon-calculation-workflow)
+4. [SCF Input Generation](#scf-input-generation)
+5. [Phonon Input Generation](#phonon-input-generation)
+6. [Parsing Phonon Outputs](#parsing-phonon-outputs)
+7. [Plotting Phonon Dispersion](#plotting-phonon-dispersion)
+8. [Helper Scripts](#helper-scripts)
 
 ---
 
@@ -25,6 +29,129 @@ This file documents Quantum Espresso related tools, workflows, and skills for ph
 | Fourier interp. | `q2r.x` | q-space → real space force constants |
 | Dispersion | `matdyn.x` | Real space → q-space interpolation |
 | Plotting | `plot_phonon.py` | Generate phonon band plots |
+| Structure relax | `pw.x` with `vc-relax` | Full ionic + cell optimization |
+| Convert structure | `qe_out_to_vasp.py` | Extract final structure |
+
+---
+
+## Structure Optimization
+
+### Variable-Cell Relaxation (vc-relax)
+
+This performs full structural optimization including both atomic positions and unit cell parameters.
+
+```bash
+&CONTROL
+  calculation    = 'vc-relax',
+  prefix         = 'pto',
+  pseudo_dir     = './psps',
+  outdir         = './tmp/',
+  tstress        = .true.,
+  tprnfor        = .true.,
+  etot_conv_thr  = 1.0d-5,
+  forc_conv_thr  = 1.0d-4,
+  nstep          = 100
+/
+
+&SYSTEM
+  nosym          = .true.,      ! Disable symmetry for full relaxation
+  ibrav          = 0,           ! Free lattice vectors
+  nat            = 5,
+  ntyp           = 3,
+  ecutwfc        = 50.0,
+  ecutrho        = 250.0,
+  occupations    = 'smearing',
+  smearing       = 'mv',
+  degauss        = 0.001
+/
+
+&ELECTRONS
+  mixing_beta    = 0.5,
+  conv_thr       = 1.0d-8
+/
+
+&IONS
+  upscale        = 100.D0
+/
+
+&CELL
+  cell_dynamics  = 'bfgs',
+  press_conv_thr = 0.5d0,
+  cell_dofree    = 'all'        ! Relax all cell parameters
+/
+
+ATOMIC_SPECIES
+Pb  207.2    pb_pbesol_v1.uspp.F.UPF
+Ti   47.867  ti_pbesol_v1.4.uspp.F.UPF
+O    15.999  o_pbesol_v1.2.uspp.F.UPF
+
+K_POINTS {automatic}
+8 8 8 0 0 0
+
+CELL_PARAMETERS (angstrom)
+3.90  0.00  0.00
+0.00  3.90  0.00
+0.00  0.00  4.15
+
+ATOMIC_POSITIONS (crystal)
+Pb  0.0  0.0  0.00
+Ti  0.5  0.5  0.51
+O   0.5  0.5  0.01
+O   0.5  0.0  0.51
+O   0.0  0.5  0.51
+```
+
+**Key Parameters:**
+
+| Parameter | Typical Value | Description |
+|-----------|---------------|-------------|
+| `calculation` | `'vc-relax'` | Variable-cell relaxation |
+| `nosym` | `.true.` | Disable symmetry for full relaxation |
+| `ibrav` | 0 | Free-form lattice vectors |
+| `cell_dofree` | `'all'` or `'volume'` | Relax all cell or just volume |
+| `cell_dynamics` | `'bfgs'` | BFGS optimizer (recommended) |
+| `press_conv_thr` | 0.5 d0 | Pressure convergence threshold (kBar) |
+| `etot_conv_thr` | 1.0d-5 | Energy convergence (Ry) |
+| `forc_conv_thr` | 1.0d-4 | Force convergence (Ry/bohr) |
+
+**Running the calculation:**
+```bash
+mkdir -p tmp/
+pw.x < vc-relax.in > vc-relax.out
+```
+
+**Cell Degrees of Freedom Options:**
+- `'all'` - Relax a, b, c and all angles
+- `'volume'` - Only optimize volume (keep shape)
+- `'x'`, `'y'`, `'z'` - Relax only along specific axis
+- `'xy'`, `'xz'`, `'yz'` - Relax specific plane
+
+### Extract Final Structure
+
+After vc-relax completes, **always use qe_out_to_vasp.py** to extract the final optimized structure:
+
+```bash
+python qe_out_to_vasp.py vc-relax.out -o final_structure.vasp
+```
+
+**Important:** Do NOT manually extract from "Begin final coordinates" section - use the script. It handles:
+- Locating the correct final coordinates in the output
+- Parsing CELL_PARAMETERS and ATOMIC_POSITIONS
+- Converting to VASP/POSCAR format
+
+After extraction, analyze symmetry:
+```bash
+python find_sym.py final_structure.vasp -k refined
+```
+
+### Re-optimization
+
+For better convergence, you can perform multiple relaxation steps:
+
+1. **First pass**: Use stricter convergence or different optimizer
+2. **Second pass**: Use the output structure as input for final optimization
+
+Use `conv_thr = 1.0d-9` for the final run to get precise forces.
 
 ---
 
@@ -281,11 +408,115 @@ The number of labels must match the number of high-symmetry points defined in yo
 
 | Script | Purpose |
 |--------|---------|
+| [generate_vcrelax.py](scripts/generate_vcrelax.py) | Generate structure optimization input files |
+| [generate_phonon_workflow.py](scripts/generate_phonon_workflow.py) | Generate complete phonon dispersion workflow |
+| [make_heterostructure.py](scripts/make_heterostructure.py) | Create heterostructures/superlattices with termination control |
+| [qe_out_to_vasp.py](scripts/qe_out_to_vasp.py) | Extract final structure from QE output to VASP |
+| [find_sym.py](scripts/find_sym.py) | Analyze and symmetrize crystal structures |
+| [analyze_results.py](scripts/analyze_results.py) | Analyze findMetal.py database results |
 | [plot_phonon.py](scripts/plot_phonon.py) | Generate phonon band structure plots |
 | [parse_phonon.py](scripts/parse_phonon.py) | Extract frequencies, Born charges from outputs |
 | [split_modes.py](scripts/split_modes.py) | Split dynmat.axsf into separate XSF files |
-| [qe_out_to_vasp.py](scripts/qe_out_to_vasp.py) | Extract final structure from QE output to VASP |
-| [find_sym.py](scripts/find_sym.py) | Analyze and symmetrize crystal structures |
+
+### Generate Structure Optimization Input
+
+```bash
+# From atom list file
+python generate_vcrelax.py atoms.txt lattice.txt -o vc-relax.in
+
+# Custom k-points and cutoff
+python generate_vcrelax.py atoms.txt -o vc-relax.in -k "6 6 6" --ecutwfc 60
+
+# Relax only volume (keep shape)
+python generate_vcrelax.py atoms.txt -o vc-relax.in --cell-dofree volume
+```
+
+**Atoms file format:**
+```
+Pb  0.0  0.0  0.0
+Ti  0.5  0.5  0.5
+O   0.5  0.5  0.0
+O   0.5  0.0  0.5
+O   0.0  0.5  0.5
+```
+
+**Lattice file format (optional):**
+```
+3.90  0.00  0.00
+0.00  3.90  0.00
+0.00  0.00  4.15
+```
+
+### Generate Complete Phonon Workflow
+
+Generate all files for a phonon dispersion calculation from a structure file:
+
+```bash
+# Basic usage (from POSCAR)
+python generate_phonon_workflow.py POSCAR
+
+# From QE vc-relax output
+python generate_phonon_workflow.py vc-relax.in
+
+# Custom settings
+python generate_phonon_workflow.py POSCAR \
+    -k 6 6 6 \              # K-points
+    -q 3 3 3 \              # Q-grid for phonons
+    --tot-charge 0.4 \      # Doping (holes)
+    --path G,X,M,G,Z        # High-symmetry path
+```
+
+**Output Directory Structure:**
+```
+<prefix>-phonon-dispersion/
+├── 00SCF/scf.in         # SCF input
+├── 02Grid/ph-grid.in    # Phonon q-grid input
+├── 03q2r/q2r.in         # Fourier interpolation
+├── 04matdyn/matdyn.in   # Dispersion path
+├── 05Plot/plot_phonon.py
+├── psps/                # (empty - copy pseudopotentials here)
+├── tmp/                 # QE temp files
+└── run_phonon.sh        # Job script
+```
+
+**Workflow execution:**
+```bash
+cd <prefix>-phonon-dispersion
+# Copy pseudopotentials to psps/
+cp ../path/to/psps/*.UPF psps/
+sbatch run_phonon.sh
+```
+
+### Create Heterostructure / Superlattice
+
+Create heterostructures by stacking 2D materials with control over terminations:
+
+```bash
+# Basic Ca2F2 / TiO2 / Ca2F2 sandwich
+python make_heterostructure.py Ca2F2.vasp TiO2.cif -n 2 -g 3 -o sandwich.vasp
+
+# Control TiO2 termination (O at both interfaces)
+python make_heterostructure.py Ca2F2.vasp TiO2.cif --bottom-term O --top-term O -n 2
+
+# Options:
+# -n, --nlayers N   Number of unit cells of top layer
+# -g, --gap ANG     Gap between layers (default: 3.0 Å)
+# -r, --ref         ab lattice: first/last/average
+# -b, --bottom-term O/Ti   Bottom termination
+# -t, --top-term    O/Ti   Top termination
+```
+
+### Analyze findMetal.py Results
+
+Analyze database query results, filter by lattice constant and sort:
+
+```bash
+# Find candidates with a ~ 4.7 Å, sorted by workfunction
+python analyze_results.py Results.txt -t 4.7 -r 0.3 -s workfunction
+
+# Top 10 closest to target
+python analyze_results.py Results.txt -t 4.7 -r 0.2 -s a -n 10
+```
 
 ### Phonon Visualization Workflow
 
@@ -302,6 +533,22 @@ The number of labels must match the number of high-symmetry points defined in yo
    ```bash
    xcrysden --xsf dynmat_mode06.xsf
    ```
+
+---
+
+## Default Pseudopotentials (GBRV PBEsol)
+
+These pseudopotentials are used by default in the workflow:
+
+| Element | Mass (amu) | Pseudopotential File |
+|---------|------------|---------------------|
+| O | 15.999 | `o_pbesol_v1.2.uspp.F.UPF` |
+| Ti | 47.867 | `ti_pbesol_v1.4.uspp.F.UPF` |
+| Pb | 207.2 | `pb_pbesol_v1.uspp.F.UPF` |
+
+The script `generate_vcrelax.py` includes built-in mappings for common elements.
+
+**Location:** Place pseudopotentials in `./psps/` directory relative to your input file.
 
 ---
 

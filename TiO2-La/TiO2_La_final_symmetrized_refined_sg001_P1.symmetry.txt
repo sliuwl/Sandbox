@@ -1,0 +1,20 @@
+Symmetry analysis summary
+=========================
+Input file: /Users/sliutheory/Sandbox/TiO2-La/TiO2_La_final.vasp
+Reduced formula: LaTi7O16
+Input sites: 24
+Output sites: 24
+Symmetry tolerance (symprec): 0.005
+Angle tolerance: 5.0
+Requested output structure: refined
+Space group symbol: P1
+Space group number: 1
+Crystal system: triclinic
+Lattice type: triclinic
+Point group: 1
+
+Generated files:
+- /Users/sliutheory/Sandbox/TiO2-La/TiO2_La_final_symmetrized_refined_sg001_P1.vasp
+- /Users/sliutheory/Sandbox/TiO2-La/TiO2_La_final_symmetrized_refined_sg001_P1.cif
+- /Users/sliutheory/Sandbox/TiO2-La/TiO2_La_final_symmetrized_refined_sg001_P1.struc.in
+- /Users/sliutheory/Sandbox/TiO2-La/TiO2_La_final_symmetrized_refined_sg001_P1.symmetry.txt
