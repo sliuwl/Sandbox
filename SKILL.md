@@ -8,6 +8,17 @@ description: 当用户要求创建、更新、同步或存放用户生成的脚�
 - Unless the user explicitly requests it, never automatically update this root skill file `~/Sandbox/SKILL.md`.
 - Store user-generated scripts and skills under `~/Sandbox/.sliu_skills`.
 
+## Backup Principle
+
+When user requests "backup", always backup **both** `SKILL.md` and `.sliu_skills/` directory:
+```bash
+git add SKILL.md .sliu_skills/
+git commit -m "Backup $(date +'%Y-%m-%d %H:%M')"
+git push
+```
+
+This ensures the root skill file and all skill scripts/documentation are synchronized to the remote repository.
+
 ## 2. Standard Workflow
 
 Whenever you receive an instruction to "do a task," follow the steps below in this exact order.
