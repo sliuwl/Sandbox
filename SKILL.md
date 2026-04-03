@@ -8,6 +8,61 @@ description: 当用户要求创建、更新、同步或存放用户生成的脚�
 - Unless the user explicitly requests it, never automatically update this root skill file `~/Sandbox/SKILL.md`.
 - Store user-generated scripts and skills under `~/Sandbox/.sliu_skills`.
 
+## 2. Standard Workflow
+
+Whenever you receive an instruction to "do a task," follow the steps below in this exact order.
+
+**Step 0: Preliminary Check (Must Be Done First)**
+
+If the user request involves generating input files or writing submission scripts, first check whether `references/*.md` already documents a corresponding public entry point. If it is documented, continue. If not, inform the user that "the current skill has not yet consolidated this scenario," and proceed only if the user explicitly asks to update the skill content.
+
+**Step 1: Receive the Instruction**
+
+Parse only the user's explicit literal instruction; do not infer hidden intent. If the instruction is incomplete and prevents script execution due to missing input files, directories, or parameters, ask only the minimum clarification questions required before proceeding.
+
+**Step 2: Make a Plan**
+
+Output a short plan of 1–4 steps, with each step corresponding to one executable action. The plan must clearly specify: the task type, which script(s) or lightweight bash command(s) will be called, what the input is, and where the output will go.
+
+If the task involves generating input files or writing submission scripts, the plan must also specify: which consolidated entry point will be used, which inputs the user is allowed to modify, and where the final files will be written.
+
+If the task involves report writing, the plan must also specify: which data, figures, or scripts will be referenced, where the report will be written, and whether figures need to be copied or redrawn into report/figures/.
+
+If the task involves "new presentation data" and requires adding scripts, the plan must also specify: the save path of the script (within the working directory), the script filename, the command to be executed, and the expected outputs.
+
+**Step 3: Execute**
+
+Only execute the actions explicitly listed in the plan; do not perform additional "helpful" optimizations, cleanup, renaming, or archiving.
+
+Before running any script, first run it once with `--help` (for shell scripts, use `bash <script> --help`) to confirm parameters, and then execute it formally.
+
+If the task involves generating input files or writing submission scripts, prefer reusing consolidated templates or public scripts; do not improvise a new unregistered specification outside thereferences.
+
+When additional scripting is required, first save the script into the actual working directory, then run it; do not inline large blocks of logic directly in the command line.
+
+Do not generate final presentation data directly with one-off `awk`, `sed`, or `python -c` commands; such logic must be materialized as a script file.
+
+**Step 4: Error Handling Discipline**
+
+If any script or command fails:
+
+- Stop all subsequent steps immediately
+- Output the complete error message exactly as is
+- You may retry only once, and only by adjusting input parameters, paths, or wildcards (modifying script code is forbidden)
+- If it still fails, exit directly (do not continue trying)
+
+**Step 5: Minimal Report**
+
+Report only: which commands were executed, which files were created or modified, and whether the task succeeded or failed. Do not provide unsolicited explanations or suggestions about physics, algorithms, or potential functions.
+
+Example format:
+```
+User request: <brief>
+Script(s) called: <script name or bash command>
+Working path: <directory>
+Result: <success/failure> - <one-paragraph summary>
+```
+
 ## Organizational Principle
 
 ### Scripts → `~/Sandbox/.sliu_skills/scripts/`
