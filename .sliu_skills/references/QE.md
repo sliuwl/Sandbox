@@ -30,7 +30,7 @@ This file documents Quantum Espresso related tools, workflows, and skills for ph
 | Dispersion | `matdyn.x` | Real space → q-space interpolation |
 | Plotting | `plot_phonon.py` | Generate phonon band plots |
 | Structure relax | `pw.x` with `vc-relax` | Full ionic + cell optimization |
-| Convert structure | `qe_out_to_vasp.py` | Extract final structure |
+| Convert structure | `qe_out_to_vasp.py` | Extract final structure (VASP/CIF) |
 
 ---
 
@@ -131,13 +131,25 @@ pw.x < vc-relax.in > vc-relax.out
 After vc-relax completes, **always use qe_out_to_vasp.py** to extract the final optimized structure:
 
 ```bash
+# Extract as VASP POSCAR (default)
 python qe_out_to_vasp.py vc-relax.out -o final_structure.vasp
+
+# Extract as CIF file
+python qe_out_to_vasp.py vc-relax.out -o final_structure.cif -f cif
 ```
 
 **Important:** Do NOT manually extract from "Begin final coordinates" section - use the script. It handles:
 - Locating the correct final coordinates in the output
 - Parsing CELL_PARAMETERS and ATOMIC_POSITIONS
-- Converting to VASP/POSCAR format
+- Converting to VASP/POSCAR or CIF format
+- **Fallback extraction**: If "Begin final coordinates" is missing (e.g., incomplete relaxation), the script automatically falls back to extracting the last CELL_PARAMETERS and ATOMIC_POSITIONS block
+
+**Options:**
+
+| Option | Description |
+|--------|-------------|
+| `-o, --output` | Output filename (auto-generated if omitted) |
+| `-f, --format` | Output format: `vasp` (default) or `cif` |
 
 After extraction, analyze symmetry:
 ```bash
@@ -442,7 +454,7 @@ The number of labels must match the number of high-symmetry points defined in yo
 | [generate_phonon_workflow.py](scripts/generate_phonon_workflow.py) | Generate complete phonon dispersion workflow |
 | [make_heterostructure.py](scripts/make_heterostructure.py) | Create heterostructures/superlattices with termination control |
 | [make_doped_supercell.py](scripts/make_doped_supercell.py) | Create doped supercells by replacing host atoms with dopants |
-| [qe_out_to_vasp.py](scripts/qe_out_to_vasp.py) | Extract final structure from QE output to VASP |
+| [qe_out_to_vasp.py](scripts/qe_out_to_vasp.py) | Extract final structure from QE output (VASP/CIF) |
 | [find_sym.py](scripts/find_sym.py) | Analyze and symmetrize crystal structures |
 | [analyze_results.py](scripts/analyze_results.py) | Analyze findMetal.py database results |
 | [plot_phonon.py](scripts/plot_phonon.py) | Generate phonon band structure plots |

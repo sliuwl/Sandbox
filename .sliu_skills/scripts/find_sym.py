@@ -254,7 +254,7 @@ def main() -> int:
     )
 
     poscar_file = output_root.with_suffix(".vasp")
-    poscar_text = Poscar(symmetrized_structure, comment=comment).get_str(
+    poscar_text = Poscar(symmetrized_structure, comment=comment).get_string(
         significant_figures=OUTPUT_DECIMAL_PLACES
     )
     poscar_file.write_text(poscar_text + "\n", encoding="utf-8")
