@@ -7,20 +7,25 @@ import argparse
 from pathlib import Path
 
 
-def extract_final_structure_manual(qe_output: Path):
-    """Extract the final structure when ASE fails (no 'Begin final coordinates' marker)."""
+def extract_structure_manual(qe_output: Path, which: str = "last"):
+    """Extract the first or last structure when ASE fails."""
     content = qe_output.read_text()
     lines = content.split('\n')
 
-    # Find the last occurrence of CELL_PARAMETERS
-    cell_params_idx = None
-    for i in range(len(lines) - 1, -1, -1):
-        if 'CELL_PARAMETERS' in lines[i]:
-            cell_params_idx = i
-            break
+    # Find all CELL_PARAMETERS occurrences
+    cell_indices = []
+    for i, line in enumerate(lines):
+        if 'CELL_PARAMETERS' in line:
+            cell_indices.append(i)
 
-    if cell_params_idx is None:
+    if not cell_indices:
         raise ValueError("No CELL_PARAMETERS found in QE output")
+
+    # Select first or last
+    if which == "first":
+        cell_params_idx = cell_indices[0]
+    else:  # last
+        cell_params_idx = cell_indices[-1]
 
     # Extract cell parameters (next 3 lines, skipping empty line if present)
     cell_params = []
@@ -169,8 +174,8 @@ def write_cif(output: Path, atoms, cell_params):
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Read the last structure from a Quantum ESPRESSO output and export it "
-            "as a VASP POSCAR-style file or CIF file."
+            "Read structure(s) from a Quantum ESPRESSO output and export as "
+            "VASP POSCAR-style file or CIF file."
         )
     )
     parser.add_argument("qe_output", help="Path to the Quantum ESPRESSO output file, e.g. qe.out")
@@ -185,6 +190,23 @@ def parse_args() -> argparse.Namespace:
         choices=["vasp", "cif"],
         default="vasp",
         help="Output format: 'vasp' for VASP POSCAR (default), 'cif' for CIF.",
+    )
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
+        "--first",
+        action="store_true",
+        help="Extract the FIRST structure (default: extracts last).",
+    )
+    group.add_argument(
+        "--last",
+        action="store_true",
+        default=True,
+        help="Extract the LAST structure (default behavior).",
+    )
+    group.add_argument(
+        "--both",
+        action="store_true",
+        help="Extract BOTH first and last structures (outputs: prefix_first.vasp, prefix_last.vasp).",
     )
     return parser.parse_args()
 
@@ -207,34 +229,75 @@ def main() -> None:
     if not qe_output.is_file():
         raise FileNotFoundError(f"QE output file not found: {qe_output}")
 
-    # Determine output path
-    if args.output:
-        output = Path(args.output).expanduser()
-    else:
-        output = qe_output.with_suffix(f".{args.format}")
-    output = ensure_suffix(output, args.format)
+    # Determine which structure(s) to extract
+    extract_first = args.first
+    extract_last = args.last
+    extract_both = args.both
+
+    # Override if --both is specified
+    if extract_both:
+        extract_first = True
+        extract_last = True
 
     from ase.io import read
 
-    # Try standard ASE reading first
-    try:
-        atoms = read(qe_output, format="espresso-out", index=-1)
-        atoms.wrap()
-        cell_params = atoms.get_cell().array
-    except AssertionError as e:
-        # ASE failed, likely due to missing 'Begin final coordinates' marker
-        # Fall back to manual extraction
-        print(f"ASE parsing failed: {e}")
-        print("Falling back to manual structure extraction...")
-        atoms, cell_params = extract_final_structure_manual(qe_output)
+    def read_structure(index):
+        """Try ASE first, fall back to manual extraction."""
+        try:
+            atoms = read(qe_output, format="espresso-out", index=index)
+            atoms.wrap()
+            return atoms, atoms.get_cell().array
+        except AssertionError as e:
+            # ASE failed, fall back to manual extraction
+            which = "first" if index == 0 else "last"
+            print(f"ASE parsing failed: {e}")
+            print(f"Falling back to manual {which} structure extraction...")
+            return extract_structure_manual(qe_output, which)
 
-    # Write in the requested format
-    if args.format == "cif":
-        write_cif(output, atoms, cell_params)
-    else:
-        write_vasp_manually(output, atoms, cell_params)
+    # Base output path
+    base_output = Path(args.output).expanduser() if args.output else qe_output.with_suffix("")
+    base_output = ensure_suffix(Path(str(base_output) + "_tmp"), args.format)
 
-    print(f"Wrote {output}")
+    outputs_written = []
+
+    if extract_first:
+        if extract_both:
+            output_first = base_output.parent / (base_output.stem.replace("_tmp", "") + "_first." + args.format)
+        else:
+            output_first = ensure_suffix(base_output, args.format)
+        atoms, cell_params = read_structure(0)
+        if args.format == "cif":
+            write_cif(output_first, atoms, cell_params)
+        else:
+            write_vasp_manually(output_first, atoms, cell_params)
+        outputs_written.append(output_first)
+        print(f"Wrote first structure: {output_first}")
+
+    if extract_last:
+        if extract_both:
+            output_last = base_output.parent / (base_output.stem.replace("_tmp", "") + "_last." + args.format)
+        elif extract_first:
+            # User specified --first only, but we still need last output path
+            output_last = ensure_suffix(base_output, args.format)
+        else:
+            output_last = ensure_suffix(base_output, args.format)
+        atoms, cell_params = read_structure(-1)
+        if args.format == "cif":
+            write_cif(output_last, atoms, cell_params)
+        else:
+            write_vasp_manually(output_last, atoms, cell_params)
+        outputs_written.append(output_last)
+        print(f"Wrote last structure: {output_last}")
+
+    if not extract_first and not extract_last:
+        # Default behavior: extract last
+        atoms, cell_params = read_structure(-1)
+        output = ensure_suffix(base_output, args.format)
+        if args.format == "cif":
+            write_cif(output, atoms, cell_params)
+        else:
+            write_vasp_manually(output, atoms, cell_params)
+        print(f"Wrote {output}")
 
 
 if __name__ == "__main__":

@@ -1,3 +1,9 @@
+---
+name: qe-reference
+description: Quantum Espresso tools, workflows for phonon calculations and structure optimization
+trigger: qe, quantum espresso, extract structure from qe, extract final structure, qe out to vasp, vc-relax, phonon calculation
+---
+
 # Quantum Espresso (QE) Reference
 
 This file documents Quantum Espresso related tools, workflows, and skills for phonon calculations.
