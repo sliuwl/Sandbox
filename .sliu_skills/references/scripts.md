@@ -2,6 +2,14 @@
 
 This file documents the Python scripts stored in `~/Sandbox/.sliu_skills/scripts`.
 
+For workflow routing, start with:
+
+- `QE.md` for the top-level QE index
+- `qe-structure.md` for extraction and symmetry cleanup
+- `qe-phonopy-fd.md` for Phonopy finite-displacement workflows
+- `qe-dfpt.md` for `ph.x/q2r.x/matdyn.x`
+- `qe-troubleshooting.md` for failures and fixes
+
 ## Workflow: Analyzing QE Optimized Structures
 
 > **IMPORTANT**: When analyzing optimized structures from QE output files, always use these scripts in sequence.
@@ -105,6 +113,42 @@ Examples:
 ```bash
 python3 ~/Sandbox/.sliu_skills/scripts/qe_out_to_vasp.py ./qe.out
 python3 ~/Sandbox/.sliu_skills/scripts/qe_out_to_vasp.py ./relax.out -o ./final_structure.vasp
+```
+
+## `make_supercell_struct.py`
+
+Purpose:
+- Read a VASP-format structure file.
+- Create a repeated supercell with ASE.
+- Export both a VASP file and a QE-compatible `struct.in`.
+
+Dependencies:
+- `ase`
+- `numpy`
+
+Basic usage:
+
+```bash
+python3 ~/Sandbox/.sliu_skills/scripts/make_supercell_struct.py INPUT_VASP -r NX NY NZ
+```
+
+Arguments:
+- `input_vasp`: input VASP structure file such as `qe.vasp`.
+- `-r`, `--repeat`: repetition along `a`, `b`, `c`. Default: `1 1 2`.
+- `-o`, `--output`: output VASP filename. If omitted, uses `<input_stem>_<NX>x<NY>x<NZ>.vasp`.
+- `--struct-output`: QE structure output filename. Default: `struct.in`.
+
+Behavior:
+- Reads the structure with ASE and creates the supercell with `atoms.repeat((NX, NY, NZ))`.
+- Wraps atomic positions back into the cell.
+- Preserves the original species ordering from the input file.
+- Writes a QE structure block with `CELL_PARAMETERS (angstrom)` and `ATOMIC_POSITIONS (crystal)`.
+
+Examples:
+
+```bash
+python3 ~/Sandbox/.sliu_skills/scripts/make_supercell_struct.py ./qe.vasp -r 1 1 2
+python3 ~/Sandbox/.sliu_skills/scripts/make_supercell_struct.py ./qe.vasp -r 2 2 1 -o ./qe_2x2x1.vasp --struct-output ./struct_2x2x1.in
 ```
 
 ## `split_modes.py`

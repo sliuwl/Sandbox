@@ -94,13 +94,23 @@ def write_vasp_manually(output: Path, atoms, cell_params):
 
     symbols = atoms.get_chemical_symbols()
     counts = Counter(symbols)
-    unique_elements = list(counts.keys())
+    # Preserve first-appearance order from the QE structure, then group
+    # coordinates by species because VASP interprets positions in species blocks.
+    unique_elements = []
+    for symbol in symbols:
+        if symbol not in unique_elements:
+            unique_elements.append(symbol)
 
     # Build element string and count string
     element_str = "  ".join(unique_elements)
     count_str = "  ".join(str(counts[e]) for e in unique_elements)
 
-    scaled = atoms.get_scaled_positions()
+    scaled = atoms.get_scaled_positions(wrap=True)
+    grouped_positions = []
+    for element in unique_elements:
+        for symbol, pos in zip(symbols, scaled):
+            if symbol == element:
+                grouped_positions.append(pos)
 
     lines = []
     lines.append(element_str + "\n")
@@ -114,7 +124,7 @@ def write_vasp_manually(output: Path, atoms, cell_params):
     lines.append(count_str + "\n")
 
     lines.append("Direct\n")
-    for pos in scaled:
+    for pos in grouped_positions:
         lines.append(f" {pos[0]:.14f} {pos[1]:.14f} {pos[2]:.14f}\n")
 
     output.write_text("".join(lines))
@@ -200,7 +210,6 @@ def parse_args() -> argparse.Namespace:
     group.add_argument(
         "--last",
         action="store_true",
-        default=True,
         help="Extract the LAST structure (default behavior).",
     )
     group.add_argument(
@@ -237,6 +246,8 @@ def main() -> None:
     # Override if --both is specified
     if extract_both:
         extract_first = True
+        extract_last = True
+    elif not extract_first and not extract_last:
         extract_last = True
 
     from ase.io import read
@@ -288,17 +299,6 @@ def main() -> None:
             write_vasp_manually(output_last, atoms, cell_params)
         outputs_written.append(output_last)
         print(f"Wrote last structure: {output_last}")
-
-    if not extract_first and not extract_last:
-        # Default behavior: extract last
-        atoms, cell_params = read_structure(-1)
-        output = ensure_suffix(base_output, args.format)
-        if args.format == "cif":
-            write_cif(output, atoms, cell_params)
-        else:
-            write_vasp_manually(output, atoms, cell_params)
-        print(f"Wrote {output}")
-
 
 if __name__ == "__main__":
     main()
