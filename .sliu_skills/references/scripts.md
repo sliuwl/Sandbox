@@ -5,6 +5,7 @@ This file documents the Python scripts stored in `~/Sandbox/.sliu_skills/scripts
 For workflow routing, start with:
 
 - `QE.md` for the top-level QE index
+- `qe-bands.md` for QE band structures
 - `qe-structure.md` for extraction and symmetry cleanup
 - `qe-phonopy-fd.md` for Phonopy finite-displacement workflows
 - `qe-dfpt.md` for `ph.x/q2r.x/matdyn.x`
@@ -113,6 +114,57 @@ Examples:
 ```bash
 python3 ~/Sandbox/.sliu_skills/scripts/qe_out_to_vasp.py ./qe.out
 python3 ~/Sandbox/.sliu_skills/scripts/qe_out_to_vasp.py ./relax.out -o ./final_structure.vasp
+```
+
+## `qe_plot_bands.py`
+
+Purpose:
+- Read a QE `bands` output file produced by `pw.x`.
+- Reconstruct the cumulative k-path and special-point boundaries.
+- Export raw band data and save band-structure figures.
+
+Dependencies:
+- `numpy`
+- `matplotlib`
+
+Basic usage:
+
+```bash
+python3 ~/Sandbox/.sliu_skills/scripts/qe_plot_bands.py -o bands.out
+```
+
+Important arguments:
+- `-o`, `--output`: QE output from `pw.x` with `calculation = 'bands'`.
+- `-k`, `--klabels`: text file with one special-point label per boundary.
+- `-n`, `--name`: tag appended to output filenames. Default: `pbe`.
+- `-r`, `--raw`: export raw band data in addition to figures.
+- `--no-plot`: skip figure generation and only parse or export data.
+- `-s`, `--nspin`: one of `1`, `2`, `4`. Default: `1`.
+- `-ne NUP NDN`: up/down electron counts when `nspin = 2`.
+- `-e EMIN EMAX ESTEP`: energy window relative to the chosen Fermi reference.
+- `-fe`: Fermi reference mode.
+
+Fermi modes:
+- `-fe 1`: use `(VBM + CBM) / 2`
+- `-fe 2`: use `VBM`
+- `-fe 3 VALUE`: use an explicit Fermi energy in eV
+
+Generated files:
+- `<bands.out>_<name>.png`
+- `<bands.out>_<name>.eps`
+- `<name>_bands.dat` when `-r` and `nspin = 1/4`
+- `<name>_bands_up.dat` and `<name>_bands_dn.dat` when `-r` and `nspin = 2`
+- `xklabel.dat` when `-r`
+
+Notes:
+- The raw data files are written next to the parsed QE output file.
+- The script warns if the number of labels in `klabel` does not match the number of detected special-point boundaries.
+
+Examples:
+
+```bash
+python3 ~/Sandbox/.sliu_skills/scripts/qe_plot_bands.py -o ./bands.out -k ./klabel -e 4 4 2 -n pbe -fe 1 -r
+python3 ~/Sandbox/.sliu_skills/scripts/qe_plot_bands.py -o ./bands.out -k ./klabel --no-plot -r
 ```
 
 ## `make_supercell_struct.py`

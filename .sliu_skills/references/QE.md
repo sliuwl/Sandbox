@@ -1,6 +1,6 @@
 ---
 name: qe-reference
-description: Index for Quantum ESPRESSO workflows in Sandbox. Route structure extraction and symmetry cleanup to `qe-structure.md`, Phonopy finite-displacement workflows to `qe-phonopy-fd.md`, DFPT phonons to `qe-dfpt.md`, and workflow failures to `qe-troubleshooting.md`.
+description: Index for Quantum ESPRESSO workflows in Sandbox. Route band structures to `qe-bands.md`, structure extraction and symmetry cleanup to `qe-structure.md`, Phonopy finite-displacement workflows to `qe-phonopy-fd.md`, DFPT phonons to `qe-dfpt.md`, and workflow failures to `qe-troubleshooting.md`.
 ---
 
 # Quantum ESPRESSO Reference Index
@@ -13,6 +13,8 @@ Load only the document that matches the task instead of reading one large mixed 
 
 - Extract the last structure from `qe.out`, clean up symmetry, or prepare a supercell:
   `qe-structure.md`
+- Run a standard QE band-structure workflow from `scf.in`, `bands.in`, `klabel`, and a plotting script:
+  `qe-bands.md`
 - Run finite-displacement phonons with Phonopy and QE:
   `qe-phonopy-fd.md`
 - Run DFPT phonons with `ph.x`, `q2r.x`, and `matdyn.x`:
@@ -29,6 +31,8 @@ Load only the document that matches the task instead of reading one large mixed 
 | QE relaxation | `pw.x` | `qe-structure.md` |
 | Extract final structure | `qe_out_to_vasp.py` | `qe-structure.md` |
 | Symmetry analysis | `find_sym.py` | `qe-structure.md` |
+| Band structure | `pw.x` with `calculation = 'bands'` | `qe-bands.md` |
+| Plot QE bands | `qe_plot_bands.py` | `qe-bands.md` or `scripts.md` |
 | Finite-displacement phonons | `phonopy --qe` + `pw.x` | `qe-phonopy-fd.md` |
 | DFPT Gamma phonons | `ph.x` | `qe-dfpt.md` |
 | DFPT dispersion | `ph.x` + `q2r.x` + `matdyn.x` | `qe-dfpt.md` |
@@ -41,6 +45,7 @@ These scripts are documented in `scripts.md` and are reused across the split QE 
 
 - `qe_out_to_vasp.py`
 - `find_sym.py`
+- `qe_plot_bands.py`
 - `make_supercell_struct.py`
 - `generate_vcrelax.py`
 - `generate_phonon_workflow.py`
