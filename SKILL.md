@@ -1,6 +1,18 @@
 ---
 name: sliu-root
 description: 当用户在 ~/Sandbox 或其任意子目录中执行任务，尤其是创建、更新、同步、解析、转换、生成输入文件、写脚本或复用工作流时触发。优先检查并复用 ~/Sandbox/.sliu_skills 中已有的 skills、references 和 scripts；用户生成的 scripts 和 skills 统一存放在 ~/Sandbox/.sliu_skills。
+trigger:
+  - "QE"
+  - "Quantum ESPRESSO"
+  - "pw.x"
+  - "pwscf"
+  - "espresso"
+  - "phonon"
+  - "band structure"
+  - "structure"
+  - "relaxation"
+  - "scf"
+  - "DFTP"
 ---
 
 # Sliu Root Skill
@@ -166,3 +178,18 @@ When the task is inside any subdirectory of `~/Sandbox`:
 - If you decide not to use an available script or skill, state the reason explicitly in the working notes or user update.
 
 For software-specific workflows (e.g., QE, VASP), see the corresponding reference file in `~/Sandbox/.sliu_skills/references/`.
+
+## Available QE Sub-Skills
+
+When triggered with QE-related keywords, route to the appropriate sub-skill:
+
+| Skill | Purpose | Trigger Keywords |
+|-------|---------|------------------|
+| `qe-bands` | Band structure workflow (SCF → bands → plot) | band structure, bands calculation, k-point path |
+| `qe-dfpt-phonon` | DFPT phonon workflow (ph.x → q2r.x → matdyn.x) | dfpt phonon, ph.x, q2r.x, matdyn.x |
+| `qe-phonopy-fd` | Finite-displacement phonons with Phonopy | phonopy, finite displacement, FORCE_SETS |
+| `qe-symmetry-repair` | Symmetry analysis and repair | symmetry repair, symmetriz*, space group |
+| `qe-pdos-input-audit` | PDOS input validation | pdos, dos, projected dos |
+| `phonopy-qe-fd` | Alias for qe-phonopy-fd (deprecated) | (legacy alias, prefer qe-phonopy-fd) |
+
+For QE reference docs, see `~/Sandbox/.sliu_skills/references/`.

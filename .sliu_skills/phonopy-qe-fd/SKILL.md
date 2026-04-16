@@ -1,9 +1,15 @@
 ---
 name: phonopy-qe-fd
-description: Use when a request explicitly names `phonopy-qe-fd` or asks for a Phonopy finite-displacement workflow with Quantum ESPRESSO. This is a compatibility alias for the normalized `qe-phonopy-fd` skill.
+description: "[DEPRECATED] Use only for legacy requests that explicitly name phonopy-qe-fd. Prefer qe-phonopy-fd instead."
+trigger:
+  - "phonopy-qe-fd"
+out_of_scope:
+  - (use qe-phonopy-fd instead)
 ---
 
-# Phonopy QE Finite Displacement Alias
+# Phonopy QE Finite Displacement Alias (DEPRECATED)
+
+> ⚠️ This skill is deprecated. Use `qe-phonopy-fd` instead for new work.
 
 This alias exists so older prompts still route to the normalized `qe-phonopy-fd` workflow.
 

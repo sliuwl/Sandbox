@@ -1,6 +1,21 @@
 ---
 name: qe-symmetry-repair
 description: "Use when a QE-relaxed structure or QE output has to be restored to a symmetry-consistent structure for further QE or phonopy work: extract the last structure, analyze the space group, write refined or conventional outputs, and rebuild QE-ready structure blocks or inputs."
+trigger:
+  - "symmetry repair"
+  - "symmetriz"
+  - "find_sym"
+  - "space group"
+  - "restore symmetry"
+  - "P1"
+  - "conventional cell"
+  - "primitive cell"
+  - "refined structure"
+  - "symprec"
+out_of_scope:
+  - "file corruption repair"
+  - "structure file format conversion only"
+  - "automated relaxation"
 ---
 
 # QE Symmetry Repair
@@ -34,3 +49,10 @@ description: "Use when a QE-relaxed structure or QE output has to be restored to
 - `../references/qe-phonopy-fd.md` for finite-displacement phonons
 - `../references/qe-troubleshooting.md` for symmetry loss, P1 fallback, and environment issues
 - `../references/scripts.md` for the shared script CLI details
+
+## Available Scripts
+
+| Script | Purpose | CLI Example |
+|--------|---------|-------------|
+| `../scripts/qe_out_to_vasp.py` | Extract structure from QE output | `python qe_out_to_vasp.py qe.out` |
+| `../scripts/find_sym.py` | Analyze and repair symmetry | `python find_sym.py structure.vasp --symprec 0.01` |

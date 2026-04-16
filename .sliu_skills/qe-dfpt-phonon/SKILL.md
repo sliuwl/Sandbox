@@ -1,6 +1,22 @@
 ---
 name: qe-dfpt-phonon
 description: Use when work in Sandbox needs Quantum ESPRESSO DFPT phonons with `ph.x`, `q2r.x`, and `matdyn.x`, including reviewing inputs, choosing q-meshes, diagnosing imaginary modes, and plotting or interpreting QE phonon dispersions.
+trigger:
+  - "dfpt phonon"
+  - "ph.x"
+  - "q2r.x"
+  - "matdyn.x"
+  - "phonon dispersion"
+  - "dfpt phonons"
+  - "electron-phonon"
+  - "qe phonon"
+  - "ldisp"
+out_of_scope:
+  - "finite-displacement phonons"
+  - "phonopy workflows"
+  - "electron-phonon coupling (epw)"
+  - "Raman/IR intensity calculations"
+  - "anharmonic methods"
 ---
 
 # QE DFPT Phonon
@@ -34,3 +50,11 @@ Use this skill for phonons from QE's native DFPT stack rather than finite-displa
 - `../references/qe-dfpt.md` for the standard `pw.x -> ph.x -> q2r.x -> matdyn.x` route
 - `../references/qe-troubleshooting.md` for convergence and parsing failures
 - `../references/scripts.md` for the shared phonon parsing and plotting CLIs
+
+## Available Scripts
+
+| Script | Purpose | CLI Example |
+|--------|---------|-------------|
+| `../scripts/plot_phonon.py` | Plot phonon dispersion from matdyn output | `python plot_phonon.py matdyn.out` |
+| `../scripts/parse_phonon.py` | Parse and summarize phonon frequencies | `python parse_phonon.py ph.out` |
+| `../scripts/qe_out_to_vasp.py` | Extract structure from QE output | `python qe_out_to_vasp.py scf.out` |

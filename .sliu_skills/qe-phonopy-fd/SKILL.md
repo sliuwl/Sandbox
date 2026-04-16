@@ -1,6 +1,22 @@
 ---
 name: qe-phonopy-fd
 description: Use when work in Sandbox needs a Phonopy finite-displacement phonon workflow with Quantum ESPRESSO, including checking the relaxed structure, symmetry cleanup before `phonopy --qe -d`, building displaced SCF inputs, assembling `FORCE_SETS`, adding `BORN`, or diagnosing failed QE plus Phonopy phonon runs.
+trigger:
+  - "phonopy"
+  - "finite displacement"
+  - "supercell phonon"
+  - "fd phonon"
+  - "displacement"
+  - "phonopy qe"
+  - "phonopy --qe"
+  - "FORCE_SETS"
+  - "displaced supercell"
+out_of_scope:
+  - "DFPT phonons"
+  - "electron-phonon coupling"
+  - "anharmonic free energy"
+  - "thermal transport"
+  - "automated queue orchestration"
 ---
 
 # QE Phonopy Finite Displacement
@@ -38,3 +54,12 @@ Use this skill for finite-displacement phonons with Phonopy and QE.
 - `../references/qe-structure.md` for extraction, supercell preparation, and symmetry cleanup
 - `../references/qe-troubleshooting.md` for P1 fallback, environment issues, and path mistakes
 - `../references/scripts.md` for the shared structure and phonon helper CLIs
+
+## Available Scripts
+
+| Script | Purpose | CLI Example |
+|--------|---------|-------------|
+| `../scripts/generate_phonon_workflow.py` | Generate displaced supercell jobs for Phonopy | `python generate_phonon_workflow.py structure.vasp` |
+| `../scripts/make_supercell_struct.py` | Create supercell from primitive cell | `python make_supercell_struct.py prim.vasp 2x2x2` |
+| `../scripts/qe_out_to_vasp.py` | Extract structure from QE output | `python qe_out_to_vasp.py scf.out` |
+| `../scripts/find_sym.py` | Analyze and repair symmetry | `python find_sym.py structure.vasp` |

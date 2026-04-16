@@ -1,6 +1,22 @@
 ---
 name: qe-bands
 description: Use when work in Sandbox needs a Quantum ESPRESSO band-structure workflow, including reviewing or creating `scf.in` and `bands.in`, choosing a high-symmetry k-path, explaining `K_POINTS {crystal_b}`, checking `klabel`, parsing `bands.out`, or plotting and interpreting QE band structures.
+trigger:
+  - "band structure"
+  - "bands calculation"
+  - "qe bands"
+  - "scf to bands"
+  - "k-point path"
+  - "kpath"
+  - "plot band"
+  - "band plot"
+  - "bands.in"
+  - "pw bands"
+out_of_scope:
+  - "projected bands (pband)"
+  - "DOS/PDOS workflows"
+  - "spin-orbit coupling bands"
+  - "Wannier functions"
 ---
 
 # QE Bands
@@ -35,3 +51,11 @@ Use this skill for the standard QE band-structure workflow driven by `pw.x` with
 - `../references/qe-bands.md` for the workflow, k-path setup options, and plotting commands
 - `../references/qe-structure.md` for extracting or symmetrizing the structure before building a path
 - `../references/scripts.md` for the shared plotting CLI details
+
+## Available Scripts
+
+| Script | Purpose | CLI Example |
+|--------|---------|-------------|
+| `../scripts/qe_plot_bands.py` | Plot band structure from QE bands output | `python qe_plot_bands.py bands.out --ylabel "Energy (eV)"` |
+| `../scripts/qe_out_to_vasp.py` | Extract structure from QE output for path generation | `python qe_out_to_vasp.py scf.out` |
+| `../scripts/find_sym.py` | Analyze symmetry to generate proper k-path | `python find_sym.py structure.vasp` |

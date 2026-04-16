@@ -1,6 +1,18 @@
 ---
 name: qe-pdos-input-audit
 description: Use when work in Sandbox needs a Quantum ESPRESSO PDOS input audit or setup, including reviewing or fixing `scf.in`, `nscf.in`, and `pdos.in` or `projwfc.x` consistency, correcting syntax and keyword issues, aligning `prefix` and `outdir` with cutoffs and k-mesh, checking tetrahedra vs smearing choices for DOS sharpness, and verifying that job scripts run SCF to NSCF to PROJWFC instead of unrelated stages.
+trigger:
+  - "pdos"
+  - "projected dos"
+  - "dos"
+  - "projwfc"
+  - "nscf"
+  - "density of states"
+  - "total dos"
+out_of_scope:
+  - "band structure plotting"
+  - "phonon calculations"
+  - "Wannier functions"
 ---
 
 # QE PDOS Input Audit
@@ -34,3 +46,11 @@ Use this skill for QE projected DOS preparation and validation before launching 
 
 - `references/qe-pdos-input-audit.md` for PDOS-specific audit checklist and concrete fix snippets.
 - `../references/QE.md` for shared QE conventions in this workspace.
+
+## Available Scripts
+
+| Script | Purpose | CLI Example |
+|--------|---------|-------------|
+| Local: `sum_states.py` | Sum PDOS contributions | `python sum_states.py` |
+| Local: `plot_sum_dos.py` | Plot total DOS | `python plot_sum_dos.py` |
+| `../scripts/qe_out_to_vasp.py` | Extract structure from QE output | `python qe_out_to_vasp.py scf.out` |
