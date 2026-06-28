@@ -6,6 +6,7 @@ For workflow routing, start with:
 
 - `QE.md` for the top-level QE index
 - `qe-bands.md` for QE band structures
+- `qe-fatbands.md` for projected / fat band structures
 - `qe-structure.md` for extraction and symmetry cleanup
 - `qe-phonopy-fd.md` for Phonopy finite-displacement workflows
 - `qe-dfpt.md` for `ph.x/q2r.x/matdyn.x`
@@ -249,3 +250,87 @@ Notes:
 - Phonon mode 1-3 are typically acoustic modes (zero frequency).
 - Mode 6 (152.9 cm⁻¹ in PbTiO₃) is the z-polarized E(1) soft mode.
 - The XSF files use atomic displacements as displacement vectors for visualization.
+
+## `qe_format_fatbands.py`
+
+Purpose:
+- Parse `projwfc.out` and `fatband.projwfc_up` from a `projwfc.x` run.
+- Write a NumPy projection array, an auto-generated `.projs` file, and a `.summary` file.
+
+Dependencies:
+- `numpy`
+
+Basic usage:
+
+```bash
+python3 ~/Sandbox/.sliu_skills/scripts/qe_format_fatbands.py -i projwfc.out -p fatband.projwfc_up -o fatband_formatted
+```
+
+Arguments:
+- `-i, --input`: `projwfc.x` output file. Default: `projwfc.out`.
+- `-p, --proj`: raw projection file. Default: `fatband.projwfc_up`.
+- `-o, --output`: output base name. Default: `fatband_formatted`.
+- `-v, --verbose`: print detailed diagnostics.
+
+Generated files (next to the input by default):
+- `<output>.npy` — projection array of shape `(nlorbs, nks, nbands)`.
+- `<output>.projs` — auto-generated projection definitions.
+- `<output>.summary` — human-readable state summary.
+
+## `qe_plot_fatbands.py`
+
+Purpose:
+- Read a QE `bands` output file produced by `pw.x`.
+- Plot plain band structures and/or fatbands (projected band structures) using projection data from `qe_format_fatbands.py`.
+
+Dependencies:
+- `numpy`
+- `matplotlib`
+
+Basic usage (plain bands):
+
+```bash
+python3 ~/Sandbox/.sliu_skills/scripts/qe_plot_fatbands.py -o bands.out -k klabel -e 4 4 2 -n pbe -fe 1 -r
+```
+
+Fatband usage:
+
+```bash
+python3 ~/Sandbox/.sliu_skills/scripts/qe_plot_fatbands.py \
+    -o bands.out \
+    -k klabel \
+    -n pbe \
+    -e 5 5 2 \
+    -fe 3 6.5 \
+    -r \
+    --fatband \
+    --proj plot.projs \
+    --proj-data fatband_formatted.npy \
+    --proj-source projwfc.out \
+    --scale 100
+```
+
+Important arguments:
+- `-o, --output`: QE output from `pw.x` with `calculation = 'bands'`.
+- `-k, --klabels`: text file with one special-point label per boundary.
+- `-n, --name`: tag appended to output filenames. Default: `pbe`.
+- `-r, --raw`: export raw band data in addition to figures.
+- `--no-plot`: skip figure generation and only parse or export data.
+- `-s, --nspin`: one of `1`, `2`, `4`. Default: `1`.
+- `-ne NUP NDN`: up/down electron counts when `nspin = 2`.
+- `-e EMIN EMAX ESTEP`: energy window relative to the chosen Fermi reference.
+- `-fe`: Fermi reference mode.
+  - `-fe 1`: `(VBM + CBM) / 2` (default)
+  - `-fe 2`: `VBM`
+  - `-fe 3 VALUE`: explicit Fermi energy in eV
+- `--fatband`: enable fatband overlay.
+- `--proj`: `.projs` file defining which orbitals to plot.
+- `--proj-data`: `.npy` projection data file.
+- `--proj-source`: `projwfc.x` output used to resolve state indices. Default: `projwfc.out` in the current directory.
+- `--scale`: marker-size scale factor for fatbands. Default: `100`.
+
+Generated files:
+- `<bands.out>_<name>.png` and `.eps`
+- `<bands.out>_fatband_<name>.png` and `.eps` when `--fatband` is used
+- `<name>_bands.dat` and `xklabel.dat` when `-r` is used
+- Spin-polarized outputs include `_up_` and `_dn_` variants.

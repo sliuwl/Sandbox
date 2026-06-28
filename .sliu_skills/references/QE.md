@@ -15,6 +15,8 @@ Load only the document that matches the task instead of reading one large mixed 
   `qe-structure.md`
 - Run a standard QE band-structure workflow from `scf.in`, `bands.in`, `klabel`, and a plotting script:
   `qe-bands.md`
+- Plot projected / fat bands from `projwfc.x` output:
+  `qe-fatbands.md`
 - Run finite-displacement phonons with Phonopy and QE:
   `qe-phonopy-fd.md`
 - Run DFPT phonons with `ph.x`, `q2r.x`, and `matdyn.x`:
@@ -33,6 +35,7 @@ Load only the document that matches the task instead of reading one large mixed 
 | Symmetry analysis | `find_sym.py` | `qe-structure.md` |
 | Band structure | `pw.x` with `calculation = 'bands'` | `qe-bands.md` |
 | Plot QE bands | `qe_plot_bands.py` | `qe-bands.md` or `scripts.md` |
+| Projected / fat bands | `qe_format_fatbands.py` + `qe_plot_fatbands.py --fatband` | `qe-fatbands.md` |
 | Finite-displacement phonons | `phonopy --qe` + `pw.x` | `qe-phonopy-fd.md` |
 | DFPT Gamma phonons | `ph.x` | `qe-dfpt.md` |
 | DFPT dispersion | `ph.x` + `q2r.x` + `matdyn.x` | `qe-dfpt.md` |
@@ -46,6 +49,8 @@ These scripts are documented in `scripts.md` and are reused across the split QE 
 - `qe_out_to_vasp.py`
 - `find_sym.py`
 - `qe_plot_bands.py`
+- `qe_format_fatbands.py`
+- `qe_plot_fatbands.py`
 - `make_supercell_struct.py`
 - `generate_vcrelax.py`
 - `generate_phonon_workflow.py`

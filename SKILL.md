@@ -186,6 +186,7 @@ When triggered with QE-related keywords, route to the appropriate sub-skill:
 | Skill | Purpose | Trigger Keywords |
 |-------|---------|------------------|
 | `qe-bands` | Band structure workflow (SCF → bands → plot) | band structure, bands calculation, k-point path |
+| `qe-fatbands` | Projected / fat band plotting from `projwfc.x` | fatband, projected band, projwfc, orbital character |
 | `qe-dfpt-phonon` | DFPT phonon workflow (ph.x → q2r.x → matdyn.x) | dfpt phonon, ph.x, q2r.x, matdyn.x |
 | `qe-phonopy-fd` | Finite-displacement phonons with Phonopy | phonopy, finite displacement, FORCE_SETS |
 | `qe-symmetry-repair` | Symmetry analysis and repair | symmetry repair, symmetriz*, space group |
