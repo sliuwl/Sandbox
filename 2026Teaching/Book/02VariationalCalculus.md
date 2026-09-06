@@ -193,7 +193,7 @@ $y_\varepsilon(x)=y(x)+\varepsilon \eta(x).$
 
 ![
 ](images/1974098aef89cdccdddfac47b69c40c99fe206214eb95ac6bd864c0f73e0f555.jpg)
-**Figure 4.1**: The path $y = y(x)$ between points 1 and 2 is the "right" path. Any other path $Y(x) = y(x) + \eta(x)$ is a variation that gives a larger value for the functional.
+**Figure 1**: The path $y = y(x)$ between points 1 and 2 is the "right" path. Any other path $Y(x) = y(x) + \eta(x)$ is a variation that gives a larger value for the functional.
 
 Here:
 
@@ -653,7 +653,7 @@ $$
 
 ![
 ](images/31b4bfb2175ac215f7b21927cc3eaf855deaf3ad10ef018731edd35a1fb95871.jpg)
-**Figure 8.1**: The brachistochrone problem is to find the shape of track on which a roller coaster released from point 1 will reach point 2 in the minimum possible time.
+**Figure 2**: The brachistochrone problem is to find the shape of track on which a roller coaster released from point 1 will reach point 2 in the minimum possible time.
 
 so the time of travel is the functional
 
