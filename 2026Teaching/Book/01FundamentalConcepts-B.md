@@ -154,7 +154,7 @@ then the component equations are:
 \]
 
 \[
-\boxed{F_r = m\left(\ddot r - r\dot\theta^2\right)}
+\boxed{F_\theta = m\left(r\ddot\theta + 2\dot r\dot\theta\right)}
 \]
 
 ------
@@ -361,9 +361,7 @@ where $W_{\text{nc}}$ is the work done by nonconservative forces. The change in 
 
 ### 8.1 What is a Time-Dependent Potential?
 
-Sometimes we encounter a force $\mathbf{F}(\mathbf{r}, t)$ that **depends explicitly on time**. Even if $\nabla \times \mathbf{F} = 0$ (so the work is path-independent at any fixed time), such a force does **not** satisfy the first condition for conservatism because it depends on time, not just position.
-
-In this case, we can still define a potential energy $U(\mathbf{r}, t)$ such that $\mathbf{F} = -\nabla U$, but **the total mechanical energy $E = T + U$ is not conserved**.
+Sometimes we encounter a force $\mathbf{F}(\mathbf{r}, t)$ that **depends explicitly on time**. Even if $\nabla \times \mathbf{F} = 0$ (so the work is path-independent at any fixed time), such a force does **not** satisfy the first condition for conservativeness because it depends on time, not just position. In this case, we can still define a potential energy $U(\mathbf{r}, t)$ such that $\mathbf{F} = -\nabla U$, but **the total mechanical energy $E = T + U$ is not conserved**.
 
 ### 8.2 What Happens to d(T+U)?
 
@@ -412,17 +410,17 @@ If the force is to be conservative, $F_x$ must satisfy the two usual conditions:
 
 **(ii)** The work must be independent of path.
 
-In one dimension, condition (i) already implies condition (ii): any path between two points can be reduced to the direct path plus backtracking segments whose work contributions cancel.
+**In one dimension, condition (i) already implies condition (ii): any path between two points can be reduced to the direct path plus backtracking segments whose work contributions cancel**.
 
-Consider two points A and B. The obvious path between points A and B is the direct path (call this path "AB"). Another possibility is to go from A past B to C and then back to B (call this "ABCB"). The work done along this path can be broken up as follows:
-
-\[W(ABCB) = W(AB) + W(BC) + W(CB).\]
-
-Now, provided the force depends only on the position $x$ [condition (i)], each increment of work going from B to C is exactly equal (but of opposite sign) to the corresponding contribution going from C to B. That is, the last two terms on the right cancel, and we conclude that
-
-\[W(ABCB) = W(AB).\]
-
-One can of course construct a path from A to B that doubles back and forth many times, but any such path can be broken into a number of segments some of which together traverse the direct path AB exactly once, and all the rest of which cancel in pairs. Thus the work done on any path between A and B is the same as that on the direct path AB, and we have proved that in one dimension the first condition for a force to be conservative guarantees the second.
+> **Note:** Consider two points A and B. The obvious path between points A and B is the direct path (call this path "AB"). Another possibility is to go from A past B to C and then back to B (call this "ABCB"). The work done along this path can be broken up as follows:
+>
+> \[W(ABCB) = W(AB) + W(BC) + W(CB).\]
+>
+> Now, provided the force depends only on the position $x$ [condition (i)], each increment of work going from B to C is exactly equal (but of opposite sign) to the corresponding contribution going from C to B. That is, the last two terms on the right cancel, and we conclude that
+>
+> \[W(ABCB) = W(AB).\]
+>
+> One can of course construct a path from A to B that doubles back and forth many times, but any such path can be broken into a number of segments some of which together traverse the direct path AB exactly once, and all the rest of which cancel in pairs. Thus the work done on any path between A and B is the same as that on the direct path AB, and we have proved that in one dimension the first condition for a force to be conservative guarantees the second.
 
 ### 9.2 Graphs of the Potential Energy
 
@@ -458,7 +456,7 @@ If the energy is higher than the crest of one hill but still lower than the othe
 
 #### Example: Diatomic Molecule {#example-diatomic-molecule}
 
-These considerations play an important role in many fields. An example from molecular physics is illustrated in Figure 4.12, which shows the potential energy of a typical diatomic molecule, such as HCl, as a function of the distance between the two atoms.
+These considerations play an important role  in many fields. An example from molecular physics is illustrated in Figure 4.12, which shows the potential energy of a typical diatomic molecule, such as HCl, as a function of the distance between the two atoms.
 
 ![Figure 4.12: Potential energy for a diatomic molecule](images/0815a58bff9dd06e20d5b73b6c2bae174a6a0fec2b97e0d9ef3801135ddbdb2b.jpg)
 
@@ -521,7 +519,7 @@ At $x=-1$, $\frac{d^2V}{dx^2}=-6m<0$, so $x=-1$ is a local maximum, and $V(-1)=2
 
 At $x=1$, $\frac{d^2V}{dx^2}=6m>0$, so $x=1$ is a local minimum, and $V(1)=-2m$.
 
-<img src="potential_energy.png" width="70%">
+<img src="01Scripts/potential_energy.png" width="70%">
 
 **Figure 5** The cubic potential $V(x)=m(x^3-3x)$. The local maximum at $x=-1$ is the top of the barrier, and the local minimum at $x=1$ is the bottom of the well.
 
