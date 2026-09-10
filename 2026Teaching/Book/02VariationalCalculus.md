@@ -27,29 +27,19 @@ $$
 \frac{df(x)}{dx}=0.
 $$
 
-At such a point the graph is **locally flat**: an infinitesimal change $\Delta x$ produces no first-order change in $f$.  Whether the stationary point is a minimum, a maximum, or a point of inflection must be decided by further analysis (e.g., second derivative test).
+At such a point the graph is **locally flat**: an infinitesimal change $\Delta x$ produces no first-order change in $f$.  Whether the stationary point is a minimum or  a maximum must be decided by further analysis (e.g., second derivative test).
 
-Calculus of variations asks the analogous question for an object that is *one level more complicated*: instead of a function of a number, we have a **functional**, i.e. a quantity that depends on an entire function.  We now seek the function $y(x)$ that makes the functional stationary.
+**Calculus of variations** asks the analogous question for an object that is *one level more complicated*: instead of a function of a number, we have a **functional**, i.e. a quantity that depends on an entire function.  **We now seek the function $y(x)$ that makes the functional stationary**.
 
 ------
 
 ## 2. Functionals
 
-A **functional** is a rule that takes an entire function as its input and returns a single number.
-
-This is different from an ordinary function. An ordinary function might take a number $x$ and return another number. A functional takes something like a whole curve $y(x)$ and returns one number.
-
-For example, suppose $y(x)$ describes a path. A functional might return the length of that path, or the time it takes light to travel along that path.
+**A functional is a rule that takes an entire function as its input and returns a single number**. For example, suppose $y(x)$ describes a path. A functional might return the length of that path, or the time it takes light to travel along that path.
 
 In the problems we will study, the input function $y(x)$ is usually assumed to be sufficiently smooth. Our goal is to find the function $y(x)$ that makes the value of the functional stationary.
 
-“Stationary” means that if we make a very small change to the function, the value of the functional does not change to first order.
-
-This is analogous to ordinary calculus, where a function $g(x)$ has a stationary point when
-
-$\frac{dg}{dx}=0.$
-
-In calculus of variations, however, the variable is not a number $x$. The “variable” is an entire function $y(x)$.
+“Stationary” means that if we make a very small change to the function, the value of the functional does not change to first order. This is analogous to ordinary calculus, where a function $g(x)$ has a stationary point when $\frac{dg}{dx}=0.$ In calculus of variations, however, the variable is not a number $x$. The “variable” is an entire function $y(x)$.
 
 A common type of functional has the form
 
@@ -115,7 +105,7 @@ This time, the output is a single number.
 
 ### 3.1 Length of a Plane Curve
 
-Suppose a curve is described by $y=y(x)$ between $x=x_1$ and $x=x_2$. The arc length element is
+Suppose a curve in a two-dimensional plane is described by $y=y(x)$ between $x=x_1$ and $x=x_2$. The arc length element is
 
 $ds=\sqrt{dx^2+dy^2}.$
 
@@ -227,7 +217,7 @@ $y_\varepsilon(x)=y(x)+\varepsilon \eta(x).$
 
 Here:
 
-- $\eta(x)$ gives the direction in function space.
+- $\eta(x)$ gives the "direction" in function space.
 - $\varepsilon$ gives the size of the step.
 
 For example, if
@@ -254,31 +244,11 @@ The function $\eta(x)$ is arbitrary, except that it must satisfy any required bo
 
 ### 4.2 Fixed Endpoints
 
-Often we want all allowed curves to pass through the same two endpoints. Suppose the endpoints are fixed:
-
-$y(x_1)=y_1, \qquad y(x_2)=y_2.$
-
-Then we require the perturbed curve to satisfy the same endpoint conditions:
-
-$y_\varepsilon(x_1)=y_1, \qquad y_\varepsilon(x_2)=y_2.$
-
-Since
-
-$y_\varepsilon(x)=y(x)+\varepsilon\eta(x),$
-
-we have
-
-$y_\varepsilon(x_1)=y(x_1)+\varepsilon\eta(x_1),$
-
-and
-
-$y_\varepsilon(x_2)=y(x_2)+\varepsilon\eta(x_2).$
-
-Because $y(x_1)=y_1$ and $y(x_2)=y_2$, the endpoints remain fixed only if
+Often we want **all allowed curves to pass through the same two endpoints**:
 
 $\eta(x_1)=0, \qquad \eta(x_2)=0.$
 
-Thus, for fixed endpoint problems, the allowed variations must vanish at the endpoints.
+Thus, the allowed variations must vanish at the endpoints.
 
 This means that the perturbation can change the curve in the middle, but not at the two ends.
 
@@ -300,33 +270,47 @@ In calculus of variations, we replace:
 
 $\mathbf r \to y(x), \qquad \mathbf v \to \eta(x).$
 
-So the first variation measures how the functional changes when we move slightly away from the function $y(x)$ in the direction $\eta(x)$.
+**So the first variation measures how the functional changes when we move slightly away from the function $y(x)$ in the direction $\eta(x)$**.
 
 ------
 
-### 4.4 Variation of the Derivative
+### 4.4 Variation and Variation of the Derivative
 
 Because
 
-$y_\varepsilon(x)=y(x)+\varepsilon\eta(x),$
+$y_\varepsilon(x)=y(x)+\varepsilon \eta(x),$
 
-we also have
+Then the change in $y$ is 
 
-$y_\varepsilon'(x)=y'(x)+\varepsilon\eta'(x).$
+$\Delta y(x)=y_\varepsilon(x)-y(x) = \varepsilon \eta(x).$
 
+The **variation** is defined as the as the derivative with respect to $\varepsilon$ at $\varepsilon=0$:
+\[
+\delta y(x)
+=
+\left.\frac{d}{d\varepsilon}y_\varepsilon(x)\right|_{\varepsilon=0}
+=
+\lim_{\varepsilon\to 0}
+\frac{y_\varepsilon(x)-y_0(x)}{\varepsilon}
+=
+\lim_{\varepsilon\to 0}
+\frac{\Delta y(x)}{\varepsilon}
+=
+\eta(x).
+\]
+We also have
+
+$y_\varepsilon'(x)=y'(x)+\varepsilon \eta'(x).$
+
+Similarly,
+\[
+\delta y'(x) = \left.\frac{d}{d\varepsilon}y_\varepsilon'(x)\right|_{\varepsilon=0} = \eta'(x).
+\]
 Therefore,
-
-$\delta y(x)=\eta(x),$
-
-and
-
-$\delta y'(x)=\eta'(x).$
-
-Equivalently,
-
-$\delta y'(x)=\frac{d}{dx}\delta y(x).$
-
-This is allowed because the variation changes the function $y$, but it does not change the independent variable $x$. In other words, $x$ is held fixed while the curve is being varied.
+\[
+\delta y'(x)=\frac{d}{dx}\delta y(x).
+\]
+This is allowed because the variation changes the function $y$, but not the independent variable $x$. In other words, $x$ is held fixed while the curve is varied.
 
 ------
 
@@ -342,25 +326,9 @@ For fixed endpoints, this means
 
 $\delta F[y;\eta]=0 \qquad \text{for all smooth } \eta(x) \text{ with } \eta(x_1)=\eta(x_2)=0.$
 
-This is the variational analogue of the ordinary calculus condition
+This is the variational analogue of the ordinary calculus condition $\frac{dg}{dx}=0.$
 
-$\frac{dg}{dx}=0.$
-
-However, just as in ordinary calculus, a stationary point is not necessarily a minimum or maximum.
-
-For example, in single-variable calculus, $x=0$ is a stationary point of
-
-$g(x)=x^3,$
-
-because
-
-$g'(0)=0.$
-
-But $x=0$ is neither a minimum nor a maximum.
-
-Similarly, in calculus of variations, a stationary function may correspond to a minimum, a maximum, or a saddle point in function space.
-
-Determining which one it is usually requires further analysis, such as studying the second variation.
+Similarly, in calculus of variations, a stationary function may correspond to a minimum, a maximum, or a saddle point in function space. Determining which one it is usually requires further analysis, such as studying the second variation.
 
 ------
 
