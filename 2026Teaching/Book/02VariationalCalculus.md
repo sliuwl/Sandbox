@@ -15,7 +15,9 @@
    - [5.2 Proof of the Fundamental Lemma](#52-proof-of-the-fundamental-lemma)
 6. [The Beltrami Identity](#6-the-beltrami-identity)
 7. [Application of Variational Calculus](#7-application-of-variational-calculus)
-8. [Brachistochrone Problem](#8-brachistochrone-problem)
+8. [Shortest Path between Two Points](#8-shortest-path-between-two-points)
+9. [Brachistochrone Problem](#9-brachistochrone-problem)
+10. [More than Two Variables](#10-more-than-two-variables)
 
 ---
 
@@ -284,7 +286,7 @@ Then the change in $y$ is
 
 $\Delta y(x)=y_\varepsilon(x)-y(x) = \varepsilon \eta(x).$
 
-The **variation** is defined as the as the derivative with respect to $\varepsilon$ at $\varepsilon=0$:
+The **variation** is defined  as the derivative with respect to $\varepsilon$ at $\varepsilon=0$:
 \[
 \delta y(x)
 =
@@ -310,22 +312,24 @@ Therefore,
 \[
 \delta y'(x)=\frac{d}{dx}\delta y(x).
 \]
-This is allowed because the variation changes the function $y$, but not the independent variable $x$. In other words, $x$ is held fixed while the curve is varied.
+This is allowed because **the variation changes the function $y$, but not the independent variable $x$**. 
+
+In other words, $x$ is held fixed while the curve is varied.
 
 ------
 
 ### 4.5 Stationary Function
 
 A function $y(x)$ is called a **stationary function** of the functional $F[y]$ if
-
-$\delta F[y;\eta]=0$
-
+\[
+\delta F[y;\eta]=0
+\]
 for every allowed perturbation $\eta(x)$.
 
 For fixed endpoints, this means
-
-$\delta F[y;\eta]=0 \qquad \text{for all smooth } \eta(x) \text{ with } \eta(x_1)=\eta(x_2)=0.$
-
+\[
+\delta F[y;\eta]=0 \qquad \text{for all smooth } \eta(x) \text{ with } \eta(x_1)=\eta(x_2)=0.
+\]
 This is the variational analogue of the ordinary calculus condition $\frac{dg}{dx}=0.$
 
 Similarly, in calculus of variations, a stationary function may correspond to a minimum, a maximum, or a saddle point in function space. Determining which one it is usually requires further analysis, such as studying the second variation.
@@ -468,17 +472,33 @@ So we have
 \[
 \delta F[y;\eta] = \int_{x_1}^{x_2} \left( \frac{\partial f}{\partial y}\eta + \frac{\partial f}{\partial y'}\eta' \right)dx.
 \]
+>Another common way to write this is
+>\[
+>\delta F[y;\eta] = \int_{x_1}^{x_2} \left( \frac{\partial f}{\partial y}\delta y + \frac{\partial f}{\partial y'}\delta y' \right)dx.
+>\]
+>This notation is analogous to ordinary differential calculus. For a function $f(x,y)$, the total differential is
+>\[
+>df = \frac{\partial f}{\partial x}\,dx + \frac{\partial f}{\partial y}\,dy.
+>\]
+>Similarly, in the calculus of variations, the first variation $\delta F$ describes the first-order change in the functional $F[y]$ caused by a small change $\delta y$ in the function $y$.
+
 The first term already contains $\eta$, but the second term contains $\eta'$. We want to rewrite the expression so that the variation $\eta$ appears without its derivative. To do this, we integrate the second term by parts:
 \[
 \int_{x_1}^{x_2}\frac{\partial f}{\partial y'}\,\eta'\,dx = \left. \frac{\partial f}{\partial y'}\,\eta \right|_{x_1}^{x_2} - \int_{x_1}^{x_2} \eta\, \frac{d}{dx} \left( \frac{\partial f}{\partial y'} \right) dx.
 \]
+> Recall
+> \[
+> \int_a^b uv'dx = \int_a^b udv = (uv)|_{a}^{b}-\int_a^b vdu
+> \]
+> 
+
 The boundary term vanishes because $\eta(x_1)=\eta(x_2)=0$. Therefore, $\left. \frac{\partial f}{\partial y'}\,\eta \right|_{x_1}^{x_2} = 0.$
 
 Hence the first variation becomes
 \[
 \delta F[y;\eta] = \int_{x_1}^{x_2} \eta(x) \left[ \frac{\partial f}{\partial y} - \frac{d}{dx} \left( \frac{\partial f}{\partial y'} \right) \right]dx.
 \]
-For $y$ to be stationary, this integral must be zero for *every* admissible $\eta$.  The **fundamental lemma of the calculus of variations** then implies that the factor multiplying $\eta$ must vanish everywhere on $[x_1,x_2]$:
+For $y$ to be stationary, this integral must be zero for *every* admissible $\eta$.  The **fundamental lemma (引理) of the calculus of variations** then implies that the factor multiplying $\eta$ must vanish everywhere on $[x_1,x_2]$:
 
 $$
 \frac{\partial f}{\partial y}-\frac{d}{dx}\frac{\partial f}{\partial y'}=0.
@@ -601,11 +621,67 @@ The general procedure for solving a variational problem is:
 
 ------
 
-## 8. Brachistochrone Problem
+## 8. Shortest Path between Two Points
 
-The **brachistochrone problem** asks: given two points $A$ and $B$ in a vertical plane, with $A$ higher than $B$, what is the shape of a frictionless track along which a bead released from rest at $A$ reaches $B$ in the shortest possible time?  The name comes from Greek *brachistos* (shortest) and *chronos* (time).
+We can now settle the very first example of these notes (Section 3.1): among all smooth curves $y(x)$ joining two fixed points 1 and 2, the one with the shortest length is a straight line.
 
-Choose coordinates with $A$ at the origin and the $y$-axis measured vertically downward.  Let the track be described by $y=y(x)$, with $y(0)=0$ and $y(x_2)=y_2$.  Conservation of energy gives the speed at height $y$:
+From Section 3.1, the length of the path is
+
+$$
+L[y]=\int_{x_1}^{x_2}\sqrt{1+y'^2}\,dx,
+$$
+
+which is a functional of the standard form with the integrand
+
+$$
+f(y,y')=\bigl(1+y'^2\bigr)^{1/2}.
+$$
+
+To apply the Euler–Lagrange equation, evaluate the two partial derivatives.  Since $f$ does not depend on $y$,
+
+$$
+\frac{\partial f}{\partial y}=0,
+\qquad
+\frac{\partial f}{\partial y'}=\frac{y'}{\sqrt{1+y'^2}}.
+$$
+
+The Euler–Lagrange equation $\frac{\partial f}{\partial y}-\frac{d}{dx}\frac{\partial f}{\partial y'}=0$ therefore reduces to
+
+$$
+\frac{d}{dx}\left(\frac{y'}{\sqrt{1+y'^2}}\right)=0,
+$$
+
+that is, $\dfrac{y'}{\sqrt{1+y'^2}}$ is a constant $C$.  Squaring and rearranging,
+
+$$
+y'^2=C^2\bigl(1+y'^2\bigr)
+\quad\Longrightarrow\quad
+y'^2=\text{constant}.
+$$
+
+Thus $y'(x)=m$ is constant, and integrating gives
+
+$$
+\boxed{\,y(x)=mx+b\,}
+$$
+
+— the shortest path between two points is a straight line.
+
+(This is also the fastest route to the result via the Beltrami identity of Section 6: $f$ has no explicit $x$-dependence, so $f-y'\,\partial f/\partial y'=1/\sqrt{1+y'^2}=$ constant, which again forces $y'$ to be constant.)
+
+------
+
+## 9. Brachistochrone Problem
+
+The **brachistochrone problem (最速降线问题)** asks: given two points 1 and 2 in a vertical plane, with 1 higher above the ground, in what shape should we build a frictionless track so that a bead (or roller-coaster car) released from rest at point 1 reaches point 2 in the shortest possible time?  The name comes from the Greek words *brachistos* (shortest) and *chronos* (time).
+
+We take point 1 as the origin and choose to measure $y$ vertically **downward**.  The time to travel from 1 to 2 is
+
+$$
+\operatorname{time}(1\to 2)=\int_1^2 \frac{ds}{v},
+$$
+
+where the speed at any depth $y$ is fixed by conservation of energy:
 
 $$
 \frac12 mv^2=mgy
@@ -613,99 +689,152 @@ $$
 v=\sqrt{2gy}.
 $$
 
-An element of arc length is
-
-$$
-ds=\sqrt{1+y'(x)^2}\,dx,
-$$
-
 ![
 ](images/31b4bfb2175ac215f7b21927cc3eaf855deaf3ad10ef018731edd35a1fb95871.jpg)
 **Figure 2**: The brachistochrone problem is to find the shape of track on which a roller coaster released from point 1 will reach point 2 in the minimum possible time.
 
-so the time of travel is the functional
+**In this problem the independent variable is $y$, not $x$.**  Because the speed $v=\sqrt{2gy}$ is a function of $y$ alone, it is convenient to write the unknown path as $x=x(y)$, with $y$ playing the role that $x$ played before.  A prime now denotes differentiation with respect to $y$: $x'(y)=dx/dy$.  The arc-length element must therefore be written as
 
 $$
-T[y]=\int_{0}^{x_2}\frac{ds}{v}
-=\frac{1}{\sqrt{2g}}\int_{0}^{x_2}
-\sqrt{\frac{1+y'(x)^2}{y(x)}}\,dx.
+ds=\sqrt{dx^2+dy^2}=\sqrt{x'(y)^2+1}\,dy,
 $$
 
-The overall constant does not affect the location of the stationary path, so we may work with
+and the travel time becomes
 
 $$
-f(y,y')=\sqrt{\frac{1+y'^2}{y}}.
+\operatorname{time}(1\to 2)
+=\frac{1}{\sqrt{2g}}\int_0^{y_2}\frac{\sqrt{x'(y)^2+1}}{\sqrt{y}}\,dy.
 $$
 
-Since $f$ has no explicit $x$-dependence, we use the Beltrami identity:
+This is of the standard form, with the roles of $x$ and $y$ interchanged, and the integrand
 
 $$
-f-y'\frac{\partial f}{\partial y'}=\text{constant}.
+f(x,x',y)=\frac{\sqrt{x'^2+1}}{\sqrt{y}}.
 $$
 
-Compute
+Applying the Euler–Lagrange equation with the variables swapped,
 
 $$
-\frac{\partial f}{\partial y'}
-=\frac{1}{\sqrt{y}}\,\frac{y'}{\sqrt{1+y'^2}}.
+\frac{\partial f}{\partial x}-\frac{d}{dy}\frac{\partial f}{\partial x'}=0.
 $$
 
-Then
+Since $f$ does not depend on $x$, this says simply that $\partial f/\partial x'$ is a constant.  Evaluating the derivative (and squaring for convenience),
 
 $$
-f-y'\frac{\partial f}{\partial y'}
-=\frac{1}{\sqrt{y}}\left(
-\sqrt{1+y'^2}-\frac{y'^2}{\sqrt{1+y'^2}}
-\right)
-=\frac{1}{\sqrt{y\left(1+y'^2\right)}}.
+\frac{x'^2}{y\bigl(1+x'^2\bigr)}=\text{const}=\frac{1}{2a},
 $$
 
-Setting this equal to a constant $1/\sqrt{2a}$ gives
+where the constant has been named $1/2a$ for future convenience.  Solving for $x'$,
 
 $$
-y\bigl(1+y'^2\bigr)=2a.
+x'=\sqrt{\frac{y}{2a-y}},
+\qquad\text{so}\qquad
+x=\int\sqrt{\frac{y}{2a-y}}\,dy.
 $$
 
-Solving for $y'$,
+This integral is evaluated by the unlikely-looking substitution
 
 $$
-\frac{dy}{dx}=\sqrt{\frac{2a-y}{y}},
-\qquad\text{or}\qquad
-\frac{dx}{dy}=\sqrt{\frac{y}{2a-y}}.
+y=a(1-\cos\theta),
 $$
 
-Thus
+which gives (as you should check)
 
 $$
-x(y)=\int\sqrt{\frac{y}{2a-y}}\,dy.
+x=a\int(1-\cos\theta)\,d\theta
+=a(\theta-\sin\theta)+\text{const}.
 $$
 
-The integral is elementary with the substitution
-
-$$
-y=a(1-\cos\theta).
-$$
-
-Since $dy=a\sin\theta\,d\theta$, we have
-
-$$
-dx=\sqrt{\frac{a(1-\cos\theta)}{a(1+\cos\theta)}}\,a\sin\theta\,d\theta
-=a(1-\cos\theta)\,d\theta,
-$$
-
-where the last equality uses $\sin\theta=\sqrt{1-\cos^2\theta}$ and simplifies.  Integrating,
-
-$$
-x=a(\theta-\sin\theta)+\text{constant}.
-$$
-
-The initial condition $x=y=0$ corresponds to $\theta=0$, so the constant is zero.  The stationary path is therefore the parametric curve
+The starting point 1 is at $x=y=0$, which corresponds to $\theta=0$, so the integration constant is zero.  The stationary path is therefore the curve given parametrically by
 
 $$
 \boxed{
-x(\theta)=a(\theta-\sin\theta),\qquad
-y(\theta)=a(1-\cos\theta)
+x=a(\theta-\sin\theta),
+\qquad
+y=a(1-\cos\theta)
 }
 $$
 
-which is a **cycloid**: the curve traced by a point on the rim of a circle of radius $a$ rolling along the underside of the $x$-axis.  The constant $a$ is chosen so that the cycloid passes through the prescribed endpoint $(x_2,y_2)$.  This curve gives the minimum travel time among all smooth tracks joining the two points.
+with the constant $a$ chosen so that the curve passes through the prescribed endpoint $(x_2,y_2)$.
+
+![
+](images/3f03113fe089f0c13a0707a886e8ac2d440eeff7241fc4945c603567e31b1e9d.jpg)
+**Figure 3**: The path that gives the shortest time between the given points 1 and 2 is part of a cycloid, with a vertex at 1 and passing through 2.  The cycloid is the curve traced by a point on the rim of a wheel of radius $a$ rolling along the underside of the $x$-axis.  Point 3 is the lowest point on the curve.
+
+The resulting curve is a **cycloid (摆线)** — the curve traced out by a point on the rim of a wheel of radius $a$ rolling along the underside of the $x$-axis.
+
+A remarkable feature of this curve: if the cart is released from rest at point 2 and rolls to the bottom of the curve (point 3), the time to roll from 2 to 3 is the same whatever the position of 2.  The oscillations of a cart rolling back and forth on a cycloid-shaped track are therefore *exactly isochronous* (period independent of amplitude) — unlike a simple pendulum, which is only approximately so.  This property was actually used in the design of some historical clocks.
+
+------
+
+## 10. More than Two Variables
+
+So far we have considered only problems with two variables: one independent (usually $x$) and one dependent (usually $y$).  For most applications in mechanics there are **several dependent variables**, though still only one independent variable, usually the time $t$.
+
+A simple example where a second dependent variable is forced on us: the shortest path between two points.  We assumed the path could be written as $y=y(x)$.  Reasonable as this seems, it is easy to think of paths that cannot be written this way, such as the path below, which doubles back on itself.  To include all possible paths, we write the path in **parametric form**
+
+$$
+x=x(u), \qquad y=y(u),
+$$
+
+where $u$ is any convenient parameter (for instance, the distance along the path).
+
+![
+](images/1c01b7cd69a9fc82ef523c716caedb0dd65703eb1d5731743c94e1f6b31bb0fd.jpg)
+**Figure 4**: This path between the two points 1 and 2 cannot be written as $y=y(x)$ nor as $x=x(y)$, but it can be written in parametric form.
+
+The length of the path is then
+
+$$
+L=\int_{u_1}^{u_2}\sqrt{x'(u)^2+y'(u)^2}\,du,
+$$
+
+and our job is to find the two functions $x(u)$ and $y(u)$ for which this integral is stationary.  The general problem of this type is
+
+$$
+S=\int_{u_1}^{u_2} f\bigl(x(u),\,y(u),\,x'(u),\,y'(u),\,u\bigr)\,du
+$$
+
+between two fixed endpoints.  The solution parallels the one-variable case, but now we perturb *both* functions.  Let the correct path be $x(u),\,y(u)$, and consider a neighboring "wrong" path
+
+$$
+x(u)+\alpha\,\xi(u), \qquad y(u)+\beta\,\eta(u),
+$$
+
+where $\xi$ and $\eta$ are arbitrary functions vanishing at the endpoints.  The requirement that $S$ be stationary at $\alpha=\beta=0$ then yields, by exactly the argument of Section 5.1, **one Euler–Lagrange equation per dependent variable**:
+
+$$
+\frac{\partial f}{\partial x}-\frac{d}{du}\frac{\partial f}{\partial x'}=0,
+\qquad
+\frac{\partial f}{\partial y}-\frac{d}{du}\frac{\partial f}{\partial y'}=0.
+$$
+
+**Example (shortest path, again).**  Here $f=\sqrt{x'^2+y'^2}$ is independent of $x$ and $y$, so both equations say that $\partial f/\partial x'$ and $\partial f/\partial y'$ are constants.  Dividing one by the other,
+
+$$
+\frac{dy}{dx}=\frac{y'}{x'}=\text{constant}=m,
+$$
+
+so the required path is a straight line $y=mx+b$ — now proved for *all* possible paths, including those that cannot be written as $y=y(x)$.
+
+**Application to mechanics.**  In Lagrangian mechanics the independent variable is the time $t$, and the dependent variables are the coordinates $q_1,\dots,q_n$ that specify the configuration of the system.  Because these coordinates can take on many guises (Cartesian, polar, angles, ...), they are called **generalized coordinates (广义坐标)**, and it is useful to regard them as coordinates of a point in an $n$-dimensional **configuration space**.
+
+![
+](images/ef2bc6a45a6d09fdba433bc42d85674d7f11271e2c947e0d956eec33177eb3e5.jpg)
+**Figure 5**: A good choice of generalized coordinates for a double pendulum is the pair of angles $\theta_1$ and $\theta_2$ between the pendulums and the vertical.
+
+The quantity whose stationary value determines the motion is the **action (作用量)**
+
+$$
+S=\int_{t_1}^{t_2}\mathcal{L}\bigl(q_1,\dot q_1,\dots,q_n,\dot q_n,t\bigr)\,dt,
+$$
+
+whose integrand $\mathcal{L}$ is the **Lagrangian (拉格朗日量)**.  Requiring $S$ to be stationary yields $n$ Euler–Lagrange equations,
+
+$$
+\frac{\partial \mathcal{L}}{\partial q_i}
+-\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot q_i}=0,
+\qquad i=1,\dots,n,
+$$
+
+one for each generalized coordinate.  These are precisely the equations of Lagrangian mechanics, and they take exactly the same simple form in all coordinate systems — the subject of the next chapter.
