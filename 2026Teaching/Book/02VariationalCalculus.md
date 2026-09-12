@@ -44,9 +44,9 @@ In the problems we will study, the input function $y(x)$ is usually assumed to b
 “Stationary” means that if we make a very small change to the function, the value of the functional does not change to first order. This is analogous to ordinary calculus, where a function $g(x)$ has a stationary point when $\frac{dg}{dx}=0.$ In calculus of variations, however, the variable is not a number $x$. The “variable” is an entire function $y(x)$.
 
 A common type of functional has the form
-
-$F[y]=\int_{x_1}^{x_2} f\left(x,y(x),y'(x)\right)\,dx, \qquad y'=\frac{dy}{dx}.$
-
+\[
+F[y]=\int_{x_1}^{x_2} f\left(x,y(x),y'(x)\right)\,dx, \qquad y'=\frac{dy}{dx}.
+\]
 Here:
 
 - $F[y]$ is the functional.
@@ -57,11 +57,10 @@ Here:
 
 The square brackets in $F[y]$ remind us that the input is a function, not just a number.
 
-
 In Lagrangian mechanics, the most important functional is the **action**,
-
-$S[q]=\int_{t_1}^{t_2} L\left(t,q(t),\dot q(t)\right)\,dt, \qquad \dot q=\frac{dq}{dt}.$
-
+\[
+S[q]=\int_{t_1}^{t_2} L\left(t,q(t),\dot q(t)\right)\,dt, \qquad \dot q=\frac{dq}{dt}.
+\]
 Here:
 
 - $q(t)$ is the path of the system in time.
@@ -70,9 +69,9 @@ Here:
 - $S[q]$ is a number assigned to the entire path $q(t)$.
 
 Hamilton’s principle says that the physically realized path $q(t)$ makes the action stationary:
-
-$\delta S = 0.$
-
+\[
+\delta S =0
+\]
 This does **not** always mean that the action is minimized. It means that the first-order change in the action vanishes.
 
 ------
@@ -120,9 +119,9 @@ we get
 $ds=\sqrt{1+y'(x)^2}\,dx.$
 
 Therefore the total length of the curve is
-
-$L[y]=\int_{x_1}^{x_2}\sqrt{1+y'(x)^2}\,dx.$
-
+\[
+L[y]=\int_{x_1}^{x_2}\sqrt{1+y'(x)^2}\,dx.
+\]
 This is a functional because the input is the entire curve $y(x)$, and the output is the total length, a number.
 
 If the endpoints are fixed,
@@ -131,7 +130,7 @@ $y(x_1)=y_1, \qquad y(x_2)=y_2,$
 
 then the problem is:
 
-> Among all smooth curves connecting the two endpoints, which one has the shortest length?
+​            **Among all smooth curves connecting the two endpoints, which one has the shortest length?**
 
 The answer is a straight line. Calculus of variations provides a systematic way to prove this.
 
@@ -152,9 +151,9 @@ Using
 $ds=\sqrt{1+y'(x)^2}\,dx,$
 
 the total travel time is
-
-$T[y]=\frac{1}{c}\int_{x_1}^{x_2} n(x,y)\sqrt{1+y'(x)^2}\,dx.$
-
+\[
+T[y]=\frac{1}{c}\int_{x_1}^{x_2} n(x,y)\sqrt{1+y'(x)^2}\,dx.
+\]
 Fermat’s principle states that the actual path taken by light is a stationary path of the travel-time functional:
 
 $\delta T = 0.$
@@ -258,21 +257,31 @@ This means that the perturbation can change the curve in the middle, but not at 
 
 ### 4.3 The First Variation
 
+In ordinary calculus, suppose $g$ is a function of one variable, $x$. If we change $x$ by a small amount $\varepsilon$, then $g(x)$ changes to $g(x+\varepsilon)$. The rate of change of $g$ with respect to $x$ is
+
+$\frac{dg}{dx} = \left. \frac{d}{d\varepsilon} g(x+\varepsilon) \right|_{\varepsilon=0}.$
+
+In words, this says:
+
+> Start at $x$, move a small amount $\varepsilon$, compute the change in $g$, and then look at the instantaneous rate of change at $\varepsilon=0$.
+
 The **first variation** of $F$ at $y$ in the direction $\eta$ is defined by
+\[
+\delta F[y;\eta] = \left. \frac{d}{d\varepsilon} F[y+\varepsilon\eta] \right|_{\varepsilon=0}.
+\]
+In wors, this means
 
-$\delta F[y;\eta] = \left. \frac{d}{d\varepsilon} F[y+\varepsilon\eta] \right|_{\varepsilon=0}.$
+> Start with the function $y$, perturb it slightly in the direction $\eta$ by an infinitesimal amount $\varepsilon$, compute the resulting change in the functional $F$, and keep only the **first-order**, or **linear**, part of that change. 
+>
+> $F[y+\varepsilon\eta] = F[y] + \varepsilon \delta F[y;\eta] + \text{higher-order terms}$
 
-This definition is very similar to a directional derivative.
+This is directly analogous to the first derivative in ordinary calculus.
 
-In ordinary multivariable calculus, the directional derivative of a function $g(\mathbf r)$ in the direction $\mathbf v$ is
-
-$\left. \frac{d}{d\varepsilon} g(\mathbf r+\varepsilon\mathbf v) \right|_{\varepsilon=0}.$
-
-In calculus of variations, we replace:
-
-$\mathbf r \to y(x), \qquad \mathbf v \to \eta(x).$
+Here, $x$ is replaced by the function $y$, and the small change $\varepsilon$ is replaced by a small change in the function, $\varepsilon\eta$.
 
 **So the first variation measures how the functional changes when we move slightly away from the function $y(x)$ in the direction $\eta(x)$**.
+
+> **Note.** There is a subtle notational difference between ordinary calculus and variational calculus. In ordinary calculus, $\frac{dg}{dx}$, is the rate of change of $g$ in the $x$-direction. If $x$ is perturbed by a small amount $\varepsilon$, then the first-order change in $g$ is $\varepsilon \frac{dg}{dx}.$ In variational calculus, though $\delta F[y;\eta]$ is called the first variation, it is technically the directional derivative, or rate of change of the functional $F$ at $y$ in the direction $\eta$. If $y$ is perturbed to $y+\varepsilon\eta$, then the first-order change in $F$ is $\varepsilon \delta F[y;\eta].$ Thus, strictly speaking, $\delta F[y;\eta]$ is the directional derivative of $F$, while $\varepsilon\delta F[y;\eta]$ is the corresponding first-order change in $F$.
 
 ------
 
@@ -324,7 +333,7 @@ A function $y(x)$ is called a **stationary function** of the functional $F[y]$ i
 \[
 \delta F[y;\eta]=0
 \]
-for every allowed perturbation $\eta(x)$.
+for every allowed perturbation $\eta(x)$. 
 
 For fixed endpoints, this means
 \[
@@ -817,24 +826,3 @@ $$
 
 so the required path is a straight line $y=mx+b$ — now proved for *all* possible paths, including those that cannot be written as $y=y(x)$.
 
-**Application to mechanics.**  In Lagrangian mechanics the independent variable is the time $t$, and the dependent variables are the coordinates $q_1,\dots,q_n$ that specify the configuration of the system.  Because these coordinates can take on many guises (Cartesian, polar, angles, ...), they are called **generalized coordinates (广义坐标)**, and it is useful to regard them as coordinates of a point in an $n$-dimensional **configuration space**.
-
-![
-](images/ef2bc6a45a6d09fdba433bc42d85674d7f11271e2c947e0d956eec33177eb3e5.jpg)
-**Figure 5**: A good choice of generalized coordinates for a double pendulum is the pair of angles $\theta_1$ and $\theta_2$ between the pendulums and the vertical.
-
-The quantity whose stationary value determines the motion is the **action (作用量)**
-
-$$
-S=\int_{t_1}^{t_2}\mathcal{L}\bigl(q_1,\dot q_1,\dots,q_n,\dot q_n,t\bigr)\,dt,
-$$
-
-whose integrand $\mathcal{L}$ is the **Lagrangian (拉格朗日量)**.  Requiring $S$ to be stationary yields $n$ Euler–Lagrange equations,
-
-$$
-\frac{\partial \mathcal{L}}{\partial q_i}
--\frac{d}{dt}\frac{\partial \mathcal{L}}{\partial \dot q_i}=0,
-\qquad i=1,\dots,n,
-$$
-
-one for each generalized coordinate.  These are precisely the equations of Lagrangian mechanics, and they take exactly the same simple form in all coordinate systems — the subject of the next chapter.
