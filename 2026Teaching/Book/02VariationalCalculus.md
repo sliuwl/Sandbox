@@ -154,7 +154,7 @@ the total travel time is
 \[
 T[y]=\frac{1}{c}\int_{x_1}^{x_2} n(x,y)\sqrt{1+y'(x)^2}\,dx.
 \]
-Fermat’s principle states that the actual path taken by light is a stationary path of the travel-time functional:
+Fermat’s principle states that light traveling between two points follows a path for which the travel time is extremal, typically minimal. Equivalently, the actual path taken by light is a stationary path of the travel-time functional:
 
 $\delta T = 0.$
 
@@ -221,25 +221,24 @@ Here:
 - $\eta(x)$ gives the "direction" in function space.
 - $\varepsilon$ gives the size of the step.
 
-For example, if
-
-$y(x)=x^2$
-
-and
-
-$\eta(x)=\sin(\pi x),$
-
-then
-
-$y_\varepsilon(x)=x^2+\varepsilon\sin(\pi x).$
-
-For small $\varepsilon$, this is a curve very close to $y(x)=x^2$, but slightly deformed in the shape of $\sin(\pi x)$.
-
-If $\varepsilon>0$, we move in the $+\eta$ direction.
-
-If $\varepsilon<0$, we move in the $-\eta$ direction.
-
-The function $\eta(x)$ is arbitrary, except that it must satisfy any required boundary conditions.
+>For example, if
+>
+>$y(x)=x^2$
+>
+>and
+>
+>$\eta(x)=\sin(\pi x),$
+>
+>then
+>
+>$y_\varepsilon(x)=x^2+\varepsilon\sin(\pi x).$
+>
+>For small $\varepsilon$, this is a curve very close to $y(x)=x^2$, but slightly deformed in the shape of $\sin(\pi x)$.
+>
+>If $\varepsilon>0$, we move in the $+\eta$ direction.
+>
+>If $\varepsilon<0$, we move in the $-\eta$ direction.
+>
 
 ------
 
@@ -269,7 +268,7 @@ The **first variation** of $F$ at $y$ in the direction $\eta$ is defined by
 \[
 \delta F[y;\eta] = \left. \frac{d}{d\varepsilon} F[y+\varepsilon\eta] \right|_{\varepsilon=0}.
 \]
-In wors, this means
+In words, this means
 
 > Start with the function $y$, perturb it slightly in the direction $\eta$ by an infinitesimal amount $\varepsilon$, compute the resulting change in the functional $F$, and keep only the **first-order**, or **linear**, part of that change. 
 >
@@ -385,13 +384,16 @@ $$
 F[y]=\int_{x_1}^{x_2} f\!\left(x,y(x),y'(x)\right)\,dx,
 $$
 
-with fixed endpoints $y(x_1)=y_1$ and $y(x_2)=y_2$, a twice-differentiable stationary function $y(x)$ must satisfy the **Euler-Lagrange equation**
-
+with fixed endpoints $y(x_1)=y_1$ and $y(x_2)=y_2$,  the functional $F$ is said to be **stationary at** a twice-differentiable function $y(x)$ if its first variation vanishes for all admissible variations preserving the endpoints:
+\[
+\delta F[y]=0.
+\]
+If $F$ is stationary at $y(x)$, then $y(x)$ must satisfy the **Euler–Lagrange equation**:
 $$
 \frac{\partial f}{\partial y}-\frac{d}{dx}\frac{\partial f}{\partial y'}=0.
 $$
 
-Here $\partial f/\partial y$ and $\partial f/\partial y'$ are partial derivatives of the integrand $f(x,y,y')$ with respect to its second and third arguments, evaluated along the path $y(x)$.  The total derivative $d/dx$ then acts on the resulting function of $x$.
+Here, $\partial f/\partial y$ and $\partial f/\partial y'$ denote the partial derivatives of the integrand $f(x,y,y')$ with respect to its second and third arguments, respectively, evaluated along the path $y=y(x)$.
 
 If the functional depends on several dependent variables,
 
@@ -646,29 +648,31 @@ $$
 f(y,y')=\bigl(1+y'^2\bigr)^{1/2}.
 $$
 
-To apply the Euler–Lagrange equation, evaluate the two partial derivatives.  Since $f$ does not depend on $y$,
+Because this integrand has no explicit $x$-dependence, we can solve the problem with the **Beltrami identity**.  We need only the derivative
 
 $$
-\frac{\partial f}{\partial y}=0,
-\qquad
 \frac{\partial f}{\partial y'}=\frac{y'}{\sqrt{1+y'^2}}.
 $$
 
-The Euler–Lagrange equation $\frac{\partial f}{\partial y}-\frac{d}{dx}\frac{\partial f}{\partial y'}=0$ therefore reduces to
+The Beltrami identity gives
 
 $$
-\frac{d}{dx}\left(\frac{y'}{\sqrt{1+y'^2}}\right)=0,
+f-y'\,\frac{\partial f}{\partial y'}
+=
+\sqrt{1+y'^2}-\frac{y'^2}{\sqrt{1+y'^2}}
+=
+\frac{1}{\sqrt{1+y'^2}}
+=
+C,
 $$
 
-that is, $\dfrac{y'}{\sqrt{1+y'^2}}$ is a constant $C$.  Squaring and rearranging,
+where $C$ is a constant of integration.  Inverting this result,
 
 $$
-y'^2=C^2\bigl(1+y'^2\bigr)
-\quad\Longrightarrow\quad
-y'^2=\text{constant}.
+1+y'^2=\frac{1}{C^2},
 $$
 
-Thus $y'(x)=m$ is constant, and integrating gives
+so $y'^2$ is constant.  Hence $y'(x)=m$ for some constant $m$, and integrating once more gives
 
 $$
 \boxed{\,y(x)=mx+b\,}
@@ -676,7 +680,7 @@ $$
 
 — the shortest path between two points is a straight line.
 
-(This is also the fastest route to the result via the Beltrami identity of Section 6: $f$ has no explicit $x$-dependence, so $f-y'\,\partial f/\partial y'=1/\sqrt{1+y'^2}=$ constant, which again forces $y'$ to be constant.)
+(The same conclusion can be reached from the Euler–Lagrange equation; see Sections 5–5.1.)
 
 ------
 
