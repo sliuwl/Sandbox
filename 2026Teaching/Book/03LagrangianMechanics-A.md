@@ -11,19 +11,19 @@
 2. [Hamilton's Principle](#2-hamiltons-principle)
 3. [Action](#3-action)
 4. [Derivation of the Euler–Lagrange Equation](#4-derivation-of-the-eulerlagrange-equation)
-5. [Comments on the Variational Principle](#5-comments-on-the-variational-principle)
+5. [Comments on the Hamilton's Principle](#5-comments-on-the-hamiltons-principle)
    - [5.1 Fixed but Arbitrary Endpoints](#51-fixed-but-arbitrary-endpoints)
    - [5.2 Euler–Lagrange Equation as a Local Condition](#52-eulerlagrange-equation-as-a-local-condition)
-   - [5.3 How the Physical Path Is Selected](#53-how-the-physical-path-is-selected)
+   - [5.3 Why $L=T-V$?](#53-whyltv)
 6. [Multi-Dimensional Configuration Space](#6-multi-dimensional-configuration-space)
-7. [Generalized Coordinates and Constrained Systems](#7-generalized-coordinates-and-constrained-systems)
-   - [7.1 Generalized Coordinates](#71-generalized-coordinates)
-   - [7.2 Lagrangian in Generalized Coordinates](#72-lagrangian-in-generalized-coordinates)
-8. [Examples](#8-examples)
-   - [8.1 Polar Coordinates](#81-polar-coordinates)
-   - [8.2 Simple Pendulum](#82-simple-pendulum)
-   - [8.3 Atwood Machine](#83-atwood-machine)
-   - [8.4 Block Sliding on a Movable Wedge](#84-block-sliding-on-a-movable-wedge)
+7. [Examples](#7-examples)
+   - [7.1 Polar Coordinates](#71-polar-coordinates)
+   - [7.2 Simple Pendulum](#72-simple-pendulum)
+   - [7.3 Atwood Machine](#73-atwood-machine)
+   - [7.4 Block Sliding on a Movable Wedge](#74-block-sliding-on-a-movable-wedge)
+8. [Generalized Coordinates and Constrained Systems](#8-generalized-coordinates-and-constrained-systems)
+   - [8.1 Generalized Coordinates](#81-generalized-coordinates)
+   - [8.2 Lagrangian in Generalized Coordinates](#82-lagrangian-in-generalized-coordinates)
 9. [Generalized Momenta and Ignorable Coordinates](#9-generalized-momenta-and-ignorable-coordinates)
 10. [Hamiltonian and Conservation Laws](#10-hamiltonian-and-conservation-laws)
 11. [Summary](#11-summary)
@@ -38,11 +38,7 @@ Before we develop the formalism, it is helpful to be clear about the mathematica
 
 ### 1.1 Physical Space
 
-For ordinary nonrelativistic mechanics, the **physical space** in which particles are located is modeled as three-dimensional Euclidean space,
-
-$$
-\mathbb{R}^3.
-$$
+For ordinary nonrelativistic mechanics, the **physical space** in which particles are located is modeled as three-dimensional Euclidean space $\mathbb{R}^3$.
 
 For a single particle, its **position** is represented by a vector
 
@@ -82,9 +78,11 @@ $$
 (x_1, y_1, z_1,\; x_2, y_2, z_2,\; \dots,\; x_N, y_N, z_N).
 $$
 
-This is simply the familiar idea of "coordinates," but now we have $3N$ of them instead of just three.  The collection of all possible such lists forms a $3N$-dimensional space called the **configuration space** of the system.
+This is simply the familiar idea of "coordinates," but now we have $3N$ of them instead of just three.  
 
-Each point in configuration space corresponds to one complete arrangement of the $N$ particles in physical space.  The time evolution of the system is therefore represented by a path
+The collection of all possible such lists forms a $3N$-dimensional space called the **configuration space** of the system.
+
+Each point in configuration space encodes the positions of **all** $N$ particles in physical space.The time evolution of the system is therefore represented by a path
 
 $$
 q(t) \in \mathbb{R}^{3N}.
@@ -93,10 +91,26 @@ $$
 Equivalently,
 
 $$
-q(t)=\bigl(\mathbf r_1(t),\mathbf r_2(t),\dots,\mathbf r_N(t)\bigr).
+q(t)=\bigl(\mathbf r_1(t),\mathbf r_2(t),\dots,\mathbf r_N(t)\bigr) = (x_1(t), y_1(t), z_1(t),\; x_2(t), y_2(t), z_2(t),\; \dots,\; x_N(t), y_N(t), z_N(t)).
 $$
 
-So instead of tracking $N$ separate position vectors in $\mathbb{R}^3$, we may track one point moving in the higher-dimensional configuration space.
+So instead of tracking $N$ separate position vectors in $\mathbb{R}^3$, we may **track one point moving in the higher-dimensional configuration space**.
+
+At this point, we are still using Cartesian coordinates to label the configuration. For a system without constraints, we may also replace these Cartesian coordinates by a different set of coordinates, called **generalized coordinates**:
+\[
+q(t) =(q_1,q_2,\dots,q_{3N}).
+\]
+These generalized coordinates are simply another way of labeling the same $3N$-dimensional configuration space.
+
+>For one unconstrained particle in three dimensions, the generalized coordinates could be chosen as either
+>
+>$(q_1,q_2,q_3)=(x,y,z)$
+>
+>or
+>
+>$(q_1,q_2,q_3)=(r,\theta,\phi).$
+>
+>The choice of generalized coordinates is often made based on convenience and symmetry.
 
 ------
 
@@ -138,9 +152,10 @@ In Hamiltonian mechanics, $q$ and $p$ are treated as independent coordinates on 
 
 Lagrangian mechanics is based on the **principle of stationary action**, also known as **Hamilton's principle**.
 
-Informally, this principle is sometimes described as saying that "nature is economical" or that "nature minimizes action."  However, the rigorous statement is more precise:
+Informally, this principle is often summarized as “nature is economical” or “nature minimizes action.” More precisely:
 
-> The actual path followed by a system between two fixed configurations at fixed initial and final times makes the action stationary with respect to small variations of the path.
+| The actual path followed by a system between two fixed configurations at fixed initial and final times makes the action \(S\) stationary. |
+| ------------------------------------------------------------ |
 
 The **action** is defined by
 
@@ -169,51 +184,79 @@ $$
 \delta S = 0.
 $$
 
-This means the action is **stationary**, not necessarily minimal.  A stationary value may be a minimum, a maximum, or a saddle point in the space of paths.
+This means the action is **stationary**, not necessarily minimal.  A stationary value may be a minimum, a maximum, or a saddle point of the action functional.  In many mechanical situations, especially over sufficiently short time intervals, the stationary action is a local minimum. This is why the principle is often informally called the **principle of least action**, although **principle of stationary action** is the more precise term. 
 
 ------
 
 ## 3. Action
 
-The action assigns a number to each possible path in configuration space.  Therefore, it is not an ordinary function of a point; it is a **functional**, meaning a function whose input is itself a function.
+The action assigns a number to each possible path in configuration space. Therefore, it is a **functional**: a function whose input is itself a function.
 
-A path
+A path $q(t)$ is mapped to a real number:
 
-$$
-q(t)
-$$
-
-is mapped to a real number:
-
-$$
-q(t) \longmapsto S[q] \longmapsto \mathbb{R}.
-$$
+\[
+q(t) \longmapsto S[q] \in \mathbb{R}.
+\]
 
 Explicitly,
 
-$$
-S[q] = \int_{t_i}^{t_f} L(q,\dot q,t)\,dt.
-$$
+\[
+S[q]=\int_{t_i}^{t_f} L(q,\dot q,t)\,dt.
+\]
 
-The units of action are energy multiplied by time:
+The **units of action are energy multiplied by time**:
 
-$$
-[S] = [E][t] = \mathrm{J}\cdot\mathrm{s} = \frac{\mathrm{kg}\,\mathrm{m}^2}{\mathrm{s}}.
-$$
+\[
+[S]=[E][t]=\mathrm{J}\cdot\mathrm{s}
+=\frac{\mathrm{kg}\,\mathrm{m}^2}{\mathrm{s}}.
+\]
 
-Different paths between the same endpoints generally have different action values.  For example,
+Different paths between the same endpoints generally have different action values. For example,
 
-$$
-S[q_1(t)] = 8.73, \qquad S[q_2(t)] = 9.21, \qquad S[q_3(t)] = 10.5.
-$$
+\[
+S[q_1(t)] = 8.73, \qquad
+S[q_2(t)] = 9.21, \qquad
+S[q_3(t)] = 10.5.
+\]
 
-The actual path is the one for which the first-order change in the action vanishes under all allowed infinitesimal variations.
+![Three different paths between two fixed endpoints](paths_action.png)
+**Figure 1**: Three possible paths connecting the same initial point 1 and final point 2. Each path yields a different value of the action $S[q]$.
+
+To understand how \(S[q]\) is computed in principle, it is useful to think in a **discrete approximation**. Divide the time interval \([t_i,t_f]\) into many small pieces of size \(\Delta t\). Along a proposed path \(q(t)\), evaluate the Lagrangian at each time step:
+
+\[
+L_k = L(q_k,\dot q_k,t_k),
+\]
+
+where \(q_k=q(t_k)\), and \(\dot q_k\) can be approximated by
+
+\[
+\dot q_k \approx \frac{q_{k+1}-q_k}{\Delta t}.
+\]
+
+This approximation treats the Lagrangian as approximately constant over each small time interval. In particular, if $L=T-V$,  then we are effectively assuming that $q_k(t)$, $\dot q_k(t)$, and hence $V(q_k)$ do **not** change appreciably within a single time step.  Equivalently, we use the value of the Lagrangian at a representative point in the interval, such as the left endpoint $t_k$.
+
+Then the action is approximated by the sum
+\[
+S[q] \approx \sum_{k=0}^{N-1} L(q_k,\dot q_k,t_k)\,\Delta t.
+\]
+
+Thus, the action is like a **time-sum** of the Lagrangian along the entire path. In the limit where the time intervals become infinitesimally small, this sum becomes the integral
+
+\[
+S[q]=\lim_{\Delta t\to 0}\sum_{k=0}^{N-1}L(q_k,\dot q_k,t_k)\,\Delta t
+=\int_{t_i}^{t_f}L(q,\dot q,t)\,dt.
+\]
+
+This discrete picture helps clarify the meaning of the action: for every possible path, **we sample the path at many times, compute the Lagrangian at each sample, multiply by the small time interval, and add all contributions together.** However, when our goal is to find the actual path, **we usually do not  compute $S[q]$** separately for many trial paths. Instead, we vary the path symbolically and impose the stationary-action condition $\delta S = 0,$ which leads to the Euler-Lagrange equations.
+
+
 
 ------
 
 ## 4. Derivation of the Euler–Lagrange Equation
 
-Consider a one-dimensional configuration variable $q(t)$.  The multidimensional case is obtained by applying the same argument to each generalized coordinate.
+Consider a system described by a **single configuration variable** $q(t)$; that is, $q(t)$ has only one component. The multidimensional case is obtained by applying the same argument to each generalized coordinate.
 
 Let the physical path be $q(t)$.  We compare it with nearby paths of the form
 
@@ -303,47 +346,21 @@ This is the **Euler–Lagrange equation**.
 
 ------
 
-## 5. Comments on the Variational Principle
+## 5. Comments on the Hamilton's Principle
 
 ------
 
 ### 5.1 Fixed but Arbitrary Endpoints
 
-In Hamilton’s principle, we compare the actual path with nearby trial paths.
+At first, Hamilton’s principle can feel confusing. We say that the initial and final configurations are fixed:
 
-Suppose the path satisfies
+$q(t_i)=q_i, \qquad q(t_f)=q_f.$
 
-$$
-q(t_i)=q_i,
-\qquad
-q(t_f)=q_f.
-$$
+But then a natural question arises:
 
-During the variation, the endpoints are held fixed. That means every allowed trial path must have the same initial and final configurations:
+> If we already know the configuration at the final time $t_f$, why do we need to derive the equation of motion? Doesn’t knowing the final point already tell us where the system goes?
 
-$$
-q_\varepsilon(t_i)=q_i,
-\qquad
-q_\varepsilon(t_f)=q_f.
-$$
-
-If
-
-$$
-q_\varepsilon(t)=q(t)+\varepsilon \eta(t),
-$$
-
-then fixed endpoints imply
-
-$$
-\eta(t_i)=0,
-\qquad
-\eta(t_f)=0.
-$$
-
-So the variation may change the path in the interior, but not at the endpoints.
-
-#### Meaning of “Fixed but Arbitrary”
+The key point is that **fixing the endpoints in the variational problem is not the same as knowing the full motion of the system**. The endpoints only specify where the path begins and where it ends. They do not specify how the system moves **between** those two times. 
 
 The endpoints are **fixed** during a particular variational problem.
 
@@ -363,176 +380,138 @@ Because the endpoints were arbitrary, the resulting equation of motion is not ti
 
 ### 5.2 Euler–Lagrange Equation as a Local Condition
 
-Hamilton’s principle states that the physical path makes the action stationary:
+Hamilton’s principle leads to the Euler--Lagrange equation: $\frac{d}{dt} \left( \frac{\partial L}{\partial \dot q} \right) - \frac{\partial L}{\partial q} =0$
 
-$$
-\delta S=0,
-$$
-
-where
-
-$$
-S[q]=\int_{t_i}^{t_f} L(q,\dot q,t)\,dt.
-$$
-
-For fixed-endpoint variations, this condition leads to the Euler–Lagrange equation:
-
-$$
-\boxed{
-\frac{d}{dt}
-\left(
-\frac{\partial L}{\partial \dot q}
-\right)
--
-\frac{\partial L}{\partial q}
-=0
-}
-$$
-
-This is a **local differential equation**. It must hold at each time along the physical path.
-
-Important:
-
-$$
-\boxed{
-\text{stationary action} \neq \text{always least action}
-}
-$$
-
-The action may be a minimum, maximum, or saddle point. Hamilton’s principle requires stationarity, not necessarily global minimization.
-
-------
-
-### 5.3 How the Physical Path Is Selected
-
-Hamilton’s principle is usually used to derive the equations of motion.
-
-After the Euler–Lagrange equation is known, the actual physical trajectory is selected by initial conditions, such as
-
-$$
-q(t_i),
-\qquad
-\dot q(t_i).
-$$
-
-Equivalently, in Hamiltonian mechanics, one uses
-
-$$
-q(t_i),
-\qquad
-p(t_i).
-$$
-
-Thus the final configuration does not have to be known in advance when predicting motion.
+This is a **local differential equation**: it must hold at each time along the physical path. Therefore, when we use the equation to predict motion, we do **not** need to know the final configuration in advance.
 
 The logical structure is:
 
-$$
-\boxed{
-\text{stationary action with fixed endpoints}
-\Longrightarrow
-\text{Euler--Lagrange equation}
-\Longrightarrow
-\text{initial conditions select the trajectory}
-}
-$$
+$\boxed{ \text{stationary action with fixed endpoints} \Longrightarrow \text{Euler--Lagrange equation} \Longrightarrow \text{initial conditions determine the trajectory} }$
 
-So the fixed final endpoint is mainly part of the variational derivation, while physical prediction is usually done from initial position and velocity.
+The stationary-action principle is a global statement about an entire segment of the **physical path**. In the variational problem, we choose **two arbitrary points on the physical path** and compare the physical segment between them with nearby trial paths that have the same endpoints. 
+
+**Endpoints that cannot be reached from the chosen initial point under the given physical conditions are not the focus of this variational comparison**. The purpose of fixing endpoints is not to say that we already know the future motion; it is to derive a local equation that must hold along any physical segment. Since the two endpoints can be chosen arbitrarily along the physical trajectory, the resulting Euler-Lagrange equation must hold locally everywhere along the path.
+
+## 5.3 Why $L=T-V$?
+
+### 5.3.1 A Practical Justification: Recovering Newton’s Laws
+
+The question **“Why is the Lagrangian $L=T-V$?”** is actually subtle. At this stage, a practical justification is that this choice gives the correct equations of motion.
+
+More specifically, when $L=T-V$ is substituted into the Euler--Lagrange equations, we recover Newton’s second law for systems with conservative forces: $m\ddot q = F.$
+
+In this sense, **the choice $L=T-V$ is justified because it reproduces known Newtonian physics**.
+
+------
+
+### 5.3.2 A Deeper View: Action and Proper Time
+
+However, this is not the deepest explanation. A more fundamental origin of the action principle appears in **relativity**.
+
+In **special relativity**, the action for a **free massive particle** is proportional to the **proper time** along its worldline:
+\[
+S \propto \int d\tau.
+\]
+**The physical path is the path that makes this proper time stationary**.
+
+Proper time is important because it is **Lorentz invariant**:
+
+- different inertial observers may disagree about  time;
+- different inertial observers may disagree about distances;
+- but **all** inertial observers agree on the proper time along a given worldline.
+
+In the low-speed limit, $v\ll c$, this relativistic proper-time action reduces, up to an irrelevant constant, to the ordinary free-particle Lagrangian: $L=T$.
+
+Thus, the familiar nonrelativistic expression $L=T$ for a free particle can be viewed as the **low-speed limit of a more fundamental relativistic action**.
+
+------
+
+### 5.3.3 Where Does the $-V$ Come From?
+
+To understand the potential-energy term $-V$ more deeply, one can look toward more fundamental theories.
+
+For gravity, **general relativity** provides a deeper interpretation:
+
+- gravity affects spacetime geometry;
+- spacetime geometry affects proper time;
+- the motion of a particle can again be described by stationary proper time.
+
+In the appropriate limit, this leads to the appearance of a gravitational potential term in the nonrelativistic Lagrangian: $L=T-V$. We will not go into the details here.
+
+------
+
+### 5.3.4 The Main Idea: A Dynamical Balance
+
+For now, the important idea is that the Lagrangian encodes a balance:
+
+- $T$ describes motion and inertia;
+- $V$ describes how the environment influences the particle;
+- the combination $T-V$ gives the correct dynamical balance.
+
+The actual path is not found by separately minimizing $T$ or $V$. Instead, the actual path makes the action stationary: $\delta S=0.$
+
+------
+
+### 5.3.5 Final Comment: Why Stationary Action?
+
+Our starting point in this course is the **stationary action principle**. If one asks why nature obeys a stationary action principle at all, that is an even deeper question. For now, the most honest answer is:
+
+| The stationary action principle is one of the fundamental organizing principles of physics. |
+| ------------------------------------------------------------ |
 
 ------
 
 ## 6. Multi-Dimensional Configuration Space
 
-In general, the configuration variable has several components.  Write
-
-$$
-q(t)=\bigl(q^1(t),q^2(t),\dots,q^n(t)\bigr),
-$$
-
+In general, the configuration variable has several components. Write
+\[
+q(t)=\bigl(q_1(t),q_2(t),\dots,q_n(t)\bigr),
+\]
 where $n$ is the dimension of the configuration space.
 
-For $N$ unconstrained particles in three-dimensional physical space,
+For $N$ unconstrained particles in three-dimensional physical space, $n=3N.$
 
-$$
-n=3N.
-$$
+The Lagrangian is then a function $L(q_1,\dots,q_n,\dot q_1,\dots,\dot q_n,t).$
 
-The Lagrangian is then a function
+Applying the same variational argument to each coordinate gives one Euler--Lagrange equation for each generalized coordinate:
+\[
+\boxed{ \frac{d}{dt}\left(\frac{\partial L}{\partial \dot q_k}\right) -\frac{\partial L}{\partial q_k} =0, \qquad k=1,\dots,n. }
+\]
 
-$$
-L(q^1,\dots,q^n,\dot q^1,\dots,\dot q^n,t).
-$$
-
-Applying the same variational argument to each coordinate gives one Euler–Lagrange equation for each generalized coordinate:
-
-$$
-\boxed{ \frac{d}{dt} \left( \frac{\partial L}{\partial \dot q^k} \right) - \frac{\partial L}{\partial q^k} =0, \qquad k=1,\dots,n. }
-$$
 
 Equivalently,
-
-$$
-\boxed{ \frac{\partial L}{\partial q^k} - \frac{d}{dt} \left( \frac{\partial L}{\partial \dot q^k} \right) =0, \qquad k=1,\dots,n. }
-$$
-
+\[
+\boxed{ \frac{\partial L}{\partial q_k} -\frac{d}{dt}\left(\frac{\partial L}{\partial \dot q_k}\right) =0, \qquad k=1,\dots,n. }
+\]
 The two forms are identical up to multiplication by $-1$.
 
 ------
 
-## 7. Generalized Coordinates and Constrained Systems
+## 7. Examples
 
-For a system of $N$ particles, a complete configuration in Cartesian coordinates requires $3N$ coordinates.  However, many mechanical systems are subject to **constraints** that restrict the motion — for example, a simple pendulum is constrained to move at a fixed distance from its pivot, and the particles in a rigid body are constrained to maintain fixed relative separations.
+The following examples illustrate how to apply the Lagrangian formalism to concrete mechanical systems. For now, we will not worry about why the Euler--Lagrange equations are applicable to constrained systems; they are applicable, and we will return to this point more carefully later.
 
-------
+In each example, we will follow the same basic recipe:
 
-### 7.1 Generalized Coordinates
+1. **Choose a set of generalized coordinates** that describe the configuration of the system, typically chosen so that the constraints are already built in **implicitly**. For example, instead of using Cartesian coordinates, such as $(x,y,z)$, which may **describe more positions than the system can actually access**, we often choose coordinates that automatically incorporate the constraints from the beginning. These are what we will call **generalized coordinates**. For now, we use this idea intuitively; a more formal definition of generalized coordinates will be given later.
 
-The parameters $q_1, \dots, q_n$ are called **generalized coordinates** if each particle's position can be expressed as
+2. **Express the kinetic energy** $T$ in terms of these generalized coordinates and their time derivatives.
 
-$$
-\mathbf r_\alpha = \mathbf r_\alpha(q_1, \dots, q_n, t), \qquad \alpha = 1, \dots, N,
-$$
+3. **Express the potential energy** $V$ in terms of the generalized coordinates.
 
-and conversely each $q_i$ can be expressed in terms of the positions.  The number $n$ is the smallest number of parameters that describes the system completely.
+4. **Form the Lagrangian**
 
-- The **number of degrees of freedom** is the number of coordinates that can be independently varied in a small displacement.
-- When $n < 3N$ the system is **constrained**.
-- A system is called **holonomic** if the number of degrees of freedom equals the number of generalized coordinates.
-- If the transformation between Cartesian coordinates and generalized coordinates does not involve time explicitly, the coordinates are said to be **natural**.
+   $L=T-V.$
 
-------
+5. **Apply the Euler--Lagrange equation** to each generalized coordinate:
 
-### 7.2 Lagrangian in Generalized Coordinates
+   $\frac{d}{dt} \left( \frac{\partial L}{\partial \dot q_i} \right) - \frac{\partial L}{\partial q_i} = 0.$
 
-The Lagrangian is defined as before,
-
-$$
-L = T - V,
-$$
-
-but now $T$ and $V$ must be expressed in terms of the chosen generalized coordinates and their velocities:
-
-$$
-L = L(q_1, \dots, q_n, \dot q_1, \dots, \dot q_n, t).
-$$
-
-One of the principal advantages of the Lagrangian formulation is that the Euler–Lagrange equations retain exactly the same form in any choice of generalized coordinates:
-
-$$
-\boxed{ \frac{d}{dt}\left(\frac{\partial L}{\partial \dot q_i}\right) - \frac{\partial L}{\partial q_i} = 0, \qquad i = 1, \dots, n. }
-$$
-
-Moreover, the forces of constraint — such as tension in a string or the normal force from a surface — do not appear in these equations, provided the constraints are holonomic and the non-constraint forces are derivable from a potential energy $V$.
+This procedure may feel mechanical (机械) at first, but that is part of its power: once the correct coordinates and energies are written down, the equations of motion follow systematically.
 
 ------
 
-## 8. Examples
-
-The following examples illustrate how to apply the Lagrangian formalism to concrete mechanical systems.
-
-------
-
-### 8.1 Polar Coordinates
+### 7.1 Polar Coordinates
 
 Consider a particle of mass $m$ moving in a plane, described by polar coordinates $(r, \phi)$.  The velocity components are $v_r = \dot r$ and $v_\phi = r\dot\phi$, so the kinetic energy is
 
@@ -568,9 +547,14 @@ If $V$ depends only on $r$, then $\partial V/\partial\phi = 0$ and $mr^2\dot\phi
 
 ------
 
-### 8.2 Simple Pendulum
+### 7.2 Simple Pendulum
 
-A bob of mass $m$ is attached to a massless rod of length $l$ pivoted at a fixed point.  The system has one degree of freedom.  Using the angle $\phi$ measured from the vertical as generalized coordinate,
+A bob of mass $m$ is attached to a massless rod of length $l$ pivoted at a fixed point.  The system has one degree of freedom.
+
+![](images/51def9e0ee35f073a16607633f56394873af344f6c3840beb10a0b1ae5933e62.jpg)  
+**Figure 2** A simple pendulum. The bob of mass $m$ is constrained by the rod to remain at distance $l$ from O.
+
+Using the angle $\phi$ measured from the vertical as generalized coordinate,
 
 $$
 x = l\sin\phi, \qquad y = -l\cos\phi,
@@ -610,9 +594,14 @@ the familiar pendulum equation.  The tension in the rod never appeared.
 
 ------
 
-### 8.3 Atwood Machine
+### 7.3 Atwood Machine
 
-Two masses $m_1$ and $m_2$ are connected by a light inextensible string of fixed length passing over a frictionless pulley.  Because the string length is constant,
+Two masses $m_1$ and $m_2$ are connected by a light inextensible string of fixed length passing over a frictionless pulley.
+
+![](images/58cdc1c9dd86a8f79d4293198375dda14d0adf1a0bf0f9b388cc6380dd1990f0.jpg)  
+**Figure 3** An Atwood machine consisting of two masses, $m_1$ and $m_2$, suspended by a massless inextensible string that passes over a massless, frictionless pulley of radius $R$. Because the string's length is fixed, the position of the whole system can be specified by a single variable, which we can take to be the distance $x$.
+
+Because the string length is constant,
 
 $$
 x + y = \text{const},
@@ -654,9 +643,12 @@ Again, the unknown tension (a force of constraint) never appears in the Lagrangi
 
 ------
 
-### 8.4 Block Sliding on a Movable Wedge
+### 7.4 Block Sliding on a Movable Wedge
 
 A block of mass $m$ slides on a frictionless wedge of mass $M$, which itself slides without friction on a horizontal table.  The wedge has angle $\alpha$.
+
+![](images/645e5578e8bdaa9fe687eb71ca548ee6fc60765ce35f3826d66245b71981e510.jpg)  
+*Figure 7.8 A block of mass $m$ slides down a wedge of mass $M$, which is free to slide over the horizontal table.*
 
 Choose $q_1$ as the distance of the block down the slope and $q_2$ as the horizontal position of the wedge.  The velocity of the block relative to the inertial table is the vector sum of its velocity down the wedge and the wedge's horizontal velocity:
 
@@ -709,6 +701,51 @@ $$
 
 ------
 
+## 8. Generalized Coordinates and Constrained Systems
+
+For a system of $N$ particles, a complete configuration in Cartesian coordinates requires $3N$ coordinates.  However, many mechanical systems are subject to **constraints** that restrict the motion — for example, a simple pendulum is constrained to move at a fixed distance from its pivot, and the particles in a rigid body are constrained to maintain fixed relative separations.
+
+------
+
+### 8.1 Generalized Coordinates
+
+The parameters $q_1, \dots, q_n$ are called **generalized coordinates** if each particle's position can be expressed as
+
+$$
+\mathbf r_\alpha = \mathbf r_\alpha(q_1, \dots, q_n, t), \qquad \alpha = 1, \dots, N,
+$$
+
+and conversely each $q_i$ can be expressed in terms of the positions.  The number $n$ is the smallest number of parameters that describes the system completely.
+
+- The **number of degrees of freedom** is the number of coordinates that can be independently varied in a small displacement.
+- When $n < 3N$ the system is **constrained**.
+- A system is called **holonomic** if the number of degrees of freedom equals the number of generalized coordinates.
+- If the transformation between Cartesian coordinates and generalized coordinates does not involve time explicitly, the coordinates are said to be **natural**.
+
+------
+
+### 8.2 Lagrangian in Generalized Coordinates
+
+The Lagrangian is defined as before,
+
+$$
+L = T - V,
+$$
+
+but now $T$ and $V$ must be expressed in terms of the chosen generalized coordinates and their velocities:
+
+$$
+L = L(q_1, \dots, q_n, \dot q_1, \dots, \dot q_n, t).
+$$
+
+One of the principal advantages of the Lagrangian formulation is that the Euler–Lagrange equations retain exactly the same form in any choice of generalized coordinates:
+
+$$
+\boxed{ \frac{d}{dt}\left(\frac{\partial L}{\partial \dot q_i}\right) - \frac{\partial L}{\partial q_i} = 0, \qquad i = 1, \dots, n. }
+$$
+
+Moreover, the forces of constraint — such as tension in a string or the normal force from a surface — do not appear in these equations, provided the constraints are holonomic and the non-constraint forces are derivable from a potential energy $V$.
+
 ## 9. Generalized Momenta and Ignorable Coordinates
 
 For each generalized coordinate $q_i$, define the **generalized momentum**
@@ -733,8 +770,8 @@ $$
 
 Therefore, each ignorable coordinate yields a conserved quantity.
 
-- In **Section 8.1** above, when $V$ depends only on $r$, the coordinate $\phi$ is ignorable and $p_\phi = mr^2\dot\phi$ (angular momentum) is conserved.
-- In **Section 8.4**, $q_2$ was ignorable and the conserved momentum was the total horizontal momentum.
+- In **Section 7.1** above, when $V$ depends only on $r$, the coordinate $\phi$ is ignorable and $p_\phi = mr^2\dot\phi$ (angular momentum) is conserved.
+- In **Section 7.4**, $q_2$ was ignorable and the conserved momentum was the total horizontal momentum.
 
 This profound connection between symmetry (invariance of $L$ under a coordinate transformation) and conservation laws is the essential content of **Noether's theorem (诺特定理)**.
 

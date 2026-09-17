@@ -686,7 +686,7 @@ $$
 
 ## 9. Brachistochrone Problem
 
-The **brachistochrone problem (最速降线问题)** asks: given two points 1 and 2 in a vertical plane, with 1 higher above the ground, in what shape should we build a frictionless track so that a bead (or roller-coaster car) released from rest at point 1 reaches point 2 in the shortest possible time?  The name comes from the Greek words *brachistos* (shortest) and *chronos* (time).
+The **brachistochrone problem (最速降线问题)** asks: given two points 1 and 2 in a vertical plane, with 1 higher above the ground, in what shape should we build a frictionless track so that a bead (or roller-coaster car) released from rest at point 1 reaches point 2 in the **shortest possible time**?  The name comes from the Greek words *brachistos* (shortest) and *chronos* (time).
 
 We take point 1 as the origin and choose to measure $y$ vertically **downward**.  The time to travel from 1 to 2 is
 
