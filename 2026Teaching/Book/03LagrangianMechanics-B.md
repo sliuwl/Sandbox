@@ -245,11 +245,9 @@ Moreover, the **forces of constraint**, such as tension in a string, the normal 
 
 
 
-
-
 ### 8.4 Form Invariance of the Euler–Lagrange Equations
 
-One of the most powerful features of the Lagrangian formalism is that the Euler–Lagrange equations retain the **same form in any coordinate system**. This is sometimes called the **covariance** of Lagrange's equations. In this section we give an explicit proof of this statement.
+One of the most powerful features of the Lagrangian formalism is that the Euler–Lagrange equations retain the **same form in any coordinate system**. This is sometimes called the **covariance (协变性)** of Lagrange's equations. In this section we give an explicit proof of this statement.
 
 For a system of $N$ particles we can collect the $n = 3N$ Cartesian coordinates into a single list $x^A$ with $A = 1,\dots,n$:
 $$
@@ -265,16 +263,20 @@ Now introduce a new set of coordinates $q_i$ ($i = 1,\dots,n$) related to the ol
 $$
 q_i = q_i(x^1, \dots, x^n, t),
 $$
-where we allow for an explicit time dependence. For this to be a valid coordinate system we must be able to invert the relation, which requires a nonvanishing Jacobian determinant:
+**where we allow for an explicit time dependence**. For this to be a valid coordinate system we must be able to invert the relation, which requires a nonvanishing Jacobian determinant:
 $$
 \det\!\left(\frac{\partial x^A}{\partial q_i}\right) \neq 0.
+$$
+
+$$
+x^A = x^A(q_1, \dots, q_n, t),
 $$
 
 By the chain rule,
 $$
 \dot q_i = \frac{\partial q_i}{\partial x^A}\,\dot x^A + \frac{\partial q_i}{\partial t},
 \qquad
-\dot x^A = \frac{\partial x^A}{\partial q_i}\,\dot q_i + \frac{\partial x^A}{\partial t},
+\dot x^A = \frac{\partial x^A}{\partial q_j}\,\dot q_j + \frac{\partial x^A}{\partial t},
 $$
 where the summation convention is used (sum over repeated $A$ or $i$).
 
@@ -282,10 +284,11 @@ We substitute $x^A(q_j,t)$ into the Lagrangian to obtain a new function $\mathca
 
 ---
 
-**Proof.** Using the chain rule, the derivative of $\mathcal L$ with respect to a new coordinate $q_i$ is
-
+**Proof.** Using the chain rule, the derivative of $\mathcal L(x^A, \dot x^A, t)$ with respect to a new coordinate $q_i$ is
 $$
 \frac{\partial \mathcal L}{\partial q_i}
+= \frac{\partial \mathcal L}{\partial x^A}\frac{\partial x^A}{\partial q_i}
++ \frac{\partial \mathcal L}{\partial \dot x^A} \frac{\partial \dot x^A}{\partial q_i}
 = \frac{\partial \mathcal L}{\partial x^A}\frac{\partial x^A}{\partial q_i}
 + \frac{\partial \mathcal L}{\partial \dot x^A}
 \left(
@@ -297,13 +300,14 @@ $$
 Meanwhile, differentiating the relation $\dot x^A = (\partial x^A/\partial q_i)\dot q_i + \partial x^A/\partial t$ with respect to $\dot q_i$ gives
 
 $$
-\frac{\partial \dot x^A}{\partial \dot q_i} = \frac{\partial x^A}{\partial q_i},
+\frac{\partial \dot x^A}{\partial \dot q_i} = \frac{\partial x^A}{\partial q_i}.
 $$
 
-so that
+Moreover, since \(x^A\) is independent of \(\dot{q}_i\), application of the chain rule gives
 
 $$
 \frac{\partial \mathcal L}{\partial \dot q_i}
+= \frac{\partial \mathcal L}{\partial \dot x^A} \frac{\partial \dot x^A}{\partial \dot q_i}.
 = \frac{\partial \mathcal L}{\partial \dot x^A}\frac{\partial x^A}{\partial q_i}.
 $$
 
@@ -319,8 +323,11 @@ $$
 \right).
 $$
 
-Subtracting the two results, the second-order terms cancel identically, leaving the elegant result
+> In the above, we regard $\frac{\partial x^A}{\partial q_i}$ as a function of the generalized coordinates and time; that is,
+>
+> $\frac{\partial x^A}{\partial q_i} = \frac{\partial x^A}{\partial q_i}(q_1,\dots,q_n,t).$
 
+Subtracting the two results, the second-order terms cancel identically, leaving the elegant result
 $$
 \frac{d}{dt}\left(\frac{\partial \mathcal L}{\partial \dot q_i}\right) - \frac{\partial \mathcal L}{\partial q_i}
 = \left[
@@ -330,7 +337,7 @@ $$
 
 The quantity in brackets on the right-hand side is the Euler–Lagrange expression in the $x^A$ coordinates. Because the Jacobian matrix $\partial x^A/\partial q_i$ is invertible, we conclude:
 
-> **If the Euler–Lagrange equations vanish in the $x^A$ coordinate system, then they also vanish in the $q_i$ coordinate system, and conversely.**
+> **If the Euler–Lagrange equations hold in the $x^A$ coordinate system, then they also hold in the $q_i$ coordinate system, and conversely.**
 
 Thus the Euler–Lagrange equations are **form invariant**: they take exactly the same shape
 
@@ -346,7 +353,6 @@ in any choice of generalized coordinates.
 ---
 
 **Generalized momentum.** In complete analogy with the Cartesian momentum $p_A = \partial \mathcal L/\partial \dot x^A$, we define the **generalized momentum** conjugate to $q_i$ by
-
 $$
 p_i = \frac{\partial \mathcal L}{\partial \dot q_i}.
 $$
@@ -357,196 +363,102 @@ $$
 \dot p_i = \frac{\partial \mathcal L}{\partial q_i}.
 $$
 
-Whenever $\mathcal L$ does not depend explicitly on a particular coordinate $q_i$, the corresponding momentum $p_i$ is conserved. We shall explore this connection between symmetries and conservation laws systematically in Section 9.
+Whenever $\mathcal L$ does not depend explicitly on a particular coordinate $q_i$, the corresponding momentum $p_i$ is conserved.
 
-### 8.5 Why Lagrange's Equations Work for Constrained Systems
 
-It is essential to understand why the same Euler–Lagrange equations continue to hold for constrained systems. The key is Hamilton's principle combined with the nature of constraint forces. To keep the derivation reasonably simple, we consider a single particle in three dimensions constrained by holonomic constraints to move on a surface (two degrees of freedom). The generalization to arbitrary numbers of particles is straightforward — the main ideas are all present here.
+### 8.5 Lagrange Multipliers and Generalized Coordinates
 
-#### Setup: two kinds of forces
+For holonomic constraints, we have described two ways to proceed: eliminate the dependent coordinates to obtain a smaller set of generalized coordinates, or keep the original coordinates and introduce Lagrange multipliers. In this section we present the Lagrange-multiplier method, and then prove the key theorem that justifies why we may simply substitute the constraints into the Lagrangian and apply the standard Euler–Lagrange equations in the reduced coordinate space.
 
-Consider a particle constrained to move on a fixed surface. There are two kinds of forces acting on the particle:
+------
 
-1. **Forces of constraint** $\mathbf F_{\text{cstr}}$: the normal force of the surface (for a bead on a wire, the normal force of the wire; for the atoms in a rigid body, the interatomic forces that hold the atoms in place). These are not necessarily conservative, but this does not matter. One of the objectives of the Lagrangian approach is to find equations that do not involve the constraining forces, which we usually do not want to know anyway.
+#### Lagrange Multipliers
 
-2. **Non-constraint forces** $\mathbf F$: gravity, springs, and any other applied forces. We assume these satisfy at least the second condition for conservatism, so they are derivable from a potential energy $U(\mathbf r,t)$:
-
-$$
-\mathbf F = -\nabla U(\mathbf r,t).
-$$
-
-(If all non-constraint forces are actually conservative, then $U$ is independent of $t$, but we do not need to assume this.)
-
-The total force on the particle is therefore
+We again consider $N$ particles with $3N$ Cartesian coordinates $x^A$ ($A = 1,\dots,3N$). Suppose there are $k = 3N - n$ independent holonomic constraints
 
 $$
-\mathbf F_{\text{tot}} = \mathbf F_{\text{cstr}} + \mathbf F.
+f_\alpha(x^A, t) = 0, \qquad \alpha = 1, \dots, k .
 $$
 
-We define the Lagrangian, as usual, using **only** the non-constraint potential:
+Rather than solving these equations to eliminate variables, we introduce $k$ new dynamical functions of time, $\lambda^\alpha(t)$, called **Lagrange multipliers**. Each multiplier sits on the same footing as the original coordinates: it is a dynamical function to be determined by the equations of motion.
+
+We define an **extended Lagrangian**
 
 $$
-\mathcal L = T - U = \frac12 m\dot{\mathbf r}^2 - U(\mathbf r,t).
+\mathcal L'(x^A, \dot x^A, \lambda^\alpha, t)
+= \mathcal L(x^A, \dot x^A) + \lambda^\alpha f_\alpha(x^A, t),
 $$
 
-Since $U$ is the potential energy for the non-constraint forces only, this definition of $\mathcal L$ excludes the constraint forces. This correctly reflects that Lagrange's equations for a constrained system cleverly eliminate the constraint forces, as we shall see.
-
-#### The action integral is stationary at the right path
-
-Consider any two fixed points on the surface, $\mathbf r_1$ and $\mathbf r_2$, through which the particle passes at times $t_1$ and $t_2$. We denote by $\mathbf r(t)$ the **right path** — the actual path the particle follows — and by $\mathbf R(t)$ any neighboring **wrong path** between the same two points, also lying in the surface. It is convenient to write
+where a sum over $\alpha$ is implied. We now treat $\lambda^\alpha$ as additional coordinates. Because $\mathcal L'$ does not depend on $\dot\lambda^\alpha$, the Euler–Lagrange equation for each multiplier is simply
 
 $$
-\mathbf R(t) = \mathbf r(t) + \boldsymbol\epsilon(t),
+\frac{\partial \mathcal L'}{\partial \lambda^\alpha} = f_\alpha(x^A, t) = 0,
 $$
 
-which defines $\boldsymbol\epsilon(t)$ as the infinitesimal vector pointing from the right path to the wrong path. Because both endpoints lie in the surface, $\boldsymbol\epsilon(t)$ is contained in (tangent to) the surface, and since both paths pass through the same endpoints,
+which is exactly the original constraint. Thus extremising $\mathcal L'$ automatically enforces the constraints.
+
+The Euler–Lagrange equation for the original coordinates $x^A$ is modified:
 
 $$
-\boldsymbol\epsilon(t_1) = \boldsymbol\epsilon(t_2) = \mathbf 0.
+\frac{d}{dt}\left(\frac{\partial \mathcal L}{\partial \dot x^A}\right) - \frac{\partial \mathcal L}{\partial x^A}
+= \lambda^\alpha \frac{\partial f_\alpha}{\partial x^A}.
 $$
 
-Let us denote by $S$ the action integral taken along any path $\mathbf R(t)$ lying in the constraining surface,
+The left-hand side is the unconstrained equation of motion; the right-hand side represents the **constraint forces**. By solving the coupled system of this equation together with the constraints $f_\alpha = 0$, we obtain both the motion $x^A(t)$ and the multipliers $\lambda^\alpha(t)$. The latter are directly related to the physical forces of constraint.
+
+> **Example: simple pendulum revisited.**  
+> For a pendulum of mass $m$ and length $l$, the Cartesian Lagrangian (with $y$ measured downward from the pivot) is
+> $$\mathcal L = \tfrac12 m(\dot x^2 + \dot y^2) + mgy.$$
+> With the constraint $f = x^2 + y^2 - l^2 = 0$, the extended Lagrangian is
+> $$\mathcal L' = \tfrac12 m(\dot x^2 + \dot y^2) + mgy + \tfrac12\lambda(x^2 + y^2 - l^2).$$
+> The equations of motion are
+> $$m\ddot x = \lambda x, \qquad m\ddot y = mg + \lambda y,$$
+> while the constraint remains $x^2 + y^2 = l^2$. Comparing with the Newtonian tension $T$, one finds $\lambda = -T/l$.
+
+------
+
+#### The Generalized-Coordinate Theorem
+
+Although the Lagrange-multiplier method is systematic, it forces us to solve for the constraint forces even when we do not need them. The following theorem shows that if we are interested only in the dynamics of the independent degrees of freedom, we may bypass the multipliers entirely.
+
+> **Theorem.** For a system with holonomic constraints, let $q^i$ ($i = 1,\dots,n$) be a set of generalized coordinates that parameterise the constraint surface, so that the constraints are satisfied identically when the Cartesian coordinates are written as $x^A = x^A(q^i, t)$. Define the **reduced Lagrangian**
+> $$L(q^i, \dot q^i, t) = \mathcal L\bigl(x^A(q^i,t), \dot x^A(q^i,\dot q^i,t)\bigr).$$
+> Then the correct equations of motion for the $q^i$ are the standard Euler–Lagrange equations
+> $$
+> \frac{d}{dt}\left(\frac{\partial L}{\partial \dot q^i}\right) - \frac{\partial L}{\partial q^i} = 0,
+> \qquad i = 1,\dots,n.
+> $$
+
+**Proof.** We work with the extended Lagrangian $\mathcal L' = \mathcal L + \lambda^\alpha f_\alpha$ and perform a change of coordinates from the original $x^A$ to the new set
 
 $$
-S = \int_{t_1}^{t_2} \mathcal L(\mathbf R, \dot{\mathbf R}, t)\,dt,
+\bigl(q^i,\; f_\alpha\bigr), \qquad
+i = 1,\dots,n, \quad \alpha = 1,\dots,k .
 $$
 
-and by $S_0$ the corresponding integral taken along the right path $\mathbf r(t)$. We now prove that $S$ is stationary for variations about the right path, i.e. that the difference
+Here $q^i$ are the generalized coordinates along the constraint surface, and the $f_\alpha$ are the constraint functions themselves, now regarded as $k$ of the new coordinates. Because the constraints are independent, this is a legitimate invertible coordinate transformation (at least locally).
+
+From the form invariance proved in §8.4, the Euler–Lagrange equations have the same form in any coordinate system. In particular, the equations for the $q^i$ are
 
 $$
-\delta S = S - S_0
+\frac{d}{dt}\left(\frac{\partial \mathcal L'}{\partial \dot q^i}\right) - \frac{\partial \mathcal L'}{\partial q^i} = 0 .
 $$
 
-is zero to first order in $\boldsymbol\epsilon$.
-
-The difference $\delta S$ is the integral of the difference between the Lagrangians on the two paths,
+Now observe that $\partial f_\alpha / \partial q^i = 0$, because by construction the constraints $f_\alpha$ are independent coordinates in the new system: they do not change when we vary $q^i$. Consequently, the multiplier terms do not contribute to the $q^i$ equations:
 
 $$
-\delta\mathcal L = \mathcal L(\mathbf R, \dot{\mathbf R}, t) - \mathcal L(\mathbf r, \dot{\mathbf r}, t).
+\frac{\partial \mathcal L'}{\partial q^i}
+= \frac{\partial \mathcal L}{\partial q^i} + \lambda^\alpha \frac{\partial f_\alpha}{\partial q^i}
+= \frac{\partial \mathcal L}{\partial q^i},
 $$
 
-Substituting $\mathbf R = \mathbf r + \boldsymbol\epsilon$ and using $\mathcal L = \frac12 m\dot{\mathbf r}^2 - U(\mathbf r,t)$, this becomes
+and similarly for the velocity derivatives. The Euler–Lagrange equations for $q^i$ therefore reduce to
 
 $$
-\begin{aligned}
-\delta\mathcal L &= \frac12 m\bigl[(\dot{\mathbf r} + \dot{\boldsymbol\epsilon})^2 - \dot{\mathbf r}^2\bigr] - \bigl[U(\mathbf r + \boldsymbol\epsilon,t) - U(\mathbf r,t)\bigr] \\
-&= m\dot{\mathbf r}\cdot\dot{\boldsymbol\epsilon} - \boldsymbol\epsilon\cdot\nabla U + O(\boldsymbol\epsilon^2),
-\end{aligned}
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot q^i}\right) - \frac{\partial L}{\partial q^i} = 0,
 $$
 
-where $O(\boldsymbol\epsilon^2)$ denotes terms involving squares and higher powers of $\boldsymbol\epsilon$ and $\dot{\boldsymbol\epsilon}$. Returning to the difference in the two action integrals, we find that, to first order in $\boldsymbol\epsilon$,
+exactly as claimed. The constraint forces encoded in the $\lambda^\alpha$ completely decouple from the dynamics along the constraint surface. ∎
 
-$$
-\delta S = \int_{t_1}^{t_2} \delta\mathcal L\,dt = \int_{t_1}^{t_2}\bigl[m\dot{\mathbf r}\cdot\dot{\boldsymbol\epsilon} - \boldsymbol\epsilon\cdot\nabla U\bigr]\,dt.\tag{8.1}
-$$
-
-The first term can be integrated by parts (moving the time derivative from $\dot{\boldsymbol\epsilon}$ to $m\dot{\mathbf r}$ and changing the sign). Because $\boldsymbol\epsilon$ vanishes at the two endpoints, the boundary term is zero, and we obtain
-
-$$
-\int_{t_1}^{t_2} m\dot{\mathbf r}\cdot\dot{\boldsymbol\epsilon}\,dt = -\int_{t_1}^{t_2} \boldsymbol\epsilon\cdot m\ddot{\mathbf r}\,dt.
-$$
-
-Therefore Eq. (8.1) becomes
-
-$$
-\delta S = -\int_{t_1}^{t_2} \boldsymbol\epsilon\cdot\bigl[m\ddot{\mathbf r} + \nabla U\bigr]\,dt.\tag{8.2}
-$$
-
-Now, the path $\mathbf r(t)$ is the right path and satisfies Newton's second law:
-
-$$
-m\ddot{\mathbf r} = \mathbf F_{\text{tot}} = \mathbf F_{\text{cstr}} + \mathbf F.
-$$
-
-Meanwhile $\nabla U = -\mathbf F$. Substituting these into the bracket in (8.2),
-
-$$
-m\ddot{\mathbf r} + \nabla U = (\mathbf F_{\text{cstr}} + \mathbf F) - \mathbf F = \mathbf F_{\text{cstr}}.
-$$
-
-The non-constraint forces cancel exactly! We are left with
-
-$$
-\delta S = -\int_{t_1}^{t_2} \boldsymbol\epsilon\cdot\mathbf F_{\text{cstr}}\,dt.\tag{8.3}
-$$
-
-But the constraint force $\mathbf F_{\text{cstr}}$ is **normal** to the surface (that is the defining property of the normal force), while the variation $\boldsymbol\epsilon$ lies **in** (tangent to) the surface. Therefore
-
-$$
-\boldsymbol\epsilon\cdot\mathbf F_{\text{cstr}} = 0,
-$$
-
-and we have proved that
-
-$$
-\boxed{\delta S = 0}.
-$$
-
-The action integral is stationary at the right path, as claimed. The crucial ingredient was that the constraint force does no virtual work: it is perpendicular to any displacement consistent with the constraint.
-
-#### From Hamilton's principle to Lagrange's equations
-
-We have proved Hamilton's principle for the constrained system, but with an important caveat: the proof holds only for variations **consistent with the constraints** — paths that lie in the surface. This means we **cannot** prove Lagrange's equations with respect to the three Cartesian coordinates $(x,y,z)$, because varying $x$, $y$, or $z$ independently would take the path off the surface.
-
-However, we **can** prove them with respect to the appropriate generalized coordinates. Because the particle is confined to a two-dimensional surface, it has two degrees of freedom and can be described by two generalized coordinates, $q_1$ and $q_2$, that can be varied independently. Any variation of $q_1$ and $q_2$ is automatically consistent with the constraints.
-
-Accordingly, we rewrite the action integral in terms of $q_1$ and $q_2$:
-
-$$
-S = \int_{t_1}^{t_2} \mathcal L(q_1,q_2,\dot q_1,\dot q_2,t)\,dt,
-$$
-
-and this integral is stationary for any independent variations of $q_1$ and $q_2$ about the correct path. Therefore, by the calculus of variations, the correct path must satisfy the two Euler–Lagrange equations:
-
-$$
-\frac{\partial\mathcal L}{\partial q_1} = \frac{d}{dt}\frac{\partial\mathcal L}{\partial\dot q_1}\qquad\text{and}\qquad
-\frac{\partial\mathcal L}{\partial q_2} = \frac{d}{dt}\frac{\partial\mathcal L}{\partial\dot q_2}.
-$$
-
-#### General result
-
-The proof above applies directly to a single particle constrained to a surface, but the main ideas carry over to the general case: for any holonomic system with $n$ degrees of freedom and $n$ generalized coordinates $q_1,\dots,q_n$, with non-constraint forces derivable from a potential energy $U(q_1,\dots,q_n,t)$, the path followed by the system is determined by the $n$ Lagrange equations
-
-$$
-\boxed{ \frac{\partial\mathcal L}{\partial q_i} = \frac{d}{dt}\frac{\partial\mathcal L}{\partial\dot q_i},\qquad i = 1,\dots,n, }
-$$
-
-where $\mathcal L = T - U$ and $U$ is the total potential energy of all forces **excluding** the forces of constraint.
-
-It was essential to this proof that the non-constraint forces be derivable from a potential, $\mathbf F = -\nabla U$. If this is not true, Lagrange's equations may not hold in the simple form above. An obvious example is sliding friction: it is not a force of constraint (it is not normal to the surface) and cannot be derived from a potential energy. Thus, when sliding friction is present, Lagrange's equations in the form above do not apply.
-
-> **Important:** The action is stationary only for variations *consistent with the constraints*. This means we cannot prove Lagrange's equations with respect to the Cartesian coordinates $x,y,z$ when a constraint is present. However, we *can* prove them with respect to the generalized coordinates $q_1,q_2$, because any variation of $q_1$ and $q_2$ is automatically consistent with the constraints.
-
-> **Caution:** It is crucial that when we first write down $\mathcal L = T - U$, we do so in an **inertial frame**. The generalized coordinates $q_i$ themselves may be coordinates of a non-inertial frame, but the original kinetic and potential energies must be evaluated in an inertial frame.
-
-## 9. Generalized Momenta and Ignorable Coordinates
-
-For each generalized coordinate $q_i$, define the **generalized momentum**
-
-$$
-p_i = \frac{\partial L}{\partial \dot q_i}.
-$$
-
-The Euler–Lagrange equation can then be written as
-
-$$
-\dot p_i = \frac{\partial L}{\partial q_i},
-$$
-
-so $\partial L/\partial q_i$ plays the role of a generalized force.
-
-If the Lagrangian does not depend explicitly on a particular coordinate $q_i$, that coordinate is called **ignorable** (or **cyclic**).  In that case $\partial L/\partial q_i = 0$ and
-
-$$
-p_i = \text{const}.
-$$
-
-Therefore, each ignorable coordinate yields a conserved quantity.
-
-- In **Section 7.1** above, when $V$ depends only on $r$, the coordinate $\phi$ is ignorable and $p_\phi = mr^2\dot\phi$ (angular momentum) is conserved.
-- In **Section 7.4**, $q_2$ was ignorable and the conserved momentum was the total horizontal momentum.
-
-This profound connection between symmetry (invariance of $L$ under a coordinate transformation) and conservation laws is the essential content of **Noether's theorem (诺特定理)**.
-
-> **Physical interpretation.**  The generalized momentum $p_i$ need not have the dimensions of ordinary momentum.  In polar coordinates, $p_\phi$ is angular momentum.  The generalized force $\partial L/\partial q_i$ need not have the dimensions of force either — in polar coordinates, $\partial L/\partial\phi$ is torque.  Nevertheless, the equation $\dot p_i = \partial L/\partial q_i$ is always the correct equation of motion.
+> The theorem is powerful: it tells us that we may **ignore the Lagrange multipliers** whenever we are interested only in the motion of the generalized coordinates. We simply substitute $x^A(q^i,t)$ into the original Lagrangian and apply the standard Euler–Lagrange equations. This is precisely what we did in all the examples of Part A (§7), and it is the justification for the procedure stated in §8.3.
 

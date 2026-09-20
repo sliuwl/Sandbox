@@ -14,7 +14,8 @@
 5. [Comments on the Hamilton's Principle](#5-comments-on-the-hamiltons-principle)
    - [5.1 Fixed but Arbitrary Endpoints](#51-fixed-but-arbitrary-endpoints)
    - [5.2 Euler–Lagrange Equation as a Local Condition](#52-eulerlagrange-equation-as-a-local-condition)
-   - [5.3 Why $L=T-V$?](#53-whyltv)
+   - [5.3 Global vs. Local Uniqueness](#53-global-vs-local-uniqueness)
+   - [5.4 Why $L=T-V$?](#54-whyltv)
 6. [Multi-Dimensional Configuration Space](#6-multi-dimensional-configuration-space)
 7. [Examples](#7-examples)
    - [7.1 Polar Coordinates](#71-polar-coordinates)
@@ -384,11 +385,96 @@ $\boxed{ \text{stationary action with fixed endpoints} \Longrightarrow \text{Eul
 
 The stationary-action principle is a global statement about an entire segment of the **physical path**. In the variational problem, we choose **two arbitrary points on the physical path** and compare the physical segment between them with nearby trial paths that have the same endpoints. 
 
-**Endpoints that cannot be reached from the chosen initial point under the given physical conditions are not the focus of this variational comparison**. The purpose of fixing endpoints is not to say that we already know the future motion; it is to derive a local equation that must hold along any physical segment. Since the two endpoints can be chosen arbitrarily along the physical trajectory, the resulting Euler-Lagrange equation must hold locally everywhere along the path.
+> **Endpoints that cannot be reached from the chosen initial point under the given physical conditions are generally not the focus of this variational comparison**. The purpose of fixing endpoints is not to say that we already know the future motion; it is to derive a local equation that must hold along any physical segment. Since the two endpoints can be chosen arbitrarily along the physical trajectory, the resulting Euler-Lagrange equation must hold locally everywhere along the path.
 
-## 5.3 Why $L=T-V$?
+------
 
-### 5.3.1 A Practical Justification: Recovering Newton’s Laws
+### 5.3 Global vs. Local Uniqueness
+
+A subtle distinction concerns the **uniqueness** of the path. 
+
+Does Hamilton’s principle imply that there is  **only one** path between two given endpoints? The answer depends on whether the problem is formulated **locally** as an initial-value problem, or **globally** as a boundary-value problem over a finite time interval.
+
+#### Initial conditions guarantee local uniqueness
+
+The Euler–Lagrange equation is a second-order ordinary differential equation for $q(t)$. Under standard regularity conditions on the Lagrangian, for example, smoothness of $L$ and non-degeneracy of the Hessian $\partial^2 L/\partial \dot q^2$ — the standard existence and uniqueness theorem for ODEs applies. Thus,
+
+$\boxed{ \text{given } q(t_i) \text{ and } \dot q(t_i), \text{ there exists a unique solution locally in time.} }$
+
+This is the **initial-value problem**. The state at one instant, specified by position and velocity, determines a unique trajectory, at least for a **sufficiently short time interval**. In this sense, **a given initial condition selects a unique physical path locally in time**.
+
+#### Fixed endpoints do not necessarily guarantee global uniqueness
+
+Hamilton’s principle, by contrast, is naturally formulated as a **boundary-value problem**: we fix $q(t_i)$ and $q(t_f)$, and ask for paths connecting these endpoints that make the action stationary. 
+
+The endpoint velocities are **not** fixed. Therefore, different stationary paths, if they exist, may correspond to different initial velocities and hence to different conserved energies.
+
+However, over longer time intervals, the boundary-value problem may have **more than one** stationary solution. (In this discussion, we implicitly restrict attention to endpoint data for which at least one classical path exists.)
+
+A useful example is the nonlinear pendulum. Suppose we fix the initial and final angles,
+
+$\theta(t_i)=\theta_i, \qquad \theta(t_f)=\theta_f,$
+
+and also fix the elapsed time $\tau=t_f-t_i$. Hamilton’s principle does not fix $\dot\theta(t_i)$. 
+
+**Different choices of the initial angular velocity can lead to distinct classical trajectories connecting the same endpoints in the same elapsed time.**
+
+One trajectory may oscillate without completing a full rotation, while another may rotate over the top one or more times before reaching the same final angle. 
+
+**These trajectories have different initial velocities and therefore different energies, but they satisfy the same boundary conditions on $\theta$ and the same Euler–Lagrange equation.**
+
+Even the harmonic oscillator illustrates the difference between initial-value and boundary-value formulations. For a harmonic oscillator with angular frequency $\omega$, the general solution is
+
+$q(t)=A\cos\omega(t-t_i)+B\sin\omega(t-t_i).$
+
+The initial position fixes $A=q(t_i)$, while the final position gives
+
+$q(t_f)=q(t_i)\cos\omega\tau+B\sin\omega\tau, \qquad \tau=t_f-t_i.$
+
+If $\sin\omega\tau\neq 0$, this equation uniquely determines $B$, and hence uniquely determines the trajectory. 
+
+But if $\sin\omega\tau=0$, the final position is constrained to be
+
+$q(t_f)=q(t_i)\cos\omega\tau = \pm q(t_i) .$
+
+In this special case,  there cab be a one-parameter family of solutions, because $B$, equivalently the initial velocity, remains undetermined.  
+
+> For example, take
+>
+> $q(t_i)=0, \qquad q(t_f)=0, \qquad \tau=T=\frac{2\pi}{\omega}.$
+>
+> Then
+>
+> $q(t)=B\sin\omega(t-t_i)$
+>
+> satisfies
+>
+> $q(t_i)=0, \qquad q(t_i+T)=0$
+>
+> for **any** value of $B$. Thus
+>
+> $B=0,\quad B=1,\quad B=2,\quad B=-3,\quad \text{etc.}$
+>
+> all give valid solutions.
+>
+> 
+
+As a caveat, if we choose two endpoints arbitrarily, Hamilton’s principle does not guarantee that a classical solution connecting them exists.
+
+> For example, for the harmonic oscillator, the following endpoint conditions are incompatible:
+>
+> $q(t_i)=0, \qquad q(t_f)=1, \qquad \tau=t_f-t_i=T=\frac{2\pi}{\omega}.$
+>
+> Indeed, after one full period $T$, any harmonic-oscillator trajectory must return to its initial position. Hence $q(t_f)=q(t_i)$, so the above boundary conditions cannot be satisfied.33
+
+- **Initial-value problem**: given $(q(t_i),\dot q(t_i))$, the trajectory is locally unique under standard regularity assumptions.
+- **Boundary-value problem**: given $(q(t_i),q(t_f))$, there may be one, more than one, or no stationary paths, especially over long times or at special values of the elapsed time. Multiple solutions in the boundary-value formulation are not a flaw. They reflect the fact that knowing **only** where a system starts and ends does not, in general, uniquely determine the dynamical history.
+
+------
+
+## 5.4 Why $L=T-V$?
+
+### 5.4.1 A Practical Justification: Recovering Newton’s Laws
 
 The question **“Why is the Lagrangian $L=T-V$?”** is actually subtle. At this stage, a practical justification is that this choice gives the correct equations of motion.
 
@@ -398,11 +484,11 @@ In this sense, **the choice $L=T-V$ is justified because it reproduces known New
 
 ------
 
-### 5.3.2 A Deeper View: Action and Proper Time
+### 5.4.2 A Deeper View: Action and Proper Time
 
 However, this is not the deepest explanation. A more fundamental origin of the action principle appears in **relativity**.
 
-In **special relativity**, the action for a **free massive particle** is proportional to the **proper time** along its worldline:
+In **special relativity**, the action for a **free massive particle** is proportional to the **proper time** (固有时间) along its worldline (世界线):
 \[
 S \propto \int d\tau.
 \]
@@ -420,7 +506,7 @@ Thus, the familiar nonrelativistic expression $L=T$ for a free particle can be v
 
 ------
 
-### 5.3.3 Where Does the $-V$ Come From?
+### 5.4.3 Where Does the $-V$ Come From?
 
 To understand the potential-energy term $-V$ more deeply, one can look toward more fundamental theories.
 
@@ -434,7 +520,7 @@ In the appropriate limit, this leads to the appearance of a gravitational potent
 
 ------
 
-### 5.3.4 The Main Idea: A Dynamical Balance
+### 5.4.4 The Main Idea: A Dynamical Balance
 
 For now, the important idea is that the Lagrangian encodes a balance:
 
@@ -446,7 +532,7 @@ The actual path is not found by separately minimizing $T$ or $V$. Instead, the a
 
 ------
 
-### 5.3.5 Final Comment: Why Stationary Action?
+### 5.4.5 Final Comment: Why Stationary Action?
 
 Our starting point in this course is the **stationary action principle**. If one asks why nature obeys a stationary action principle at all, that is an even deeper question. For now, the most honest answer is:
 
@@ -483,7 +569,9 @@ The two forms are identical up to multiplication by $-1$.
 
 ## 7. Examples
 
-The following examples illustrate how to apply the Lagrangian formalism to concrete mechanical systems. For now, we will not worry about why the Euler--Lagrange equations are applicable to constrained systems; they are applicable, and we will return to this point more carefully later.
+The following examples illustrate how to apply the Lagrangian formalism to concrete mechanical systems. **For now, we will not focus on why the Euler–Lagrange equations are applicable to constrained systems.** We will simply use the fact that they are applicable and return to the theoretical justification more carefully later.
+
+The reason for presenting these examples **before** developing the full theoretical foundation is to **build intuition and confidence**. By working through several systems explicitly, we will see that the Euler–Lagrange equations not only reproduce the correct equations of motion, but also provide a powerful and systematic way to handle constrained motion.
 
 In each example, we will follow the same basic recipe:
 
