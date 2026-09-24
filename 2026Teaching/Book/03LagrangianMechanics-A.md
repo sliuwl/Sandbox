@@ -618,14 +618,97 @@ $$
 which is the radial component of $\mathbf F = m\mathbf a$.
 
 **The $\phi$ equation:**
-
 $$
 \frac{\partial L}{\partial \phi} = \frac{d}{dt}\frac{\partial L}{\partial \dot\phi}
 \;\Longrightarrow\;
--\frac{\partial V}{\partial \phi} = \frac{d}{dt}(mr^2\dot\phi).
+-\frac{\partial V}{\partial \phi} = \frac{d}{dt}(mr^2\dot\phi) = m(2r\dot r\dot\phi+r^2\ddot\phi)
 $$
 
 If $V$ depends only on $r$, then $\partial V/\partial\phi = 0$ and $mr^2\dot\phi$ — the **angular momentum** — is conserved.  This illustrates how choosing natural coordinates leads to equations that automatically reveal conservation laws.
+
+**Recover the tangential component of acceleration in polar coordinates:**
+
+It is important to note that
+
+\[
+-\frac{\partial V}{\partial \phi}=\tau = rF_\phi,
+\]
+which is the **torque $\tau$** about the origin. Therefore, from the \(\phi\)-equation,
+
+\[
+rF_\phi
+=
+m\left(2r\dot r\dot\phi+r^2\ddot\phi\right).
+\]
+Dividing both sides by \(r\), we get
+
+\[
+F_\phi
+=
+m\left(2\dot r\dot\phi+r\ddot\phi\right).
+\]
+Since \(F_\phi=ma_\phi\), it follows that
+
+\[
+ma_\phi
+=
+m\left(2\dot r\dot\phi+r\ddot\phi\right).
+\]
+Canceling \(m\),
+
+\[
+a_\phi
+=
+2\dot r\dot\phi+r\ddot\phi.
+\]
+Thus we recover the tangential component of acceleration in polar coordinates:
+
+\[
+\boxed{
+a_\phi
+=
+r\ddot\phi+2\dot r\dot\phi
+}
+\]
+
+> The reason \(-\partial V/\partial \phi\) gives torque instead of force is that \(\phi\) is an angular coordinate. A small angular displacement \(d\phi\) corresponds to a physical arc length $ds = r\,d\phi$.The work done by the tangential force is
+>
+> $$
+> dW = F_\phi ds = F_\phi r\,d\phi.
+> $$
+>
+> But for a conservative force,
+>
+> $$
+> dW = -dV.
+> $$
+>
+> If only \(\phi\) changes, then
+>
+> $$
+> dV = \frac{\partial V}{\partial \phi}d\phi.
+> $$
+>
+> Therefore,
+>
+> $$
+> F_\phi r\,d\phi
+> =
+> -\frac{\partial V}{\partial \phi}d\phi.
+> $$
+>
+> Canceling \(d\phi\),
+>
+> $$
+> \boxed{
+> rF_\phi = -\frac{\partial V}{\partial \phi}
+> }
+> $$
+>
+> so the generalized force conjugate to the angular coordinate \(\phi\) is the torque, not the force itself.
+
+
+
 
 ------
 
