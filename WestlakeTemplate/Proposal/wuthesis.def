@@ -1,0 +1,131 @@
+%%
+%% This is file ’wuthesis.def‘
+%% based on the fduthesis template.
+%%
+%% Copyright (C) 2017--2023 by Xiangdong Zeng <xdzeng96@gmail.com>
+%% Copyright (C) 2025 by Shi Liu
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3c of this license or (at your option) any later
+%% version. The latest version of this license is in:
+%%
+%%       https://www.latex-project.org/lppl.txt
+%%
+%% and version 1.3c or later is part of all distributions of
+%% LaTeX version 2008 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%%
+%% The Current Maintainer of this work is Shi Liu <sliutheory@outlook.com>.
+%%
+%% This work is a derived work based on the fduthesis template
+%% originally developed by Xiangdong Zeng.
+%%
+%% This work consists of the files:
+%%       wuthesis.cls
+%%       wuthesis.def
+%%
+
+\GetIdInfo $Id: wuthesis.cls 0.1 2025-12-16 Shi Liu $
+  {Definition file for wuthesis}
+\ProvidesExplFile{\ExplFileName.def}
+  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
+\tl_const:Nn \c__wu_name_simp_tl { 西湖大学          }
+\tl_const:Nn \c__wu_name_trad_tl { 西湖大學          }
+\tl_const:Nn \c__wu_name_en_tl   { Westlake~ University }
+\clist_map_inline:nn
+  {
+    { ideo_comma       } { ^^^^3001 },
+    { ideo_full_stop   } { ^^^^3002 },
+    { fwid_comma       } { ^^^^ff0c },
+    { fwid_full_stop   } { ^^^^ff0e },
+    { fwid_colon       } { ^^^^ff1a },
+    { fwid_semicolon   } { ^^^^ff1b },
+    { fwid_left_paren  } { ^^^^ff08 },
+    { fwid_right_paren } { ^^^^ff09 }
+  }
+  { \__wu_define_punct:nn #1 }
+\fp_const:Nn \c__wu_line_spread_fp
+  { \dim_ratio:nn { 20 pt } { 12 bp } / 1.2 }
+\tl_const:Nn \c__wu_orig_decl_text_tl
+  {本人声明：所呈交的毕业论文（设计）是本人在导师指导下进行的研究工作及取得的研究成果。除了文中特别加以标注和致谢的地方外，论文（设计）中不包含其他人已经发表或撰写过的研究成果。与本人一同参与本研究工作的合作者所做的任何贡献均已在论文（设计）中作了明确的说明并表示谢意。本声明的法律结果由本人承担。
+  }
+\tl_const:Nn \c__wu_auth_decl_text_tl
+  {本毕业论文（设计）作者完全了解{\bfseries{西湖大学}}有关收藏和利用本科生毕业论文（设计）的规定，即：学校有权收藏、使用并向国家有关部门或机构送交论文（设计）的印刷本和电子版本；允许论文（设计）被查阅和借阅；学校可以公布论文（设计）的全部或部分内容，可以采用影印、缩印或其它复制手段保存论文（设计）。
+  }
+\clist_const:Nn \c__wu_orig_decl_sign_clist
+  { 作者签名, 日期 }
+\clist_const:Nn \c__wu_auth_decl_sign_clist
+  { 作者签名, 导师签名, 日期 }
+\prop_const_from_keyval:Nn \c__wu_thesis_type_prop
+  {
+    doctor   = 博士学位论文,
+    master   = 硕士学位论文,
+    bachelor = {本科毕业论文\ （设计）},
+    proposal = {本科生毕业论文（设计）\\文献综述和开题报告},
+  }
+\prop_const_from_keyval:Nn \c__wu_degree_type_prop
+  {
+    academic     = 学术学位,
+    professional = 专业学位,
+  }
+\prop_const_from_keyval:Nn \c__wu_secret_prop
+  {
+    i   = 秘密,
+    ii  = 机密,
+    iii = 绝密,
+  }
+\clist_map_inline:nn
+  {
+    { secret_level       } { 密 \qquad 级                  },
+    { secret_star        } { \textrm { \bigstar }          },
+    { school_id          } { 学校代码                      },
+    { student_id         } { 学\qquad 号                  },
+    { department         } { 学院                         },
+    { major              } { 专业                          },
+    { major_professional } { 专业学位类别（领域）          },
+    { author             } { 作者姓名                          },
+    { supervisor         } { 论文导师                      },
+    { date               } { 完成日期                      },
+    { instructors        } { 指导小组成员                  },
+    { author_sign        } { 作者签名                      },
+    { supervisor_sign    } { 导师签名                      },
+    { sign_date          } { 日期                          },
+    { toc                } { 目 \quad 录                   },
+    { lof                } { 插图目录                      },
+    { lot                } { 表格目录                      },
+    { bib_en             } { Bibliography                  },
+    { pdf_creator        } { LaTeX~ with~ wuthesis~ class },
+    { orig_decl          }
+      { \c__wu_name_simp_tl \\ 本科生毕业论文（设计）独创性声明   },
+    { auth_decl          }
+      { \c__wu_name_simp_tl \\ 本科生毕业论文（设计）版权使用授权书 },
+  }
+  { \__wu_define_name:nn #1 }
+\clist_map_inline:nn
+  {
+    { abstract         } { 摘 \quad 要 } { Abstract          },
+    { keywords         } { 关键词      } { Keywords:         },
+    { clc              } { 中图分类号  } { CLC~ code:        },
+    { jel              } { JEL 分类号  } { JEL~ code:        },
+    { notation         } { 符号表      } { List~ of~ Symbols },
+    { acknowledgements } { 致 \quad 谢 } { Acknowledgements  }
+  }
+  { \__wu_define_name:nnn #1 }
+\clist_map_inline:nn
+  {
+    { proof      } { 证明 } { Proof      },
+    { axiom      } { 公理 } { Axiom      },
+    { corollary  } { 推论 } { Corollary  },
+    { definition } { 定义 } { Definition },
+    { example    } { 例   } { Example    },
+    { lemma      } { 引理 } { Lemma      },
+    { theorem    } { 定理 } { Theorem    }
+  }
+  { \__wu_define_name:nnn #1 }
+\tl_put_right:Nn \c__wu_name_major_professional_tl
+  { { \skip_horizontal:n { -0.5 em } } }
+\endinput
+%%
+%% End of file `wuthesis.def'.
