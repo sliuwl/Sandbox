@@ -53,7 +53,7 @@ Thus, for each particle, position and momentum are separate vector quantities, e
 
 ### 1.2 Configuration Space
 
-For a system of $N$ particles, specifying the **configuration** means specifying the position of every particle.
+For a system of $N$ particles, specifying the **configuration** means specifying **the position of every particle**.
 
 If the particles have positions
 
@@ -67,7 +67,7 @@ $$
 q = (\mathbf r_1,\mathbf r_2,\dots,\mathbf r_N).
 $$
 
-What does this mean concretely?  Each position vector $\mathbf r_\alpha$ has three components $(x_\alpha, y_\alpha, z_\alpha)$.  Putting all $N$ particles together gives a grand list of $3N$ numbers:
+Each position vector $\mathbf r_\alpha$ has three components $(x_\alpha, y_\alpha, z_\alpha)$.  Putting all $N$ particles together gives a grand list of $3N$ numbers:
 
 $$
 (x_1, y_1, z_1,\; x_2, y_2, z_2,\; \dots,\; x_N, y_N, z_N).
@@ -91,7 +91,7 @@ $$
 
 So instead of tracking $N$ separate position vectors in $\mathbb{R}^3$, we may **track one point moving in the higher-dimensional configuration space**.
 
-At this point, we are still using Cartesian coordinates to label the configuration. For a system without constraints, we may also replace these Cartesian coordinates by a different set of coordinates, called **generalized coordinates**:
+At this point, we are still using Cartesian coordinates to label the configuration. We may also replace these Cartesian coordinates by a different set of coordinates, called **generalized coordinates**:
 \[
 q(t) =(q_1,q_2,\dots,q_{3N}).
 \]
@@ -111,7 +111,7 @@ These generalized coordinates are simply another way of labeling the same $3N$-d
 
 ### 1.3 Phase Space
 
-Configuration space records only the positions of the particles.  To specify the complete mechanical state of a system in Hamiltonian mechanics, one must also specify the momenta.
+Configuration space records only the positions of the particles.  To specify the **complete mechanical state** of a system in Hamiltonian mechanics, one must also specify the momenta.
 
 For $N$ particles, the momenta are
 
@@ -139,7 +139,7 @@ $$
 \text{positions} + \text{momenta}.
 $$
 
-In Hamiltonian mechanics, $q$ and $p$ are treated as independent coordinates on phase space.  This does not mean that their time evolution is independent; rather, it means that a state is specified by giving both $q$ and $p$, and their evolution is determined by Hamilton's equations.
+In Hamiltonian mechanics, $q$ and $p$ are treated as independent coordinates on phase space.  
 
 ------
 
@@ -160,8 +160,8 @@ $$
 
 where:
 
-- $q(t)$ is a path in configuration space,
-- $\dot q(t)$ is the velocity along that path,
+- $q(t)$ is a path in configuration space, $q(t) =(q_1(t),q_2(t),\dots,q_{3N}(t))$
+- $\dot q(t)$ is the generalized velocity along that path, $\dot q(t) =(\dot q_1(t),\dot q_2(t),\dots,\dot q_{3N}(t))$
 - $L(q,\dot q,t)$ is the **Lagrangian**,
 - $t_i$ and $t_f$ are fixed initial and final times.
 
@@ -179,13 +179,13 @@ $$
 \delta S = 0.
 $$
 
-This means the action is **stationary**, not necessarily minimal.  A stationary value may be a minimum, a maximum, or a saddle point of the action functional.  In many mechanical situations, especially over sufficiently short time intervals, the stationary action is a local minimum. This is why the principle is often informally called the **principle of least action**, although **principle of stationary action** is the more precise term. 
+This means the action is **stationary**, not necessarily minimal.  A stationary value may be a minimum, a maximum, or a saddle point of the action functional.  In many mechanical situations, especially over sufficiently short time intervals, the stationary action is a local minimum. This is why the principle is often informally called the **principle of least action**.
 
 ------
 
 ## 3. Action
 
-The action assigns a number to each possible path in configuration space. Therefore, it is a **functional**: a function whose input is itself a function.
+The action assigns a number to each possible path (represented by a function) in configuration space. Therefore, it is a **functional**.
 
 A path $q(t)$ is mapped to a real number:
 
@@ -217,27 +217,21 @@ S[q_3(t)] = 10.5.
 ![Three different paths between two fixed endpoints](paths_action.png)
 **Figure 1**: Three possible paths connecting the same initial point 1 and final point 2. Each path yields a different value of the action $S[q]$.
 
-To understand how \(S[q]\) is computed in principle, it is useful to think in a **discrete approximation**. Divide the time interval \([t_i,t_f]\) into many small pieces of size \(\Delta t\). Along a proposed path \(q(t)\), evaluate the Lagrangian at each time step:
+To understand how $S[q]$ is computed in principle, it is useful to use a **discrete approximation**. Divide the time interval $[t_i,t_f]$ into small intervals of size $\Delta t$, with $t_k=t_i+k\Delta t$. Along a proposed path $q(t)$, define $q_k=q(t_k).$
 
-\[
-L_k = L(q_k,\dot q_k,t_k),
-\]
-
-where \(q_k=q(t_k)\), and \(\dot q_k\) can be approximated by
-
+We approximate the velocity on the interval $[t_k,t_{k+1}]$ by
 \[
 \dot q_k \approx \frac{q_{k+1}-q_k}{\Delta t}.
 \]
-
-This approximation treats the Lagrangian as approximately constant over each small time interval. In particular, if $L=T-V$,  then we are effectively assuming that $q_k(t)$, $\dot q_k(t)$, and hence $V(q_k)$ do **not** change appreciably within a single time step.  Equivalently, we use the value of the Lagrangian at a representative point in the interval, such as the left endpoint $t_k$.
-
-Then the action is approximated by the sum
+This does **not** mean that the true velocity is exactly constant during the interval. We use $\dot q_k$ as a representative value for the velocity over the $k$-th interval. Then the Lagrangian on that interval is approximated by a representative value, for example
 \[
-S[q] \approx \sum_{k=0}^{N-1} L(q_k,\dot q_k,t_k)\,\Delta t.
+L_k = L(q_k,\dot q_k,t_k).
 \]
-
-Thus, the action is like a **time-sum** of the Lagrangian along the entire path. In the limit where the time intervals become infinitesimally small, this sum becomes the integral
-
+Therefore the action is approximated by
+\[
+S[q]\approx \sum_k L(q_k,\dot q_k,t_k)\Delta t.
+\]
+As $\Delta t$ becomes smaller, this approximation becomes more accurate.  In the limit where the time intervals become infinitesimally small, this sum becomes the integral
 \[
 S[q]=\lim_{\Delta t\to 0}\sum_{k=0}^{N-1}L(q_k,\dot q_k,t_k)\,\Delta t
 =\int_{t_i}^{t_f}L(q,\dot q,t)\,dt.
@@ -355,7 +349,7 @@ But then a natural question arises:
 
 > If we already know the configuration at the final time $t_f$, why do we need to derive the equation of motion? Doesn’t knowing the final point already tell us where the system goes?
 
-The key point is that **fixing the endpoints in the variational problem is not the same as knowing the full motion of the system**. The endpoints only specify where the path begins and where it ends. They do not specify how the system moves **between** those two times. 
+The key point is that fixing the endpoints in the variational problem is not the same as knowing the full motion of the system. The endpoints only specify where the path begins and where it ends. They do not specify how the system moves **between** those two times. 
 
 The endpoints are **fixed** during a particular variational problem.
 
@@ -383,21 +377,19 @@ The logical structure is:
 
 $\boxed{ \text{stationary action with fixed endpoints} \Longrightarrow \text{Euler--Lagrange equation} \Longrightarrow \text{initial conditions determine the trajectory} }$
 
-The stationary-action principle is a global statement about an entire segment of the **physical path**. In the variational problem, we choose **two arbitrary points on the physical path** and compare the physical segment between them with nearby trial paths that have the same endpoints. 
-
-> **Endpoints that cannot be reached from the chosen initial point under the given physical conditions are generally not the focus of this variational comparison**. The purpose of fixing endpoints is not to say that we already know the future motion; it is to derive a local equation that must hold along any physical segment. Since the two endpoints can be chosen arbitrarily along the physical trajectory, the resulting Euler-Lagrange equation must hold locally everywhere along the path.
+> **Endpoints unreachable from the chosen initial point under the given physical conditions are generally excluded**. Fixing endpoints does not mean the future motion is known; it is a **device** for deriving a local equation along a physical segment. 
 
 ------
 
 ### 5.3 Global vs. Local Uniqueness
 
-A subtle distinction concerns the **uniqueness** of the path. 
+Does Hamilton’s principle imply that there is  **only one** path between two given endpoints? 
 
-Does Hamilton’s principle imply that there is  **only one** path between two given endpoints? The answer depends on whether the problem is formulated **locally** as an initial-value problem, or **globally** as a boundary-value problem over a finite time interval.
+The answer depends on whether the problem is formulated **locally** as an **initial-value problem**, or **globally** as a **boundary-value problem** over a finite time interval.
 
 #### Initial conditions guarantee local uniqueness
 
-The Euler–Lagrange equation is a second-order ordinary differential equation for $q(t)$. Under standard regularity conditions on the Lagrangian, for example, smoothness of $L$ and non-degeneracy of the Hessian $\partial^2 L/\partial \dot q^2$ — the standard existence and uniqueness theorem for ODEs applies. Thus,
+The Euler–Lagrange equation is a second-order ordinary differential equation for $q(t)$. Under standard regularity conditions on the Lagrangian, for example, smoothness of $L$ and non-degeneracy of the Hessian $\partial^2 L/\partial \dot q^2$, the standard existence and uniqueness theorem for ODEs applies. Thus,
 
 $\boxed{ \text{given } q(t_i) \text{ and } \dot q(t_i), \text{ there exists a unique solution locally in time.} }$
 
@@ -405,25 +397,11 @@ This is the **initial-value problem**. The state at one instant, specified by po
 
 #### Fixed endpoints do not necessarily guarantee global uniqueness
 
-Hamilton’s principle, by contrast, is naturally formulated as a **boundary-value problem**: we fix $q(t_i)$ and $q(t_f)$, and ask for paths connecting these endpoints that make the action stationary. 
+Hamilton’s principle is formulated as a **boundary-value problem**: we fix $q(t_i)$ and $q(t_f)$, and ask for paths connecting these endpoints that make the action stationary. 
 
-The endpoint velocities are **not** fixed. Therefore, different stationary paths, if they exist, may correspond to different initial velocities and hence to different conserved energies.
+**The endpoint velocities are not fixed**. Therefore, different stationary paths, if they exist, may correspond to different initial velocities and hence to different conserved energies.
 
-However, over longer time intervals, the boundary-value problem may have **more than one** stationary solution. (In this discussion, we implicitly restrict attention to endpoint data for which at least one classical path exists.)
-
-A useful example is the nonlinear pendulum. Suppose we fix the initial and final angles,
-
-$\theta(t_i)=\theta_i, \qquad \theta(t_f)=\theta_f,$
-
-and also fix the elapsed time $\tau=t_f-t_i$. Hamilton’s principle does not fix $\dot\theta(t_i)$. 
-
-**Different choices of the initial angular velocity can lead to distinct classical trajectories connecting the same endpoints in the same elapsed time.**
-
-One trajectory may oscillate without completing a full rotation, while another may rotate over the top one or more times before reaching the same final angle. 
-
-**These trajectories have different initial velocities and therefore different energies, but they satisfy the same boundary conditions on $\theta$ and the same Euler–Lagrange equation.**
-
-Even the harmonic oscillator illustrates the difference between initial-value and boundary-value formulations. For a harmonic oscillator with angular frequency $\omega$, the general solution is
+We can use the harmonic oscillator to illustrate the difference between initial-value and boundary-value formulations. For a harmonic oscillator with angular frequency $\omega$, the general solution is
 
 $q(t)=A\cos\omega(t-t_i)+B\sin\omega(t-t_i).$
 
@@ -433,42 +411,39 @@ $q(t_f)=q(t_i)\cos\omega\tau+B\sin\omega\tau, \qquad \tau=t_f-t_i.$
 
 If $\sin\omega\tau\neq 0$, this equation uniquely determines $B$, and hence uniquely determines the trajectory. 
 
-But if $\sin\omega\tau=0$, the final position is constrained to be
+But if $\sin\omega\tau=0$ (for example, $\tau=nT=n\frac{2\pi}{\omega}$), the final position is constrained to be
 
-$q(t_f)=q(t_i)\cos\omega\tau = \pm q(t_i) .$
+$q(t_f)=q(t_i)\cos\omega\tau = \pm q(t_i) .$ 
 
-In this special case,  there cab be a one-parameter family of solutions, because $B$, equivalently the initial velocity, remains undetermined.  
+In this special case,  there can be a one-parameter family of solutions, because $B$, equivalently the initial velocity, remains undetermined.  
 
 > For example, take
 >
-> $q(t_i)=0, \qquad q(t_f)=0, \qquad \tau=T=\frac{2\pi}{\omega}.$
+> $q(t_i)=0, \qquad q(t_f)=0, \qquad \tau = t_f-t_i = T=\frac{2\pi}{\omega}.$
 >
-> Then
+> Then a solution of the form
 >
 > $q(t)=B\sin\omega(t-t_i)$
 >
 > satisfies
 >
-> $q(t_i)=0, \qquad q(t_i+T)=0$
+> $q(t_f)=B\sin\omega(t_f-t_i)=B\sin(2\pi)=0.$
 >
-> for **any** value of $B$. Thus
->
-> $B=0,\quad B=1,\quad B=2,\quad B=-3,\quad \text{etc.}$
->
-> all give valid solutions.
->
-> 
+> Thus the endpoint condition $q(t_f)=0$ holds for any value of $B$. Therefore, infinitely many classical paths connect the same two endpoints.
 
-As a caveat, if we choose two endpoints arbitrarily, Hamilton’s principle does not guarantee that a classical solution connecting them exists.
+If we decide to choose two endpoints arbitrarily, Hamilton’s principle does not guarantee that a classical solution connecting them exists.
 
 > For example, for the harmonic oscillator, the following endpoint conditions are incompatible:
 >
 > $q(t_i)=0, \qquad q(t_f)=1, \qquad \tau=t_f-t_i=T=\frac{2\pi}{\omega}.$
 >
-> Indeed, after one full period $T$, any harmonic-oscillator trajectory must return to its initial position. Hence $q(t_f)=q(t_i)$, so the above boundary conditions cannot be satisfied.33
+> Indeed, after one full period $T$, any harmonic-oscillator trajectory must return to its initial position. Hence $q(t_f)=q(t_i)$, so the above boundary conditions cannot be satisfied.
 
-- **Initial-value problem**: given $(q(t_i),\dot q(t_i))$, the trajectory is locally unique under standard regularity assumptions.
-- **Boundary-value problem**: given $(q(t_i),q(t_f))$, there may be one, more than one, or no stationary paths, especially over long times or at special values of the elapsed time. Multiple solutions in the boundary-value formulation are not a flaw. They reflect the fact that knowing **only** where a system starts and ends does not, in general, uniquely determine the dynamical history.
+
+
+In summary, the Euler–Lagrange equation is a **local differential equation** for the physical path. Once the initial position and initial velocity, $(q(t_i),\dot q(t_i))$, are specified, the trajectory is **locally unique** under standard regularity assumptions.
+
+Hamilton’s principle is naturally formulated as a **boundary-value problem**: the endpoints $(q(t_i),q(t_f))$ are fixed, and one searches for stationary paths connecting them. Such paths may be unique, multiple, or nonexistent, especially over long time intervals or for special choices of the elapsed time. This is not a flaw; it reflects that knowing only the initial and final positions does not, in general, uniquely determine the full dynamical history.
 
 ------
 
@@ -476,11 +451,11 @@ As a caveat, if we choose two endpoints arbitrarily, Hamilton’s principle does
 
 ### 5.4.1 A Practical Justification: Recovering Newton’s Laws
 
-The question **“Why is the Lagrangian $L=T-V$?”** is actually subtle. At this stage, a practical justification is that this choice gives the correct equations of motion.
+The question **“Why is the Lagrangian $L=T-V$?”** is actually subtle. At this stage, a practical justification is that **this choice gives the correct equations of motion**.
 
 More specifically, when $L=T-V$ is substituted into the Euler--Lagrange equations, we recover Newton’s second law for systems with conservative forces: $m\ddot q = F.$
 
-In this sense, **the choice $L=T-V$ is justified because it reproduces known Newtonian physics**.
+In this sense, the choice $L=T-V$ is justified because it reproduces known Newtonian physics.
 
 ------
 
@@ -534,9 +509,9 @@ The actual path is not found by separately minimizing $T$ or $V$. Instead, the a
 
 ### 5.4.5 Final Comment: Why Stationary Action?
 
-Our starting point in this course is the **stationary action principle**. If one asks why nature obeys a stationary action principle at all, that is an even deeper question. For now, the most honest answer is:
+Our starting point in this course is the **principle of stationary action**. If one asks why nature obeys this principle at all, that is an even deeper question. For now, the most honest answer is:
 
-| The stationary action principle is one of the fundamental organizing principles of physics. |
+| The stationary action principle is one of the fundamental organizing principles of physics, and we build physical theories based on it. |
 | ------------------------------------------------------------ |
 
 ------
@@ -593,26 +568,68 @@ This procedure may feel mechanical (机械) at first, but that is part of its po
 
 ------
 
-### 7.1 Polar Coordinates
+### 7.1 Particle moving in a plane
 
-Consider a particle of mass $m$ moving in a plane, described by polar coordinates $(r, \phi)$.  The velocity components are $v_r = \dot r$ and $v_\phi = r\dot\phi$, so the kinetic energy is
+Consider a particle of mass $m$ moving in a plane. We can describe its position using Cartesian coordinates $(x, y)$ or polar coordinates $(r, \phi)$. **The Lagrangian formalism applies in exactly the same way to either choice: the *form* of the Euler–Lagrange equation does not depend on which coordinates we use**.
 
-$$
-T = \frac{1}{2}m(\dot r^2 + r^2\dot\phi^2).
-$$
+**Cartesian coordinates**
 
-With potential energy $V(r, \phi)$, the Lagrangian is
+In Cartesian coordinates $(x, y)$, the kinetic energy is
 
 $$
-L = \frac{1}{2}m(\dot r^2 + r^2\dot\phi^2) - V(r, \phi).
+T = \frac{1}{2}m(\dot x^2 + \dot y^2).
 $$
+
+With potential energy $V(x, y)$, the Lagrangian is
+
+$$
+L(x, y, \dot x, \dot y) = \frac{1}{2}m(\dot x^2 + \dot y^2) - V(x, y).
+$$
+
+Applying the Euler–Lagrange equation to each coordinate gives
+
+$$
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot x}\right) - \frac{\partial L}{\partial x} = 0
+\;\Longrightarrow\;
+m\ddot x = -\frac{\partial V}{\partial x},
+$$
+
+and
+
+$$
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot y}\right) - \frac{\partial L}{\partial y} = 0
+\;\Longrightarrow\;
+m\ddot y = -\frac{\partial V}{\partial y}.
+$$
+
+These are simply Newton's second law in component form.  Notice that the *template* is identical for both coordinates:
+
+$$
+\boxed{ \frac{d}{dt}\left(\frac{\partial L}{\partial \dot q_k}\right) - \frac{\partial L}{\partial q_k} = 0, \qquad q_k \in \{x, y\}. }
+$$
+
+**Polar coordinates**
+
+Now use polar coordinates $(r, \phi)$, related to $(x, y)$ by $x = r\cos\phi$ and $y = r\sin\phi$.  The kinetic energy becomes
+
+$$
+T = \frac{1}{2}m(\dot r^2 + r^2\dot\phi^2),
+$$
+
+and the Lagrangian is
+
+$$
+L(r, \phi, \dot r, \dot\phi) = \frac{1}{2}m(\dot r^2 + r^2\dot\phi^2) - V(r, \phi).
+$$
+
+We apply the *same* Euler–Lagrange template, now with $q_k \in \{r, \phi\}$.
 
 **The $r$ equation:**
 
 $$
-\frac{\partial L}{\partial r} = \frac{d}{dt}\frac{\partial L}{\partial \dot r}
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot r}\right) - \frac{\partial L}{\partial r} = 0
 \;\Longrightarrow\;
-mr\dot\phi^2 - \frac{\partial V}{\partial r} = m\ddot r,
+m\ddot r = mr\dot\phi^2 - \frac{\partial V}{\partial r},
 $$
 
 which is the radial component of $\mathbf F = m\mathbf a$.
@@ -620,12 +637,104 @@ which is the radial component of $\mathbf F = m\mathbf a$.
 **The $\phi$ equation:**
 
 $$
-\frac{\partial L}{\partial \phi} = \frac{d}{dt}\frac{\partial L}{\partial \dot\phi}
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot\phi}\right) - \frac{\partial L}{\partial \phi} = 0
 \;\Longrightarrow\;
--\frac{\partial V}{\partial \phi} = \frac{d}{dt}(mr^2\dot\phi).
+\frac{d}{dt}(mr^2\dot\phi) = m(2r\dot r\dot\phi+r^2\ddot\phi) = -\frac{\partial V}{\partial \phi}.
 $$
 
-If $V$ depends only on $r$, then $\partial V/\partial\phi = 0$ and $mr^2\dot\phi$ — the **angular momentum** — is conserved.  This illustrates how choosing natural coordinates leads to equations that automatically reveal conservation laws.
+If $V$ depends only on $r$, then $\partial V/\partial\phi = 0$ and $mr^2\dot\phi$ — the **angular momentum** — is conserved.
+
+**Recover the tangential component of acceleration in polar coordinates:**
+
+It is important to note that
+
+$$
+-\frac{\partial V}{\partial \phi}=\tau = rF_\phi,
+$$
+
+which is the **torque $\tau$** about the origin. Therefore, from the $\phi$-equation,
+
+$$
+rF_\phi
+=
+m\left(2r\dot r\dot\phi+r^2\ddot\phi\right).
+$$
+
+Dividing both sides by $r$, we get
+
+$$
+F_\phi
+=
+m\left(2\dot r\dot\phi+r\ddot\phi\right).
+$$
+
+Since $F_\phi=ma_\phi$, it follows that
+
+$$
+ma_\phi
+=
+m\left(2\dot r\dot\phi+r\ddot\phi\right).
+$$
+
+Canceling $m$,
+
+$$
+a_\phi
+=
+2\dot r\dot\phi+r\ddot\phi.
+$$
+
+Thus we recover the tangential component of acceleration in polar coordinates:
+
+$$
+\boxed{
+a_\phi
+=
+r\ddot\phi+2\dot r\dot\phi
+}
+$$
+
+> The reason $-\partial V/\partial \phi$ gives torque instead of force is that $\phi$ is an angular coordinate. A small angular displacement $d\phi$ corresponds to a physical arc length $ds = r\,d\phi$. The work done by the tangential force is
+>
+> $$
+> dW = F_\phi ds = F_\phi r\,d\phi.
+> $$
+>
+> But for a conservative force,
+>
+> $$
+> dW = -dV.
+> $$
+>
+> If only $\phi$ changes, then
+>
+> $$
+> dV = \frac{\partial V}{\partial \phi}d\phi.
+> $$
+>
+> Therefore,
+>
+> $$
+> F_\phi r\,d\phi
+> =
+> -\frac{\partial V}{\partial \phi}d\phi.
+> $$
+>
+> Canceling $d\phi$,
+>
+> $$
+> \boxed{
+> rF_\phi = -\frac{\partial V}{\partial \phi}
+> }
+> $$
+>
+> so the generalized force conjugate to the angular coordinate $\phi$ is the torque, not the force itself.
+
+> **Key observation.** Whether we use $(x, y)$ or $(r, \phi)$, the Euler–Lagrange equations keep exactly the same form:
+> $$
+> \frac{d}{dt}\left(\frac{\partial L}{\partial \dot q_k}\right) - \frac{\partial L}{\partial q_k} = 0.
+> $$
+> The only thing that changes is the set of generalized coordinates $q_k$.  The equations look more complicated in polar coordinates because the kinetic energy has a more involved dependence on $r$ and $\dot\phi$, but the underlying machinery is unchanged.  This **form invariance** is one of the central strengths of the Lagrangian formalism; we will discuss it more systematically later.
 
 ------
 
