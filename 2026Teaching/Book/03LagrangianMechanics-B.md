@@ -1,6 +1,10 @@
 # Lagrangian Mechanics (Part B)
 
-**Reading material:** Chapter 7 of *Classical Mechanics* by John R. Taylor
+**Reading material:** 
+
+Chapter 7 of *Classical Mechanics* by John R. Taylor
+
+Chapters 1-2 of *Classical Mechanics* by Goldstein, Poole, Safko
 
 ---
 
@@ -9,7 +13,7 @@
 
 Perhaps the greatest advantage of the Lagrangian approach is that it can handle systems that are **constrained**. 
 
-A familiar example is a bead threaded on a wire — the bead can move along the wire, but not anywhere else. 
+A familiar example is a bead threaded on a wire: the bead can move along the wire, but not anywhere else. 
 
 Another example is a rigid body, whose individual atoms can only move in such a way that the distance between any two atoms is fixed. 
 
@@ -33,7 +37,7 @@ When the number of degrees of freedom is less than $3N$, the system is **constra
 
 > A **particle trapped inside a box** is a useful example to show that the word "constraint" does **not always mean reducing the number of degrees of freedom**.
 
-#### Holonomic constraints 完整约束
+#### 8.1.1 Holonomic constraints 完整约束
 
 If the conditions of constraint can be expressed as **equations** relating the coordinates of the particles, and possibly time, in the form
 
@@ -53,9 +57,7 @@ A particle constrained to move along a given curve or on a given surface is anot
 \[
 f(x,y,z)=x^2+y^2+z^2-R^2=0
 \]
-For a system of $N$ particles, free from constraints, there are $3N$ independent coordinates or degrees of freedom. 
-
-If there exist $k$ holonomic constraints expressed in the form above, then we may use these equations to eliminate $k$ of the $3N$ coordinates, and we are left with $3N-k$ independent coordinates. In other words, the system has $3N-k$ degrees of freedom. This elimination of the dependent coordinates can be expressed by the introduction of new, independent variables $q_1, q_2, \dots, q_n$ (with $n = 3N-k$), which are the **generalized coordinates** we shall discuss in the next subsection.
+For a system of $N$ particles, free from constraints, there are $3N$ independent coordinates or degrees of freedom. If there exist $k$ holonomic constraints expressed in the form above, then we may use these equations to eliminate $k$ of the $3N$ coordinates, and we are left with $3N-k$ independent coordinates. In other words, the system has $3N-k$ degrees of freedom. This elimination of the dependent coordinates can be expressed by the introduction of new, independent variables $q_1, q_2, \dots, q_n$ (with $n = 3N-k$), which are the **generalized coordinates** we shall discuss in the next subsection.
 
 > **Note on the Origin of “Holonomic”**
 >
@@ -65,7 +67,7 @@ If there exist $k$ holonomic constraints expressed in the form above, then we ma
 
 
 
-#### Rheonomous and Scleronomous Constraints（非定常约束与定常约束）
+#### 8.1.2 Rheonomous and Scleronomous Constraints（非定常约束与定常约束）
 
 Constraints can also be classified according to whether the equations of constraint contain time as an explicit variable. 
 
@@ -75,7 +77,48 @@ If they do not depend explicitly on time, they are called **scleronomous constra
 
 A bead sliding on a rigid curved wire fixed in space is subject to a **scleronomous constraint**. If the wire moves in a prescribed way, then the constraint becomes **rheonomous**. However, if the wire moves only in response to the bead’s motion, the time dependence enters through the coordinates of the wire, which should then be included as part of the system coordinates. In that case, the overall constraint is still **scleronomous**.
 
-#### Nonholonomic Constraints（非完整约束）
+>  **Rheonomous** /riːˈɑːnəməs/
+>  **Scleronomous** /sklɪˈrɑːnəməs/
+
+
+
+For a pendulum with a fixed pivot at the origin, the bob is constrained to remain a fixed distance $l$ from the pivot:
+
+$x^2+y^2=l^2$
+
+This is **scleronomous** because time does not appear explicitly.
+
+
+
+If the pivot 支点 is forced to oscillate horizontally with prescribed motion, the pivot position is
+
+$(a\sin \omega t,0)$
+
+The constraint becomes
+
+$(x-a\sin \omega t)^2+y^2=l^2$
+
+This is **rheonomous** because the time dependence is prescribed explicitly.
+
+
+
+If the pivot is free to move horizontally, its position is not prescribed in advance. It is treated as another dynamical coordinate.
+
+The constraint can be written as
+
+$(x-x')^2+y^2=l^2$
+
+This is **scleronomous** because $x'$ is not a known function of time; it is determined by the system’s motion.
+
+| Case                     | Constraint equation            | Type         |
+| ------------------------ | ------------------------------ | ------------ |
+| Fixed pivot              | $x^2+y^2=l^2$                  | Scleronomous |
+| Forced oscillating pivot | $(x-a\sin \omega t)^2+y^2=l^2$ | Rheonomous   |
+| Freely moving pivot      | $(x-x')^2+y^2=l^2$             | Scleronomous |
+
+
+
+#### 8.1.3 Nonholonomic Constraints（非完整约束）
 
 Constraints that cannot be expressed as equations involving only the coordinates, and possibly time, are called **nonholonomic constraints**.
 
@@ -92,9 +135,9 @@ where $(x,y)$ gives the position of the disk’s center, $\theta$ gives the dire
 >  The angle $\phi$ is necessary because rolling without slipping relates translation to rotation. The speed of the center must equal the rim speed $a\dot\phi$. Without $\phi$, one could not distinguish rolling from sliding. 
 
 ![](Goldstein/images/d173e4e71f42702b86aef3556dc384a59bcef14e4f6cb81286d4d331e24f2245.jpg)  
-**Figure 1.5** Vertical disk rolling on a horizontal plane.
+**Figure 1** Vertical disk rolling on a horizontal plane.
 
-As a result of the constraint the velocity of the center of the disk, $v$, has a magnitude proportional to $\dot\phi$,
+As a result of the constraint, the velocity of the center of the disk, $v$, has a magnitude proportional to $\dot\phi$,
 
 $$
 v = a\,\dot\phi,
@@ -139,7 +182,7 @@ $$
 q_i = q_i(\mathbf r_1, \dots, \mathbf r_N, t), \qquad i = 1, \dots, n.
 $$
 
-The number $n$ is the smallest number of parameters that describes the system completely.
+**The number $n$ is the smallest number of parameters that describes the system completely**.
 
 **Example: simple pendulum.** There is one particle and two Cartesian coordinates $(x,y)$. The constraint $x^2+y^2=l^2$ leaves one degree of freedom. Choosing the angle $\phi$ as generalized coordinate,
 
@@ -162,16 +205,16 @@ $$
 Notice that $\mathbf r_2$ depends on both $\phi_1$ and $\phi_2$.
 
 ![](images/a99701bad52bfe9526f6525dbde65034e35e6d8818e128b0f9a2d0e7e731ea31.jpg)  
-*Figure 7.3 The positions of both masses in a double pendulum are uniquely specified by the two generalized coordinates $\phi_1$ and $\phi_2$, which can themselves be varied independently.*
+**Figure 2** The positions of both masses in a double pendulum are uniquely specified by the two generalized coordinates $\phi_1$ and $\phi_2$, which can themselves be varied independently.
 
- Consider a pendulum suspended from the roof of a car that is being forced to accelerate with fixed acceleration $a$, as shown in Figure 7.4. The position of the bob relative to the ground is
+ Consider a pendulum suspended from the roof of a car that is being forced to accelerate with fixed acceleration $a$, as shown in Figure 2. The position of the bob relative to the ground is
 
 $$
 \mathbf r \equiv (x,y) = \bigl(l\sin\phi + \tfrac{1}{2}at^2,\; l\cos\phi\bigr) = \mathbf r(\phi,t).
 $$
 
 ![](images/ac28ad29bb5df306da86418e17d3a4b91c76862be8cb3a871fa88ff7a03cef01.jpg)  
-*Figure 7.4 A pendulum is suspended from the roof of a railroad car that is being forced to accelerate with a fixed, known acceleration $a$.*
+**Figure 3** A pendulum is suspended from the roof of a railroad car that is being forced to accelerate with a fixed, known acceleration $a$.
 
 Here the relation between $\mathbf r$ and the generalized coordinate $\phi$ depends explicitly on $t$.
 
@@ -261,16 +304,66 @@ $$
 
 Now introduce a new set of coordinates $q_i$ ($i = 1,\dots,n$) related to the old ones by
 $$
-q_i = q_i(x^1, \dots, x^n, t),
-$$
-**where we allow for an explicit time dependence**. For this to be a valid coordinate system we must be able to invert the relation, which requires a nonvanishing Jacobian determinant:
-$$
-\det\!\left(\frac{\partial x^A}{\partial q_i}\right) \neq 0.
-$$
-
-$$
 x^A = x^A(q_1, \dots, q_n, t),
 $$
+
+where we allow for explicit time dependence. Equivalently, we can write the inverse transformation as
+
+$$
+x^A=x^A(q_1,\dots,q_n,t).
+$$
+
+> For \(q_i\) to be a valid coordinate system, the transformation between the old coordinates \(x^A\) and the new coordinates \(q_i\) must be locally invertible.
+>
+> If we fix the time \(t\), then the small changes in \(x^A\) are related to the small changes in \(q_i\) by
+>
+> $$
+> dx^A=\sum_{i=1}^n \frac{\partial x^A}{\partial q_i}\,dq_i.
+> $$
+>
+> In matrix form,
+> $$
+> \begin{pmatrix}
+> dx^1\\
+> dx^2\\
+> \vdots\\
+> dx^n
+> \end{pmatrix}
+> =
+> \begin{pmatrix}
+> \dfrac{\partial x^1}{\partial q_1} & \dfrac{\partial x^1}{\partial q_2} & \cdots & \dfrac{\partial x^1}{\partial q_n}\\
+> \dfrac{\partial x^2}{\partial q_1} & \dfrac{\partial x^2}{\partial q_2} & \cdots & \dfrac{\partial x^2}{\partial q_n}\\
+> \vdots & \vdots & \ddots & \vdots\\
+> \dfrac{\partial x^n}{\partial q_1} & \dfrac{\partial x^n}{\partial q_2} & \cdots & \dfrac{\partial x^n}{\partial q_n}
+> \end{pmatrix}
+> \begin{pmatrix}
+> dq_1\\
+> dq_2\\
+> \vdots\\
+> dq_n
+> \end{pmatrix}.
+> $$
+>
+> That is,
+>
+> $$
+> dx^A = \sum_i^n J^A{}_i\,dq_i,
+> \qquad
+> J^A{}_i= \frac{\partial x^A}{\partial q_i}.
+> $$
+>
+> The matrix \(J\) is the Jacobian matrix of the coordinate transformation. To recover the changes \(dq_i\) uniquely from the changes \(dx^A\), this matrix must be invertible. Therefore,
+>
+> $$
+> \det J
+> =
+> \det\left(\frac{\partial x^A}{\partial q_i}\right)
+> \neq 0.
+> $$
+>
+> If \(\det J=0\), then the columns of \(J\) are linearly dependent, so different changes in \(q_i\) may produce the same change in \(x^A\). In that case, the coordinates \(q_i\) do not define a valid local coordinate system.
+
+
 
 By the chain rule,
 $$
@@ -278,7 +371,7 @@ $$
 \qquad
 \dot x^A = \frac{\partial x^A}{\partial q_j}\,\dot q_j + \frac{\partial x^A}{\partial t},
 $$
-where the summation convention is used (sum over repeated $A$ or $i$).
+where the **Einstein summation convention** is used (sum over repeated $A$ or $i$).
 
 We substitute $x^A(q_j,t)$ into the Lagrangian to obtain a new function $\mathcal L(q_i,\dot q_i,t)$ and ask whether the Euler–Lagrange equations take the same form in the $q_i$ coordinates.
 
@@ -297,14 +390,19 @@ $$
 \right).
 $$
 
-Meanwhile, differentiating the relation $\dot x^A = (\partial x^A/\partial q_i)\dot q_i + \partial x^A/\partial t$ with respect to $\dot q_i$ gives
+Meanwhile, differentiating the relation $\dot x^A = (\partial x^A/\partial q_j)\dot q_j + \partial x^A/\partial t$ with respect to $\dot q_i$ gives
 
 $$
-\frac{\partial \dot x^A}{\partial \dot q_i} = \frac{\partial x^A}{\partial q_i}.
+\frac{\partial \dot x^A}{\partial \dot q_i} = \sum_j(\partial x^A/\partial q_j)\dot q_j \delta_{ij}= \frac{\partial x^A}{\partial q_i}.
 $$
+
+> $\delta_{ij}$ is the **Kronecker delta**.
+>
+> It is defined by
+>
+> $\delta_{ij} = \begin{cases} 1, & i=j,\\ 0, & i\neq j. \end{cases}$
 
 Moreover, since \(x^A\) is independent of \(\dot{q}_i\), application of the chain rule gives
-
 $$
 \frac{\partial \mathcal L}{\partial \dot q_i}
 = \frac{\partial \mathcal L}{\partial \dot x^A} \frac{\partial \dot x^A}{\partial \dot q_i}.
@@ -332,10 +430,12 @@ $$
 \frac{d}{dt}\left(\frac{\partial \mathcal L}{\partial \dot q_i}\right) - \frac{\partial \mathcal L}{\partial q_i}
 = \left[
 \frac{d}{dt}\left(\frac{\partial \mathcal L}{\partial \dot x^A}\right) - \frac{\partial \mathcal L}{\partial x^A}
+\right]\frac{\partial x^A}{\partial q_i} = \sum_{A=1}^n \left[
+\frac{d}{dt}\left(\frac{\partial \mathcal L}{\partial \dot x^A}\right) - \frac{\partial \mathcal L}{\partial x^A}
 \right]\frac{\partial x^A}{\partial q_i}.
 $$
 
-The quantity in brackets on the right-hand side is the Euler–Lagrange expression in the $x^A$ coordinates. Because the Jacobian matrix $\partial x^A/\partial q_i$ is invertible, we conclude:
+The quantity in brackets on the right-hand side is the Euler–Lagrange expression in the $x^A$ coordinates.  Here, the repeated index $A$ is summed over explicitly. Because the Jacobian matrix $\partial x^A/\partial q_i$ is invertible, we conclude:
 
 > **If the Euler–Lagrange equations hold in the $x^A$ coordinate system, then they also hold in the $q_i$ coordinate system, and conversely.**
 
@@ -363,7 +463,7 @@ $$
 \dot p_i = \frac{\partial \mathcal L}{\partial q_i}.
 $$
 
-Whenever $\mathcal L$ does not depend explicitly on a particular coordinate $q_i$, the corresponding momentum $p_i$ is conserved.
+**Whenever $\mathcal L$ does not depend explicitly on a particular coordinate $q_i$, the corresponding momentum $p_i$ is conserved** (we will discuss more about this later).
 
 
 ### 8.5 Lagrange Multipliers and Generalized Coordinates
