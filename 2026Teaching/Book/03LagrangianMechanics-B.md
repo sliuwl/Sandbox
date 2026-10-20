@@ -398,7 +398,7 @@ $$
 $$
 where the **Einstein summation convention** is used (sum over repeated $A$ or $i$).
 
-We substitute $x^A(q_j,t)$ into the Lagrangian to obtain a new function $\mathcal L(q_i,\dot q_i,t)$ and ask whether the Euler–Lagrange equations take the same form in the $q_i$ coordinates.
+We substitute $x^A(q_1, \dots, q_n, t)$ into the Lagrangian to obtain a new function $\mathcal L(q_i,\dot q_i,t)$ and ask whether the Euler–Lagrange equations take the same form in the $q_i$ coordinates.
 
 ---
 
@@ -464,7 +464,7 @@ The quantity in brackets on the right-hand side is the Euler–Lagrange expressi
 
 > **If the Euler–Lagrange equations hold in the $x^A$ coordinate system, then they also hold in the $q_i$ coordinate system, and conversely.**
 
-Thus the Euler–Lagrange equations are **form invariant**: they take exactly the same shape
+Thus the Euler–Lagrange equations are **form invariant**: they take exactly the same form
 
 $$
 \boxed{
@@ -474,21 +474,6 @@ $$
 $$
 
 in any choice of generalized coordinates.
-
----
-
-**Generalized momentum.** In complete analogy with the Cartesian momentum $p_A = \partial \mathcal L/\partial \dot x^A$, we define the **generalized momentum** conjugate to $q_i$ by
-$$
-p_i = \frac{\partial \mathcal L}{\partial \dot q_i}.
-$$
-
-In terms of $p_i$, the Euler–Lagrange equation becomes simply
-
-$$
-\dot p_i = \frac{\partial \mathcal L}{\partial q_i}.
-$$
-
-**Whenever $\mathcal L$ does not depend explicitly on a particular coordinate $q_i$, the corresponding momentum $p_i$ is conserved** (we will discuss more about this later).
 
 ------
 
@@ -634,7 +619,7 @@ $$
 = \lambda^\alpha \frac{\partial f_\alpha}{\partial x^A}.
 $$
 
-The left-hand side is the unconstrained equation of motion; the right-hand side represents the **constraint forces**. By solving these equations together with the constraints $f_\alpha = 0$, we obtain both the motion $x^A(t)$ and the multipliers $\lambda^\alpha(t)$. The latter are directly related to the physical forces of constraint.
+The left-hand side is the unconstrained equation of motion; the right-hand side represents the **generalized constraint forces**. By solving these equations together with the constraints $f_\alpha = 0$, we obtain both the motion $x^A(t)$ and the multipliers $\lambda^\alpha(t)$. The latter are directly related to, but **not** necessarily identical to, the physical constraint forces.
 
 ------
 
@@ -700,7 +685,7 @@ Then the variational equation becomes
 \]
 Because there are $k$ independent constraints, only $n-k$ of the variations are independent. Locally, we may choose coordinates so that **$\delta q_1,\dots,\delta q_{n-k}$ are independent**, while **$\delta q_{n-k+1},\dots,\delta q_n$ are dependent variations** determined by the constraint equations.
 
-The key point is that the multipliers $\lambda_j(t)$ are still **arbitrary**. We use this freedom to choose them so that the coefficients of the $k$ dependent variations vanish:
+**The key point is that the multipliers $\lambda_j(t)$ has not yet been determined**. We choose them so that the coefficients of the $k$ dependent variations vanish.:
 \[
 C_i=0, \qquad i=n-k+1,\dots,n.
 \]
@@ -803,11 +788,7 @@ In the previous example, choosing the angle $\theta$ as the generalized coordina
 > $$
 > where $A=1,\dots,3N$. The unconstrained configuration space has dimension $3N$, but the constraints restrict the motion to a $(3N-k)$-dimensional constraint surface.
 >
-> Let
-> $$
-> n=3N-k.
-> $$
-> We introduce generalized coordinates $q_i$, $i=1,\dots,n$, on this constraint surface. This means that the Cartesian coordinates can be written as
+> Let $n=3N-k$. We introduce generalized coordinates $q_i$, $i=1,\dots,n$, on this constraint surface. This means that the Cartesian coordinates can be written as
 > $$
 > x^A=x^A(q^1,\dots,q^n,t),
 > $$
@@ -817,90 +798,275 @@ In the previous example, choosing the angle $\theta$ as the generalized coordina
 > \qquad \alpha=1,\dots,k.
 > $$
 >
-> Define the **reduced Lagrangian**  
-> $$
-> L(q_i,\dot q_i,t) = \mathcal L\bigl(x^A(q,t),\dot x^A(q,\dot q,t),t\bigr).
-> $$
-> Then the correct equations of motion for the generalized coordinates $q_i$ are the standard Euler--Lagrange equations  
+> Let $\mathcal L(x,\dot x,t)$ denote the original, unconstrained or “free,” Lagrangian of the system, written in the Cartesian coordinates $x^A$ and velocities $\dot x^A$. Here “free” means **before imposing the holonomic constraints**. After solving the constraints by writing $x^A=x^A(q,t)$, define the **reduced Lagrangian** by substituting $x=x(q,t)$ and $\dot x=\dot x(q,\dot q,t)$ into $\mathcal L$:
+> \[
+> L(q,\dot q,t) = \mathcal L\bigl(x(q,t),\dot x(q,\dot q,t),t\bigr).
+> \]
+> Then the correct equations of motion for the generalized coordinates $q_i$ are the standard Euler--Lagrange equations. Then the correct equations of motion for the generalized coordinates $q_i$ are the standard Euler--Lagrange equations  
 > $$
 > \frac{d}{dt}  \left(  \frac{\partial L}{\partial \dot q_i}  \right)
-> \frac{\partial L}{\partial q_i}
+> -\frac{\partial L}{\partial q_i} =
 > 0,
 > \qquad i=1,\dots,n.
 > $$
 
-**Proof.**
- The main point is to understand the role of the constraint functions $f_\alpha$. On the actual motion, the constraints satisfy $f_\alpha(x^A,t)=0.$
+## Proof
 
-So it may seem strange to use the $f_\alpha$ themselves as coordinates. The reason this is allowed is that $f_\alpha$ are not being used as coordinates **on** the constraint surface. Instead, they are used as coordinates measuring displacement **away from** the constraint surface.
+The essential point is to distinguish between the original constraint functions and the new transverse coordinates. The constraints are originally given by functions
 
-The generalized coordinates $q_i$ describe motion along the constraint surface. The constraint functions $f_\alpha$ measure how far one has moved away from that surface. Therefore, near the constraint surface, we can use $(q^1,\dots,q^n,f_1,\dots,f_k)$ as a coordinate system for the original $3N$-dimensional configuration space.
+\[
+f_\alpha(x,t)=0,
+\qquad \alpha=1,\dots,k.
+\]
 
-This is analogous to describing points near a surface in ordinary three-dimensional space. If the constraint surface is given by $f(x,y,z)=0$, then two coordinates can describe motion along the surface, while **the value of $f$ itself describes motion off the surface**. On the surface, $f=0$, but nearby $f\neq 0$. Thus $f$ can serve as a **transverse coordinate**.
+On the actual constrained motion these functions vanish. However, **near the constraint surface, their values can be used to measure displacement away from the constraint surface**.
 
-The same idea applies here. Since the constraints are independent, their gradients $df_\alpha$ are linearly independent. Therefore the $k$ functions $f_\alpha$ can be completed by $n=3N-k$ additional functions $q_i$ to form a locally invertible coordinate transformation
-$$
-x^A \longleftrightarrow (q_i,f_\alpha).
-$$
-In these coordinates, the constraint surface is simply
-$$
-f_\alpha=0, \qquad \alpha=1,\dots,k.
-$$
-Now introduce the extended Lagrangian
-$$
-\mathcal L' = \mathcal L+\lambda^\alpha f_\alpha.
-$$
+Therefore, we introduce new coordinates
 
->Note that earlier we introduced the extended Lagrangian in the original Cartesian coordinates:
->
->$\mathcal L'(x^A,\dot x^A,\lambda^\alpha,t) = \mathcal L(x^A,\dot x^A,t) + \lambda^\alpha f_\alpha(x^A,t).$
->
->After changing coordinates from $x^A$ to $(q_i,f_\alpha)$, the same extended Lagrangian can be written as
->
->$\mathcal L'(q_i,\dot q_i,f_\alpha,\dot f_\alpha,\lambda^\alpha,t) = \mathcal L(q_i,\dot q_i,f_\alpha,\dot f_\alpha,t) + \lambda^\alpha f_\alpha.$
->
->Here $f_\alpha$ are now treated as coordinates transverse to the constraint surface. On the actual constrained motion, we have
->
->$f_\alpha =0, \qquad \dot f_\alpha=0.$
->
->Restricting to this surface gives the reduced Lagrangian
->
->$L(q_i,\dot q_i,t) =  \mathcal L(q_i,\dot q_i,0,0,t).$
->
->
+\[
+(q_1,\dots,q_n,F_1,\dots,F_k),
+\]
 
-Because the Euler--Lagrange equations are form-invariant under changes of coordinates, we may write them using the coordinates $(q_i,f_\alpha)$. In particular, the equations corresponding to the coordinates $q_i$ are
-$$
-\frac{d}{dt} \left( \frac{\partial \mathcal L'}{\partial \dot q_i} \right) - \frac{\partial \mathcal L'}{\partial q_i} = 0.
-$$
-Now, in the coordinate system $(q_i,f_\alpha)$, the variables $q_i$ and $f_\alpha$ are independent coordinates. This is the crucial point. Varying $q_i$ means moving along the constraint surface while holding the transverse coordinates $f_\alpha$ fixed. Therefore $\frac{\partial f_\alpha}{\partial q_i}=0.$ Also, since $f_\alpha$ is itself a coordinate, the term $\lambda^\alpha f_\alpha$ contains no dependence on $\dot q_i$. Hence $\frac{\partial f_\alpha}{\partial \dot q_i}=0.$
+where
 
-Therefore the multiplier term does not contribute to the $q_i$-equations:
-$$
-\frac{\partial \mathcal L'}{\partial q_i} = \frac{\partial \mathcal L}{\partial q_i} + \lambda^\alpha \frac{\partial f_\alpha}{\partial q_i} = \frac{\partial \mathcal L}{\partial q_i},
-$$
+\[
+F_\alpha := f_\alpha(x,t).
+\]
+
+>  The symbol $:=$ means “is defined to be.”  For example, suppose a particle moves in the plane and is constrained to lie on a circle of radius $R$. The constraint is
+>
+> $f(x,y)=x^2+y^2-R^2=0.$
+>
+> We may introduce new coordinates $(\theta,F)$, where
+>
+> $F := f(x,y)=x^2+y^2-R^2.$
+>
+> Here $\theta$ describes position along the circle, while $F$ measures displacement away from the circle.
+>
+> On the constraint surface, namely on the circle, $F=0.$ Away from the circle, $F\neq 0.$
+
+The coordinates \[q_i\] describe motion along the constraint surface, while the coordinates \[F_\alpha\] describe motion transverse to it. They form a locally invertible coordinate system
+\[
+x^A \longleftrightarrow (q_i,F_\alpha).
+\]
+
+\[F_\alpha\] is not always zero. Rather, \[F_\alpha=0\] only on the constraint surface. Away from the constraint surface, \[F_\alpha\] may be nonzero, which is why it can serve as a transverse coordinate.
+
+Now introduce the multiplier-augmented Lagrangian in Cartesian coordinates:
+
+\[
+\mathcal L'(x,\dot x,\lambda,t)
+=
+\mathcal L(x,\dot x,t)
++
+\lambda^\alpha f_\alpha(x,t).
+\]
+
+Here \[\mathcal L(x,\dot x,t)\] is the original unconstrained, or “free,” Lagrangian.
+
+After changing coordinates from \[x^A\] to \[(q_i,F_\alpha)\], the same physical quantity can be expressed in the new coordinates. Since
+
+\[
+F_\alpha=f_\alpha(x,t),
+\]
+
+the multiplier term transforms simply as
+
+\[
+\lambda^\alpha f_\alpha(x,t)
+=
+\lambda^\alpha F_\alpha.
+\]
+
+Therefore the new coordinate expression of the multiplier-augmented Lagrangian is
+
+\[
+\widetilde{\mathcal L}'(q,\dot q,F,\dot F,\lambda,t)
+=
+\widetilde{\mathcal L}(q,\dot q,F,\dot F,t)
++
+\lambda^\alpha F_\alpha,
+\]
+
+where
+
+\[
+\widetilde{\mathcal L}(q,\dot q,F,\dot F,t)
+=
+\mathcal L\bigl(x(q,F,t),\dot x(q,\dot q,F,\dot F,t),t\bigr).
+\]
+
+Here \[x^A=x^A(q,F,t)\] is the  coordinate transformation between the adapted coordinates \[(q_i,F_\alpha)\] and the original Cartesian coordinates.
+
+>The symbols \[\mathcal L\] and \[\widetilde{\mathcal L}\] represent the **same Lagrangian quantity written in different coordinates**. Their numerical values agree at corresponding points:
+>
+>$$
+>\widetilde{\mathcal L}(q,\dot q,F,\dot F,t)
+>=
+>\mathcal L(x,\dot x,t),
+>$$
+>
+>whenever
+>
+>$$
+>x=x(q,F,t),
+>\qquad
+>\dot x=\dot x(q,\dot q,F,\dot F,t).
+>$$
+>
+>However, the **functional form** may be different. For this reason, we use a tilde to remind ourselves that after the coordinate change, the Lagrangian is regarded as a function of different variables.
+
+
+
+We now use two facts that have already been established.
+
+**First**, the multiplier-augmented Lagrangian
+\[
+\mathcal L'(x,\dot x,\lambda,t)
+=
+\mathcal L(x,\dot x,t)
++
+\lambda^\alpha f_\alpha(x,t)
+\]
+
+gives the correct equations of motion for the constrained system. That is, applying the Euler--Lagrange equations to the variables \(x^A\) gives \(3N\) equations of motion, while applying them to the multipliers \(\lambda^\alpha\) gives \(k\) constraint equations, $\frac{\partial \mathcal L'}{\partial \lambda^\alpha} =
+f_\alpha(x,t) = 0.$ 
+
+**Second**, the Euler--Lagrange equations retain their form under a smooth change of coordinates. Therefore, after changing from the Cartesian coordinates \(x^A\) to the adapted coordinates \((q_i,F_\alpha)\), we should write the Euler--Lagrange equations using the transformed Lagrangian $\widetilde{\mathcal L}'(q,\dot q,F,\dot F,\lambda,t)$. Hence the Euler--Lagrange equations corresponding to the coordinates \(q_i\) are
+\[
+\frac{d}{dt}
+\left(
+\frac{\partial \widetilde{\mathcal L}'}{\partial \dot q_i}
+\right)
+-
+\frac{\partial \widetilde{\mathcal L}'}{\partial q_i}
+=
+0.
+\]
+
+Now comes the **crucial** observation: in the coordinate system \[(q_i,F_\alpha)\], the variables \[q_i\] and \[F_\alpha\] are independent coordinates. Therefore, when differentiating with respect to \[q_i\], the transverse coordinates \[F_\alpha\] are held fixed. Hence
+
+\[
+\frac{\partial F_\alpha}{\partial q_i}=0.
+\]
+
+Also, since the multiplier term \[\lambda^\alpha F_\alpha\] contains no dependence on the velocities \[\dot q_i\], we have
+
+\[
+\frac{\partial}{\partial \dot q_i}
+\left(
+\lambda^\alpha F_\alpha
+\right)
+=
+0.
+\]
+
+Therefore the multiplier term does not contribute to the \[q_i\]-equations:
+
+\[
+\frac{\partial \widetilde{\mathcal L}'}{\partial q_i}
+=
+\frac{\partial \widetilde{\mathcal L}}{\partial q_i}
++
+\lambda^\alpha
+\frac{\partial F_\alpha}{\partial q_i}
+=
+\frac{\partial \widetilde{\mathcal L}}{\partial q_i},
+\]
+
 and
-$$
-\frac{\partial \mathcal L'}{\partial \dot q_i} = \frac{\partial \mathcal L}{\partial \dot q_i}.
-$$
-Thus the Euler--Lagrange equations for $q_i$ reduce to
-$$
-\frac{d}{dt} \left( \frac{\partial \mathcal L}{\partial \dot q_i} \right) - \frac{\partial \mathcal L}{\partial q_i} = 0.
-$$
-Finally, to describe the actual constrained motion, we restrict to the surface $f_\alpha=0.$
 
-On this surface the Cartesian coordinates are functions only of $q_i$ and $t$: $x^A=x^A(q_i,t).$
+\[
+\frac{\partial \widetilde{\mathcal L}'}{\partial \dot q_i}
+=
+\frac{\partial \widetilde{\mathcal L}}{\partial \dot q_i}.
+\]
 
-Substituting this into the original Lagrangian gives the reduced Lagrangian
-$$
-L(q_i,\dot q_i,t) = \mathcal L\bigl(x^A(q,t),\dot x^A(q,\dot q,t),t\bigr).
-$$
-Therefore the equations of motion along the constraint surface are
-$$
-\frac{d}{dt} \left( \frac{\partial L}{\partial \dot q_i} \right) - \frac{\partial L}{\partial q_i} = 0, \qquad i=1,\dots,n.
-$$
-This proves the theorem. $\square$
+Thus the \[q_i\]-Euler--Lagrange equations become
 
-> The theorem is powerful because it tells us that, if we are interested only in the motion allowed by the constraints, we do not need to solve for the Lagrange multipliers. We may substitute $x^A=x^A(q_i,t)$ directly into the original Lagrangian and then apply the ordinary Euler--Lagrange equations to the reduced Lagrangian $L(q_i,\dot q_i,t)$.
->
-> The multipliers $\lambda^\alpha$ are still meaningful: they determine the constraint forces needed to keep the system on the surface $f_\alpha=0$. But those forces act in the directions transverse to the allowed motion, so they do not appear in the reduced equations for the generalized coordinates $q_i$.
+\[
+\frac{d}{dt}
+\left(
+\frac{\partial \widetilde{\mathcal L}}{\partial \dot q_i}
+\right)
+-
+\frac{\partial \widetilde{\mathcal L}}{\partial q_i}
+=
+0.
+\]
+
+
+Up to this point, $\widetilde{\mathcal L}(q,\dot q,F,\dot F,t)$ is still the original free Lagrangian, but rewritten in the adapted coordinates \((q_i,F_\alpha)\). It is not yet the reduced Lagrangian, because the transverse coordinates \(F_\alpha\) have not yet been set to zero.
+
+**Now we restrict attention to the actual constrained motion**. Along such a motion, the system remains on the constraint surface, so
+\[
+F_\alpha=0,
+\qquad
+\dot F_\alpha=0.
+\]
+Since the coordinates \(q_i\) parametrize motion along the constraint surface, the physical constrained motion can be described entirely by \(q_i\) and \(\dot q_i\). Therefore, we define the reduced Lagrangian by restricting \(\widetilde{\mathcal L}\) to the surface \(F_\alpha=0\) and \(\dot F_\alpha=0\):
+
+\[
+L(q,\dot q,t)
+=
+\widetilde{\mathcal L}(q,\dot q,0,0,t).
+\]
+Equivalently,
+
+$$
+L(q,\dot q,t)
+=
+\mathcal L\bigl(x(q,0,t),\dot x(q,\dot q,0,0,t),t\bigr).
+$$
+
+For simplicity, once restricted to the constraint surface, we often write
+
+$$
+x(q,t):=x(q,0,t),
+$$
+
+and therefore
+
+$$
+L(q,\dot q,t)
+=
+\mathcal L\bigl(x(q,t),\dot x(q,\dot q,t),t\bigr).
+$$
+
+**This reduced Lagrangian $L$ is no longer the free Lagrangian on the full configuration space. It is the "free" Lagrangian restricted to the constraint surface.** The constraint is now built into the variables $q_i$, because $x=x(q,0,t)$ automatically satisfies the constraint.
+
+Therefore, after restriction to the constraint surface, the equations become
+\[
+\boxed{
+\frac{d}{dt}
+\left(
+\frac{\partial L}{\partial \dot q_i}
+\right)
+-
+\frac{\partial L}{\partial q_i}
+=
+0,
+\qquad i=1,\dots,n.
+}
+\]
+
+This proves the theorem. \[\square\]
+
+---
+
+A useful way to summarize the notation is
+
+\[
+\mathcal L(x,\dot x,t)
+\quad \longrightarrow \quad
+\widetilde{\mathcal L}(q,\dot q,F,\dot F,t)
+\quad \longrightarrow \quad
+L(q,\dot q,t).
+\]
+
+Here:
+
+- \[\mathcal L(x,\dot x,t)\] is the original unconstrained Lagrangian written in Cartesian coordinates.
+- \[\widetilde{\mathcal L}(q,\dot q,F,\dot F,t)\] is the same Lagrangian quantity written in the adapted coordinates \[(q_i,F_\alpha)\].
+- \[L(q,\dot q,t)=\widetilde{\mathcal L}(q,\dot q,0,0,t)=\mathcal L\bigl(x(q,0,t),\dot x(q,\dot q,0,0,t),t\bigr)\] is the reduced Lagrangian obtained by imposing \[F_\alpha=0\] and \[\dot F_\alpha=0\].
+

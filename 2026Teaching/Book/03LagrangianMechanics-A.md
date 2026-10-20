@@ -1,4 +1,4 @@
-# Lagrangian Mechanics
+# Lagrangian Mechanics （Part A)
 
 **Reading material:** Chapter 7 of *Classical Mechanics* by John R. Taylor
 

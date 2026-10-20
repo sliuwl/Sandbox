@@ -1,6 +1,6 @@
 # Lagrange Multiplier
 
-An extremely powerful method which allows us to find the maxima or minima of functions which are subject to **constraints**.
+Lagrange multipliers provide an extremely powerful method for finding the maxima or minima of functions subject to **constraints**.
 
 Suppose we have a marble that always remains attached to an inclined plane and moves on this plane only along a circle. What is the highest point?
 
@@ -124,14 +124,14 @@ is the constraint.
 \lambda
 \]
 
-is a **Lagrangian multiplier**.
+The quantity $\lambda$ is called a **Lagrange multiplier**.
 
 Now,
 
 \[
-\frac{d\Lambda}{dx}
+\frac{\partial \Lambda}{\partial x}
 =
-\frac{d}{dx}
+\frac{\partial}{\partial x}
 \left(
 -2x+y+\lambda(x^2+y^2-1)
 \right).
@@ -152,9 +152,9 @@ x=\frac{1}{\lambda}.
 Analogously,
 
 \[
-\frac{d\Lambda}{dy}
+\frac{\partial \Lambda}{\partial y}
 =
-\frac{d}{dy}
+\frac{\partial}{\partial y}
 \left(
 -2x+y+\lambda(x^2+y^2-1)
 \right).
@@ -172,10 +172,10 @@ so
 y=-\frac{1}{2\lambda}.
 \]
 
-And for \(\lambda\),
+The derivative with respect to \(\lambda\) gives
 
 \[
-\frac{d\Lambda}{d\lambda}
+\frac{\partial\Lambda}{\partial\lambda}
 =
 x^2+y^2-1=0.
 \]
@@ -328,7 +328,7 @@ n-k
 
 independent generalized coordinates.
 
-However, we prefer for the moment to use all \(n\) of the coordinates.
+However, for the moment we prefer to use all \(n\) coordinates.
 
 The behavior of the system is described by Hamilton's principle:
 
@@ -340,7 +340,7 @@ The behavior of the system is described by Hamilton's principle:
 0.
 \]
 
-And the \(k\) equations of constraint are
+The \(k\) constraint equations are
 
 \[
 f_j(q_1,q_2,\cdots,q_n)=0,
@@ -407,7 +407,7 @@ If equation \((3)\) holds, multiplying it by some quantity \(\lambda_j\) will ha
 0.
 \]
 
-Adding \(k\) equations,
+Adding the \(k\) equations,
 
 \[
 \sum_j^k
@@ -481,7 +481,7 @@ dt
 
 The \(\delta q_i\)'s are not all independent.
 
-But \(n-k\) of them are independent. Then for these coordinates,
+However, \(n-k\) of them are independent. Therefore, for these coordinates,
 
 \[
 \frac{\partial L}{\partial q_i}
@@ -553,7 +553,7 @@ Here,
 F_i
 \]
 
-are generalized constraint forces.
+are the generalized constraint forces.
 
 ---
 
@@ -725,6 +725,6 @@ L_{\text{cons}}=0.
 
 In the Lagrangian formalism, as soon as we have found suitable coordinates which make the constraints trivially true, we don't have to care about the constraints at all!
 
-The Lagrangian multiplier terms vanish.
+The Lagrange multiplier terms vanish.
 
 **Note:** We can relate the generalized constraint force to the actual force. If we have time, we can get back to this.

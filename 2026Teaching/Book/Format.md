@@ -51,6 +51,8 @@ A style guide for lecture notes, derived from `02VariationalCalculus.md`.
   ...a local extremum of $f$...
   ```
 
+- **Standalone equations**: An equation that lives on its own line must be a display block, not inline math. Either merge it into the surrounding sentence as true inline math, or place it inside `\[` `\]` (or `$$` `$$`). Never leave a lone `$...$` on its own line.
+
 - **Important results**: Box the final answer or key formula.
   ```markdown
   $$
