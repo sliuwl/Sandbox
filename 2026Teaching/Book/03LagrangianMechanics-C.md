@@ -779,15 +779,40 @@ where $E = T + U$ is the total mechanical energy and $\mathbf{p} = m\mathbf{v}$ 
 > $$
 > \mathbf{r} = (\rho\cos\omega t,\; \rho\sin\omega t,\; \alpha\rho^2).
 > $$
-> Hence
-> $$
-> \frac{\partial\mathbf{r}}{\partial t} = (-\rho\omega\sin\omega t,\; \rho\omega\cos\omega t,\; 0),
-> $$
-> and
-> $$
-> \mathbf{p}\cdot\frac{\partial\mathbf{r}}{\partial t}
-> = m\rho^2\omega^2.
-> $$
+> For the rotating parabolic wire,
+> \[
+> \frac{\partial \mathbf r}{\partial t} = \bigl( -\rho\omega\sin\omega t,\; \rho\omega\cos\omega t,\; 0 \bigr).
+> \]
+> The velocity is
+> \[
+> \dot{\mathbf r} = \bigl( \dot\rho\cos\omega t-\rho\omega\sin\omega t,\; \dot\rho\sin\omega t+\rho\omega\cos\omega t,\; 2\alpha\rho\dot\rho \bigr).
+> \]
+> Therefore the ordinary momentum is $\mathbf p = m\dot{\mathbf r} = m\bigl( \dot\rho\cos\omega t-\rho\omega\sin\omega t,\; \dot\rho\sin\omega t+\rho\omega\cos\omega t,\; 2\alpha\rho\dot\rho \bigr).$
+>
+> Now compute $\mathbf p\cdot\frac{\partial\mathbf r}{\partial t}.$
+>
+> We get
+> \[
+> \mathbf p\cdot\frac{\partial\mathbf r}{\partial t} = m \bigl( \dot\rho\cos\omega t-\rho\omega\sin\omega t \bigr) \bigl( -\rho\omega\sin\omega t \bigr) + m \bigl( \dot\rho\sin\omega t+\rho\omega\cos\omega t \bigr) \bigl( \rho\omega\cos\omega t \bigr) + m(2\alpha\rho\dot\rho)(0).
+> \]
+> Expanding the first term,
+>
+> $-m\rho\omega\dot\rho\sin\omega t\cos\omega t + m\rho^2\omega^2\sin^2\omega t.$
+>
+> Expanding the second term,
+>
+> $m\rho\omega\dot\rho\sin\omega t\cos\omega t + m\rho^2\omega^2\cos^2\omega t.$
+>
+> Therefore
+> \[
+> \mathbf p\cdot\frac{\partial\mathbf r}{\partial t} = m\rho^2\omega^2 \left( \sin^2\omega t+\cos^2\omega t \right) = m\rho^2\omega^2.
+> \]
+> 
+>
+> Therefore the general formula gives
+> \[
+> E=H+m\rho^2\omega^2.
+> \]
 > Therefore $H = E - m\rho^2\omega^2$, exactly as we found in (3.5).
 
 ------
