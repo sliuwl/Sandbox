@@ -687,7 +687,7 @@ In the preceding example we found that $H$ was conserved while $E = T+U$ was not
 
 ### 4.1 The General Condition $H \neq E$
 
-Recall the definition of the Hamiltonian (2.1),
+Recall the definition of the Hamiltonian,
 
 $$
 H = \sum_{i} \dot{q}_i\,\frac{\partial L}{\partial\dot{q}_i} - L,
@@ -697,7 +697,6 @@ where $L = T - U$ and only the kinetic energy $T$ depends on the generalized vel
 
 $$
 H = \sum_{i} \dot{q}_i\,\frac{\partial T}{\partial\dot{q}_i} + U - T.
-\tag{4.1}
 $$
 
 Let $\mathbf{r} = \mathbf{r}(q_1,\dots,q_n,t)$ be the position vector of the particle expressed in terms of the generalized coordinates and time.  Its velocity is
@@ -706,10 +705,9 @@ $$
 \mathbf{v} = \frac{d\mathbf{r}}{dt}
      = \frac{\partial\mathbf{r}}{\partial t}
      + \sum_{l} \frac{\partial\mathbf{r}}{\partial q_l}\,\dot{q}_l.
-\tag{4.2}
 $$
 
-The kinetic energy is $T = \tfrac12 m\mathbf{v}\cdot\mathbf{v}$.  Substituting (4.2) and expanding, we obtain three terms:
+The kinetic energy is $T = \tfrac12 m\mathbf{v}\cdot\mathbf{v}$.  Substituting the above equation for $\mathbf{v}$ and expanding the dot product gives:
 
 $$
 T = \frac12 m\left[
@@ -728,7 +726,6 @@ $$
 \frac{\partial\mathbf{r}}{\partial t}\cdot\frac{\partial\mathbf{r}}{\partial q_i}
 + \sum_{l}\frac{\partial\mathbf{r}}{\partial q_i}\cdot\frac{\partial\mathbf{r}}{\partial q_l}\dot{q}_l
 \right].
-\tag{4.4}
 $$
 
 Now form the sum that appears in $H$:
@@ -739,19 +736,32 @@ $$
 \frac{\partial\mathbf{r}}{\partial t}\cdot\sum_{i}\frac{\partial\mathbf{r}}{\partial q_i}\dot{q}_i
 + \sum_{i,l}\frac{\partial\mathbf{r}}{\partial q_i}\dot{q}_i\cdot\frac{\partial\mathbf{r}}{\partial q_l}\dot{q}_l
 \right].
-\tag{4.5}
 $$
 
-Comparing with (4.3), we recognize that the second term inside the brackets is exactly twice the third term of $T$, while the first term inside the brackets is the cross term of $T$.  After a simple rearrangement,
+We will replace the second term in the bracket using the expression for $T$: 
 
-$$
-\sum_{i}\dot{q}_i\,\frac{\partial T}{\partial\dot{q}_i}
-= 2T - m\,\frac{\partial\mathbf{r}}{\partial t}\cdot\mathbf{v}.
-\tag{4.6}
-$$
-
-Substituting (4.6) into (4.1), we arrive at the **key result**:
-
+\[
+\begin{aligned}
+\sum_i \dot q_i\,\frac{\partial T}{\partial \dot q_i}
+&= m\frac{\partial \mathbf r}{\partial t}\cdot
+\sum_i \frac{\partial \mathbf r}{\partial q_i}\dot q_i + 2T
+- m\left[
+\frac{\partial \mathbf r}{\partial t}\cdot\frac{\partial \mathbf r}{\partial t}
++ 2\frac{\partial \mathbf r}{\partial t}\cdot
+\sum_l \frac{\partial \mathbf r}{\partial q_l}\dot q_l
+\right] \\[4pt]
+&= 2T
+- m\left[
+\frac{\partial \mathbf r}{\partial t}\cdot\frac{\partial \mathbf r}{\partial t}
++ \frac{\partial \mathbf r}{\partial t}\cdot
+\sum_l \frac{\partial \mathbf r}{\partial q_l}\dot q_l
+\right] \\[4pt] 
+& =2T - m \frac{\partial \mathbf r}{\partial t}\cdot \left[\frac{\partial\mathbf{r}}{\partial t}
+     + \sum_{l} \frac{\partial\mathbf{r}}{\partial q_l}\,\dot{q}_l \right] \\[4pt] 
+     &= 2T - m\,\frac{\partial\mathbf{r}}{\partial t}\cdot\mathbf{v}
+\end{aligned}
+\]
+Substituting this relation into the definition of $H$, we arrive at the **key result**:
 $$
 \boxed{
 H = E - \mathbf{p}\cdot\frac{\partial\mathbf{r}}{\partial t},
