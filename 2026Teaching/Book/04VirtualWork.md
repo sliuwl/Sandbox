@@ -210,8 +210,11 @@ $$
 
 where $\lambda$ is a **Lagrange multiplier**.
 
-The virtual work of constraint forces is
+> The constraint $g(q_i,t)=0$ tells us which configurations are allowed. If the system moves along the allowed surface, the value of $g$ does not change. Therefore, the gradient of $g$ points perpendicular to the allowed surface. Since an ideal constraint force only acts to stop the system from leaving the allowed surface, it must point in this perpendicular direction. That is why we write $Q_i^c=\lambda \frac{\partial g}{\partial q_i}.$ Here, $\frac{\partial g}{\partial q_i}$ gives the direction of the constraint force in generalized-coordinate space, and $\lambda$ tells how strong the force is and whether it points one way or the opposite way.
 
+
+
+The virtual work of constraint forces is
 $$
 \delta W_c = \sum_i Q_i^c\delta q_i = \sum_i \lambda \frac{\partial g}{\partial q_i} \delta q_i.
 $$
@@ -240,8 +243,21 @@ $$
 \delta g = 0.
 $$
 
-Therefore,
+> For a **virtual displacement**, we compare two infinitesimally nearby configurations **at the same time $t$**, both of which are allowed by the constraint. Therefore the varied configuration must also lie on the constraint surface. So if the original configuration satisfies
+>
+> $g(q_i,t)=0,$
+>
+> then the virtually displaced configuration also satisfies, to first order,
+>
+> $g(q_i+\delta q_i,t)=0.$
+>
+> Expanding,
+>
+> $g(q_i+\delta q_i,t) = g(q_i,t) + \sum_i \frac{\partial g}{\partial q_i}\delta q_i + O(\delta q^2).$
+>
+> Therefore, to first order, $\sum_i \frac{\partial g}{\partial q_i}\delta q_i=0.$ That is exactly $\delta g=0.$
 
+Therefore,
 $$
 \boxed{ \delta W_c = \lambda \delta g = 0 }
 $$
@@ -300,7 +316,7 @@ The condition is expressed entirely in terms of scalar quantities.
 
 ------
 
-## 8. Newtonian vs. Lagrangian View of Static Equilibrium
+## 8. Newtonian vs. Virtual-Work  View of Static Equilibrium
 
 ------
 
@@ -318,9 +334,9 @@ However, individual forces may not be zero.
 
 ------
 
-### 8.2 Lagrangian Mechanics
+### 8.2 Virtual Work 
 
-In Lagrangian mechanics, static equilibrium means:
+Based on the principle of virtual work, static equilibrium means:
 
 $$
 Q_i = 0
@@ -446,7 +462,7 @@ $$
 
 d’Alembert’s principle extends the principle of virtual work to dynamical systems.
 
-A system with nonzero acceleration may be treated as being in static equilibrium in its own accelerating rest frame, provided we include **fictitious forces**.
+A system undergoing **acceleration** relative to an inertial frame may be described as being in **equilibrium in a non-inertial frame co-moving with the system**, provided that the appropriate inertial, or fictitious, forces are included in the force balance.
 
 If the system accelerates with acceleration $\vec a$, the fictitious force is
 
@@ -466,7 +482,9 @@ $$
 \boxed{ \vec F_{\text{fict}} = -m\ddot{\vec r} }
 $$
 
-------
+> Consider a person standing in an elevator that accelerates upward with acceleration $a$. From the ground frame, the person is not in static equilibrium, because the forces do not balance: the normal force $N$ from the floor is larger than the weight $mg$, and Newton’s second law gives $N-mg=ma$. However, in the elevator’s own accelerating rest frame, the person appears to be at rest relative to the elevator. Since this frame is non-inertial, we must include a fictitious force acting downward with magnitude $ma$. Then the person can be treated as being in static equilibrium in that accelerating frame, with the force balance $N-mg-ma=0$. This gives $N=m(g+a)$, the same result as the ground-frame analysis. Thus, an accelerating system may be treated as being in equilibrium in its own accelerating rest frame, provided fictitious forces are included.
+
+---
 
 ### 11.2 Mathematical Formulation
 
@@ -534,47 +552,52 @@ $$
 \sum_i \left( Q_i - m\ddot{\vec r} \cdot \frac{\partial \vec r}{\partial q_i} \right) \delta q_i = 0.
 $$
 
-Using
+The velocity is
+\[
+\mathbf v=\dot{\mathbf r} = \sum_j \frac{\partial \mathbf r}{\partial q_j}\dot q_j + \frac{\partial \mathbf r}{\partial t}.
+\]
+Therefore,
+\[
+\frac{\partial \mathbf v}{\partial \dot q_i} = \frac{\partial \mathbf r}{\partial q_i}.
+\]
+This identity is important because it allows us to connect the inertial term with derivatives of the kinetic energy.
 
-$$
-\frac{\partial \vec r}{\partial q_i} = \frac{\partial \vec v}{\partial \dot q_i},
-$$
+For a single particle, $T=\frac12 m v^2 = \frac12 m \mathbf v\cdot \mathbf v.$
 
-we have
+First compute the derivative of $T$ with respect to $\dot q_i$:
+\[
+\frac{\partial T}{\partial \dot q_i} = m\mathbf v\cdot \frac{\partial \mathbf v}{\partial \dot q_i} = m\mathbf v\cdot \frac{\partial \mathbf r}{\partial q_i}
+\]
+Now differentiate this with respect to time:
+\[
+\frac{d}{dt}\left(\frac{\partial T}{\partial \dot q_i}\right) = \frac{d}{dt} \left( m\mathbf v\cdot \frac{\partial \mathbf r}{\partial q_i} \right).
+\]
+Using the product rule,
+\[
+\frac{d}{dt}\left(\frac{\partial T}{\partial \dot q_i}\right) = m\dot{\mathbf v}\cdot \frac{\partial \mathbf r}{\partial q_i} + m\mathbf v\cdot \frac{d}{dt}\left(\frac{\partial \mathbf r}{\partial q_i}\right) = m\ddot{\mathbf r}\cdot \frac{\partial \mathbf r}{\partial q_i} + m\mathbf v\cdot \frac{d}{dt}\left(\frac{\partial \mathbf r}{\partial q_i}\right)
+\]
 
-$$
-m\ddot{\vec r} \cdot \frac{\partial \vec r}{\partial q_i} = m\ddot{\vec r} \cdot \frac{\partial \vec v}{\partial \dot q_i}.
-$$
 
-Now use the kinetic energy
+Next, compute $\partial T/\partial q_i$. We have
+\[
+\frac{\partial T}{\partial q_i} = m\mathbf v\cdot \frac{\partial \mathbf v}{\partial q_i} = m\mathbf v\cdot \frac{d}{dt}\left(\frac{\partial \mathbf r}{\partial q_i}\right)
+\]
 
-$$
-T = \frac{1}{2}m v^2.
-$$
+> We are interchanging two derivative operations: $\frac{\partial}{\partial q_i}$ and $\frac{d}{dt}$. The position function $\mathbf r(q,t)$ must be sufficiently differentiable and well-behaved, so that taking a time derivative and taking a derivative with respect to a generalized coordinate give the same result regardless of order.
 
-One obtains the identity
-
-$$
-m\ddot{\vec r} \cdot \frac{\partial \vec r}{\partial q_i} = \frac{d}{dt} \left( \frac{\partial T}{\partial \dot q_i} \right) - \frac{\partial T}{\partial q_i}.
-$$
-
-Thus,
-
-$$
-\sum_i \left[ Q_i - \frac{d}{dt} \left( \frac{\partial T}{\partial \dot q_i} \right) + \frac{\partial T}{\partial q_i} \right] \delta q_i = 0.
-$$
-
-Since the $\delta q_i$ are independent,
-
-$$
-\boxed{ Q_i - \frac{d}{dt} \left( \frac{\partial T}{\partial \dot q_i} \right) + \frac{\partial T}{\partial q_i} = 0 }
-$$
-
-or
-
-$$
-\boxed{ \frac{d}{dt} \left( \frac{\partial T}{\partial \dot q_i} \right) - \frac{\partial T}{\partial q_i} = Q_i }
-$$
+Thus, the inertial term can be written as
+\[
+\boxed{ m\ddot{\mathbf r}\cdot \frac{\partial \mathbf r}{\partial q_i} = \frac{d}{dt}\left(\frac{\partial T}{\partial \dot q_i}\right) - \frac{\partial T}{\partial q_i} }.
+\]
+Substituting this identity back into d’Alembert’s principle, we obtain
+\[
+\sum_i \left[ Q_i - \frac{d}{dt}\left(\frac{\partial T}{\partial \dot q_i}\right) + \frac{\partial T}{\partial q_i} \right]\delta q_i=0.
+\]
+Because the generalized coordinates $q_i$ are independent, then the virtual displacements $\delta q_i$ are independent. Therefore, each coefficient of $\delta q_i$ must vanish separately:
+\[
+\boxed{ \frac{d}{dt}\left(\frac{\partial T}{\partial \dot q_i}\right) - \frac{\partial T}{\partial q_i} = Q_i }.
+\]
+This is Lagrange’s equation in terms of generalized forces. 
 
 ------
 
