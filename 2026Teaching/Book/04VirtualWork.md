@@ -669,9 +669,11 @@ It is a different theoretical framework, not merely a rewriting of Newtonian mec
 
 ## 14. Example: Wheel Jack
 
-A wheel jack is an articulated machine used to lift a heavy load $P$ using an applied force $F$ on a crank.
+A wheel jack (千斤顶) is an articulated machine used to lift a heavy load $P$ using an applied force $F$ on a crank. The jack consists of two rigid bars of length $l$, forming a lozenge shape. A threaded screw changes length by $h$ for each full revolution of the crank. The crank arm has length $a$.
 
-The jack consists of two rigid bars of length $l$, forming a lozenge shape. A threaded screw changes length by $h$ for each full revolution of the crank. The crank arm has length $a$.
+![Wheel jack diagram](LectureNotesFigures/04wheeljack.png)
+
+![Wheel jack solution diagram](LectureNotesFigures/04wheeljack2.png)
 
 Let the crank rotate through a virtual angle $\delta \alpha$.
 
@@ -768,6 +770,8 @@ Thus,
 $$
 \boxed{ \frac{P}{F} = \frac{2\pi a\tan\theta}{h} }
 $$
+
+
 
 For example, if
 
