@@ -211,6 +211,8 @@ $$
 where $\lambda$ is a **Lagrange multiplier**.
 
 > The constraint $g(q_i,t)=0$ tells us which configurations are allowed. If the system moves along the allowed surface, the value of $g$ does not change. Therefore, the gradient of $g$ points perpendicular to the allowed surface. Since an ideal constraint force only acts to stop the system from leaving the allowed surface, it must point in this perpendicular direction. That is why we write $Q_i^c=\lambda \frac{\partial g}{\partial q_i}.$ Here, $\frac{\partial g}{\partial q_i}$ gives the direction of the constraint force in generalized-coordinate space, and $\lambda$ tells how strong the force is and whether it points one way or the opposite way.
+>
+> Here we have assumed that there is only one constraint; if there are multiple constraints $g_j(q_i,t)=0$, then the generalized constraint force is written as $Q_i^c=\sum_j \lambda_j \frac{\partial g_j}{\partial q_i}$.
 
 
 
@@ -261,6 +263,18 @@ Therefore,
 $$
 \boxed{ \delta W_c = \lambda \delta g = 0 }
 $$
+
+>If there are **multiple constraints** $g_j(q_i,t)=0, \qquad j=1,2,\dots,m,$
+>
+>then the generalized constraint force is $Q_i^c=\sum_{j=1}^{m}\lambda_j \frac{\partial g_j}{\partial q_i}.$
+>
+>The virtual work done by the constraint forces is $\delta W_c=\sum_i Q_i^c \delta q_i.$
+>
+>Substitute $Q_i^c$: $\delta W_c = \sum_i \left( \sum_{j=1}^{m}\lambda_j \frac{\partial g_j}{\partial q_i} \right) \delta q_i.$ We simply **swapped the order of summation**.
+>
+>Rearrange the sums: $\delta W_c = \sum_{j=1}^{m} \lambda_j \sum_i \frac{\partial g_j}{\partial q_i} \delta q_i = \sum_{j=1}^{m} \lambda_j \times 0 = 0.$
+
+
 
 ------
 
@@ -738,11 +752,12 @@ $$
 The load $P$ acts at $A$. Its virtual work is
 
 $$
-\delta W_P = P\frac{h}{2\pi\tan\theta}\delta\alpha.
+\delta W_P = + P\frac{h}{2\pi\tan\theta}\delta\alpha.
 $$
 
-The applied force $F$ acts on the crank of length $a$, so its virtual work is
+**The point sign just shows that point $A$ moves downward.**
 
+The applied force $F$ acts on the crank of length $a$, so its virtual work is
 $$
 \delta W_F = -Fa\delta\alpha.
 $$
@@ -787,11 +802,15 @@ $$
 
 This shows that a small applied force can lift a much larger load.
 
+> 一般未经过专业训练的正常成年人，其单臂水平推力大约在 **250牛顿到400牛顿** 之间（换算成常用力气单位，大约是 **50斤到80斤** 左右）。因此确实是**千斤顶**！
+
 ------
 
 ## 15. Example: Plane Pendulum
 
 We consider a pendulum of length $l$, mass $m$, and angular coordinate $\theta$.
+
+<img src="LectureNotesFigures/04pendulum1.png" alt="pendulum1" style="zoom:33%;" />
 
 For a virtual angular displacement $\delta\theta$, the displacement along the arc is
 
@@ -808,7 +827,7 @@ $$
 Using d’Alembert’s principle, we include the fictitious force
 
 $$
--m\ddot\theta l.
+F^{\rm fric}=m\ddot\theta l.
 $$
 
 The virtual work equation is
@@ -835,14 +854,6 @@ $$
 \boxed{ \ddot\theta = -\frac{g}{l}\sin\theta }
 $$
 
-or
-
-$$
-\boxed{ \ddot\theta + \frac{g}{l}\sin\theta = 0 }
-$$
-
-This is the equation of motion of the plane pendulum.
-
 ------
 
 ### 15.1 Pendulum with Variable Length
@@ -850,46 +861,28 @@ This is the equation of motion of the plane pendulum.
 If the pendulum length $l$ changes with time, the tangential acceleration contains an extra term:
 
 $$
-a_\theta = l\ddot\theta + 2\dot l \dot\theta.
+a_\theta = r\ddot\theta + 2\dot r \dot\theta.
 $$
 
 Using d’Alembert’s principle,
 
 $$
--mg(l\delta\theta \sin\theta) - m \left( l\ddot\theta + 2\dot l\dot\theta \right) l\delta\theta = 0.
+-mg(r\delta\theta \sin\theta) - m \left( r\ddot\theta + 2\dot r\dot\theta \right) r\delta\theta = 0.
 $$
 
 Hence,
 
 $$
--mgl\sin\theta = ml^2\ddot\theta + 2ml\dot l\dot\theta.
+-mgr\sin\theta = mr^2\ddot\theta + 2mr\dot r\dot\theta.
 $$
 
 This can be written as
 
 $$
-\boxed{ \frac{d}{dt} \left( ml^2\dot\theta \right) = -mgl\sin\theta }
+\boxed{ \frac{d}{dt} \left( mr^2\dot\theta \right) = -mgr\sin\theta }
 $$
 
-If there is no gravitational field,
 
-$$
-g=0,
-$$
-
-then
-
-$$
-\frac{d}{dt} \left( ml^2\dot\theta \right) = 0.
-$$
-
-Thus,
-
-$$
-\boxed{ ml^2\dot\theta = \text{constant} }
-$$
-
-This is conservation of angular momentum.
 
 ------
 
