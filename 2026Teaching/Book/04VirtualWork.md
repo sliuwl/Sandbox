@@ -827,7 +827,7 @@ $$
 Using d’Alembert’s principle, we include the fictitious force
 
 $$
-F^{\rm fric}=m\ddot\theta l.
+F^{\rm fict}=-m\ddot\theta l.
 $$
 
 The virtual work equation is
