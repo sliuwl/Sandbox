@@ -856,106 +856,101 @@ $$
 
 ------
 
-### 15.1 Pendulum with Variable Length
+## 16. Example: Plane Rotor with Variable Radius
 
-If the pendulum length $l$ changes with time, the tangential acceleration contains an extra term:
+We consider a point mass \(m\) moving in a vertical plane with polar coordinates \((r,\theta)\), where \(r\) may vary with time. The virtual displacement is
 
-$$
-a_\theta = r\ddot\theta + 2\dot r \dot\theta.
-$$
+\[
+\delta \mathbf r=\mathbf e_r\,\delta r+r\mathbf e_\theta\,\delta\theta .
+\]
 
-Using d’Alembert’s principle,
+The acceleration in polar coordinates is
 
-$$
--mg(r\delta\theta \sin\theta) - m \left( r\ddot\theta + 2\dot r\dot\theta \right) r\delta\theta = 0.
-$$
+\[
+\mathbf a=(\ddot r-r\dot\theta^2)\mathbf e_r
++(r\ddot\theta+2\dot r\dot\theta)\mathbf e_\theta .
+\]
 
-Hence,
+Using d'Alembert's principle,
 
-$$
--mgr\sin\theta = mr^2\ddot\theta + 2mr\dot r\dot\theta.
-$$
+\[
+(\mathbf F-m\mathbf a)\cdot \delta \mathbf r=0 .
+\]
 
-This can be written as
+The gravitational force is
 
-$$
-\boxed{ \frac{d}{dt} \left( mr^2\dot\theta \right) = -mgr\sin\theta }
-$$
+\[
+\mathbf F_g=mg\cos\theta\,\mathbf e_r-mg\sin\theta\,\mathbf e_\theta .
+\]
+
+If an external radial force \(F\) acts inward, its contribution is \(-F\mathbf e_r\). Thus,
+
+\[
+\mathbf F=(mg\cos\theta-F)\mathbf e_r-mg\sin\theta\,\mathbf e_\theta .
+\]
+
+Substituting into d'Alembert's principle gives
+
+\[
+\left[mg\cos\theta-F-m(\ddot r-r\dot\theta^2)\right]\delta r
++
+\left[-mgr\sin\theta
+-mr(r\ddot\theta+2\dot r\dot\theta)\right]\delta\theta=0 .
+\]
+
+Since \(\delta r\) and \(\delta\theta\) are independent virtual displacements, their coefficients must vanish separately.
+
+For the angular variation \(\delta\theta\),
+
+\[
+-mgr\sin\theta-mr(r\ddot\theta+2\dot r\dot\theta)=0,
+\]
+
+or
+
+\[
+mr^2\ddot\theta+2mr\dot r\dot\theta=-mgr\sin\theta .
+\]
+
+Equivalently,
+
+\[
+\boxed{
+\frac{d}{dt}\left(mr^2\dot\theta\right)=-mgr\sin\theta .
+}
+\]
+
+For the radial variation \(\delta r\),
+
+\[
+mg\cos\theta-F-m(\ddot r-r\dot\theta^2)=0,
+\]
+
+or
+
+\[
+\boxed{
+m(\ddot r-r\dot\theta^2)=mg\cos\theta-F .
+}
+\]
+
+If the motion is constrained to have a prescribed length \(r=l(t)\), then only \(\delta\theta\) is an allowed virtual displacement. The angular equation remains
+
+\[
+\boxed{
+\frac{d}{dt}\left(ml^2\dot\theta\right)=-mgl\sin\theta .
+}
+\]
+
+If gravity is absent, \(g=0\), the angular equation reduces to
+
+\[
+\boxed{
+\frac{d}{dt}\left(mr^2\dot\theta\right)=0,
+}
+\]
+
+which expresses conservation of angular momentum.
 
 
 
-------
-
-## 16. Plane Rotor with Variable Radius
-
-We consider a mass moving in a plane with polar coordinates $(r,\theta)$. A radial force $F$ may be applied, and gravity may also act.
-
-The radial acceleration is
-
-$$
-a_r = \ddot r - r\dot\theta^2.
-$$
-
-------
-
-### 16.1 Variation in $\theta$, Keeping $r$ Fixed
-
-If we vary $\theta$ while keeping $r$ fixed, the generalized equation gives
-
-$$
-\boxed{ \frac{d}{dt} \left( mr^2\dot\theta \right) = -mgr\sin\theta }
-$$
-
-This is the angular equation of motion.
-
-If $g=0$, then
-
-$$
-\boxed{ \frac{d}{dt} \left( mr^2\dot\theta \right) = 0 }
-$$
-
-so angular momentum is conserved.
-
-------
-
-### 16.2 Variation in $r$, Keeping $\theta$ Fixed
-
-For a virtual radial displacement $\delta r$:
-
-- the applied radial force does work
-
-  $$
-  -F\delta r;
-  $$
-
-- gravity does work
-
-  $$
-  mg\cos\theta\,\delta r;
-  $$
-
-- the fictitious force contributes
-
-  $$
-  -m(\ddot r-r\dot\theta^2)\delta r.
-  $$
-
-The virtual work condition is
-
-$$
-mg\cos\theta \, \delta r - F\delta r - m(\ddot r-r\dot\theta^2)\delta r = 0.
-$$
-
-Since $\delta r$ is arbitrary,
-
-$$
-mg\cos\theta - F - m(\ddot r-r\dot\theta^2) = 0.
-$$
-
-Therefore,
-
-$$
-\boxed{ m(\ddot r-r\dot\theta^2) = -F + mg\cos\theta }
-$$
-
-This is the radial equation of motion.
