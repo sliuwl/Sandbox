@@ -516,7 +516,9 @@ $$
 
 where $g(q_i)=0$ is the constraint equation.
 
-------
+---
+
+
 
 ### 6.1 Particle Sliding on a Hemisphere
 
