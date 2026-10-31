@@ -406,3 +406,134 @@ A\cdot \delta q=0,
 不过，从更宽泛的意义上说，“广义坐标”这个词也强调这些坐标不必是普通的笛卡尔坐标，而可以是任何方便描述系统构型的变量，例如角度、弧长、欧拉角等。因此，有些教材在引入广义坐标时，更强调“广义”这一点，也就是它们可以是非笛卡尔坐标；而另一些教材则会同时强调，为了唯一描述一个具有 $n$ 个自由度的系统，通常应当选取 $n$ 个彼此独立的广义坐标。
 
 所以，更准确地说：在推导标准形式的拉格朗日方程时，广义坐标通常已经被选为与自由度数目相同的独立坐标；但从术语本身来看，“广义坐标”主要强调它们不必是笛卡尔坐标，而可以是任何适合描述系统构型的变量。如果使用的是冗余坐标，那么它们也可以在较宽泛的意义下被称为广义坐标，但这时其虚位移 $\delta q_i$ 就不能被当作独立变量处理。因此，达朗贝尔原理的核心是“$\delta q$ 是否是与约束相容的允许虚位移”。
+
+
+
+## 6. Particle Sliding on a Hemisphere
+
+A particle of mass $m$ begins from rest at the top of a smooth fixed hemisphere of radius $R$. We wish to find the angle $\theta_0$ at which it loses contact with the surface.
+
+The Lagrangian in polar coordinates $(r,\theta)$, with $\theta$ measured from the vertical, is
+
+$$
+L = \frac12 m\left(\dot r^2 + r^2\dot\theta^2\right) - mgr\cos\theta.
+$$
+
+The holonomic constraint is
+
+$$
+g(r) = r - R = 0.
+$$
+
+The constrained Lagrange equations are
+
+$$
+\frac{d}{dt}\left(\frac{\partial L}{\partial\dot r}\right) - \frac{\partial L}{\partial r} = \lambda\frac{\partial g}{\partial r} = \lambda,
+$$
+
+$$
+\frac{d}{dt}\left(\frac{\partial L}{\partial\dot\theta}\right) - \frac{\partial L}{\partial\theta} = \lambda\frac{\partial g}{\partial\theta} = 0.
+$$
+
+Evaluating the derivatives,
+
+$$
+m\ddot r - mr\dot\theta^2 + mg\cos\theta = \lambda,
+$$
+
+$$
+2mr\dot r\dot\theta + mr^2\ddot\theta - mgr\sin\theta = 0.
+$$
+
+We now impose the constraint $r=R$, which implies $\dot r=\ddot r=0$. The radial equation becomes
+
+$$
+-mR\dot\theta^2 + mg\cos\theta = \lambda,
+$$
+
+so
+
+$$
+\dot\theta^2 = \frac{g\cos\theta}{R} - \frac{\lambda}{mR}.
+$$
+
+The angular equation reduces to
+
+$$
+mR^2\ddot\theta - mgR\sin\theta = 0 \quad\Longrightarrow\quad \ddot\theta = \frac{g\sin\theta}{R}.
+$$
+
+> **Physical meaning of $\lambda$.** The Lagrange multiplier $\lambda$ is the magnitude of the normal force that the hemisphere exerts on the particle. When $\lambda$ drops to zero, the constraint is about to break; the particle can no longer press against the surface and therefore leaves the sphere.
+
+The particle leaves the surface precisely when the normal force vanishes:
+
+$$
+\lambda = 0.
+$$
+
+Hence, at the instant of departure,
+
+$$
+\dot\theta^2 = \frac{g\cos\theta_0}{R}.
+$$
+
+To relate $\theta_0$ to the initial condition, we differentiate the radial expression for $\dot\theta^2$ with respect to time:
+
+$$
+\frac{d}{dt}\dot\theta^2 = 2\dot\theta\ddot\theta.
+$$
+
+Using $\dot\theta^2 = (g\cos\theta)/R - \lambda/(mR)$,
+
+$$
+2\dot\theta\ddot\theta = -\frac{g}{R}\sin\theta\,\dot\theta - \frac{1}{mR}\frac{d\lambda}{dt}.
+$$
+
+Since $\ddot\theta = g\sin\theta/R$, the left-hand side becomes
+
+$$
+2\dot\theta\left(\frac{g\sin\theta}{R}\right) = -\frac{g}{R}\sin\theta\,\dot\theta - \frac{1}{mR}\frac{d\lambda}{dt},
+$$
+
+or, after rearranging,
+
+$$
+\frac{3g}{R}\sin\theta\,\dot\theta = -\frac{1}{mR}\frac{d\lambda}{dt}.
+$$
+
+Multiplying by $dt$ and using $d\theta = \dot\theta\,dt$,
+
+$$
+3g\sin\theta\,d\theta = -\frac{1}{m}\,d\lambda.
+$$
+
+Integrating from the initial position $(\theta=0,\;\lambda_0)$ to the leaving point $(\theta_0,\;0)$,
+
+$$
+3g\int_0^{\theta_0}\sin\theta\,d\theta = -\frac{1}{m}\int_{\lambda_0}^{0}d\lambda.
+$$
+
+This gives
+
+$$
+3g\bigl(1-\cos\theta_0\bigr) = \frac{\lambda_0}{m}.
+$$
+
+At the top of the sphere, the particle is initially at rest ($\dot\theta=0$ when $\theta=0$), so the radial equation yields $\lambda_0 = mg$. Therefore
+
+$$
+3g\bigl(1-\cos\theta_0\bigr) = g,
+$$
+
+which simplifies to
+
+$$
+\boxed{
+\cos\theta_0 = \frac23
+}
+$$
+
+or 
+\[
+\theta_0 \approx 48.2^\circ.
+\]
