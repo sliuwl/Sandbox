@@ -46,7 +46,7 @@ $$
 \boxed{\ \sum_{j=1}^N\left(\vec F_j^{(a)}-m_j\ddot{\vec r}_j\right)\cdot\delta\vec r_j=0\ }
 $$
 
-for every admissible virtual displacement. In words, the virtual work done by the applied forces plus the virtual work done by the inertial forces $-m_j\ddot{\vec r}_j$ must vanish. The principle converts a problem in dynamics into a statement about virtual work and removes the constraint forces from the outset.
+for every **admissible virtual displacement**. In words, the virtual work done by the applied forces plus the virtual work done by the inertial forces $-m_j\ddot{\vec r}_j$ must vanish. The principle converts a problem in dynamics into a statement about virtual work and removes the constraint forces from the outset.
 
 ------
 
@@ -70,11 +70,13 @@ $$
 \sum_{i=1}^n\left[\sum_{j=1}^N\vec F_j^{(a)}\cdot\frac{\partial\vec r_j}{\partial q_i}-\sum_{j=1}^N m_j\ddot{\vec r}_j\cdot\frac{\partial\vec r_j}{\partial q_i}\right]\delta q_i=0.
 $$
 
-The first bracket defines the **generalized force** associated with $q_i$:
+The first bracket defines the **applied generalized force** associated with $q_i$:
 
 $$
 Q_i=\sum_{j=1}^N\vec F_j^{(a)}\cdot\frac{\partial\vec r_j}{\partial q_i}.
 $$
+
+Here $Q_i$ is the applied generalized force: it is built only from the applied forces $\vec F_j^{(a)}$ and receives no contribution from the constraint forces $\vec f_j$.
 
 For the second bracket, two standard identities are useful:
 
@@ -130,9 +132,13 @@ for every **admissible virtual displacement** $\delta q$.
 
 The important point is this:
 
-> D’Alembert’s principle is not a statement about arbitrary variations. It is a statement about all virtual displacements that are compatible with the constraints.
+> D’Alembert’s principle is not a statement about arbitrary variations. It is a statement about all virtual displacements that are **compatible** with the constraints.
 
-If the coordinates $q_i$ are independent, then the virtual displacements $\delta q_i$ are arbitrary and independent, and one may conclude that $A_i=0$ for each $i$. If constraints are present, however, the virtual displacements are restricted. In that case, from $A\cdot\delta q=0$ one cannot directly conclude that every $A_i$ is zero; one can only conclude that $A$ is orthogonal to every admissible virtual displacement.
+If the coordinates $q_i$ are independent, then the virtual displacements $\delta q_i$ are arbitrary and independent, and one may conclude that $A_i=0$ for each $i$.
+
+If constraints are present, however, the virtual displacements are restricted. In that case, from $A\cdot\delta q=0$ one cannot directly conclude that every $A_i$ is zero; one can only conclude that $A$ is orthogonal to every admissible virtual displacement.
+
+
 
 ------
 
@@ -214,81 +220,130 @@ The advantage of this approach is that the equations contain no constraint force
 
 ## 4. Second Explanation: Redundant Coordinates Lead to Lagrange Multipliers
 
-Now suppose instead that we describe the same system using redundant coordinates $q_1,\dots,q_n$, together with $m$ independent holonomic constraints
+Now suppose instead that we describe the same system using redundant coordinates
 
-$$
-f_\alpha(q,t)=0,\qquad \alpha=1,\dots,m.
-$$
+\[
+\vec q=(q_1,\dots,q_n),
+\]
 
-The admissible virtual displacements satisfy
+together with $m$ independent holonomic constraints
 
-$$
-\sum_{i=1}^n\frac{\partial f_\alpha}{\partial q_i}\,\delta q_i=0,\qquad \alpha=1,\dots,m,
-$$
+\[
+f_\alpha(\vec q,t)=0,\quad \alpha=1,\dots,m.
+\]
 
-or, in vector form,
+The corresponding virtual displacement in generalized-coordinate space is
 
-$$
-\nabla f_\alpha\cdot\delta q=0.
-$$
+\[
+\delta \vec q=(\delta q_1,\dots,\delta q_n).
+\]
 
-Thus $\delta q$ must lie in the tangent space to the constraint surface. D’Alembert’s principle says that
+Since a virtual displacement is taken at fixed time, the admissible virtual displacements satisfy
 
-$$
-A\cdot\delta q=0
-$$
+\[
+\delta f_\alpha=0,
+\]
 
-for every such admissible virtual displacement $\delta q$. Therefore, $A$ is orthogonal to the tangent space of the constraint surface.
+that is,
+
+\[
+\sum_{i=1}^n \frac{\partial f_\alpha}{\partial q_i}\,\delta q_i =0,\quad \alpha=1,\dots,m.
+\]
+
+Equivalently, in vector form,
+
+\[
+\nabla f_\alpha\cdot \delta \vec q=0,
+\]
+
+where
+
+\[
+\nabla f_\alpha = \left( \frac{\partial f_\alpha}{\partial q_1}, \dots, \frac{\partial f_\alpha}{\partial q_n} \right).
+\]
+
+Thus $\delta \vec q$ must lie in the tangent space to the constraint surface.
+
+D’Alembert’s principle says that
+
+\[
+\vec A\cdot \delta \vec q=0
+\]
+
+for every such admissible virtual displacement $\delta \vec q$, where
+
+\[
+\vec A=(A_1,\dots,A_n).
+\]
+
+Therefore, **$\vec A$ is orthogonal to the tangent space of the constraint surface**.
 
 The normal space to the constraint surface is spanned by the gradients of the constraint functions,
 
-$$
+\[
 \nabla f_1,\dots,\nabla f_m.
-$$
+\]
 
-Assuming the constraints are independent, these gradients are linearly independent. Hence there exist multipliers $\lambda_\alpha$ such that
+Assuming the constraints are independent, these gradient vectors are linearly independent. 
 
-$$
-A=\sum_{\alpha=1}^m\lambda_\alpha\nabla f_\alpha.
-$$
+>The gradients of the constraints give the directions pointing “out of” the allowed surface. Combining these gradient directions gives all possible normal directions to the surface. In the case of independent constraints, the gradient vectors of the constraint functions are linearly independent and form a **basis for the normal space to the constraint surface**. However, this basis is generally not orthonormal.
+>
+>约束函数的梯度指向“离开”约束曲面的方向；把这些梯度方向组合起来，就可以得到所有可能的法向方向。在独立约束的情况下，约束函数的梯度向量线性无关，并构成约束曲面法空间的一组基矢；但这组基矢一般不是正交归一的。
 
-In components,
+As $\vec A$ must lie in the normal space, there exist multipliers $\lambda_\alpha$ such that
+\[
+\vec A = \sum_{\alpha=1}^m \lambda_\alpha \nabla f_\alpha.
+\]
 
-$$
-A_i=\sum_{\alpha=1}^m\lambda_\alpha\frac{\partial f_\alpha}{\partial q_i}.
-$$
+Using component notation, this means
+
+\[
+(A_1,\dots,A_n) = \sum_{\alpha=1}^m \lambda_\alpha \left( \frac{\partial f_\alpha}{\partial q_1}, \dots, \frac{\partial f_\alpha}{\partial q_n} \right).
+\]
+
+Equivalently, for each component,
+
+\[
+A_i = \sum_{\alpha=1}^m \lambda_\alpha \frac{\partial f_\alpha}{\partial q_i},
+\]
+
+\[
+i=1,\dots,n.
+\]
 
 Substituting the definition of $A_i$, we get
 
-$$
+\[
 Q_i-\frac{d}{dt}\left(\frac{\partial T}{\partial\dot q_i}\right)+\frac{\partial T}{\partial q_i}=\sum_{\alpha=1}^m\lambda_\alpha\frac{\partial f_\alpha}{\partial q_i}.
-$$
+\]
 
 Rearranging,
 
-$$
+\[
 \frac{d}{dt}\left(\frac{\partial T}{\partial\dot q_i}\right)-\frac{\partial T}{\partial q_i}=Q_i-\sum_{\alpha=1}^m\lambda_\alpha\frac{\partial f_\alpha}{\partial q_i}.
-$$
+\]
 
 If we redefine the multipliers by changing their sign,
 
-$$
+\[
 \lambda_\alpha\mapsto-\lambda_\alpha,
-$$
+\]
 
 then the same equations can be written as
 
-$$
+\[
 \boxed{\ \frac{d}{dt}\left(\frac{\partial T}{\partial\dot q_i}\right)-\frac{\partial T}{\partial q_i}=Q_i+\sum_{\alpha=1}^m\lambda_\alpha\frac{\partial f_\alpha}{\partial q_i}\ }
-$$
+\]
+
+Here $Q_i$ is the applied generalized force, while the sum over $\lambda_\alpha$ collects the generalized constraint forces.
 
 Thus the sign of the multiplier term is a matter of convention.
 
 Together with the constraint equations
 
-$$
+\[
 f_\alpha(q,t)=0,\qquad \alpha=1,\dots,m,
-$$
+\]
 
 these form a closed system of equations for $q_i(t)$ and $\lambda_\alpha(t)$.
 
@@ -315,3 +370,39 @@ The key distinction is the following.
 In short:
 
 > Independent coordinates eliminate the constraints by construction. Redundant coordinates keep the constraints explicit and introduce Lagrange multipliers to account for the missing independence of the virtual displacements.
+
+
+
+------
+
+达朗贝尔原理（d’Alembert’s principle）本质上可以看作一种**虚功原理**。它说的是：在系统的真实运动过程中，外加力与惯性力之差，对任意允许的虚位移所作的总虚功为零。这里最重要的一点是，**虚位移必须与约束相容**，也就是说，虚位移必须满足系统约束所允许的条件；但是，**达朗贝尔原理本身并不要求这些虚位移的各个分量 $\delta q_i$ 一定彼此独立**。
+
+因此，关键问题在于我们如何选择广义坐标。大体上可以分为两种情况。
+
+第一种情况是：我们已经利用约束条件选取了一组**独立的广义坐标**。例如，对于一个受完整约束（holonomic constraints）限制的系统，如果约束方程已经被用来消去多余变量，那么剩下的广义坐标数目就等于系统的自由度数。在这种情况下，$\delta q_1,\dots,\delta q_n$ 是彼此独立的。于是，如果
+\[
+\sum_{i=1}^n A_i\delta q_i=0
+\]
+对任意独立的 $\delta q_i$ 都成立，那么就可以推出
+\[
+A_i=0,\qquad i=1,\dots,n.
+\]
+这正是通常从达朗贝尔原理推出拉格朗日方程（Lagrange equations）时所采用的情形。
+
+第二种情况是：我们仍然使用一组**冗余坐标**，或者某些约束条件尚未被完全消去。此时虽然仍然可以写出
+\[
+A\cdot \delta q=0,
+\]
+但是 $\delta q_i$ 不再是任意且彼此独立的变量，而必须满足由约束条件带来的关系。例如，某些允许的虚位移可能满足
+\[
+\sum_i c_i\delta q_i=0.
+\]
+在这种情况下，不能直接推出每一个 $A_i$ 都等于零。我们只能说，**向量 $A$ 与所有允许的虚位移方向正交**。若要进一步得到运动方程，通常需要引入拉格朗日乘子（Lagrange multipliers），把约束条件或约束力的影响显式地写入方程中。
+
+
+
+关于“广义坐标”（generalized coordinates）这个术语，不同教材的侧重点确实略有不同。在许多经典力学教材中，尤其是在处理完整约束并推导拉格朗日方程时，广义坐标通常被选为一组**独立坐标**。也就是说，人们常常先利用约束方程消去多余的笛卡尔坐标（Cartesian coordinates），最后保留与系统自由度数目相同的一组变量。在这种标准语境下，$q_i$ 往往默认就是独立的广义坐标。
+
+不过，从更宽泛的意义上说，“广义坐标”这个词也强调这些坐标不必是普通的笛卡尔坐标，而可以是任何方便描述系统构型的变量，例如角度、弧长、欧拉角等。因此，有些教材在引入广义坐标时，更强调“广义”这一点，也就是它们可以是非笛卡尔坐标；而另一些教材则会同时强调，为了唯一描述一个具有 $n$ 个自由度的系统，通常应当选取 $n$ 个彼此独立的广义坐标。
+
+所以，更准确地说：在推导标准形式的拉格朗日方程时，广义坐标通常已经被选为与自由度数目相同的独立坐标；但从术语本身来看，“广义坐标”主要强调它们不必是笛卡尔坐标，而可以是任何适合描述系统构型的变量。如果使用的是冗余坐标，那么它们也可以在较宽泛的意义下被称为广义坐标，但这时其虚位移 $\delta q_i$ 就不能被当作独立变量处理。因此，达朗贝尔原理的核心是“$\delta q$ 是否是与约束相容的允许虚位移”。
