@@ -331,6 +331,178 @@ $$
 
 where $\phi$ is the scalar potential and $\vec A$ is the vector potential, with $\vec E=-\nabla\phi-\partial\vec A/\partial t$ and $\vec B=\nabla\times\vec A$. Substituting this $U$ into the expression for $Q_i$ reproduces exactly the Lorentz force. Thus the full electromagnetic dynamics can be encoded in the Lagrangian $L=T-U$.
 
+>For electromagnetism, use the velocity-dependent potential
+> 
+> \[
+> U(\vec r,\vec v,t)
+> =
+> q\phi(\vec r,t)-q\,\vec A(\vec r,t)\cdot \vec v
+> \]
+> 
+> In Cartesian coordinates,
+> 
+> \[
+> U
+> =
+> q\phi-qA_j\dot x_j
+> \]
+> 
+> where repeated indices are summed. Then
+> 
+> \[
+> -\frac{\partial U}{\partial x_i}
+> =
+> -q\frac{\partial \phi}{\partial x_i}
+> +
+> q\frac{\partial A_j}{\partial x_i}\dot x_j
+> \]
+> 
+> Also,
+> 
+> \[
+> \frac{\partial U}{\partial \dot x_i}
+> =
+> -qA_i
+> \]
+> 
+> so
+> 
+> \[
+> \frac{d}{dt}\left(\frac{\partial U}{\partial \dot x_i}\right)
+> =
+> -q\frac{dA_i}{dt}
+> \]
+> 
+> Since \(A_i=A_i(\vec r,t)\),
+> 
+> \[
+> \frac{dA_i}{dt}
+> =
+> \frac{\partial A_i}{\partial t}
+> +
+> \frac{\partial A_i}{\partial x_j}\dot x_j
+> \]
+> 
+> Therefore,
+> 
+> \[
+> \frac{d}{dt}\left(\frac{\partial U}{\partial \dot x_i}\right)
+> =
+> -q\frac{\partial A_i}{\partial t}
+> -
+> q\frac{\partial A_i}{\partial x_j}\dot x_j
+> \]
+> 
+> Combining terms,
+> 
+> \[
+> Q_i
+> =
+> -q\frac{\partial \phi}{\partial x_i}
+> +
+> q\frac{\partial A_j}{\partial x_i}\dot x_j
+> -
+> q\frac{\partial A_i}{\partial t}
+> -
+> q\frac{\partial A_i}{\partial x_j}\dot x_j
+> \]
+> 
+> Thus,
+> 
+> \[
+> Q_i
+> =
+> q\left(
+> -\frac{\partial \phi}{\partial x_i}
+> -
+> \frac{\partial A_i}{\partial t}
+> \right)
+> +
+> q\left(
+> \frac{\partial A_j}{\partial x_i}
+> -
+> \frac{\partial A_i}{\partial x_j}
+> \right)\dot x_j
+> \]
+> 
+> Using
+> 
+> \[
+> E_i
+> =
+> -\frac{\partial \phi}{\partial x_i}
+> -
+> \frac{\partial A_i}{\partial t}
+> \]
+> 
+> and
+> 
+> \[
+> (\vec v\times \vec B)_i
+> =
+> \left(
+> \frac{\partial A_j}{\partial x_i}
+> -
+> \frac{\partial A_i}{\partial x_j}
+> \right)v_j
+> \]
+> 
+> with
+> 
+> \[
+> \vec B=\nabla\times \vec A
+> \]
+> 
+> we obtain
+> 
+> \[
+> Q_i
+> =
+> qE_i
+> +
+> q(\vec v\times \vec B)_i
+> \]
+> 
+> Therefore,
+> 
+> \[
+> \vec Q
+> =
+> q\left(\vec E+\vec v\times \vec B\right)
+> \]
+> 
+> So the electromagnetic velocity-dependent potential gives exactly the Lorentz force:
+> 
+> \[
+> \boxed{\vec F=q\left(\vec E+\vec v\times \vec B\right)}
+> \]
+> 
+> The corresponding nonrelativistic Lagrangian is
+> 
+> \[
+> L=T-U
+> \]
+> 
+> so
+> 
+> \[
+> L
+> =
+> \frac12 mv^2
+> -
+> \left(q\phi-q\vec A\cdot \vec v\right)
+> \]
+> 
+> or
+> 
+> \[
+> \boxed{
+> L
+> =
+> \frac12 mv^2+q\vec A\cdot \vec v-q\phi
+> }
+> \]
+
 ------
 
 ## 4. Friction and Dissipation
@@ -386,6 +558,141 @@ $$
 $$
 
 Thus the energy decreases monotonically, as expected for a dissipative force.
+
+
+
+#### Linear drag: why \(n=1\)
+
+A simple way to understand why linear drag occurs is to consider an object moving **slowly** through a viscous fluid.
+
+At very low speeds, the flow around the object is smooth and steady. In this regime, the dominant resistance comes from the fluid’s **viscosity**, not from turbulence or wake formation.
+
+Viscosity produces a shear stress that is proportional to the velocity gradient:
+
+\[
+\text{viscous stress} \propto \eta \frac{v}{L}
+\]
+
+where \(\eta\) is the fluid viscosity, \(v\) is the speed of the object, and \(L\) is a typical length scale, such as the radius or diameter of the object.
+
+<img src="LectureNotesFigures/05viscosity.png" alt="viscosity" style="zoom:33%;" />
+
+The drag force is approximately the viscous stress times the area over which it acts. Since the surface area scales like \(L^2\), we have
+\[
+f_d \propto \left(\eta \frac{v}{L}\right)L^2
+\]
+
+Simplifying gives
+
+\[
+f_d \propto \eta L v
+\]
+
+For a fixed object moving through a fixed fluid, both \(\eta\) and \(L\) are constants. Therefore, all constant factors can be absorbed into a single coefficient \(b\), giving
+
+\[
+f_d = bv
+\]
+
+Equivalently,
+
+\[
+f_d = bv^1
+\]
+
+so
+
+\[
+n=1
+\]
+
+Thus, **linear drag** arises when viscous forces dominate the motion. This occurs for slow motion through a fluid, or more generally when the Reynolds number is small.
+
+
+
+#### Quadratic drag: why \(n=2\)
+
+A simple way to understand why quadratic drag occurs is to consider an object moving **quickly** through a fluid.
+
+At high speeds, the object must continuously push fluid out of the way. In this regime, the dominant resistance comes from transferring momentum to the surrounding fluid, rather than from ordinary viscous shear alone.
+
+Suppose the object has cross-sectional area \(A\) and moves with speed \(v\). In a time interval \(\Delta t\), it sweeps out a volume of fluid approximately
+
+\[
+\Delta V \sim A v \Delta t
+\]
+
+If the fluid density is \(\rho\), then the mass of fluid disturbed during this time is
+
+\[
+\Delta m \sim \rho \Delta V
+\]
+
+so
+
+\[
+\Delta m \sim \rho A v \Delta t
+\]
+
+The object changes the velocity of this disturbed fluid by an amount of order \(v\). Therefore, the momentum transferred to the fluid is roughly
+
+\[
+\Delta p \sim \Delta m\, v
+\]
+
+Substituting the expression for \(\Delta m\),
+
+\[
+\Delta p \sim \rho A v \Delta t \cdot v
+\]
+
+so
+
+\[
+\Delta p \sim \rho A v^2 \Delta t
+\]
+
+The drag force is the rate of momentum transfer:
+
+\[
+f_d \sim \frac{\Delta p}{\Delta t}
+\]
+
+Therefore,
+
+\[
+f_d \sim \rho A v^2
+\]
+
+This has the same form as
+
+\[
+f_d = b v^2
+\]
+
+where the constant \(b\) contains factors such as the fluid density, cross-sectional area, and shape of the object. More precisely, quadratic drag is often written as
+
+\[
+f_d = \frac{1}{2}\rho C_D A v^2
+\]
+
+where \(C_D\) is the drag coefficient.
+
+Thus,
+
+\[
+f_d = b v^2
+\]
+
+so
+
+\[
+n=2
+\]
+
+Therefore, **quadratic drag** arises when inertial effects dominate. Physically, this means the object loses energy mainly by pushing fluid aside and creating a wake (尾流).
+
+> A wake is the downstream flow disturbance left behind a body due to momentum loss, flow separation, and viscous effects.
 
 ------
 

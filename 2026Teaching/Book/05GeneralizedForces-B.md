@@ -411,10 +411,11 @@ A\cdot \delta q=0,
 
 ## 6. Particle Sliding on a Hemisphere
 
-A particle of mass $m$ begins from rest at the top of a smooth fixed hemisphere of radius $R$. We wish to find the angle $\theta_0$ at which it loses contact with the surface.
+A particle of mass $m$ is released on the outside of a smooth fixed hemisphere of radius $R$, from a point very close to but not exactly at the top. The initial displacement is enough to make the particle slide, and we may assume its initial velocity is zero. We seek the angle $\theta_0$, measured from the vertical, at which the particle loses contact with the surface.
+
+<img src="LectureNotesFigures/05contact.png" alt="viscosity" style="zoom:50%;" />
 
 The Lagrangian in polar coordinates $(r,\theta)$, with $\theta$ measured from the vertical, is
-
 $$
 L = \frac12 m\left(\dot r^2 + r^2\dot\theta^2\right) - mgr\cos\theta.
 $$
