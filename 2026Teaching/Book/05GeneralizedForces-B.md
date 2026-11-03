@@ -538,3 +538,177 @@ or
 \[
 \theta_0 \approx 48.2^\circ.
 \]
+
+------
+
+## 7. Particle Constrained to Move on a Spiral
+
+A particle of mass $m$ moves in a horizontal plane on a spiral whose equation in polar coordinates is
+
+$$
+r = a\theta,
+$$
+
+where $a$ is a positive constant. There is no external potential, so apart from its inertia the only force acting on the particle is the force of constraint. We seek the equation of motion and the constraint force that keeps the particle on the spiral.
+
+<img src="LectureNotesFigures/05spiral.png" alt="spiral" style="zoom:50%;" />
+
+The unconstrained Lagrangian consists of the kinetic energy alone, which in polar coordinates is
+
+$$
+L = \frac12 m\left(\dot r^2 + r^2\dot\theta^2\right).
+$$
+
+At this stage the constraint has not been used, so this is the Lagrangian of a freely moving particle in polar coordinates; it knows nothing about the spiral.
+
+The holonomic constraint is
+
+$$
+g(r,\theta) = r - a\theta = 0.
+$$
+
+If we only wanted the equation of motion, we could substitute $r=a\theta$ into $L$ and obtain a single Lagrange equation for $\theta$. That would, however, eliminate the constraint force. To keep track of it, we retain both coordinates and introduce a Lagrange multiplier.
+
+Since there is only one constraint, the constrained Lagrange equations read
+
+$$
+\frac{d}{dt}\left(\frac{\partial L}{\partial\dot r}\right)-\frac{\partial L}{\partial r}=\lambda\frac{\partial g}{\partial r}=\lambda,
+$$
+
+$$
+\frac{d}{dt}\left(\frac{\partial L}{\partial\dot\theta}\right)-\frac{\partial L}{\partial\theta}=\lambda\frac{\partial g}{\partial\theta}=-a\lambda.
+$$
+
+Evaluating the derivatives,
+
+$$
+m\ddot r-mr\dot\theta^2=\lambda,
+$$
+
+$$
+2mr\dot r\dot\theta+mr^2\ddot\theta=-a\lambda.
+$$
+
+Therefore the two unconstrained equations of motion are
+
+$$
+\ddot r=\frac{\lambda}{m}+r\dot\theta^2,
+$$
+
+$$
+\ddot\theta=-\frac{a\lambda}{mr^2}-\frac{2\dot r\dot\theta}{r}.
+$$
+
+We now impose the constraint $r=a\theta$, which implies
+
+$$
+\dot r=a\dot\theta,\qquad \ddot r=a\ddot\theta.
+$$
+
+The two equations become
+
+$$
+a\ddot\theta=\frac{\lambda}{m}+a\theta\dot\theta^2
+\quad\Longrightarrow\quad
+\ddot\theta=\frac{\lambda}{ma}+\theta\dot\theta^2,
+$$
+
+$$
+\ddot\theta=-\frac{a\lambda}{ma^2\theta^2}-\frac{2(a\dot\theta)\dot\theta}{a\theta}
+\quad\Longrightarrow\quad
+\ddot\theta=-\frac{\lambda}{ma\theta^2}-\frac{2\dot\theta^2}{\theta}.
+$$
+
+Both expressions are equations for $\ddot\theta$, so they must be equal:
+
+$$
+\frac{\lambda}{ma}+\theta\dot\theta^2=-\frac{\lambda}{ma\theta^2}-\frac{2\dot\theta^2}{\theta}.
+$$
+
+Solving for the multiplier,
+
+$$
+\lambda\left(1+\frac{1}{\theta^2}\right)=-ma\dot\theta^2\left(\theta+\frac{2}{\theta}\right),
+$$
+
+and hence
+
+$$
+\lambda=-\frac{2\theta+\theta^3}{1+\theta^2}\,ma\dot\theta^2.
+$$
+
+Substituting this back into either equation of motion gives
+
+$$
+\ddot\theta=-\frac{\theta}{1+\theta^2}\,\dot\theta^2.
+$$
+
+The equation of motion and the Lagrange multiplier are therefore
+
+$$
+\boxed{\ \ddot\theta=-\frac{\theta}{1+\theta^2}\,\dot\theta^2\ }
+$$
+
+and
+
+$$
+\lambda=-\frac{2\theta+\theta^3}{1+\theta^2}\,ma\dot\theta^2.
+$$
+
+> **Physical meaning of $\lambda$.** The generalized constraint force is $\lambda\nabla g$, so its $r$- and $\theta$-components are
+
+$$
+Q_r^{(c)}=\lambda\frac{\partial g}{\partial r}=\lambda
+=-\frac{2\theta+\theta^3}{1+\theta^2}\,ma\dot\theta^2,
+$$
+
+$$
+Q_\theta^{(c)}=\lambda\frac{\partial g}{\partial\theta}=-a\lambda
+=\frac{2\theta+\theta^3}{1+\theta^2}\,ma^2\dot\theta^2.
+$$
+
+These are the components of the force that the spiral must exert on the particle in order to keep it on the curve. For $\theta>0$ and $\dot\theta\neq0$, the radial component is negative, so the spiral pushes the particle inward, while the azimuthal component is positive.
+
+The equation of motion for $\theta$ has no useful closed-form solution for $\theta(t)$. It can, however, be integrated once. Writing $\ddot\theta=\dot\theta\,d\dot\theta/d\theta$,
+
+$$
+\dot\theta\frac{d\dot\theta}{d\theta}=-\frac{\theta}{1+\theta^2}\,\dot\theta^2,
+$$
+
+so that
+
+$$
+\frac{d\dot\theta}{\dot\theta}=-\frac{\theta\,d\theta}{1+\theta^2}.
+$$
+
+Integrating,
+
+$$
+\ln\dot\theta=-\frac12\ln\left(1+\theta^2\right)+\text{const},
+$$
+
+or
+
+$$
+\dot\theta=\frac{C}{\sqrt{1+\theta^2}}.
+$$
+
+This is consistent with energy conservation: the constraint is ideal, so the constraint force does no work, and the speed
+
+$$
+v^2=\dot r^2+r^2\dot\theta^2=a^2\dot\theta^2\left(1+\theta^2\right)=a^2C^2
+$$
+
+is constant, as it must be for a free particle. Using $d\theta=\dot\theta\,dt$, we obtain
+
+$$
+dt=\frac{\sqrt{1+\theta^2}}{C}\,d\theta,
+$$
+
+which integrates to
+
+$$
+\boxed{\ \theta\sqrt{1+\theta^2}+\operatorname{arcsinh}\theta=At+B\ }
+$$
+
+for constants $A$ and $B$. This is a relation between $t$ and $\theta$; it cannot be inverted to give $\theta(t)$ in closed form. As is usually the case in Lagrangian mechanics, the equations of motion themselves, together with the expression for the constraint force, are the real result.
