@@ -580,7 +580,39 @@ $$
 u(\theta)=\frac{mk}{\ell^2}\left[1+e\cos(\theta-\theta')\right],
 $$
 
-where $e\ge0$ and $\theta'$ are constants of integration. Tong makes the same observation: for the inverse-square potential the orbit equation is just the equation for a harmonic oscillator, albeit with its centre displaced [Tong §5.4.1](/chapters/ch-97.html#b-p3269-b0002).
+where $e\ge0$ and $\theta'$ are constants of integration. 
+
+>Let $C=\frac{mk}{\ell^2}.$ Binet's equation becomes
+>\[
+>\frac{d^2u}{d\theta^2}+u=C.
+>\]
+>A constant solution is $u=C$: its second derivative is zero, so it satisfies the equation.
+>
+>Now write $u(\theta)=C+v(\theta).$
+>
+>Substituting gives $\frac{d^2v}{d\theta^2}+C+v=C,$
+>
+>and therefore
+>\[
+>\frac{d^2v}{d\theta^2}+v=0
+>\]
+>This is the harmonic oscillator equation, whose general solution is $v(\theta)=A\cos\theta+B\sin\theta.$
+>
+>Thus, $u(\theta)=C+A\cos\theta+B\sin\theta.$
+>
+>Here the “oscillation” is **with respect to the angle $\theta$**, not necessarily with respect to time.
+>
+>Any combination $A\cos\theta+B\sin\theta$ can be written as a single shifted cosine: $A\cos\theta+B\sin\theta =D\cos(\theta-\theta'),$
+>
+>because $D\cos(\theta-\theta') =D\cos\theta'\cos\theta+D\sin\theta'\sin\theta.$
+>
+>So $A=D\cos\theta'$ and $B=D\sin\theta'$. Defining the dimensionless amplitude $e=D/C$, we obtain
+>\[
+>\boxed{ u(\theta)=\frac{mk}{\ell^2} \left[1+e\cos(\theta-\theta')\right]. }
+>\]
+>The two arbitrary constants are now $e$ and $\theta'$, instead of $A$ and $B$.
+>
+>
 
 In terms of $r=1/u$,
 
@@ -590,18 +622,77 @@ $$
 p=\frac{\ell^2}{mk}.}
 $$
 
-The constant $p$ is the **semi-latus rectum** (半通径). The angle $\theta'$ orients the orbit; choosing $\theta'=0$ places periapsis at $\theta=0$.
+The constant $p$ is the **semi-latus rectum** (半通径) and $e$ is the **eccentricity** (偏心率). The angle $\theta'$ orients the orbit; choosing $\theta'=0$ places periapsis at $\theta=0$.
+
+>Assume $\theta'=0$. The distances from the focus to the two ends of the ellipse are
+>
+>$r(0)=\frac{p}{1+e}=a-c,\qquad r(\pi)=\frac{p}{1-e}=a+c.$
+>
+>Thus the geometric eccentricity is
+>
+>$\boxed{\frac{c}{a} =\frac{r(\pi)-r(0)}{r(\pi)+r(0)} =e.}$
+>
+>Meanwhile, $r(\pi/2)=p$ is the distance perpendicular to the major axis **from the focus**, not the center, so it is not $b$.
+
+
+
+> This is an **ellipse provided $0\le e<1$ and $p>0$**. Here, $e$ is the *eccentricity*, and $\theta'$ just rotates the curve.
+>
+> Measure the angle from the direction $\theta'$, setting $\phi=\theta-\theta',\qquad x=r\cos\phi,\qquad y=r\sin\phi.$
+>
+> Then $r=\sqrt{x^2+y^2}$, so
+> \[
+> r=\frac{p}{1+e\cos\phi} \quad\Longrightarrow\quad r+ex=p.
+> \]
+>
+> $$
+> \sqrt{x^2+y^2}=p-ex.
+> $$
+>
+> Squaring and rearranging gives $(1-e^2)x^2+y^2+2pex=p^2.$
+>
+> For $e<1$, completing the square yields
+> \[
+> (1-e^2)\left(x+\frac{pe}{1-e^2}\right)^2+y^2 =\frac{p^2}{1-e^2}.
+> \]
+> Dividing through,
+> \[
+> \boxed{ \frac{\left(x+\dfrac{pe}{1-e^2}\right)^2} {\left(\dfrac{p}{1-e^2}\right)^2} + \frac{y^2}{\dfrac{p^2}{1-e^2}} =1. }
+> \]
+> This is exactly the standard equation of an ellipse,
+> \[
+> \frac{(x-x_c)^2}{a^2}+\frac{y^2}{b^2}=1,
+> \]
+> with $a=\frac{p}{1-e^2}, \qquad b=\frac{p}{\sqrt{1-e^2}}, \qquad x_c=-\frac{pe}{1-e^2}=-ae.$
+>
+> An ellipse has the property that the sum of the distances from any point on it to the two foci is $2a$.
+>
+> The two foci lie on the horizontal major axis, at $(-c,0)$ and $(c,0)$.
+>
+> At the top point $(0,b)$, both distances are $\sqrt{c^2+b^2}$. Therefore,
+>
+> $2\sqrt{c^2+b^2}=2a \quad\Longrightarrow\quad c^2=a^2-b^2.$
+>
+> The distance from the center to either focus is
+>
+> $c^2=a^2-b^2=\frac{p^2e^2}{(1-e^2)^2} =a^2e^2$
+>
+> It is now easy to see $e$ is the **eccentricity** (偏心率).
+>
+> Since the center is at $(-ae,0)$, one focus is at $(-ae+c,0)=(0,0).$
+>
+> So **the polar origin is a focus, not the center**. 
 
 ---
 
 ### 6.2 Conic Sections and Eccentricity
 
-The orbit equation is the polar equation of a conic section with one focus at the force center. The dimensionless constant $e$ is the **eccentricity** (偏心率). Goldstein compares the integrated orbit with the general conic equation and concludes that the orbit is always a conic section [Goldstein §3.7](/chapters/ch-19.html#b-p0256-b0006).
+The orbit equation is the polar equation of a conic section (圆锥曲线) with one focus at the force center. The dimensionless constant $e$ is the **eccentricity** (偏心率). Goldstein compares the integrated orbit with the general conic equation and concludes that the orbit is always a conic section [Goldstein §3.7](/chapters/ch-19.html#b-p0256-b0006).
 
-To relate $e$ to the energy, evaluate the energy at periapsis, where $\dot r=0$ and $u=u_{\max}$. With $du/d\theta=0$,
+To relate $e$ to the energy, evaluate the energy at periapsis, where $\dot r=0$ and $u=u_{\max}$. With $du/d\theta=0$ (the radial kinetic energy is zero),
 
 $$
-E=-\frac{k}{r}+\frac{\ell^2}{2mr^2}.
+E=-\frac{k}{r}+\frac{\ell^2}{2mr^2}=-ku + \frac{\ell^2u^2}{2m}.
 $$
 
 At periapsis, the orbit equation gives $u_{\max}=(mk/\ell^2)(1+e)$. Substituting $u_{\max}$ into the energy and simplifying,
@@ -629,7 +720,7 @@ The classification of orbits follows:
 
 **Figure 5.** The four classes of Kepler orbit: circle ($e=0$), ellipse ($0<e<1$), parabola ($e=1$), and hyperbola ($e>1$). The four orbits are drawn with the same periapsis distance and the same direction of closest approach. (Taylor, *Classical Mechanics*, Fig. 8.11.)
 
-Goldstein states the same classification [Goldstein §3.7](/chapters/ch-19.html#b-p0256-b0008). The circular case is the minimum of the effective potential for fixed $\ell$; its radius is
+The circular case is the minimum of the effective potential for fixed $\ell$; its radius is
 
 $$
 r_0=\frac{\ell^2}{mk},
