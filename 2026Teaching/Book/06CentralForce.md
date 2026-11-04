@@ -110,6 +110,9 @@ $$
 \tag{2.2}
 $$
 
+![](CentralForceImage/taylor-8.3-cm-frame.jpg)  
+**Figure 1** In the center-of-mass frame the center of mass is stationary at $O$; the relative position $\mathbf r=\mathbf r_1-\mathbf r_2$ is the position of particle 1 relative to particle 2, so $\mathbf r_1=(m_2/M)\mathbf r$. (Taylor, *Classical Mechanics*, Fig. 8.3.)
+
 For an isolated system the potential can depend only on the relative coordinate: translational invariance forbids dependence on $\mathbf r_1$ and $\mathbf r_2$ separately. Because the force is central, the potential further depends only on the magnitude $r=|\mathbf r|$ [Taylor §8.1](/chapters/ch-79.html#b-p2566-b0004). Write
 
 $$
@@ -141,7 +144,7 @@ $$
 > \]
 > Therefore
 > \[
-> \boxed{ T=\frac12 M\dot{\mathbf R}^{\,2} +\frac12\mu\dot{\mathbf r}^{\,2} }$
+> \boxed{ T=\frac12 M\dot{\mathbf R}^{\,2} +\frac12\mu\dot{\mathbf r}^{\,2} }
 > \]
 
 The kinetic energy separates into center-of-mass and relative parts:
@@ -291,6 +294,9 @@ $$
 
 The right-hand side is constant because $\ell$ is constant. Thus angular-momentum conservation is equivalent to the statement that **the radius vector sweeps out equal areas in equal times**. This is Kepler's second law, and Goldstein stresses that it is a general property of central-force motion, not a special feature of the inverse-square law [Goldstein §3.2](/chapters/ch-19.html#b-p0235-b0008).
 
+![](CentralForceImage/goldstein-3.2-areal-velocity.jpg)  
+**Figure 2** The area $dA=\tfrac12 r^2\,d\theta$ swept out by the radius vector in a time $dt$. The transverse displacement is $r\,d\theta$, perpendicular to the radial direction. (Goldstein, *Classical Mechanics*, Fig. 3.2.)
+
 In a two-body problem the areal velocity refers to the relative coordinate; with $m\to\mu$ it becomes $\ell/(2\mu)$. Equivalently, the relative position vector sweeps out equal areas in equal times. The areas swept out by the two individual bodies about the center of mass are scaled by $(m_2/M)^2$ and $(m_1/M)^2$, respectively, so they are equal to each other only when $m_1=m_2$.
 
 ------
@@ -364,7 +370,10 @@ $$
 \tag{4.8}
 $$
 
-is the angular part of the kinetic energy. 
+is the angular part of the kinetic energy.
+
+![](CentralForceImage/taylor-8.4-effective-potential.jpg)  
+**Figure 3** The effective potential $V_{\text{eff}}(r)=V(r)+\ell^2/(2mr^2)$ for an attractive inverse-square force, shown as the sum of the gravitational potential $V(r)$ and the centrifugal term $\ell^2/(2mr^2)$. At large $r$ the attraction dominates; at small $r$ the centrifugal barrier dominates. (Taylor, *Classical Mechanics*, Fig. 8.4.)
 
 The extra term in the effective potential, **the angular-momentum barrier**, comes from the angular part of the kinetic energy; as the particles get close, **angular-momentum conservation forces the angular velocity to increase**, which raises the kinetic energy and prevents the particles from getting too close (**as the total energy is finite**).
 
@@ -375,6 +384,9 @@ The qualitative classification of orbits now follows from the shape of $V_{\text
 - **Bound orbit.** If the allowed interval of $r$ is bounded, the particle oscillates between a minimum radius (periapsis, 近日点) and a maximum radius (apoapsis, 远日点).
 - **Unbound orbit.** If $E$ exceeds the asymptotic value of $V_{\text{eff}}$ at infinity, the particle escapes to $r\to\infty$.
 - **Radial fall.** If $\ell=0$, then $V_{\text{eff}}=V$ and the centrifugal barrier is absent; an attractive force can pull the particle through the origin.
+
+![](CentralForceImage/taylor-8.5-energy-turning-points.jpg)  
+**Figure 4** For a given energy $E$, radial motion is allowed only where $E\ge V_{\text{eff}}(r)$. For $E>0$ there is one turning point $r_{\min}$ (scattering orbit); for $E<0$ the motion is confined between $r_{\min}$ and $r_{\max}$ (bound orbit). (Taylor, *Classical Mechanics*, Fig. 8.5.)
 
 > **Caution.** The effective potential is a bookkeeping device for the radial coordinate only. It does not replace the full two-dimensional motion. After solving $r(t)$, one must still reconstruct $\theta(t)$ from $\dot\theta=\ell/(mr^2)$.
 
@@ -398,7 +410,10 @@ E_0=V_{\text{eff}}(r_0)=V(r_0)+\frac{\ell^2}{2mr_0^2}.
 \tag{4.10}
 $$
 
-Goldstein obtains the same condition and calls it the elementary condition for a circular orbit: the applied force must be equal and opposite to the reversed effective force of centripetal acceleration [Goldstein §3.3](/chapters/ch-19.html#b-p0242-b0004).
+![](CentralForceImage/goldstein-3.8-circular-orbit.jpg)  
+**Figure 5** The effective potential for an inverse-square force. A circular orbit at $r_0$ corresponds to the minimum of $V_{\text{eff}}$, where the energy line is tangent to the curve. (Goldstein, *Classical Mechanics*, Fig. 3.8.)
+
+Goldstein obtains the same condition and calls it the elementary condition for a circular orbit: the applied force must be equal and opposite to the reversed effective force of centripetal acceleration (向心加速度) [Goldstein §3.3](/chapters/ch-19.html#b-p0242-b0004).
 
 To test stability, expand $V_{\text{eff}}$ about $r_0$. The orbit is stable if $r_0$ is a minimum:
 
@@ -428,7 +443,7 @@ $$
 \tag{4.14}
 $$
 
-Goldstein derives exactly this condition [Goldstein §3.6](/chapters/ch-19.html#b-p0252-b0002). For the power law
+For the power law
 
 $$
 F(r)=-kr^n,
@@ -641,6 +656,9 @@ The classification of orbits follows:
 | $0<e<1$ | $E<0$ | ellipse (椭圆) |
 | $e=0$ | $E=-\dfrac{mk^2}{2\ell^2}$ | circle (圆) |
 
+![](CentralForceImage/taylor-8.11-kepler-conics.jpg)  
+**Figure 6** The four classes of Kepler orbit: circle ($e=0$), ellipse ($0<e<1$), parabola ($e=1$), and hyperbola ($e>1$). The four orbits are drawn with the same periapsis distance and the same direction of closest approach. (Taylor, *Classical Mechanics*, Fig. 8.11.)
+
 Goldstein states the same classification [Goldstein §3.7](/chapters/ch-19.html#b-p0256-b0008). The circular case is the minimum of the effective potential for fixed $\ell$; its radius is
 
 $$
@@ -690,6 +708,9 @@ r_{\min}=a(1-e),
 r_{\max}=a(1+e).
 \tag{6.14}
 $$
+
+![](CentralForceImage/taylor-8.10-kepler-ellipse.jpg)  
+**Figure 7** A bound Kepler orbit is an ellipse with the force center at one focus $O$, not at the geometric center $C$. Here $a$ and $b$ are the semimajor and semiminor axes, $c=\ell^2/(mk)$ is the value of $r$ at $\phi=90^\circ$, and $r_{\min}=a(1-e)$, $r_{\max}=a(1+e)$ are the periapsis and apoapsis distances. (Taylor, *Classical Mechanics*, Fig. 8.10.)
 
 The **vis-viva equation** (活力公式) follows from energy conservation. Since $E=\frac12mv^2-k/r$ and $E=-k/(2a)$,
 
@@ -787,6 +808,9 @@ Two properties of $\mathbf A$ are important:
 
 Thus the LRL vector encodes both the orientation and the eccentricity of the Kepler ellipse. It exists only for the inverse-square force; a general central force does not possess such an algebraic conserved vector. This extra symmetry is the deeper reason why Kepler orbits close.
 
+![](CentralForceImage/goldstein-3.18-lrl-vectors.jpg)  
+**Figure 8** The vectors $\mathbf p$, $\mathbf L$, and $\mathbf A$ at three positions on a Kepler orbit. The LRL vector $\mathbf A$ always points in the same direction (toward periapsis) and has magnitude $mk e$; at perihelion $|\mathbf p\times\mathbf L|=mk(1+e)$ and at aphelion $|\mathbf p\times\mathbf L|=mk(1-e)$. (Goldstein, *Classical Mechanics*, Fig. 3.18.)
+
 ------
 
 ## 7. Bertrand's Theorem and Closed Orbits
@@ -819,6 +843,12 @@ $$
 \Delta\theta_{\text{prec}}=2\pi\left(\frac{1}{\sqrt{n+3}}-1\right).
 \tag{7.2}
 $$
+
+![](CentralForceImage/taylor-8.7a-closed-orbit.jpg)  
+**Figure 9(a)** For any inverse-square force, $r$ returns from $r_{\min}$ to $r_{\max}$ and back to $r_{\min}$ in exactly the time required for the angle to advance by $360^\circ$, so the orbit closes after one revolution. (Taylor, *Classical Mechanics*, Fig. 8.7a.)
+
+![](CentralForceImage/taylor-8.7b-precessing-orbit.jpg)  
+**Figure 9(b)** For a general central force the radial period differs from the angular period, so the orbit does not close after one revolution; here the radial cycle repeats while the angle advances by about $330^\circ$. (Taylor, *Classical Mechanics*, Fig. 8.7b.)
 
 The orbit closes after a finite number of radial cycles exactly when $\sqrt{n+3}$ is rational. For $n=-2$, $\sqrt{n+3}=1$ and the apsidal angle is $\pi$: the orbit closes after one revolution. For $n=1$, $\sqrt{n+3}=2$ and the apsidal angle is $\pi/2$: the orbit closes after two radial cycles, which is the familiar centered ellipse of the isotropic oscillator. In both Bertrand cases the net precession over the full closed cycle is zero.
 
@@ -870,6 +900,9 @@ $$
 E=V_{\text{eff}}(r_m)=V(r_m)+\frac{\ell^2}{2mr_m^2}.
 \tag{8.5}
 $$
+
+![](CentralForceImage/goldstein-3.20-scattering-geometry.jpg)  
+**Figure 10** Geometry of repulsive scattering. The particle approaches from infinity, reaches the distance of closest approach $r_m$, and recedes. The angle $\Psi$ is measured between $r_m$ and the symmetry axis, and the scattering angle is $\Theta=\pi-2\Psi$. (Goldstein, *Classical Mechanics*, Fig. 3.20.)
 
 For an attractive potential, the same formulas apply with the sign of $V$ reversed, but additional phenomena such as orbiting and glory scattering can occur.
 
@@ -1036,6 +1069,12 @@ $$
 - If $1<\alpha<\sqrt2$, the speed is increased but the energy is still negative; the burn point becomes the periapsis, and $e=\alpha^2-1$. The orbit is an ellipse with $r_{\min}=r_0$.
 - If $\alpha=\sqrt2$, then $E=0$ and $e=1$: the orbit is a parabola.
 - If $\alpha>\sqrt2$, then $E>0$ and $e>1$: the orbit is a hyperbola.
+
+![](CentralForceImage/taylor-8.12a-forward-impulse.jpg)  
+**Figure 11(a)** Changing a circular orbit by a forward tangential impulse at $P$: the speed increases, $P$ remains the periapsis, and the new orbit is a larger ellipse drawn dashed outside the original solid orbit. (Taylor, *Classical Mechanics*, Fig. 8.12a.)
+
+![](CentralForceImage/taylor-8.12b-backward-impulse.jpg)  
+**Figure 11(b)** A backward tangential impulse at $P$: the speed decreases and the new orbit is a smaller ellipse drawn dashed inside the original orbit. For the right impulse the new orbit becomes circular; a still stronger backward impulse makes $P$ the apoapsis. (Taylor, *Classical Mechanics*, Fig. 8.12b.)
 
 **Checks.** At $\alpha=1$, (10.3) gives $a=r_0$ and (10.4) gives $e=0$, consistent with the original circle. At $\alpha\to\sqrt2$, $a\to\infty$ and $e\to1$, consistent with the parabolic threshold. The periapsis and apoapsis formulas (6.14) reproduce $r_0$ in both the $\alpha<1$ and $\alpha>1$ cases, as they must because the burn point is a turning point.
 
