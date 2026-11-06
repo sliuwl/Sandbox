@@ -858,8 +858,9 @@ $$
 
 ## 16. Example: Plane Rotor with Variable Radius
 
-We consider a point mass \(m\) moving in a vertical plane with polar coordinates \((r,\theta)\), where \(r\) may vary with time. The virtual displacement is
+<img src="LectureNotesFigures/04pendulum2.png" alt="pendulum2" style="zoom:33%;" />
 
+We consider a point mass \(m\) moving in a vertical plane with polar coordinates \((r,\theta)\), where \(r\) may vary with time. The virtual displacement is
 \[
 \delta \mathbf r=\mathbf e_r\,\delta r+r\mathbf e_\theta\,\delta\theta .
 \]
