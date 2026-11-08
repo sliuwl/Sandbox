@@ -492,8 +492,9 @@ $$
 u=\frac{1}{r}.
 $$
 
-Then
+It is easy to get $dr = -\frac{1}{u^2}du$.
 
+Then
 $$
 \frac{dr}{d\theta}=-\frac{1}{u^2}\frac{du}{d\theta},
 \qquad
@@ -551,7 +552,7 @@ $$
 =\frac{2mE}{\ell^2}-\frac{2m}{\ell^2}V\!\left(\frac1u\right)-u^2.}
 $$
 
-This is the orbit first integral. Turning points of the orbit occur where $du/d\theta=0$ (the radial kinetic energy is zero), that is, where $E=V_{\text{eff}}(r)$. The orbit equation is symmetric about two adjacent turning points: if $u(\theta)$ solves the first integral, so does $u(-\theta)$, so the orbit has the same shape on both sides of an apse (拱点). Goldstein proves this symmetry and then integrates the first integral by quadrature [Goldstein §3.5](/chapters/ch-19.html#b-p0249-b0007).
+This is the orbit first integral. Turning points of the orbit occur where $du/d\theta=0$ (the radial kinetic energy is zero), that is, where $E=V_{\text{eff}}(r)$. The orbit equation is symmetric about two adjacent turning points: if $u(\theta)$ solves the first integral, so does $u(-\theta)$, so the orbit has the same shape on both sides of an apse (拱点，复数为apsis). Goldstein proves this symmetry and then integrates the first integral by quadrature [Goldstein §3.5](/chapters/ch-19.html#b-p0249-b0007).
 
 ---
 
@@ -622,11 +623,13 @@ $$
 p=\frac{\ell^2}{mk}.}
 $$
 
-The constant $p$ is the **semi-latus rectum** (半通径) and $e$ is the **eccentricity** (偏心率). The angle $\theta'$ orients the orbit; choosing $\theta'=0$ places periapsis at $\theta=0$.
+The constant $p$ is the **semi-latus rectum** (半通径) and $e$ is the **eccentricity** (偏心率). The angle $\theta'$ orients the orbit; choosing $\theta'=0$ places periapsis (近拱点) at $\theta=0$.
 
 >Assume $\theta'=0$. The distances from the focus to the two ends of the ellipse are
 >
 >$r(0)=\frac{p}{1+e}=a-c,\qquad r(\pi)=\frac{p}{1-e}=a+c.$
+>
+>Here, $r(0)$ is the **periapsis** (近拱点), the closest point to the focus, and $r(\pi)$ is the **apoapsis** (远拱点), the farthest point from the focus. $a$ is the **semi-major axis** of the ellipse. It is half of the longest width of the ellipse, measured from the center to either end along the major axis. $c$ is the **focal distance**. It is the distance from the center of the ellipse to one focus.
 >
 >Thus the geometric eccentricity is
 >
@@ -687,7 +690,7 @@ The constant $p$ is the **semi-latus rectum** (半通径) and $e$ is the **eccen
 
 ### 6.2 Conic Sections and Eccentricity
 
-The orbit equation is the polar equation of a conic section (圆锥曲线) with one focus at the force center. The dimensionless constant $e$ is the **eccentricity** (偏心率). Goldstein compares the integrated orbit with the general conic equation and concludes that the orbit is always a conic section [Goldstein §3.7](/chapters/ch-19.html#b-p0256-b0006).
+The orbit equation is the polar equation of a **conic section** (圆锥曲线) with one focus at the force center. The dimensionless constant $e$ is the **eccentricity** (偏心率). Goldstein compares the integrated orbit with the general conic equation and concludes that the orbit is always a conic section [Goldstein §3.7](/chapters/ch-19.html#b-p0256-b0006).
 
 To relate $e$ to the energy, evaluate the energy at periapsis, where $\dot r=0$ and $u=u_{\max}$. With $du/d\theta=0$ (the radial kinetic energy is zero),
 
@@ -732,20 +735,118 @@ obtained from the circular-orbit condition with $F=-k/r^2$.
 
 ### 6.3 Energy, Semimajor Axis, and the Vis-Viva Equation
 
-For the ellipse, the semimajor axis $a$ is related to the energy by
+For the bound ellipse, the semimajor axis $a$ is fixed by the energy alone:
 
 $$
+\boxed{a=-\frac{k}{2E}}.
+$$
+
+**Derivation from the turning points.** At either apsis, $\dot r=0$, so the radial kinetic energy vanishes. Substituting $du/d\theta=0$ and $V(1/u)=-ku$ into the orbit first integral of Section 5.2,
+$$
+\left(\frac{du}{d\theta}\right)^2
+=\frac{2mE}{\ell^2}-\frac{2m}{\ell^2}V\!\left(\frac1u\right)-u^2,
+$$
+
+leaves
+
+$$
+E=\frac{\ell^2u^2}{2m}-ku.
+$$
+
+Rearranging this as a quadratic equation in $u$,
+
+$$
+u^2-\frac{2mk}{\ell^2}u-\frac{2mE}{\ell^2}=0.
+$$
+
+Its two roots are the reciprocal distances at the two apsides, $u_1=1/r_{\min}$ and $u_2=1/r_{\max}$. By Vieta's formulas (韦达定理),
+
+$$
+u_1+u_2=\frac{2mk}{\ell^2},
+\qquad
+u_1u_2=-\frac{2mE}{\ell^2}.
+$$
+
+>For a quadratic equation
+>
+>$ax^2+bx+c=0$
+>
+>with roots $r_1$ and $r_2$, **Vieta’s formulas** say
+>
+>$r_1+r_2=-\frac{b}{a},\qquad r_1r_2=\frac{c}{a}.$
+>
+>
+>
+
+Because $u=1/r$, the sum of the apsidal distances is
+
+$$
+r_{\min}+r_{\max}
+=\frac{1}{u_1}+\frac{1}{u_2}
+=\frac{u_1+u_2}{u_1u_2}
+=-\frac{k}{E}.
+$$
+
+From the geometry of Section 6.1, the focus lies between the two ends of the major axis at distances $a-c$ and $a+c$, so $r_{\min}+r_{\max}=2a$. Therefore
+
+$$
+2a=-\frac{k}{E}
+\quad\Longrightarrow\quad
 a=-\frac{k}{2E}.
 $$
 
-Goldstein derives this from the turning-point equation [Goldstein §3.7](/chapters/ch-19.html#b-p0257-b0008). The eccentricity can also be written as
+Since $a>0$ and $k>0$, this relation also shows that a bound ellipse requires $E<0$. The product of the roots gives the eccentricity as a by-product: from the orbit equation the roots are $u_1=(mk/\ell^2)(1+e)$ and $u_2=(mk/\ell^2)(1-e)$, so
+
+$$
+u_1u_2=\left(\frac{mk}{\ell^2}\right)^2(1-e^2)
+=-\frac{2mE}{\ell^2}
+\quad\Longrightarrow\quad
+e=\sqrt{1+\frac{2E\ell^2}{mk^2}},
+$$
+
+in agreement with Section 6.2. Goldstein derives $a=-k/(2E)$ from the same turning-point equation [Goldstein §3.7](/chapters/ch-19.html#b-p0257-b0008).
+
+**Derivation from the ellipse geometry.** With $\theta'=0$ in the orbit equation, the apsidal distances are
+
+$$
+r_{\min}=\frac{p}{1+e},
+\qquad
+r_{\max}=\frac{p}{1-e}.
+$$
+
+Their sum is the major axis $2a$:
+
+$$
+2a=r_{\min}+r_{\max}
+=\frac{p}{1+e}+\frac{p}{1-e}
+=\frac{2p}{1-e^2},
+$$
+
+hence
+
+$$
+a=\frac{p}{1-e^2}.
+$$
+
+Now substitute $p=\ell^2/(mk)$ and $e^2=1+2E\ell^2/(mk^2)$:
+
+$$
+a=\frac{\ell^2/(mk)}{1-\left(1+\dfrac{2E\ell^2}{mk^2}\right)}
+=\frac{\ell^2/(mk)}{-\dfrac{2E\ell^2}{mk^2}}
+=-\frac{k}{2E}.
+$$
+
+The two routes give the same result. Either way, we can now write the eccentricity in terms of $a$ by rearranging $a=p/(1-e^2)$:
 
 $$
 e=\sqrt{1-\frac{\ell^2}{mka}}.
 $$
 
-Comparing the two expressions for $e$ gives the useful combination
+This is equivalent to $e^2=1+2E\ell^2/(mk^2)$ once $a=-k/(2E)$ is substituted. 
 
+
+
+Rearranging $p=a(1-e^2)$ with $p=\ell^2/(mk)$ gives the useful combination
 $$
 \frac{\ell^2}{mk}=a(1-e^2),
 $$
@@ -781,6 +882,8 @@ $$
 $$
 
 For a planet of negligible mass orbiting a star of mass $M_\star$, $k/m=GM_\star$, and the vis-viva equation becomes the familiar $v^2=GM_\star(2/r-1/a)$.
+
+The **vis-viva equation** gives the speed of an object at any point along its orbit. It shows that the speed depends only on the object’s current distance $r$ from the central body and the semi-major axis $a$ of the orbit. When the object is closer to the central body, it moves faster; when it is farther away, it moves slower. Thus, the equation is a quick way to compute orbital speed without solving the full orbit.
 
 ---
 
@@ -848,12 +951,48 @@ $$
 
 Hence the right-hand side of the definition of $\mathbf A$ has zero time derivative, so $\mathbf A$ is conserved. Goldstein carries out this algebra explicitly [Goldstein §3.9](/chapters/ch-19.html#b-p0265-b0005).
 
+> Use the vector triple product identity
+>
+> $\mathbf A\times(\mathbf B\times \mathbf C) = \mathbf B(\mathbf A\cdot \mathbf C) - \mathbf C(\mathbf A\cdot \mathbf B).$
+>
+> Here take
+>
+> $\mathbf A=\hat{\mathbf r},\qquad \mathbf B=\mathbf r,\qquad \mathbf C=\dot{\mathbf r}.$
+>
+> Then
+>
+> $\hat{\mathbf r}\times(\mathbf r\times \dot{\mathbf r}) = \mathbf r(\hat{\mathbf r}\cdot \dot{\mathbf r}) - \dot{\mathbf r}(\hat{\mathbf r}\cdot \mathbf r).$
+>
+> Now use $\mathbf r=r\hat{\mathbf r},$ $\hat{\mathbf r}\cdot \mathbf r=r,$ and $\hat{\mathbf r}\cdot \dot{\mathbf r}=\dot r.$
+>
+> Therefore, $\hat{\mathbf r}\times(\mathbf r\times \dot{\mathbf r}) = \mathbf r \dot r-r\dot{\mathbf r}.$
+>
+> Since $\mathbf r=r\hat{\mathbf r}$, $\mathbf r \dot r = r\dot r\,\hat{\mathbf r}.$
+>
+> Also, $\dot{\mathbf r} = \dot r\,\hat{\mathbf r}+r\dot{\hat{\mathbf r}}.$
+>
+> Thus, $r\dot{\mathbf r} = r\dot r\,\hat{\mathbf r}+r^2\dot{\hat{\mathbf r}}.$
+>
+> So $\mathbf r\dot r-r\dot{\mathbf r} = r\dot r\,\hat{\mathbf r} - \left(r\dot r\,\hat{\mathbf r}+r^2\dot{\hat{\mathbf r}}\right).$
+>
+> Hence $\hat{\mathbf r}\times(\mathbf r\times \dot{\mathbf r}) = -r^2\dot{\hat{\mathbf r}}.$
+>
+> Now substitute this into the expression: $-\frac{k}{r^2}\hat{\mathbf r}\times \mathbf L = -\frac{k}{r^2}\hat{\mathbf r}\times \left(m\mathbf r\times\dot{\mathbf r}\right).$
+>
+> So $-\frac{k}{r^2}\hat{\mathbf r}\times \mathbf L = -\frac{mk}{r^2} \left[ \hat{\mathbf r}\times(\mathbf r\times\dot{\mathbf r}) \right].$
+>
+> Using the result above, $-\frac{mk}{r^2} \left(-r^2\dot{\hat{\mathbf r}}\right) = mk\dot{\hat{\mathbf r}}.$
+>
+> Therefore,
+>
+> $\boxed{ \frac{d}{dt}\left(\mathbf p\times\mathbf L\right) = mk\frac{d\hat{\mathbf r}}{dt} }.$
+
 Two properties of $\mathbf A$ are important:
 
 1. $\mathbf A\cdot\mathbf L=0$, so $\mathbf A$ lies in the orbital plane.
 2. Its magnitude is $|\mathbf A|=mk e$; it points toward periapsis.
 
-Thus the LRL vector encodes both the orientation and the eccentricity of the Kepler ellipse. It exists only for the inverse-square force; a general central force does not possess such an algebraic conserved vector. This extra symmetry is the deeper reason why Kepler orbits close.
+Thus the LRL vector encodes both the orientation and the eccentricity of the Kepler ellipse. It exists only for the inverse-square force; a general central force does not possess such an algebraic conserved vector. This extra symmetry is the deeper reason why Kepler orbits close.  In simple words, **the Laplace–Runge–Lenz vector tells us where the ellipse points and how stretched it is**.
 
 ![LRL vectors](CentralForceImage/goldstein-3.18-lrl-vectors.jpg)
 
@@ -1022,31 +1161,6 @@ Goldstein also discusses attractive scattering, where the effective potential ca
 
 ---
 
-## 9. Limits, Counterexamples, and Assumptions
-
-The derivations above rest on a set of assumptions. It is worth stating them explicitly, together with the limits in which they fail.
-
-**Assumptions.**
-
-1. **Point masses and a fixed force center.** The one-body reduction treats the source as fixed in an inertial frame, or equivalently works in the center-of-mass frame. Finite-size bodies, mass multipoles, and the back-reaction of the source are neglected.
-2. **Isolated two-body system.** The interaction is the only force. In the Solar System, perturbations by other planets, radiation pressure, and tidal effects are neglected in the first approximation.
-3. **Conservative central force.** The potential depends only on $r$, and there is no dissipation. Drag, radiation reaction, and non-central perturbations lie outside the scope of this chapter.
-4. **Nonrelativistic mechanics.** Velocities are small compared with $c$. Relativistic corrections produce perihelion precession, which is not captured by the Newtonian Kepler problem.
-5. **Smooth potentials.** The effective-potential analysis assumes $V(r)$ is differentiable and that the relevant extremum is isolated. Singular potentials require separate treatment.
-
-**Important limits and counterexamples.**
-
-- **Zero angular momentum.** If $\ell=0$, the centrifugal barrier vanishes, $V_{\text{eff}}=V$, and the motion is a straight line through the force center. An attractive inverse-square force then produces radial free fall, not an ellipse. The orbit equation degenerates because $p=0$.
-- **Circular-orbit stability.** The condition $n>-3$ for $F=-kr^n$ shows that a $1/r^3$ force is marginal and a steeper attractive force is unstable. For $n<-3$, a small radial perturbation grows exponentially; at $n=-3$ the linear stability analysis is inconclusive and higher-order terms decide the outcome.
-- **Non-Bertrand force laws.** For a generic power law with $n\ne-2,1$, bound orbits are not closed. Near-circular orbits precess by the angle derived in Section 7 per revolution. The precession is a genuine prediction of the Newtonian central-force model, not a relativistic effect.
-- **Hooke versus Kepler geometry.** Both $F=-kr$ and $F=-k/r^2$ give closed ellipses, but the force center is at the center of the ellipse for Hooke's law and at a focus for the inverse-square law. The two orbits coincide only in the circular limit.
-- **Scattering singularities.** For a pure Coulomb potential the total cross section diverges, and the differential cross section diverges in the forward direction. For attractive potentials, orbiting can make $\Theta(b)$ non-monotonic, so the simple one-branch cross-section formula must be generalized.
-- **Many-body effects.** The two-body reduction is exact only for an isolated pair. A third body breaks the isolation that made the relative angular momentum conserved; for generic initial conditions the motion is non-integrable and often chaotic. Goldstein treats the three-body problem separately in §3.12, “The Three-Body Problem” [Goldstein §3.12](/chapters/ch-19.html#b-p0283-b0001).
-
-> **What the theorem does not claim.** Bertrand's theorem is a statement about the closure of *all* bound orbits for a given force law. It is not a statement that every non-Bertrand orbit is open, and it is not a statement about stability of circular orbits, which is governed by the separate stability condition derived in Section 4.3.
-
----
-
 ## 10. Worked Examples
 
 The following examples are **self-authored** (自编例题). They are not taken from the reference books, although they use the general results derived above.
@@ -1168,28 +1282,6 @@ $$
 - **Constant force, $n=0$.** Then $\ell^2=mkr_0^3$, $E=3kr_0/2$, and $\omega_r/\omega_\theta=\sqrt3$. The ratio is irrational, so near-circular orbits do not close; the pericenters precess.
 
 **Checks.** For $n=-2$, the circular energy is $E=-k/(2r_0)$, in agreement with $a=r_0$ for a circular orbit. For $n=1$, the potential is $V=\frac12kr^2$ and the circular energy is $E=kr_0^2$, which equals $V(r_0)+\frac12mv_\theta^2$ because the kinetic and potential contributions are equal for a circular Hooke orbit.
-
----
-
-## 11. Exercises
-
-These exercises are self-authored and are intended to be solved from the derivations in this chapter.
-
-1. **Areal velocity.** Starting from $\mathbf L=\mathbf r\times\mathbf p$, show that $dA/dt=\ell/(2m)$ for any central force. Explain why the result does not depend on the form of $V(r)$.
-
-2. **Effective potential for the isotropic oscillator.** For $F=-kr$, write $V_{\text{eff}}(r)$ and sketch it for several values of $\ell$. Find the circular radius and show that $\omega_r/\omega_\theta=2$. Explain why all bound orbits are centered ellipses.
-
-3. **Power-law stability.** For $F=-kr^n$, derive the circular radius, the circular energy, and the stability condition $n>-3$. Show that the apsidal angle of a near-circular orbit is $\pi/\sqrt{n+3}$.
-
-4. **Binet's equation.** Derive Binet's equation from the radial equation and the angular-momentum relation. Check the sign of the right-hand side for both attractive and repulsive inverse-square forces.
-
-5. **Kepler classification.** From the eccentricity–energy relation, show that $E<0$, $E=0$, and $E>0$ correspond to $e<1$, $e=1$, and $e>1$. Show that the circular orbit has $E=-mk^2/(2\ell^2)$.
-
-6. **Tangential impulse.** Repeat the calculation of Section 10.1 for $\alpha=1.1$. Compute $a$, $e$, $r_{\min}$, and $r_{\max}$, and verify that the burn point is the periapsis.
-
-7. **Rutherford cross section.** Derive $b(\Theta)$ and $\sigma(\Theta)$ for the repulsive Coulomb potential. Show that $\sigma(60^\circ)/\sigma(90^\circ)=4$ at fixed energy.
-
-8. **Precession.** Using the precession formula of Section 7, compute the precession per radial cycle for $n=-3/2$, $n=0$, and $n=1/2$. Which of these force laws give closed orbits for all bound energies, according to Bertrand's theorem?
 
 ---
 
