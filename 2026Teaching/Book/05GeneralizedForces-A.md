@@ -1,5 +1,7 @@
 # Generalized Forces (Part A)
 
+**Reading material:** Chapter 7 of *Classical Mechanics* by John R. Taylor; Chapter 1 of *Classical Mechanics* by Goldstein, Poole, Safko
+
 ## Table of Contents
 
 1. [Newton's Second Law in Polar Coordinates](#1-newtons-second-law-in-polar-coordinates)
@@ -12,12 +14,15 @@
    - [2.2 Method 2: Velocity-Dependent Potential](#22-method-2-velocity-dependent-potential)
 3. [Lorentz Force](#3-lorentz-force)
    - [3.1 Lorentz Force as a Generalized Force](#31-lorentz-force-as-a-generalized-force)
-   - [3.2 Uniform Magnetic Field in the z-Direction](#32-uniform-magnetic-field-in-the-z-direction)
+   - [3.2 Uniform Magnetic Field in the z Direction](#32-uniform-magnetic-field-in-the-z-direction)
    - [3.3 Helical Trajectory](#33-helical-trajectory)
    - [3.4 Velocity-Dependent Potential for Electromagnetism](#34-velocity-dependent-potential-for-electromagnetism)
+     - [3.4.1 Detailed Derivation](#341-detailed-derivation)
 4. [Friction and Dissipation](#4-friction-and-dissipation)
    - [4.1 Examples of Friction](#41-examples-of-friction)
    - [4.2 Free Particle Under Friction](#42-free-particle-under-friction)
+     - [4.2.1 Linear Drag](#421-linear-drag)
+     - [4.2.2 Quadratic Drag](#422-quadratic-drag)
    - [4.3 Generalized Friction Force and the Dissipation Function](#43-generalized-friction-force-and-the-dissipation-function)
 5. [Damped Pendulum](#5-damped-pendulum)
 
@@ -237,7 +242,7 @@ $$
 
 ------
 
-### 3.2 Uniform Magnetic Field in the z-Direction
+### 3.2 Uniform Magnetic Field in the z Direction
 
 Consider the special case
 
@@ -254,7 +259,7 @@ $$
 Evaluating the cross product,
 
 $$
-\vec v\times\vec B = 
+\vec v\times\vec B =
 \begin{vmatrix}
 \hat x & \hat y & \hat z \\
 \dot x & \dot y & \dot z \\
@@ -331,177 +336,130 @@ $$
 
 where $\phi$ is the scalar potential and $\vec A$ is the vector potential, with $\vec E=-\nabla\phi-\partial\vec A/\partial t$ and $\vec B=\nabla\times\vec A$. Substituting this $U$ into the expression for $Q_i$ reproduces exactly the Lorentz force. Thus the full electromagnetic dynamics can be encoded in the Lagrangian $L=T-U$.
 
->For electromagnetism, use the velocity-dependent potential
-> 
-> \[
-> U(\vec r,\vec v,t)
-> =
-> q\phi(\vec r,t)-q\,\vec A(\vec r,t)\cdot \vec v
-> \]
-> 
-> In Cartesian coordinates,
-> 
-> \[
-> U
-> =
-> q\phi-qA_j\dot x_j
-> \]
-> 
-> where repeated indices are summed. Then
-> 
-> \[
-> -\frac{\partial U}{\partial x_i}
-> =
-> -q\frac{\partial \phi}{\partial x_i}
-> +
-> q\frac{\partial A_j}{\partial x_i}\dot x_j
-> \]
-> 
-> Also,
-> 
-> \[
-> \frac{\partial U}{\partial \dot x_i}
-> =
-> -qA_i
-> \]
-> 
-> so
-> 
-> \[
-> \frac{d}{dt}\left(\frac{\partial U}{\partial \dot x_i}\right)
-> =
-> -q\frac{dA_i}{dt}
-> \]
-> 
-> Since \(A_i=A_i(\vec r,t)\),
-> 
-> \[
-> \frac{dA_i}{dt}
-> =
-> \frac{\partial A_i}{\partial t}
-> +
-> \frac{\partial A_i}{\partial x_j}\dot x_j
-> \]
-> 
-> Therefore,
-> 
-> \[
-> \frac{d}{dt}\left(\frac{\partial U}{\partial \dot x_i}\right)
-> =
-> -q\frac{\partial A_i}{\partial t}
-> -
-> q\frac{\partial A_i}{\partial x_j}\dot x_j
-> \]
-> 
-> Combining terms,
-> 
-> \[
-> Q_i
-> =
-> -q\frac{\partial \phi}{\partial x_i}
-> +
-> q\frac{\partial A_j}{\partial x_i}\dot x_j
-> -
-> q\frac{\partial A_i}{\partial t}
-> -
-> q\frac{\partial A_i}{\partial x_j}\dot x_j
-> \]
-> 
-> Thus,
-> 
-> \[
-> Q_i
-> =
-> q\left(
-> -\frac{\partial \phi}{\partial x_i}
-> -
-> \frac{\partial A_i}{\partial t}
-> \right)
-> +
-> q\left(
-> \frac{\partial A_j}{\partial x_i}
-> -
-> \frac{\partial A_i}{\partial x_j}
-> \right)\dot x_j
-> \]
-> 
-> Using
-> 
-> \[
-> E_i
-> =
-> -\frac{\partial \phi}{\partial x_i}
-> -
-> \frac{\partial A_i}{\partial t}
-> \]
-> 
-> and
-> 
-> \[
-> (\vec v\times \vec B)_i
-> =
-> \left(
-> \frac{\partial A_j}{\partial x_i}
-> -
-> \frac{\partial A_i}{\partial x_j}
-> \right)v_j
-> \]
-> 
-> with
-> 
-> \[
-> \vec B=\nabla\times \vec A
-> \]
-> 
-> we obtain
-> 
-> \[
-> Q_i
-> =
-> qE_i
-> +
-> q(\vec v\times \vec B)_i
-> \]
-> 
-> Therefore,
-> 
-> \[
-> \vec Q
-> =
-> q\left(\vec E+\vec v\times \vec B\right)
-> \]
-> 
-> So the electromagnetic velocity-dependent potential gives exactly the Lorentz force:
-> 
-> \[
-> \boxed{\vec F=q\left(\vec E+\vec v\times \vec B\right)}
-> \]
-> 
-> The corresponding nonrelativistic Lagrangian is
-> 
-> \[
-> L=T-U
-> \]
-> 
-> so
-> 
-> \[
-> L
-> =
-> \frac12 mv^2
-> -
-> \left(q\phi-q\vec A\cdot \vec v\right)
-> \]
-> 
-> or
-> 
-> \[
-> \boxed{
-> L
-> =
-> \frac12 mv^2+q\vec A\cdot \vec v-q\phi
-> }
-> \]
+------
+
+#### 3.4.1 Detailed Derivation
+
+For electromagnetism, we use the velocity-dependent potential
+
+$$
+U(\vec r,\vec v,t)=q\phi(\vec r,t)-q\,\vec A(\vec r,t)\cdot\vec v.
+$$
+
+In Cartesian coordinates, with repeated indices summed,
+
+$$
+U=q\phi-qA_j\dot x_j.
+$$
+
+Then
+
+$$
+-\frac{\partial U}{\partial x_i}
+=-q\frac{\partial \phi}{\partial x_i}
++q\frac{\partial A_j}{\partial x_i}\dot x_j.
+$$
+
+Also,
+
+$$
+\frac{\partial U}{\partial \dot x_i}=-qA_i,
+$$
+
+so
+
+$$
+\frac{d}{dt}\left(\frac{\partial U}{\partial \dot x_i}\right)=-q\frac{dA_i}{dt}.
+$$
+
+Since $A_i=A_i(\vec r,t)$,
+
+$$
+\frac{dA_i}{dt}
+=\frac{\partial A_i}{\partial t}
++\frac{\partial A_i}{\partial x_j}\dot x_j.
+$$
+
+Therefore,
+
+$$
+\frac{d}{dt}\left(\frac{\partial U}{\partial \dot x_i}\right)
+=-q\frac{\partial A_i}{\partial t}
+-q\frac{\partial A_i}{\partial x_j}\dot x_j.
+$$
+
+Combining terms,
+
+$$
+Q_i
+=-q\frac{\partial \phi}{\partial x_i}
++q\frac{\partial A_j}{\partial x_i}\dot x_j
+-q\frac{\partial A_i}{\partial t}
+-q\frac{\partial A_i}{\partial x_j}\dot x_j.
+$$
+
+Thus,
+
+$$
+Q_i
+=q\left(-\frac{\partial \phi}{\partial x_i}-\frac{\partial A_i}{\partial t}\right)
++q\left(\frac{\partial A_j}{\partial x_i}-\frac{\partial A_i}{\partial x_j}\right)\dot x_j.
+$$
+
+Using
+
+$$
+E_i=-\frac{\partial \phi}{\partial x_i}-\frac{\partial A_i}{\partial t}
+$$
+
+and
+
+$$
+(\vec v\times\vec B)_i
+=\left(\frac{\partial A_j}{\partial x_i}-\frac{\partial A_i}{\partial x_j}\right)v_j,
+$$
+
+with
+
+$$
+\vec B=\nabla\times\vec A,
+$$
+
+we obtain
+
+$$
+Q_i=qE_i+q(\vec v\times\vec B)_i.
+$$
+
+Therefore,
+
+$$
+\vec Q=q\left(\vec E+\vec v\times\vec B\right).
+$$
+
+So the electromagnetic velocity-dependent potential gives exactly the Lorentz force:
+
+$$
+\boxed{\vec F=q\left(\vec E+\vec v\times\vec B\right)}.
+$$
+
+The corresponding nonrelativistic Lagrangian is
+
+$$
+L=T-U,
+$$
+
+so
+
+$$
+L=\frac12 mv^2-\left(q\phi-q\vec A\cdot\vec v\right),
+$$
+
+or
+
+$$
+\boxed{L=\frac12 mv^2+q\vec A\cdot\vec v-q\phi}.
+$$
 
 ------
 
@@ -559,140 +517,97 @@ $$
 
 Thus the energy decreases monotonically, as expected for a dissipative force.
 
+------
 
-
-#### Linear drag: why \(n=1\)
+#### 4.2.1 Linear Drag
 
 A simple way to understand why linear drag occurs is to consider an object moving **slowly** through a viscous fluid.
 
-At very low speeds, the flow around the object is smooth and steady. In this regime, the dominant resistance comes from the fluid’s **viscosity**, not from turbulence or wake formation.
+At very low speeds, the flow around the object is smooth and steady. In this regime the dominant resistance comes from the fluid’s **viscosity**, not from turbulence or wake formation.
 
-Viscosity produces a shear stress that is proportional to the velocity gradient:
+Viscosity produces a shear stress proportional to the velocity gradient,
 
-\[
-\text{viscous stress} \propto \eta \frac{v}{L}
-\]
+$$
+\text{viscous stress}\propto\eta\frac{v}{L},
+$$
 
-where \(\eta\) is the fluid viscosity, \(v\) is the speed of the object, and \(L\) is a typical length scale, such as the radius or diameter of the object.
+where $\eta$ is the fluid viscosity, $v$ is the speed of the object, and $L$ is a typical length scale, such as the radius or diameter of the object.
 
-<img src="LectureNotesFigures/05viscosity.png" alt="viscosity" style="zoom:33%;" />
+![Viscous flow around a moving object](LectureNotesFigures/05viscosity.png)
 
-The drag force is approximately the viscous stress times the area over which it acts. Since the surface area scales like \(L^2\), we have
-\[
-f_d \propto \left(\eta \frac{v}{L}\right)L^2
-\]
+**Figure 1.** Viscous shear in the fluid around a slowly moving object.
+
+The drag force is approximately the viscous stress times the area over which it acts. Since the surface area scales like $L^2$, we have
+
+$$
+f_d\propto\left(\eta\frac{v}{L}\right)L^2.
+$$
 
 Simplifying gives
 
-\[
-f_d \propto \eta L v
-\]
+$$
+f_d\propto\eta L v.
+$$
 
-For a fixed object moving through a fixed fluid, both \(\eta\) and \(L\) are constants. Therefore, all constant factors can be absorbed into a single coefficient \(b\), giving
+For a fixed object moving through a fixed fluid, both $\eta$ and $L$ are constants. Therefore all constant factors can be absorbed into a single coefficient $b$, giving
 
-\[
-f_d = bv
-\]
+$$
+f_d=bv,
+$$
 
-Equivalently,
+that is, $n=1$.
 
-\[
-f_d = bv^1
-\]
+Thus, **linear drag** arises when viscous forces dominate the motion. This occurs for slow motion through a fluid, or, more generally, when the Reynolds number is small.
 
-so
+------
 
-\[
-n=1
-\]
-
-Thus, **linear drag** arises when viscous forces dominate the motion. This occurs for slow motion through a fluid, or more generally when the Reynolds number is small.
-
-
-
-#### Quadratic drag: why \(n=2\)
+#### 4.2.2 Quadratic Drag
 
 A simple way to understand why quadratic drag occurs is to consider an object moving **quickly** through a fluid.
 
-At high speeds, the object must continuously push fluid out of the way. In this regime, the dominant resistance comes from transferring momentum to the surrounding fluid, rather than from ordinary viscous shear alone.
+At high speeds the object must continuously push fluid out of the way. In this regime the dominant resistance comes from transferring momentum to the surrounding fluid, rather than from ordinary viscous shear alone.
 
-Suppose the object has cross-sectional area \(A\) and moves with speed \(v\). In a time interval \(\Delta t\), it sweeps out a volume of fluid approximately
+Suppose the object has cross-sectional area $A$ and moves with speed $v$. In a time interval $\Delta t$, it sweeps out a volume of fluid approximately
 
-\[
-\Delta V \sim A v \Delta t
-\]
+$$
+\Delta V\sim A v\,\Delta t.
+$$
 
-If the fluid density is \(\rho\), then the mass of fluid disturbed during this time is
+If the fluid density is $\rho$, the mass of fluid disturbed during this time is
 
-\[
-\Delta m \sim \rho \Delta V
-\]
+$$
+\Delta m\sim\rho\,\Delta V\sim\rho A v\,\Delta t.
+$$
 
-so
+The object changes the velocity of this disturbed fluid by an amount of order $v$. Therefore the momentum transferred to the fluid is roughly
 
-\[
-\Delta m \sim \rho A v \Delta t
-\]
+$$
+\Delta p\sim\Delta m\,v\sim\rho A v^2\Delta t.
+$$
 
-The object changes the velocity of this disturbed fluid by an amount of order \(v\). Therefore, the momentum transferred to the fluid is roughly
+The drag force is the rate of momentum transfer,
 
-\[
-\Delta p \sim \Delta m\, v
-\]
-
-Substituting the expression for \(\Delta m\),
-
-\[
-\Delta p \sim \rho A v \Delta t \cdot v
-\]
-
-so
-
-\[
-\Delta p \sim \rho A v^2 \Delta t
-\]
-
-The drag force is the rate of momentum transfer:
-
-\[
-f_d \sim \frac{\Delta p}{\Delta t}
-\]
-
-Therefore,
-
-\[
-f_d \sim \rho A v^2
-\]
+$$
+f_d\sim\frac{\Delta p}{\Delta t}\sim\rho A v^2.
+$$
 
 This has the same form as
 
-\[
-f_d = b v^2
-\]
+$$
+f_d=bv^2,
+$$
 
-where the constant \(b\) contains factors such as the fluid density, cross-sectional area, and shape of the object. More precisely, quadratic drag is often written as
+where the constant $b$ contains factors such as the fluid density, cross-sectional area, and shape of the object. More precisely, quadratic drag is often written as
 
-\[
-f_d = \frac{1}{2}\rho C_D A v^2
-\]
+$$
+f_d=\frac12\rho C_D A v^2,
+$$
 
-where \(C_D\) is the drag coefficient.
-
-Thus,
-
-\[
-f_d = b v^2
-\]
-
-so
-
-\[
-n=2
-\]
+where $C_D$ is the drag coefficient. Thus $n=2$.
 
 Therefore, **quadratic drag** arises when inertial effects dominate. Physically, this means the object loses energy mainly by pushing fluid aside and creating a wake (尾流).
 
-> A wake is the downstream flow disturbance left behind a body due to momentum loss, flow separation, and viscous effects.
+> **Definition.** A wake is the downstream flow disturbance left behind a body because of momentum loss, flow separation, and viscous effects.
 
 ------
 
@@ -802,9 +717,7 @@ $$
 In the underdamped regime $b^2 < 4m^2g/l$, the solution is
 
 $$
-\boxed{
-\theta(t) = A\,e^{-\frac{bt}{2m}}\sin\!\left(\sqrt{\frac{g}{l}-\frac{b^2}{4m^2}}\;t + \phi\right)
-}
+\boxed{\theta(t) = A\,e^{-\frac{bt}{2m}}\sin\!\left(\sqrt{\frac{g}{l}-\frac{b^2}{4m^2}}\;t + \phi\right)}
 $$
 
 where $A$ and $\phi$ are constants fixed by the initial conditions.
