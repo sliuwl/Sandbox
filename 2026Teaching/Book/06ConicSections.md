@@ -87,6 +87,10 @@ $$
 
 is the distance from the focus to the directrix.
 
+![Focus-directrix construction for conics](CentralForceImage/focus-directrix-conics.png)
+
+**Figure 1.** The focus–directrix construction for a common directrix $x=d$ (with $d=1$ in the plot) and three eccentricities: ellipse ($e=0.6$), parabola ($e=1$), and hyperbola ($e=1.5$). The focus $F$ is at the origin. For the marked point $P$ on each curve, the solid segment is the distance $r$ to the focus and the dashed horizontal segment is the distance $d-x$ to the directrix, so the curves satisfy $r=e(d-x)$. For the ellipse the focus distance is shorter than the directrix distance, for the parabola the two are equal, and for the hyperbola the focus distance is longer. Since $p=ed$, the semi-latus rectum changes with $e$ when $d$ is held fixed. At $e=0$ the construction degenerates ($d\to\infty$) and the curve is a circle centered on the focus.
+
 - For $0<e<1$, a point on the curve is closer to the focus than to the directrix, and the curve is closed.
 - For $e=1$, the two distances are equal: this is the definition of a parabola.
 - For $e>1$, the directrix distance grows more slowly than the focus distance as the curve recedes; the curve is open.
@@ -102,7 +106,7 @@ Fig. 8.11 of Taylor draws the four classes with the same periapsis distance:
 
 ![Kepler conics](CentralForceImage/taylor-8.11-kepler-conics.jpg)
 
-**Figure 1.** The four classes of Kepler orbit: circle ($e=0$), ellipse ($0<e<1$), parabola ($e=1$), and hyperbola ($e>1$), drawn with the same periapsis distance and the same direction of closest approach. (Taylor, *Classical Mechanics*, Fig. 8.11.)
+**Figure 2.** The four classes of Kepler orbit: circle ($e=0$), ellipse ($0<e<1$), parabola ($e=1$), and hyperbola ($e>1$), drawn with the same periapsis distance and the same direction of closest approach. (Taylor, *Classical Mechanics*, Fig. 8.11.)
 
 ### 3.1 Circle
 
@@ -136,7 +140,84 @@ $$
 =\frac{2p}{1-e^2}.
 $$
 
-Hence the **semimajor axis** (半长轴) and **semiminor axis** (半短轴) are
+Hence the **semimajor axis** (半长轴) is
+
+$$
+a=\frac{r_{\min}+r_{\max}}{2}=\frac{p}{1-e^2}.
+$$
+
+To locate the center and the foci, note that the two vertices lie on the $x$-axis at
+
+$$
+x_{\mathrm{peri}}=\frac{p}{1+e},
+\qquad
+x_{\mathrm{apo}}=-\frac{p}{1-e}.
+$$
+
+Their midpoint is the geometric center $C$:
+
+$$
+x_C=\frac{1}{2}\left(\frac{p}{1+e}-\frac{p}{1-e}\right)
+=-\frac{pe}{1-e^2}=-ae.
+$$
+
+Thus the distance from $C$ to the focus $F$ at the origin is
+
+$$
+c\equiv |x_C|=ae,
+$$
+
+and the second focus $F'$ is symmetric about $C$, at $x=-2ae$; the focal separation is $2c=2ae$.
+
+To find the **semiminor axis** (半短轴) $b$, consider the top vertex $T$ of the ellipse. By symmetry of the ellipse about its axes, $T$ lies directly above $C$, so
+
+$$
+T=(-ae,\,b).
+$$
+
+At $T$ the focus-directrix relation from Section 2 gives
+
+$$
+|TF|=e\,\mathrm{dist}(T,\ell),
+$$
+
+where $F$ is the focus at the origin and $\ell$ is the directrix $x=d=p/e$. Now
+
+$$
+|TF|=\sqrt{(ae)^2+b^2},
+\qquad
+\mathrm{dist}(T,\ell)=d-x_T=\frac{p}{e}+ae.
+$$
+
+Substituting,
+
+$$
+\sqrt{a^2e^2+b^2}
+=e\left(\frac{p}{e}+ae\right)
+=p+ae^2.
+$$
+
+Since $a=p/(1-e^2)$, we have $p=a(1-e^2)$, so
+
+$$
+p+ae^2=a(1-e^2)+ae^2=a.
+$$
+
+Therefore
+
+$$
+\sqrt{a^2e^2+b^2}=a
+\quad\Longrightarrow\quad
+b^2=a^2(1-e^2),
+$$
+
+and hence
+
+$$
+b=a\sqrt{1-e^2}=\frac{p}{\sqrt{1-e^2}}.
+$$
+
+The ellipse parameters are therefore
 
 $$
 \boxed{a=\frac{p}{1-e^2},
@@ -146,13 +227,15 @@ b=\frac{p}{\sqrt{1-e^2}},
 c=ae.}
 $$
 
-Here $c$ is the focal distance, the distance from the center to either focus, and
+Equivalently, since $c=ae$,
 
 $$
-e=\frac{c}{a}
+b^2+c^2=a^2(1-e^2)+a^2e^2=a^2.
 $$
 
-is the geometric definition of eccentricity. The center sits at $x=-ae$ in the focus-centered frame, so the focus at the origin is one of the two foci. The ellipse is bounded:
+Thus the triangle $CFT$ in Figure 3 is right-angled at $C$, with legs $b$ and $c$ and hypotenuse $a$.
+
+The ellipse is bounded:
 
 $$
 \frac{p}{1+e}\le r\le\frac{p}{1-e}.
@@ -160,9 +243,9 @@ $$
 
 As $e\to0$, $a\to p$ and $b\to p$: the ellipse shrinks onto the circle. As $e\to1^-$, $r_{\max}\to\infty$ while $r_{\min}\to p/2$: the far side of the ellipse recedes and the curve approaches a parabola.
 
-![Kepler ellipse](CentralForceImage/taylor-8.10-kepler-ellipse.jpg)
+![Ellipse geometry](CentralForceImage/ellipse-abc-p.png)
 
-**Figure 2.** A bound Kepler orbit is an ellipse with the force center at one focus $O$, not at the geometric center $C$. Here $a$ and $b$ are the semimajor and semiminor axes, the semi-latus rectum $p$ is the value of $r$ at $\phi=90^\circ$, and $r_{\min}=a(1-e)$, $r_{\max}=a(1+e)$. (Taylor, *Classical Mechanics*, Fig. 8.10.)
+**Figure 3.** Geometry of a bound Kepler ellipse with the force center at the focus $F$ (the origin). The geometric center is $C$, and $F'$ is the second focus; only $F$ is the force center. The semimajor axis $a$ runs from $C$ to the periapsis vertex, the semiminor axis $b$ from $C$ to the top vertex, and the focal distance $c$ from $C$ to $F$. The semi-latus rectum $p$ is the distance from $F$ to the curve perpendicular to the major axis; the full latus rectum is the chord of length $2p$. The dashed segment from $F$ to the top vertex has length $a$, so $CFT$ is a right triangle with $b^2+c^2=a^2$. The figure is drawn for $e=0.6$, with $a=1$, $b=0.8$, $c=0.6$, and $p=0.64$. The right vertex is the periapsis ($r_{\min}=a(1-e)$) and the left vertex is the apoapsis ($r_{\max}=a(1+e)$).
 
 ------
 
@@ -183,7 +266,41 @@ $$
 
 There is no apoapsis and no finite semimajor axis. The parameter $p$ is twice the focal length: the vertex lies halfway between the focus at the origin and the directrix at $x=p$.
 
+#### 3.3.1 From the focus–directrix definition to $x^2=4ay$
+
+The form students know from analytic geometry is obtained by moving the origin to the vertex and putting the axis of the parabola along the $y$-axis. Then the focus is at $(0,a)$ and the directrix is the horizontal line $y=-a$, with
+
+$$
+p=2a.
+$$
+
+A point $(x,y)$ lies on the parabola exactly when its distance to the focus equals its distance to the directrix:
+
+$$
+\sqrt{x^2+(y-a)^2}=y+a.
+$$
+
+Both sides are non-negative on the curve, so squaring is reversible:
+
+$$
+x^2+(y-a)^2=(y+a)^2
+\quad\Longrightarrow\quad
+x^2-2ay+a^2=2ay+a^2
+\quad\Longrightarrow\quad
+\boxed{x^2=4ay,\qquad a=\frac{p}{2}.}
+$$
+
+Swapping the roles of $x$ and $y$ gives the horizontal version $y^2=4ax$. For the orbit parabola specifically, translate the origin to the vertex $x=p/2$ and set $X=p/2-x\ge0$; since $y^2=-2p(x-p/2)$, this is $y^2=2pX=4aX$, and interchanging the axes brings it to $x^2=4ay$.
+
+In this form the vertex is at the origin, the focus is a distance $a$ from the vertex, and the directrix is a distance $a$ on the opposite side. The latus rectum through the focus is the horizontal chord at $y=a$, running from $x=-2a$ to $x=2a$, so its full length is $4a=2p$, consistent with the general conic result.
+
+![Parabola geometry](CentralForceImage/parabola-geometry.png)
+
+**Figure 4.** Geometry of the Kepler parabola ($e=1$). (a) The focus-centered frame of the orbit equation: the focus $F$ is at the origin, the vertex $V$ is at $x=p/2$, and the directrix is $x=p$. The semi-latus rectum $p$ runs from $F$ to the curve at $x=0$, and for the marked point $P$ the distance to the focus equals the distance to the directrix, $r=d-x$. (b) The same curve with the origin at the vertex and the axis along $y$: the focus is $(0,a)$, the directrix is $y=-a$, and the equation is $x^2=4ay$ with $a=p/2$. The full latus rectum is $4a=2p$. The figure is drawn for $p=2$, so $a=1$.
+
 The parabola is the marginal case between bound and unbound motion. A particle on it reaches infinity with zero speed, which corresponds to $E=0$.
+
+The motion is a single pass: the particle comes in from infinity along one arm, passes the periapsis at $\phi=0$, and recedes to infinity along the other arm. Since the denominator vanishes at $\phi=\pm\pi$, both arms approach the direction of the negative $x$-axis, so the parabola is asymptotic to a line parallel to its own axis. Unlike the hyperbola, it has no pair of distinct asymptotes and hence no scattering angle.
 
 ------
 
@@ -209,10 +326,62 @@ Then $r$ is finite on the interval $-\phi_\infty<\phi<\phi_\infty$ and diverges 
 There is a single apsis,
 
 $$
-r_{\min}=r(0)=\frac{p}{1+e},
+r_{\min}=r(0)=\frac{p}{1+e}.
 $$
 
-and the standard parameters are
+#### 3.4.1 From the polar equation to the standard form
+
+Start from $r=p-ex$ and square after writing $r=\sqrt{x^2+y^2}$:
+
+$$
+x^2+y^2=(p-ex)^2
+\quad\Longrightarrow\quad
+(1-e^2)x^2+y^2+2pex-p^2=0.
+$$
+
+For $e>1$ the coefficient $1-e^2$ is negative, so multiply by $-1$:
+
+$$
+(e^2-1)x^2-y^2-2pex+p^2=0.
+$$
+
+Complete the square in $x$. The center sits at
+
+$$
+x_C=\frac{pe}{e^2-1},
+$$
+
+and
+
+$$
+(e^2-1)(x-x_C)^2-y^2
+=-p^2+(e^2-1)x_C^2
+=\frac{p^2}{e^2-1}.
+$$
+
+Dividing through gives
+
+$$
+\frac{(x-x_C)^2}{a^2}-\frac{y^2}{b^2}=1,
+\qquad
+a=\frac{p}{e^2-1},
+\qquad
+b=\frac{p}{\sqrt{e^2-1}}.
+$$
+
+Since $a=p/(e^2-1)$, we have $x_C=ae$: the center is at $x=ae$. The vertices are at $x=x_C\pm a$; the one on the side of the focus is
+
+$$
+x_C-a=ae-a=\frac{p}{e^2-1}(e-1)=\frac{p}{1+e}=r_{\min},
+$$
+
+so the branch with $r>0$ is the left branch $x\le a(e-1)=p/(1+e)$. The focus of this branch is the origin, because the distance from the center to the origin is
+
+$$
+c\equiv x_C=ae,
+$$
+
+and the second focus is symmetric about the center, at $x=2ae$. The parameters of the hyperbola are therefore
 
 $$
 \boxed{a=\frac{p}{e^2-1},
@@ -222,9 +391,27 @@ b=\frac{p}{\sqrt{e^2-1}},
 c=ae.}
 $$
 
-Here $a$ is the **transverse semiaxis** (实半轴) and $e=c/a$. For the ellipse, $c^2=a^2-b^2$; for the hyperbola, $c^2=a^2+b^2$.
+For large $|x-x_C|$ the term $y^2/b^2$ must balance $(x-x_C)^2/a^2$, so the curve approaches the two lines
+
+$$
+y=\pm\frac{b}{a}(x-x_C).
+$$
+
+Finally,
+
+$$
+c^2=a^2e^2=a^2+a^2(e^2-1)=a^2+b^2,
+$$
+
+which is the hyperbola counterpart of $b^2+c^2=a^2$ for the ellipse.
+
+Here $a$ is the **transverse semiaxis** (实半轴) and $b$ the **conjugate semiaxis** (虚半轴); the eccentricity is $e=c/a$.
 
 The vertex of the physical branch is at $x=r_{\min}=p/(1+e)$, while the center is at $x=ae$. The second branch, at $x\ge a(e+1)$, is not reached by a particle that comes in from infinity, passes periapsis, and escapes; it corresponds to negative $r$ in the polar representation.
+
+![Hyperbola geometry](CentralForceImage/hyperbola-geometry.png)
+
+**Figure 5.** Geometry of the Kepler hyperbola ($e>1$). (a) The focus-centered frame: the force center is the focus $F$ at the origin, the physical branch ($r>0$) is the solid curve, and the second branch is dashed. The center $C$ is at $x=ae$, and the vertex $V$ at $x=p/(1+e)$ is the periapsis. The asymptotes make angles $\pm\phi_\infty$ with the axis, and the dashed segment from the point $L$ on the latus rectum to the directrix $x=d$ verifies $r=e(d-x)$; the arrows show the incoming and outgoing directions of a scattered particle. (b) The same curve with the origin at the center: both branches, the fundamental rectangle, the transverse semiaxis $a$, the conjugate semiaxis $b$, the focal distance $c$, and the semi-latus rectum $p$ through the left focus. The standard form is $X^2/a^2-Y^2/b^2=1$ with $c^2=a^2+b^2$. The figure is drawn for $e=1.5$ and $p=2$, so $a=1.6$, $b\approx1.789$, $c=2.4$, $d\approx1.333$, and $r_{\min}=0.8$.
 
 > **Scattering.** The repulsive Coulomb orbit is the branch of this hyperbola with the force center at the focus. The particle comes from infinity, reaches $r_{\min}$, and recedes along the other asymptote. The angle between the asymptotes determines the scattering angle; see Section 8 of the central-force chapter.
 
@@ -281,14 +468,7 @@ $$
 
 This is a parabola with vertex at $x=p/2$, focus at the origin, and directrix $x=p$.
 
-**Hyperbola, $e>1$.** Now $e^2-1>0$. Multiplying by $-1$ and completing the square,
-
-$$
-(e^2-1)\left(x-\frac{pe}{e^2-1}\right)^2-y^2
-=\frac{p^2}{e^2-1},
-$$
-
-so
+**Hyperbola, $e>1$.** Now $e^2-1>0$. Multiplying by $-1$ and completing the square, as in Section 3.4,
 
 $$
 \frac{(x-ae)^2}{a^2}-\frac{y^2}{b^2}=1,
