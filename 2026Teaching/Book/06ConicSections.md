@@ -268,7 +268,13 @@ There is no apoapsis and no finite semimajor axis. The parameter $p$ is twice th
 
 #### 3.3.1 From the focus–directrix definition to $x^2=4ay$
 
-The form students know from analytic geometry is obtained by moving the origin to the vertex and putting the axis of the parabola along the $y$-axis. Then the focus is at $(0,a)$ and the directrix is the horizontal line $y=-a$, with
+Set the turning point (the **vertex**, which for the orbit is the periapsis) at the origin $(0,0)$, take the axis of the parabola along the $y$-axis with the curve opening upward, and put the focus at $(0,a)$. The focus–vertex distance is the **focal length** of $a$. Because $e=1$, the focus–directrix definition applied at the vertex says the vertex is equally far from the focus and from the directrix:
+
+$$
+|FV|=\operatorname{dist}(V,\ell).
+$$
+
+Thus $\operatorname{dist}(V,\ell)=a$, the directrix is the horizontal line $y=-a$, and the focus–directrix distance is $d=2a$. For $e=1$ the general relation $d=p/e$ from Section 2 gives $d=p$; therefore
 
 $$
 p=2a.
@@ -277,10 +283,10 @@ $$
 A point $(x,y)$ lies on the parabola exactly when its distance to the focus equals its distance to the directrix:
 
 $$
-\sqrt{x^2+(y-a)^2}=y+a.
+\sqrt{x^2+(y-a)^2}=|y+a|.
 $$
 
-Both sides are non-negative on the curve, so squaring is reversible:
+The parabola lies above the directrix, so $y+a\ge0$ (it vanishes only at the vertex). Hence $|y+a|=y+a$, and squaring is reversible:
 
 $$
 x^2+(y-a)^2=(y+a)^2
@@ -290,29 +296,40 @@ x^2-2ay+a^2=2ay+a^2
 \boxed{x^2=4ay,\qquad a=\frac{p}{2}.}
 $$
 
-Swapping the roles of $x$ and $y$ gives the horizontal version $y^2=4ax$. For the orbit parabola specifically, translate the origin to the vertex $x=p/2$ and set $X=p/2-x\ge0$; since $y^2=-2p(x-p/2)$, this is $y^2=2pX=4aX$, and interchanging the axes brings it to $x^2=4ay$.
-
-In this form the vertex is at the origin, the focus is a distance $a$ from the vertex, and the directrix is a distance $a$ on the opposite side. The latus rectum through the focus is the horizontal chord at $y=a$, running from $x=-2a$ to $x=2a$, so its full length is $4a=2p$, consistent with the general conic result.
-
 ![Parabola geometry](CentralForceImage/parabola-geometry.png)
 
 **Figure 4.** Geometry of the Kepler parabola ($e=1$). (a) The focus-centered frame of the orbit equation: the focus $F$ is at the origin, the vertex $V$ is at $x=p/2$, and the directrix is $x=p$. The semi-latus rectum $p$ runs from $F$ to the curve at $x=0$, and for the marked point $P$ the distance to the focus equals the distance to the directrix, $r=d-x$. (b) The same curve with the origin at the vertex and the axis along $y$: the focus is $(0,a)$, the directrix is $y=-a$, and the equation is $x^2=4ay$ with $a=p/2$. The full latus rectum is $4a=2p$. The figure is drawn for $p=2$, so $a=1$.
 
 The parabola is the marginal case between bound and unbound motion. A particle on it reaches infinity with zero speed, which corresponds to $E=0$.
 
-The motion is a single pass: the particle comes in from infinity along one arm, passes the periapsis at $\phi=0$, and recedes to infinity along the other arm. Since the denominator vanishes at $\phi=\pm\pi$, both arms approach the direction of the negative $x$-axis, so the parabola is asymptotic to a line parallel to its own axis. Unlike the hyperbola, it has no pair of distinct asymptotes and hence no scattering angle.
+**The motion is a single pass**: the particle comes in from infinity along one arm, passes the periapsis at $\phi=0$, and recedes to infinity along the other arm. Since the denominator vanishes at $\phi=\pm\pi$, **both arms approach the direction of the negative $x$-axis**, so the parabola is asymptotic to a line parallel to its own axis. Unlike the hyperbola, it has no pair of distinct asymptotes and hence no scattering angle.
 
 ------
 
 ### 3.4 Hyperbola
 
-For $e>1$ the denominator is positive only when
+#### 3.4.1 Denominator must be positive
+
+Multiply the orbit equation by its denominator:
 
 $$
-\cos\phi>-\frac1e.
+r(\phi)\,(1+e\cos\phi)=p,
+\qquad p>0.
 $$
 
-Define the limiting angle
+The factor $r(\phi)$ is a radial distance, so $r(\phi)\ge0$; with nonzero angular momentum the orbit never passes through the force center, so in fact $r>0$. Since $p>0$, the other factor must be positive wherever the orbit exists:
+
+$$
+1+e\cos\phi>0.
+$$
+
+For $e>1$ this is a genuine restriction. It holds exactly when
+
+$$
+\cos\phi>-\frac1e,
+$$
+
+which defines the limiting angle
 
 $$
 \phi_\infty=\arccos\!\left(-\frac1e\right)
@@ -321,67 +338,75 @@ $$
 \frac{\pi}{2}<\phi_\infty<\pi.
 $$
 
-Then $r$ is finite on the interval $-\phi_\infty<\phi<\phi_\infty$ and diverges as $\phi\to\pm\phi_\infty$. The curve is a **hyperbola** (双曲线); its **asymptotes** (渐近线) lie in the two limiting directions $\phi=\pm\phi_\infty$. Only one branch is traced with $r>0$: the branch containing the focus, opening away from the periapsis.
-
-There is a single apsis,
+Thus the orbit exists only on the angular interval
 
 $$
-r_{\min}=r(0)=\frac{p}{1+e}.
+-\phi_\infty<\phi<\phi_\infty.
 $$
 
-#### 3.4.1 From the polar equation to the standard form
+At the endpoints the denominator tends to zero from above and $r\to+\infty$. These two limiting directions are the **asymptotes** (渐近线) of the **hyperbola** (双曲线).
 
-Start from $r=p-ex$ and square after writing $r=\sqrt{x^2+y^2}$:
+#### 3.4.2 One periapsis, no apoapsis
+
+On $|\phi|<\phi_\infty$ the denominator $1+e\cos\phi$ is largest at $\phi=0$, where $\cos\phi=1$, and decreases monotonically as $|\phi|$ increases. Since $p>0$, $r$ has the opposite behavior: a single minimum at periapsis,
 
 $$
-x^2+y^2=(p-ex)^2
+r_{\min}=r(0)=\frac{p}{1+e},
+$$
+
+and it grows without bound as $\phi\to\pm\phi_\infty$. There is therefore no apoapsis and no finite maximum of $r$. The interval $(-\phi_\infty,\phi_\infty)$ is one pass: the particle comes in from infinity along one asymptote, reaches $r_{\min}$ at $\phi=0$, and recedes to infinity along the other.
+
+#### 3.4.3 The parameters from conic geometry
+
+Section 2 gives the focus-centered relation $r=p-ex$. The standard parameters, however, are read more directly from the geometry of a hyperbola. Referred to its geometric center, a hyperbola has vertices at $(\pm a,0)$, foci at $(\pm c,0)$, and asymptotes $Y=\pm(b/a)X$; its eccentricity is $e=c/a$, and the fundamental right triangle with legs $a$ and $b$ has hypotenuse $c$, so
+
+$$
+c^2=a^2+b^2.
+$$
+
+Equivalently, the standard form is $X^2/a^2-Y^2/b^2=1$.
+
+**Transverse semiaxis.** The periapsis vertex is the point of the branch closest to the focus. Since the focus is a distance $c$ from the center and the nearby vertex is a distance $a$ from it, the focus–vertex distance is
+
+$$
+c-a=ae-a=a(e-1).
+$$
+
+But the orbit equation gives $r_{\min}=p/(1+e)$. Equating the two expressions,
+
+$$
+a(e-1)=\frac{p}{1+e}
 \quad\Longrightarrow\quad
-(1-e^2)x^2+y^2+2pex-p^2=0.
+a=\frac{p}{e^2-1}.
 $$
 
-For $e>1$ the coefficient $1-e^2$ is negative, so multiply by $-1$:
+**Conjugate semiaxis.** Let $\theta$ be the angle between an asymptote and the transverse axis. The fundamental right triangle gives
 
 $$
-(e^2-1)x^2-y^2-2pex+p^2=0.
+\cos\theta=\frac{a}{c}=\frac1e,
 $$
 
-Complete the square in $x$. The center sits at
+while the asymptote slope is $b/a=\tan\theta$. Hence
 
 $$
-x_C=\frac{pe}{e^2-1},
+\frac{b}{a}=\tan\theta=\sqrt{\frac{1}{\cos^2\theta}-1}=\sqrt{e^2-1},
 $$
 
-and
+so
 
 $$
-(e^2-1)(x-x_C)^2-y^2
-=-p^2+(e^2-1)x_C^2
-=\frac{p^2}{e^2-1}.
+b=a\sqrt{e^2-1}=\frac{p}{\sqrt{e^2-1}}.
 $$
 
-Dividing through gives
+**Focal distance.** By definition $c=ae$, and the right-triangle relation holds automatically:
 
 $$
-\frac{(x-x_C)^2}{a^2}-\frac{y^2}{b^2}=1,
-\qquad
-a=\frac{p}{e^2-1},
-\qquad
-b=\frac{p}{\sqrt{e^2-1}}.
+c^2=a^2e^2=a^2+a^2(e^2-1)=a^2+b^2,
 $$
 
-Since $a=p/(e^2-1)$, we have $x_C=ae$: the center is at $x=ae$. The vertices are at $x=x_C\pm a$; the one on the side of the focus is
+which is the hyperbola counterpart of $b^2+c^2=a^2$ for the ellipse. The semi-latus rectum also satisfies the standard hyperbola relation $p=b^2/a$: with $b^2=a^2(e^2-1)$ and $a=p/(e^2-1)$, one indeed gets $b^2/a=p$.
 
-$$
-x_C-a=ae-a=\frac{p}{e^2-1}(e-1)=\frac{p}{1+e}=r_{\min},
-$$
-
-so the branch with $r>0$ is the left branch $x\le a(e-1)=p/(1+e)$. The focus of this branch is the origin, because the distance from the center to the origin is
-
-$$
-c\equiv x_C=ae,
-$$
-
-and the second focus is symmetric about the center, at $x=2ae$. The parameters of the hyperbola are therefore
+Thus the parameters are
 
 $$
 \boxed{a=\frac{p}{e^2-1},
@@ -391,23 +416,19 @@ b=\frac{p}{\sqrt{e^2-1}},
 c=ae.}
 $$
 
-For large $|x-x_C|$ the term $y^2/b^2$ must balance $(x-x_C)^2/a^2$, so the curve approaches the two lines
+In the focus-centered frame, the center lies on the far side of the vertex at $x_C=c=ae$. The vertices are at $x=x_C\pm a$; the one on the side of the focus is
+
+$$
+x_C-a=ae-a=\frac{p}{e^2-1}(e-1)=\frac{p}{1+e}=r_{\min},
+$$
+
+so the branch with $r>0$ is the left branch $x\le a(e-1)=p/(1+e)$. This is also why the polar orbit cannot reach the second branch: $r=p-ex>0$ requires $x<d=p/e$, whereas the second branch begins at $x=p/(e-1)>d$. Since the focus of this branch is the origin, the second focus is symmetric about the center, at $x=2ae$, and the asymptotes are
 
 $$
 y=\pm\frac{b}{a}(x-x_C).
 $$
 
-Finally,
-
-$$
-c^2=a^2e^2=a^2+a^2(e^2-1)=a^2+b^2,
-$$
-
-which is the hyperbola counterpart of $b^2+c^2=a^2$ for the ellipse.
-
 Here $a$ is the **transverse semiaxis** (实半轴) and $b$ the **conjugate semiaxis** (虚半轴); the eccentricity is $e=c/a$.
-
-The vertex of the physical branch is at $x=r_{\min}=p/(1+e)$, while the center is at $x=ae$. The second branch, at $x\ge a(e+1)$, is not reached by a particle that comes in from infinity, passes periapsis, and escapes; it corresponds to negative $r$ in the polar representation.
 
 ![Hyperbola geometry](CentralForceImage/hyperbola-geometry.png)
 
