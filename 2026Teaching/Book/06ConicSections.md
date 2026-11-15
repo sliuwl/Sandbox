@@ -358,53 +358,129 @@ and it grows without bound as $\phi\to\pm\phi_\infty$. There is therefore no apo
 
 #### 3.4.3 The parameters from conic geometry
 
-Section 2 gives the focus-centered relation $r=p-ex$. The standard parameters, however, are read more directly from the geometry of a hyperbola. Referred to its geometric center, a hyperbola has vertices at $(\pm a,0)$, foci at $(\pm c,0)$, and asymptotes $Y=\pm(b/a)X$; its eccentricity is $e=c/a$, and the fundamental right triangle with legs $a$ and $b$ has hypotenuse $c$, so
+For the ellipse, $a$ and $b$ are semiaxes that the curve actually reaches, and the focus lies inside the curve. For the hyperbola the curve never crosses the conjugate axis, so $b$ is fixed by the asymptotes rather than by a point on the curve. This difference is the geometric reason for the sign change between $c^2=a^2-b^2$ (ellipse) and $c^2=a^2+b^2$ (hyperbola).
+
+**Focus-centered frame and the order of the points.** In the frame $(x,y)$ of the orbit equation, the focus $F$ is the origin and $+x$ points toward the periapsis vertex $V$, at
+
+$$
+x_V=r_{\min}=\frac{p}{1+e}.
+$$
+
+The line through $F$ and $V$ is the **transverse axis**. The center $C$ is the intersection of the two asymptotes. The branch wraps around the focus and opens toward it, while the asymptotes cross at the center on the opposite side of the vertex; along the transverse axis the order is therefore
+
+$$
+C,\qquad V,\qquad F.
+$$
+
+The **transverse semiaxis** is $a=|CV|$, and the **focal distance** is $c=|CF|$. Since $V$ lies between $C$ and $F$,
+
+$$
+c=|CF|=|CV|+|VF|=a+r_{\min}.
+$$
+
+For the ellipse the curve surrounds the focus and the order is $C,F,V$, so that $c=a-r_{\min}$.
+
+**Value of $a$ and $c$.** The eccentricity is $e=c/a$ (the same $e$ as in the orbit equation), and $e>1$ precisely because $c>a$. Combining $c=ae$ with $c=a+r_{\min}$ and $r_{\min}=p/(1+e)$,
+
+$$
+ae=a+\frac{p}{1+e}
+\quad\Longrightarrow\quad
+a(e-1)=\frac{p}{1+e}
+\quad\Longrightarrow\quad
+a=\frac{p}{e^2-1},
+\qquad
+c=ae.
+$$
+
+Since $C$ lies on the far side of $V$, its coordinate in the focus frame is $x_C=c=ae$.
+
+**Center-centered frame.** Move the origin to $C$ and let $+X$ point along the transverse axis from the physical branch toward the second branch. Define
+
+$$
+X=x-ae,\qquad Y=y.
+$$
+
+Then
+
+$$
+F:\ X=-c,\qquad
+V:\ X=-a,\qquad
+V':\ X=+a,\qquad
+F':\ X=+c,
+$$
+
+and the standard form of the hyperbola is
+
+$$
+\frac{X^2}{a^2}-\frac{Y^2}{b^2}=1.
+$$
+
+The line $X=0$ through $C$, perpendicular to the transverse axis, is the **conjugate axis**. The physical branch is the left branch $X\le -a$.
+
+**Why $b$ is not a point on the curve.** In the center frame draw the line $X=-a$ through the physical vertex $V$, perpendicular to the transverse axis. The asymptote crosses this line at $Y=\pm b$; this height is the **conjugate semiaxis**. The curve passes through the vertex $(-a,0)$ but not through the rectangle corners $(-a,\pm b)$: the conjugate axis $X=0$ is never reached, since setting $X=0$ in the standard form would require $Y^2=-b^2$, which has no real solution. For the ellipse, by contrast, the curve does pass through $(0,\pm b)$. Thus $b$ measures the asymptote, not a semiaxis of the hyperbola itself.
+
+**Value of $b$.** Let $\theta$ be the angle between an asymptote and the transverse axis, measured on the side of the physical branch. In the focus frame the asymptote direction is the limiting polar angle
+
+$$
+\phi_\infty=\arccos\!\left(-\frac1e\right).
+$$
+
+The branch side points opposite to $+x$, so in the center frame the angle with the negative $X$-axis is
+
+$$
+\theta=\pi-\phi_\infty=\arccos\!\left(\frac1e\right),
+\qquad
+\cos\theta=\frac1e.
+$$
+
+The asymptote rises by $b$ over a horizontal run $a$, so its slope in center coordinates is $b/a=\tan\theta$. Therefore
+
+$$
+\frac{b}{a}=\tan\theta=\sqrt{\frac{1}{\cos^2\theta}-1}=\sqrt{e^2-1},
+\qquad
+b=a\sqrt{e^2-1}=\frac{p}{\sqrt{e^2-1}}.
+$$
+
+**The fundamental rectangle and $c^2=a^2+b^2$.** With $b=a\sqrt{e^2-1}$, the corner $(a,b)$ of the fundamental rectangle lies on the asymptote, and its distance from the center is
+
+$$
+\sqrt{a^2+b^2}
+=\sqrt{a^2+a^2(e^2-1)}
+=ae=c.
+$$
+
+Thus the rectangle's diagonal equals the focal distance, and the axes satisfy
 
 $$
 c^2=a^2+b^2.
 $$
 
-Equivalently, the standard form is $X^2/a^2-Y^2/b^2=1$.
+This is the hyperbola counterpart of the ellipse relation $a^2=b^2+c^2$. The sign difference reflects the geometry: for the ellipse the focus is inside the vertex ($c<a$), so $b^2=a^2-c^2$; for the hyperbola the focus is outside the vertex ($c>a$), so $b^2=c^2-a^2$.
 
-**Transverse semiaxis.** The periapsis vertex is the point of the branch closest to the focus. Since the focus is a distance $c$ from the center and the nearby vertex is a distance $a$ from it, the focus–vertex distance is
-
-$$
-c-a=ae-a=a(e-1).
-$$
-
-But the orbit equation gives $r_{\min}=p/(1+e)$. Equating the two expressions,
+**The semi-latus rectum in both frames.** In the focus frame the orbit equation already defines the semi-latus rectum as the perpendicular distance from $F$ to the curve, attained at $\phi=\pi/2$, where $r=p$. In the focus frame this chord is the line $x=0$; in the center frame it is the vertical line through the focus, $X=-c$. Setting $X=-c$ in the standard form,
 
 $$
-a(e-1)=\frac{p}{1+e}
+\frac{c^2}{a^2}-\frac{Y^2}{b^2}=1
 \quad\Longrightarrow\quad
-a=\frac{p}{e^2-1}.
+Y^2=b^2\left(\frac{c^2}{a^2}-1\right)
+=b^2\frac{b^2}{a^2}
+=\frac{b^4}{a^2},
 $$
 
-**Conjugate semiaxis.** Let $\theta$ be the angle between an asymptote and the transverse axis. The fundamental right triangle gives
+so its half-length is $b^2/a$. Hence
 
 $$
-\cos\theta=\frac{a}{c}=\frac1e,
+p=\frac{b^2}{a}.
 $$
 
-while the asymptote slope is $b/a=\tan\theta$. Hence
+The standard ellipse satisfies the same relation; what differs between the two conics is the relation among $a,b,c$, not $p=b^2/a$. For the hyperbola, substituting $a=p/(e^2-1)$ and $b=p/\sqrt{e^2-1}$ returns $b^2/a=p$, so this is the same $p$ as in the orbit equation and the two frames agree.
 
-$$
-\frac{b}{a}=\tan\theta=\sqrt{\frac{1}{\cos^2\theta}-1}=\sqrt{e^2-1},
-$$
-
-so
-
-$$
-b=a\sqrt{e^2-1}=\frac{p}{\sqrt{e^2-1}}.
-$$
-
-**Focal distance.** By definition $c=ae$, and the right-triangle relation holds automatically:
-
-$$
-c^2=a^2e^2=a^2+a^2(e^2-1)=a^2+b^2,
-$$
-
-which is the hyperbola counterpart of $b^2+c^2=a^2$ for the ellipse. The semi-latus rectum also satisfies the standard hyperbola relation $p=b^2/a$: with $b^2=a^2(e^2-1)$ and $a=p/(e^2-1)$, one indeed gets $b^2/a=p$.
+| | ellipse | hyperbola |
+|---|---|---|
+| order on axis | $C,F,V$ | $C,V,F$ |
+| focus–vertex distance | $c=a-r_{\min}$ | $c=a+r_{\min}$ |
+| meaning of $b$ | curve passes through $(0,\pm b)$ | curve does not; asymptote passes through $(\pm a,\pm b)$ |
+| axes relation | $b^2+c^2=a^2$ | $c^2=a^2+b^2$ |
 
 Thus the parameters are
 
@@ -416,13 +492,13 @@ b=\frac{p}{\sqrt{e^2-1}},
 c=ae.}
 $$
 
-In the focus-centered frame, the center lies on the far side of the vertex at $x_C=c=ae$. The vertices are at $x=x_C\pm a$; the one on the side of the focus is
+Returning to the focus frame, the physical vertex is at
 
 $$
-x_C-a=ae-a=\frac{p}{e^2-1}(e-1)=\frac{p}{1+e}=r_{\min},
+x_V=x_C-a=ae-a=\frac{p}{e^2-1}(e-1)=\frac{p}{1+e}=r_{\min},
 $$
 
-so the branch with $r>0$ is the left branch $x\le a(e-1)=p/(1+e)$. This is also why the polar orbit cannot reach the second branch: $r=p-ex>0$ requires $x<d=p/e$, whereas the second branch begins at $x=p/(e-1)>d$. Since the focus of this branch is the origin, the second focus is symmetric about the center, at $x=2ae$, and the asymptotes are
+consistent with Section 3.4.2. The second vertex is at $x=x_C+a$, and the second focus is at $x=2c=2ae$. The polar orbit with $r>0$ traces only the left branch: $r=p-ex>0$ requires $x<d=p/e$, whereas the second branch begins at $x=p/(e-1)>d$. In the focus frame the asymptotes are
 
 $$
 y=\pm\frac{b}{a}(x-x_C).
@@ -432,7 +508,7 @@ Here $a$ is the **transverse semiaxis** (实半轴) and $b$ the **conjugate semi
 
 ![Hyperbola geometry](CentralForceImage/hyperbola-geometry.png)
 
-**Figure 5.** Geometry of the Kepler hyperbola ($e>1$). (a) The focus-centered frame: the force center is the focus $F$ at the origin, the physical branch ($r>0$) is the solid curve, and the second branch is dashed. The center $C$ is at $x=ae$, and the vertex $V$ at $x=p/(1+e)$ is the periapsis. The asymptotes make angles $\pm\phi_\infty$ with the axis, and the dashed segment from the point $L$ on the latus rectum to the directrix $x=d$ verifies $r=e(d-x)$; the arrows show the incoming and outgoing directions of a scattered particle. (b) The same curve with the origin at the center: both branches, the fundamental rectangle, the transverse semiaxis $a$, the conjugate semiaxis $b$, the focal distance $c$, and the semi-latus rectum $p$ through the left focus. The standard form is $X^2/a^2-Y^2/b^2=1$ with $c^2=a^2+b^2$. The figure is drawn for $e=1.5$ and $p=2$, so $a=1.6$, $b\approx1.789$, $c=2.4$, $d\approx1.333$, and $r_{\min}=0.8$.
+**Figure 5.** Geometry of the Kepler hyperbola ($e>1$). (a) The focus-centered frame: the force center is the focus $F$ at the origin, the physical branch ($r>0$) is the solid curve, and the second branch is dashed. The center $C$ is at $x=ae$, and the vertex $V$ at $x=p/(1+e)$ is the periapsis. The asymptotes lie in the limiting directions $\phi=\pm\phi_\infty$, and the dashed segment from the point $L$ on the latus rectum to the directrix $x=d$ verifies $r=e(d-x)$; the arrows show the incoming and outgoing directions of a scattered particle. (b) The same curve with the origin at the center: both branches, the fundamental rectangle, the transverse semiaxis $a$, the conjugate semiaxis $b$, the focal distance $c$, and the semi-latus rectum $p$ through the left focus. The standard form is $X^2/a^2-Y^2/b^2=1$ with $c^2=a^2+b^2$. The figure is drawn for $e=1.5$ and $p=2$, so $a=1.6$, $b\approx1.789$, $c=2.4$, $d\approx1.333$, and $r_{\min}=0.8$.
 
 > **Scattering.** The repulsive Coulomb orbit is the branch of this hyperbola with the force center at the focus. The particle comes from infinity, reaches $r_{\min}$, and recedes along the other asymptote. The angle between the asymptotes determines the scattering angle; see Section 8 of the central-force chapter.
 
