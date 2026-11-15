@@ -102,11 +102,11 @@ is the distance from the focus to the directrix.
 
 ## 3. The Four Eccentricity Cases
 
-Fig. 8.11 of Taylor draws the four classes with the same periapsis distance:
+The four classes differ only in the eccentricity $e$. To compare their shapes, give them the same periapsis distance $r_{\min}=1$; since $r_{\min}=p/(1+e)$, this fixes $p=1+e$ for each curve.
 
-![Kepler conics](CentralForceImage/taylor-8.11-kepler-conics.jpg)
+![Kepler conics](CentralForceImage/kepler-conic-classes.png)
 
-**Figure 2.** The four classes of Kepler orbit: circle ($e=0$), ellipse ($0<e<1$), parabola ($e=1$), and hyperbola ($e>1$), drawn with the same periapsis distance and the same direction of closest approach. (Taylor, *Classical Mechanics*, Fig. 8.11.)
+**Figure 2.** The four classes of Kepler orbit with a common periapsis. The focus $F$ is at the origin and the periapsis direction is $+x$, so every curve passes through the same point, marked by the ring; all four panels share the same scale. The semi-latus rectum is chosen as $p=r_{\min}(1+e)$, giving $p=1$ for the circle ($e=0$), $p=1.6$ for the ellipse ($e=0.6$), $p=2$ for the parabola ($e=1$), and $p=2.5$ for the hyperbola ($e=1.5$). For the hyperbola only the physical branch $r>0$ is shown. As $e$ increases, the curve opens from a closed circle to an ellipse, a parabola, and finally a hyperbola.
 
 ### 3.1 Circle
 
