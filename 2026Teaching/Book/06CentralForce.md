@@ -1,9 +1,5 @@
 # Central Forces
 
-**Reading material:** Chapter 3 of *Classical Mechanics* by Herbert Goldstein; Chapter 8 of *Classical Mechanics* by John R. Taylor; Chapter 5 of *Classical Mechanics* by David Tong; Chapter 7 of *Modern Classical Mechanics* by T. M. Helliwell; Chapter 7 of *Introduction to Classical Mechanics* by David Morin.
-
-> 基于参考书编写的课程讲义。本章综合上述五本参考书对中心力问题的处理：先建立二体约化与角动量守恒，再导出有效势能与轨道方程，最后讨论开普勒轨道、闭轨条件与散射。文中标注为“自编例题”的算例不是原书例题。
-
 ## Table of Contents
 
 1. [Central Forces and Their Potentials](#1-central-forces-and-their-potentials)
@@ -29,17 +25,7 @@
    - [6.3 Energy, Semimajor Axis, and the Vis-Viva Equation](#63-energy-semimajor-axis-and-the-vis-viva-equation)
    - [6.4 Kepler's Third Law](#64-keplers-third-law)
    - [6.5 The Laplace–Runge–Lenz Vector](#65-the-laplace-runge-lenz-vector)
-7. [Bertrand's Theorem and Closed Orbits](#7-bertrands-theorem-and-closed-orbits)
-8. [Scattering in a Central Field](#8-scattering-in-a-central-field)
-   - [8.1 Impact Parameter and Deflection Angle](#81-impact-parameter-and-deflection-angle)
-   - [8.2 The Differential Cross Section and Rutherford Scattering](#82-the-differential-cross-section-and-rutherford-scattering)
-9. [Limits, Counterexamples, and Assumptions](#9-limits-counterexamples-and-assumptions)
-10. [Worked Examples](#10-worked-examples)
-    - [10.1 A Tangential Impulse from a Circular Orbit](#101-a-tangential-impulse-from-a-circular-orbit)
-    - [10.2 Circular Orbits in a Power-Law Potential](#102-circular-orbits-in-a-power-law-potential)
-11. [Exercises](#11-exercises)
-12. [Summary](#12-summary)
-13. [Sources](#13-sources)
+7. [A Tangential Impulse from a Circular Orbit](#7-a-tangential-impulse-from-a-circular-orbit)
 
 ---
 
@@ -61,7 +47,7 @@ The standard examples are:
 
 - **Newtonian gravitation** between point masses, $F=-Gm_1m_2/r^2$.
 - **Coulomb's law** between point charges, $F=q_1q_2/(4\pi\varepsilon_0 r^2)$ (attractive for opposite signs, repulsive for like signs).
-- **An isotropic spring** fixed at one end, $F=-k(r-\ell_0)$ about the fixed point.
+- **An isotropic spring** fixed at one end, $F=-\kappa(r-l_0)$ about the fixed point, where $\kappa$ is the spring constant and $l_0$ the natural length.
 
 For a conservative central force, the potential energy depends only on $r$:
 
@@ -77,7 +63,7 @@ $$
 
 ### 1.2 Conservative Central Forces
 
-The statement that conservative and spherically symmetric central forces coincide is worth separating into two implications.
+For a central force, conservativity and spherical symmetry are equivalent; the proof separates into two implications.
 
 1. If a central force is conservative, then $\mathbf F=-\nabla V$. Since $\mathbf F$ is radial, the gradient of $V$ has no angular component; hence $V$ cannot depend on the angles, and $V=V(r)$. The force magnitude is therefore independent of direction.
 2. Conversely, if a central force is spherically symmetric, $F(\mathbf r)=F(r)\hat{\mathbf r}$, then $V(r)=-\int^r F(r')\,dr'$ is a function of $r$ alone, and $\mathbf F=-\nabla V$. The force is conservative.
@@ -106,11 +92,11 @@ $$
 \mathbf r_2=\mathbf R-\frac{m_1}{M}\mathbf r.
 $$
 
-![Center-of-mass frame](CentralForceImage/taylor-8.3-cm-frame.jpg)
+![Center-of-mass frame](CentralForceImage/cm-frame.png)
 
-**Figure 1.** In the center-of-mass frame the center of mass is stationary at $O$; the relative position $\mathbf r=\mathbf r_1-\mathbf r_2$ is the position of particle 1 relative to particle 2, so $\mathbf r_1=(m_2/M)\mathbf r$. (Taylor, *Classical Mechanics*, Fig. 8.3.)
+**Figure 1.** In the center-of-mass frame the center of mass is stationary at $O$. The relative coordinate $\mathbf r=\mathbf r_1-\mathbf r_2$ locates particle 1 relative to particle 2, so $\mathbf r_1=(m_2/M)\mathbf r$ and $\mathbf r_2=-(m_1/M)\mathbf r$. The drawing uses $m_1=1$ and $m_2=2$, hence $|\mathbf r_1|=(2/3)r$ and $|\mathbf r_2|=(1/3)r$.
 
-For an isolated system the potential can depend only on the relative coordinate: translational invariance forbids dependence on $\mathbf r_1$ and $\mathbf r_2$ separately. Because the force is central, the potential further depends only on the magnitude $r=|\mathbf r|$ [Taylor §8.1](/chapters/ch-79.html#b-p2566-b0004). Write
+For an isolated two-body system, translational invariance forbids the interaction potential from depending on $\mathbf r_1$ and $\mathbf r_2$ separately; it can depend only on their difference $\mathbf r=\mathbf r_1-\mathbf r_2$. A central interaction further restricts the dependence to the magnitude $r=|\mathbf r|$. Write
 
 $$
 U=U(r).
@@ -168,7 +154,7 @@ $$
 \frac{1}{\mu}=\frac{1}{m_1}+\frac{1}{m_2}.
 $$
 
-Helliwell defines the reduced mass in exactly this way and notes that it is less than either mass [Helliwell §7.2](/chapters/ch-41.html#b-p1109-b0001). The Lagrangian is therefore
+The Lagrangian is therefore
 
 $$
 L=\frac12 M\dot{\mathbf R}^{\,2}+\frac12\mu\dot{\mathbf r}^{\,2}-U(r).
@@ -184,7 +170,7 @@ $$
 \mathbf P=M\dot{\mathbf R},
 $$
 
-and it is conserved. Thus the center of mass moves uniformly, and the center-of-mass motion decouples from the relative motion [Taylor §8.3](/chapters/ch-79.html#b-p2569-b0003).
+and it is conserved. Thus the center of mass moves uniformly, and the center-of-mass motion decouples from the relative motion.
 
 The relative coordinate satisfies the Euler–Lagrange equation
 
@@ -194,7 +180,7 @@ $$
 F(r)=-\frac{dU}{dr}.
 $$
 
-This is precisely the equation of a single particle of mass $\mu$ moving in the fixed central field $U(r)$. The central-force motion of two bodies about their center of mass can always be reduced to an equivalent one-body problem [Goldstein §3.1](/chapters/ch-19.html#b-p0233-b0016).
+This is precisely the equation of a single particle of mass $\mu$ moving in the fixed central field $U(r)$. The two-body motion about the center of mass is thereby reduced exactly to an equivalent one-body problem.
 
 > **Note on the non-inertial interpretation.** If we use $m_2$ as the origin and describe the motion of $m_1$ relative to it, then this origin is generally accelerating, so it does not define an inertial frame. The reduced-mass formulation avoids this complication by rewriting the two-body problem in terms of the center-of-mass coordinate $\mathbf R$ and the relative coordinate $\mathbf r=\mathbf r_1-\mathbf r_2$. The relative motion then obeys $\mu\ddot{\mathbf r}=\mathbf F$.
 >
@@ -227,11 +213,11 @@ $$
 \boxed{\dot{\mathbf L}=0.}
 $$
 
-If a particle is subject to a central force only, its angular momentum is conserved [Morin §7.1](/chapters/ch-61.html#b-p1819-b0001). The conservation law requires only that **the force be central**; it does not require an inverse-square law.
+For a particle subject only to a central force, angular momentum is conserved. The conservation law requires only that **the force be central**; it does not require an inverse-square law.
 
 Because $\mathbf L$ is a constant vector and $\mathbf r\cdot\mathbf L=\mathbf r\cdot(\mathbf r\times\mathbf p)=0$, the position vector is always perpendicular to the fixed direction of $\mathbf L$. Therefore the motion lies in a plane whose normal is $\mathbf L$.
 
-If $\mathbf L=0$, then $\mathbf r$ is parallel to $\dot{\mathbf r}$, and the motion is along a straight line through the force center. Goldstein summarizes both cases: central-force motion is always motion in a plane [Goldstein §3.2](/chapters/ch-19.html#b-p0234-b0005).
+If $\mathbf L=0$, then $\mathbf r$ is parallel to $\dot{\mathbf r}$, and the motion is along a straight line through the force center. Thus central-force motion is always planar: the plane is spanned by $\mathbf r$ and $\dot{\mathbf r}$, or is any plane containing the line of motion when $\mathbf L=0$.
 
 ---
 
@@ -255,7 +241,7 @@ $$
 p_\theta=\frac{\partial L}{\partial\dot\theta}=mr^2\dot\theta.
 $$
 
-Goldstein identifies this canonical momentum with the angular momentum of the system [Goldstein §3.2](/chapters/ch-19.html#b-p0234-b0009). Since $\theta$ is cyclic,
+This canonical momentum is the angular momentum of the system. Since $\theta$ is cyclic,
 
 $$
 \dot p_\theta=\frac{d}{dt}\left(mr^2\dot\theta\right)=0,
@@ -289,11 +275,11 @@ $$
 \frac{dA}{dt}=\frac12r^2\dot\theta=\frac{\ell}{2m}.
 $$
 
-The right-hand side is constant because $\ell$ is constant. Thus angular-momentum conservation is equivalent to the statement that **the radius vector sweeps out equal areas in equal times**. This is Kepler's second law, and Goldstein stresses that it is a general property of central-force motion, not a special feature of the inverse-square law [Goldstein §3.2](/chapters/ch-19.html#b-p0235-b0008).
+The right-hand side is constant because $\ell$ is constant. Angular-momentum conservation is therefore equivalent to the statement that **the radius vector sweeps out equal areas in equal times**. This is Kepler's second law, and it is a general property of central-force motion, not a special feature of the inverse-square law.
 
-![Areal velocity](CentralForceImage/goldstein-3.2-areal-velocity.jpg)
+![Areal velocity](CentralForceImage/areal-velocity.jpg)
 
-**Figure 2.** The area $dA=\tfrac12 r^2\,d\theta$ swept out by the radius vector in a time $dt$. The transverse displacement is $r\,d\theta$, perpendicular to the radial direction. (Goldstein, *Classical Mechanics*, Fig. 3.2.)
+**Figure 2.** The area $dA=\tfrac12 r^2\,d\theta$ swept out by the radius vector in time $dt$. The transverse displacement is $r\,d\theta$, perpendicular to the radial direction.
 
 In a two-body problem the areal velocity refers to the relative coordinate; with $m\to\mu$ it becomes $\ell/(2\mu)$. Equivalently, the relative position vector sweeps out equal areas in equal times. The areas swept out by the two individual bodies about the center of mass are scaled by $(m_2/M)^2$ and $(m_1/M)^2$, respectively, so they are equal to each other only when $m_1=m_2$.
 
@@ -362,23 +348,23 @@ $$
 
 is the angular part of the kinetic energy.
 
-![Effective potential](CentralForceImage/taylor-8.4-effective-potential.jpg)
+![Effective potential](CentralForceImage/effective-potential.png)
 
-**Figure 3.** The effective potential $V_{\text{eff}}(r)=V(r)+\ell^2/(2mr^2)$ for an attractive inverse-square force, shown as the sum of the gravitational potential $V(r)$ and the centrifugal term $\ell^2/(2mr^2)$. At large $r$ the attraction dominates; at small $r$ the centrifugal barrier dominates. (Taylor, *Classical Mechanics*, Fig. 8.4.)
+**Figure 3.** The effective potential $V_{\text{eff}}(r)=V(r)+\ell^2/(2mr^2)$ for an attractive inverse-square force, shown as the sum of the gravitational potential $V(r)$ and the centrifugal term $\ell^2/(2mr^2)$. At large $r$ the attraction dominates; at small $r$ the centrifugal barrier dominates. The minimum at $r_0=\ell^2/(mk)$, where $V_{\text{eff}}(r_0)=-k/(2r_0)$, is the circular orbit. The figure uses $m=k=\ell=1$, so $r_0=1$ and $V_{\text{eff}}(r_0)=-1/2$.
 
-The extra term in the effective potential, **the angular-momentum barrier**, comes from the angular part of the kinetic energy; as the particles get close, **angular-momentum conservation forces the angular velocity to increase**, which raises the kinetic energy and prevents the particles from getting too close (**as the total energy is finite**).
+For $\ell\neq0$ the centrifugal term diverges as $r\to0$. With $E$ finite, the radial kinetic energy satisfies $\tfrac12m\dot r^2=E-V_{\text{eff}}(r)\ge0$, so the particle cannot reach the force center. The barrier is thus a consequence of angular-momentum conservation: as $r$ decreases, $\dot\theta=\ell/(mr^2)$ grows, and the angular kinetic energy $\ell^2/(2mr^2)$ grows with it.
 
 The qualitative classification of orbits now follows from the shape of $V_{\text{eff}}$:
 
 - **Turning points.** Radial motion is possible only where $E\ge V_{\text{eff}}(r)$. The roots $E=V_{\text{eff}}(r)$ are the turning points, where the velocity is zero $\dot r=0$.
-- **Circular orbit.** If $E$ equals the value of $V_{\text{eff}}$ at an extremum $r_0$, then $r=r_0$ for all time.
+- **Circular orbit.** If the particle is placed at an extremum $r_0$ with $\dot r=0$, then $r=r_0$ for all time.
 - **Bound orbit.** If the allowed interval of $r$ is bounded, the particle oscillates between a minimum radius (periapsis, 近拱点) and a maximum radius (apoapsis, 远拱点).
 - **Unbound orbit.** If $E$ exceeds the asymptotic value of $V_{\text{eff}}$ at infinity, the particle escapes to $r\to\infty$.
 - **Radial fall.** If $\ell=0$, then $V_{\text{eff}}=V$ and the centrifugal barrier is absent; an attractive force can pull the particle through the origin.
 
-![Energy and turning points](CentralForceImage/taylor-8.5-energy-turning-points.jpg)
+![Energy and turning points](CentralForceImage/energy-turning-points.png)
 
-**Figure 4.** For a given energy $E$, radial motion is allowed only where $E\ge V_{\text{eff}}(r)$. For $E>0$ there is one turning point $r_{\min}$ (scattering orbit); for $E<0$ the motion is confined between $r_{\min}$ and $r_{\max}$ (bound orbit). (Taylor, *Classical Mechanics*, Fig. 8.5.)
+**Figure 4.** Energy levels and turning points for the same effective potential ($m=k=\ell=1$). Radial motion is allowed only where $E\ge V_{\text{eff}}(r)$, and the points where a horizontal energy line meets $V_{\text{eff}}$ are the turning points. Three cases are shown: $E<0$ (bound orbit; the shaded interval $r_{\min}\le r\le r_{\max}$ is classically allowed and has two turning points), $E=0$ (parabolic threshold, one turning point), and $E>0$ (scattering orbit, one turning point).
 
 > **Caution.** The effective potential is a bookkeeping device for the radial coordinate only. It does not replace the full two-dimensional motion. After solving $r(t)$, one must still reconstruct $\theta(t)$ from $\dot\theta=\ell/(mr^2)$.
 
@@ -394,15 +380,13 @@ F(r_0)+\frac{\ell^2}{mr_0^3}=0,
 \boxed{F(r_0)=-\frac{\ell^2}{mr_0^3}.}
 $$
 
-Equivalently, the applied force balances the centrifugal term. The energy of the circular orbit is
+Equivalently, the applied force provides exactly the centripetal acceleration required by the circular motion. The energy of the circular orbit is
 
 $$
 E_0=V_{\text{eff}}(r_0)=V(r_0)+\frac{\ell^2}{2mr_0^2}.
 $$
 
-Goldstein obtains the same condition and calls it the elementary condition for a circular orbit: the applied central force provides the required centripetal acceleration (向心加速度) [Goldstein §3.3](/chapters/ch-19.html#b-p0242-b0004).
-
-To test stability, expand $V_{\text{eff}}$ about $r_0$. The orbit is stable if $r_0$ is a minimum:
+To test stability, expand $V_{\text{eff}}$ about $r_0$. The circular orbit is stable if $r_0$ is a minimum:
 
 $$
 \left.\frac{d^2V_{\text{eff}}}{dr^2}\right|_{r_0}>0.
@@ -440,7 +424,7 @@ F(r)=-kr^n,
 \qquad k>0,
 $$
 
-the condition becomes $n>-3$. A power-law attractive potential varying more slowly than $1/r^2$ is therefore capable of stable circular orbits [Goldstein §3.6](/chapters/ch-19.html#b-p0252-b0002).
+the condition becomes $n>-3$. A power-law attractive force with $n>-3$ therefore admits stable circular orbits.
 
 For small radial oscillations about $r_0$, write
 
@@ -460,7 +444,7 @@ $$
 F_{\text{eff}}(r_0)=-V_{\text{eff}}'(r_0)=0,
 $$
 
-which is precisely the circular-orbit condition $F(r_0)=-\ell^2/(mr_0^3)$ derived above. For small displacements the restoring force is the linear term in the Taylor expansion of $F_{\text{eff}}$ about $r_0$:
+which is precisely the circular-orbit condition $F(r_0)=-\ell^2/(mr_0^3)$ derived above. For small displacements the restoring force is the linear term in the expansion of $F_{\text{eff}}$ about $r_0$:
 
 $$
 F_{\text{eff}}(r_0+x)
@@ -492,7 +476,7 @@ $$
 x(t)=A\cos(\omega_r t+\phi),
 $$
 
-so the orbit oscillates radially about the circular orbit with period $T_r=2\pi/\omega_r$. The amplitude $A$ is fixed by the initial energy. 
+so the orbit oscillates radially about the circular orbit with period $T_r=2\pi/\omega_r$. The amplitude $A$ is fixed by the initial energy.
 
 For the power law $F=-kr^n$, substituting $F'=-knr^{n-1}$ and $\ell^2=mkr_0^{n+3}$ into the expression for $V_{\text{eff}}''(r_0)=-F'(r_0)+\frac{3\ell^2}{mr_0^4}$ gives
 
@@ -515,7 +499,13 @@ $$
 \frac{\omega_r}{\omega_\theta}=\sqrt{n+3}.
 $$
 
-The orbit closes after a finite number of radial oscillations exactly when **$\omega_r/\omega_\theta$ is rational**; otherwise the successive pericenters precess. This observation is the seed of Bertrand's theorem in Section 7.
+Within this small-oscillation approximation the orbit closes after a finite number of radial oscillations exactly when $\omega_r/\omega_\theta$ is rational; otherwise successive pericenters precess and the orbit does not close.
+
+Notice that, in this small-oscillation approximation, the frequency ratio is fixed by the force law rather than by the size of the perturbation: $\omega_r/\omega_\theta=\sqrt{n+3}$ depends only on $n$, while the initial radial displacement sets the amplitude $A$. Figure 5 compares two orbits with the same radial displacement under two different force laws.
+
+![Circular orbit and perturbed orbits](CentralForceImage/circular-orbit-perturbation.png)
+
+**Figure 5.** A circular orbit and two perturbed orbits. The dashed grey circle is the unperturbed circular orbit $r=r_0$. Both coloured orbits start from the same radial displacement $r(0)=1.08\,r_0$ with zero radial velocity, each carrying the angular momentum of its own circular orbit. Blue: power-law force $F=-kr^6$, for which $\omega_r/\omega_\theta=\sqrt{n+3}=3$; the radius oscillates three times per revolution and the orbit nearly closes after one turn. Orange: inverse-square force $F=-k/r^2$, for which $\omega_r/\omega_\theta=1$; one radial oscillation coincides with one revolution, so the perturbed orbit is a closed ellipse with the force center at a focus. **Panel (b)** plots $r(t)$ over one revolution $T_\theta=2\pi/\omega_\theta$. The ratio is fixed by the force law through $n$; the perturbation amplitude sets only the size of the oscillation, not its frequency. The orbits are integrated exactly from the radial equation rather than from the linearized equation, so at the comparatively large amplitude used here the exact ratio for $n=6$ is $T_\theta/T_r\approx3.017$ instead of $3$. This confirms that the harmonic approximation is strictly valid only at small amplitude.
 
 ---
 
@@ -536,9 +526,8 @@ $$
 u=\frac{1}{r}.
 $$
 
-It is easy to get $dr = -\frac{1}{u^2}du$.
+Differentiating $u=1/r$ gives $dr=-u^{-2}du$, hence
 
-Then
 $$
 \frac{dr}{d\theta}=-\frac{1}{u^2}\frac{du}{d\theta},
 \qquad
@@ -576,7 +565,7 @@ $$
 =-\frac{m}{\ell^2}\frac{d}{du}V\!\left(\frac1u\right).
 $$
 
-Goldstein obtains this second-order orbit equation after substituting $u=1/r$ and expressing the result in terms of the potential [Goldstein §3.5](/chapters/ch-19.html#b-p0249-b0005).
+The two forms are equivalent: the second follows from the first because $F=-dV/dr$ and $dV/dr=-u^2\,dV/du$.
 
 ---
 
@@ -596,7 +585,7 @@ $$
 =\frac{2mE}{\ell^2}-\frac{2m}{\ell^2}V\!\left(\frac1u\right)-u^2.}
 $$
 
-This is the orbit first integral. Turning points of the orbit occur where $du/d\theta=0$ (the radial kinetic energy is zero), that is, where $E=V_{\text{eff}}(r)$. The orbit equation is symmetric about two adjacent turning points: if $u(\theta)$ solves the first integral, so does $u(-\theta)$, so the orbit has the same shape on both sides of an apse (拱点，复数为apsis). Goldstein proves this symmetry and then integrates the first integral by quadrature [Goldstein §3.5](/chapters/ch-19.html#b-p0249-b0007).
+This is the orbit first integral. Turning points of the orbit occur where $du/d\theta=0$ (the radial kinetic energy is zero), that is, where $E=V_{\text{eff}}(r)$. The first integral depends on $du/d\theta$ only through its square, so if $\theta=0$ is taken at a turning point, then $u(\theta)=u(-\theta)$: the orbit has the same shape on both sides of an apse (拱点，复数为 apsides).
 
 > **Binet's equation or the first integral?** The two describe the same orbit $u(\theta)$ and use the same conserved $\ell$, so the choice is a practical one: it depends on what is given and what one wants.
 >
@@ -619,51 +608,21 @@ V(r)=-\frac{k}{r},
 \qquad k>0.
 $$
 
-Goldstein calls the inverse-square law the most important of all central-force laws and treats it in detail [Goldstein §3.7](/chapters/ch-19.html#b-p0254-b0008). With $F=-ku^2$, Binet's equation becomes
+The inverse-square law is the principal solvable case of central-force motion. With $F=-ku^2$, Binet's equation becomes
 
 $$
 \frac{d^2u}{d\theta^2}+u=\frac{mk}{\ell^2}.
 $$
 
-This is a harmonic oscillator equation with a constant displacement. Its general solution is
+This is a harmonic oscillator equation with a constant forcing term. Its general solution is
 
 $$
 u(\theta)=\frac{mk}{\ell^2}\left[1+e\cos(\theta-\theta')\right],
 $$
 
-where $e\ge0$ and $\theta'$ are constants of integration. 
+where $e\ge0$ and $\theta'$ are constants of integration.
 
->Let $C=\frac{mk}{\ell^2}.$ Binet's equation becomes
->\[
->\frac{d^2u}{d\theta^2}+u=C.
->\]
->A constant solution is $u=C$: its second derivative is zero, so it satisfies the equation.
->
->Now write $u(\theta)=C+v(\theta).$
->
->Substituting gives $\frac{d^2v}{d\theta^2}+C+v=C,$
->
->and therefore
->\[
->\frac{d^2v}{d\theta^2}+v=0
->\]
->This is the harmonic oscillator equation, whose general solution is $v(\theta)=A\cos\theta+B\sin\theta.$
->
->Thus, $u(\theta)=C+A\cos\theta+B\sin\theta.$
->
->Here the “oscillation” is **with respect to the angle $\theta$**, not necessarily with respect to time.
->
->Any combination $A\cos\theta+B\sin\theta$ can be written as a single shifted cosine: $A\cos\theta+B\sin\theta =D\cos(\theta-\theta'),$
->
->because $D\cos(\theta-\theta') =D\cos\theta'\cos\theta+D\sin\theta'\sin\theta.$
->
->So $A=D\cos\theta'$ and $B=D\sin\theta'$. Defining the dimensionless amplitude $e=D/C$, we obtain
->\[
->\boxed{ u(\theta)=\frac{mk}{\ell^2} \left[1+e\cos(\theta-\theta')\right]. }
->\]
->The two arbitrary constants are now $e$ and $\theta'$, instead of $A$ and $B$.
->
->
+> **Derivation.** Let $K=mk/\ell^2$. The constant $u=K$ is a particular solution. Writing $u=K+v$ gives $v''+v=0$, whose general solution is $v=A\cos\theta+B\sin\theta$. Hence $u=K+A\cos\theta+B\sin\theta$. The two sinusoids combine into a single shifted cosine, $A\cos\theta+B\sin\theta=D\cos(\theta-\theta')$, with $D=\sqrt{A^2+B^2}$. Defining the dimensionless amplitude $e=D/K$ gives $u=K[1+e\cos(\theta-\theta')]$. The integration constants are therefore $e\ge0$ and the orientation angle $\theta'$.
 
 In terms of $r=1/u$,
 
@@ -675,76 +634,58 @@ $$
 
 The constant $p$ is the **semi-latus rectum** (半通径) and $e$ is the **eccentricity** (偏心率). The angle $\theta'$ orients the orbit; choosing $\theta'=0$ places periapsis (近拱点) at $\theta=0$.
 
->Assume $\theta'=0$. The distances from the focus to the two ends of the ellipse are
->
->$r(0)=\frac{p}{1+e}=a-c,\qquad r(\pi)=\frac{p}{1-e}=a+c.$
->
->Here, $r(0)$ is the **periapsis** (近拱点), the closest point to the focus, and $r(\pi)$ is the **apoapsis** (远拱点), the farthest point from the focus. $a$ is the **semi-major axis** of the ellipse. It is half of the longest width of the ellipse, measured from the center to either end along the major axis. $c$ is the **focal distance**. It is the distance from the center of the ellipse to one focus.
->
->Thus the geometric eccentricity is
->
->$\boxed{\frac{c}{a} =\frac{r(\pi)-r(0)}{r(\pi)+r(0)} =e.}$
->
->Meanwhile, $r(\pi/2)=p$ is the distance perpendicular to the major axis **from the focus**, not the center, so it is not $b$.
+**Ellipse geometry from the orbit equation.** Set $\theta'=0$. At $\phi=0$ and $\phi=\pi$ the orbit equation gives
 
+$$
+r(0)=\frac{p}{1+e}=a-c,
+\qquad
+r(\pi)=\frac{p}{1-e}=a+c.
+$$
 
+Here $r(0)$ is the **periapsis** (近拱点), the closest point to the focus, and $r(\pi)$ is the **apoapsis** (远拱点), the farthest point. The **semi-major axis** $a$ is half the major axis, and the **focal distance** $c$ is the distance from the geometric center to either focus. Therefore
 
-> This is an **ellipse provided $0\le e<1$ and $p>0$**. Here, $e$ is the *eccentricity*, and $\theta'$ just rotates the curve.
->
-> Measure the angle from the direction $\theta'$, setting $\phi=\theta-\theta',\qquad x=r\cos\phi,\qquad y=r\sin\phi.$
->
-> Then $r=\sqrt{x^2+y^2}$, so
-> \[
-> r=\frac{p}{1+e\cos\phi} \quad\Longrightarrow\quad r+ex=p.
-> \]
->
-> $$
-> \sqrt{x^2+y^2}=p-ex.
-> $$
->
-> Squaring and rearranging gives $(1-e^2)x^2+y^2+2pex=p^2.$
->
-> For $e<1$, completing the square yields
-> \[
-> (1-e^2)\left(x+\frac{pe}{1-e^2}\right)^2+y^2 =\frac{p^2}{1-e^2}.
-> \]
-> Dividing through,
-> \[
-> \boxed{ \frac{\left(x+\dfrac{pe}{1-e^2}\right)^2} {\left(\dfrac{p}{1-e^2}\right)^2} + \frac{y^2}{\dfrac{p^2}{1-e^2}} =1. }
-> \]
-> This is exactly the standard equation of an ellipse,
-> \[
-> \frac{(x-x_c)^2}{a^2}+\frac{y^2}{b^2}=1,
-> \]
-> with $a=\frac{p}{1-e^2}, \qquad b=\frac{p}{\sqrt{1-e^2}}, \qquad x_c=-\frac{pe}{1-e^2}=-ae.$
->
-> An ellipse has the property that the sum of the distances from any point on it to the two foci is $2a$.
->
-> The two foci lie on the horizontal major axis, at $(-c,0)$ and $(c,0)$.
->
-> At the top point $(0,b)$, both distances are $\sqrt{c^2+b^2}$. Therefore,
->
-> $2\sqrt{c^2+b^2}=2a \quad\Longrightarrow\quad c^2=a^2-b^2.$
->
-> The distance from the center to either focus is
->
-> $c^2=a^2-b^2=\frac{p^2e^2}{(1-e^2)^2} =a^2e^2$
->
-> It is now easy to see $e$ is the **eccentricity** (偏心率).
->
-> Since the center is at $(-ae,0)$, one focus is at $(-ae+c,0)=(0,0).$
->
-> So **the polar origin is a focus, not the center**.
+$$
+\boxed{\frac{c}{a}=\frac{r(\pi)-r(0)}{r(\pi)+r(0)}=e.}
+$$
+
+The semi-latus rectum is $r(\pi/2)=p$, measured from the focus perpendicular to the major axis; since the focus is not the center, $p\neq b$.
+
+For $0\le e<1$ the orbit is an **ellipse** (椭圆). With $\phi=\theta-\theta'$ and $x=r\cos\phi$, $y=r\sin\phi$, the orbit equation becomes $r+ex=p$, that is, $\sqrt{x^2+y^2}=p-ex$. Squaring and completing the square gives
+
+$$
+\frac{\left(x+\dfrac{pe}{1-e^2}\right)^2}{\left(\dfrac{p}{1-e^2}\right)^2}
++\frac{y^2}{\dfrac{p^2}{1-e^2}}=1,
+$$
+
+the standard form
+
+$$
+\frac{(x-x_c)^2}{a^2}+\frac{y^2}{b^2}=1,
+\qquad
+a=\frac{p}{1-e^2},
+\quad
+b=\frac{p}{\sqrt{1-e^2}},
+\quad
+x_c=-\frac{pe}{1-e^2}=-ae.
+$$
+
+An ellipse has the property that the sum of the distances from any point on it to the two foci is $2a$. At the top vertex $(-ae,b)$ both focal distances equal $\sqrt{c^2+b^2}$, so $2\sqrt{c^2+b^2}=2a$, hence
+
+$$
+c^2=a^2-b^2=\frac{p^2e^2}{(1-e^2)^2}=a^2e^2.
+$$
+
+Thus $e=c/a$ is the eccentricity, and the center lies at $x=-ae$. Again, the focus is at $x=0=(-ae+c,0)$: **the polar origin is a focus, not the center**.
 
 ![Ellipse geometry](CentralForceImage/ellipse-abc-p.png)
 
-**Figure 5.** Geometry of a bound Kepler ellipse with the force center at the focus $F$ (the origin). The geometric center is $C$, and $F'$ is the second focus; only $F$ is the force center. The semimajor axis $a$ runs from $C$ to the periapsis vertex, the semiminor axis $b$ from $C$ to the top vertex, and the focal distance $c$ from $C$ to $F$. The semi-latus rectum $p$ is the distance from $F$ to the curve perpendicular to the major axis; the full latus rectum is the chord of length $2p$. The dashed segment from $F$ to the top vertex has length $a$, so $CFT$ is a right triangle with $b^2+c^2=a^2$. The figure is drawn for $e=0.6$, with $a=1$, $b=0.8$, $c=0.6$, and $p=0.64$. The right vertex is the periapsis ($r_{\min}=a(1-e)$) and the left vertex is the apoapsis ($r_{\max}=a(1+e)$).
+**Figure 6.** Geometry of a bound Kepler ellipse with the force center at the focus $F$ (the origin). The geometric center is $C$, and $F'$ is the second focus; only $F$ is the force center. The semimajor axis $a$ runs from $C$ to the periapsis vertex, the semiminor axis $b$ from $C$ to the top vertex, and the focal distance $c$ from $C$ to $F$. The semi-latus rectum $p$ is the distance from $F$ to the curve perpendicular to the major axis; the full latus rectum is the chord of length $2p$. The dashed segment from $F$ to the top vertex has length $a$, so $CFT$ is a right triangle with $b^2+c^2=a^2$. The figure is drawn for $e=0.6$, with $a=1$, $b=0.8$, $c=0.6$, and $p=0.64$. The right vertex is the periapsis ($r_{\min}=a(1-e)$) and the left vertex is the apoapsis ($r_{\max}=a(1+e)$).
 
 ---
 
 ### 6.2 Conic Sections and Eccentricity
 
-The orbit equation is the polar equation of a **conic section** (圆锥曲线) with one focus at the force center. The dimensionless constant $e$ is the **eccentricity** (偏心率). Goldstein compares the integrated orbit with the general conic equation and concludes that the orbit is always a conic section [Goldstein §3.7](/chapters/ch-19.html#b-p0256-b0006).
+The orbit equation is the polar equation of a **conic section** (圆锥曲线) with one focus at the force center. The dimensionless constant $e$ is the **eccentricity** (偏心率); the orbit is always a conic section because the integrated solution has exactly the standard conic form.
 
 To relate $e$ to the energy, evaluate the energy at periapsis, where $\dot r=0$ and $u=u_{\max}$. With $du/d\theta=0$ (the radial kinetic energy is zero),
 
@@ -775,7 +716,7 @@ The classification of orbits follows:
 
 <img src="CentralForceImage/kepler-conic-classes.png" alt="Kepler conics" style="zoom: 50%;" />
 
-**Figure 6.** The four classes of Kepler orbit drawn on one set of axes: circle ($e=0$), ellipse ($0<e<1$), parabola ($e=1$), and hyperbola ($e>1$). All four have the same force center, the focus at the origin, and the same periapsis distance $q$; their periapsis is therefore the common point on the far right where the curves meet. The semi-latus rectum is $p=q(1+e)$, which differs from orbit to orbit, so the curves coincide only at periapsis and separate elsewhere. Redrawn in the style of Taylor, *Classical Mechanics*, Fig. 8.11.
+**Figure 7.** The four classes of Kepler orbit drawn on one set of axes: circle ($e=0$), ellipse ($0<e<1$), parabola ($e=1$), and hyperbola ($e>1$). All four have the same force center, the focus at the origin, and the same periapsis distance $q$; their periapsis is therefore the common point on the far right where the curves meet. The semi-latus rectum is $p=q(1+e)$, which differs from orbit to orbit, so the curves coincide only at periapsis and separate elsewhere.
 
 The circular case is the minimum of the effective potential for fixed $\ell$; its radius is
 
@@ -796,6 +737,7 @@ $$
 $$
 
 **Derivation from the turning points.** At either apsis, $\dot r=0$, so the radial kinetic energy vanishes. Substituting $du/d\theta=0$ and $V(1/u)=-ku$ into the orbit first integral of Section 5.2,
+
 $$
 \left(\frac{du}{d\theta}\right)^2
 =\frac{2mE}{\ell^2}-\frac{2m}{\ell^2}V\!\left(\frac1u\right)-u^2,
@@ -813,24 +755,13 @@ $$
 u^2-\frac{2mk}{\ell^2}u-\frac{2mE}{\ell^2}=0.
 $$
 
-Its two roots are the reciprocal distances at the two apsides, $u_1=1/r_{\min}$ and $u_2=1/r_{\max}$. By Vieta's formulas (韦达定理),
+Its two roots are the reciprocal distances at the two apsides, $u_1=1/r_{\min}$ and $u_2=1/r_{\max}$. By Vieta's formulas applied to this quadratic, the roots satisfy
 
 $$
 u_1+u_2=\frac{2mk}{\ell^2},
 \qquad
 u_1u_2=-\frac{2mE}{\ell^2}.
 $$
-
->For a quadratic equation
->
->$ax^2+bx+c=0$
->
->with roots $r_1$ and $r_2$, **Vieta’s formulas** say
->
->$r_1+r_2=-\frac{b}{a},\qquad r_1r_2=\frac{c}{a}.$
->
->
->
 
 Because $u=1/r$, the sum of the apsidal distances is
 
@@ -858,49 +789,32 @@ u_1u_2=\left(\frac{mk}{\ell^2}\right)^2(1-e^2)
 e=\sqrt{1+\frac{2E\ell^2}{mk^2}},
 $$
 
-in agreement with Section 6.2. Goldstein derives $a=-k/(2E)$ from the same turning-point equation [Goldstein §3.7](/chapters/ch-19.html#b-p0257-b0008).
+in agreement with Section 6.2.
 
-**Derivation from the ellipse geometry.** With $\theta'=0$ in the orbit equation, the apsidal distances are
-
-$$
-r_{\min}=\frac{p}{1+e},
-\qquad
-r_{\max}=\frac{p}{1-e}.
-$$
-
-Their sum is the major axis $2a$:
-
-$$
-2a=r_{\min}+r_{\max}
-=\frac{p}{1+e}+\frac{p}{1-e}
-=\frac{2p}{1-e^2},
-$$
-
-hence
+**Consistency check from the ellipse geometry.** Since $r_{\min}+r_{\max}=2a$ and $r_{\min,\max}=p/(1\pm e)$, the semimajor axis is
 
 $$
 a=\frac{p}{1-e^2}.
 $$
 
-Now substitute $p=\ell^2/(mk)$ and $e^2=1+2E\ell^2/(mk^2)$:
+Substituting $p=\ell^2/(mk)$ and $e^2=1+2E\ell^2/(mk^2)$ gives
 
 $$
-a=\frac{\ell^2/(mk)}{1-\left(1+\dfrac{2E\ell^2}{mk^2}\right)}
-=\frac{\ell^2/(mk)}{-\dfrac{2E\ell^2}{mk^2}}
-=-\frac{k}{2E}.
+a=\frac{\ell^2/(mk)}{-\dfrac{2E\ell^2}{mk^2}}=-\frac{k}{2E},
 $$
 
-The two routes give the same result. Either way, we can now write the eccentricity in terms of $a$ by rearranging $a=p/(1-e^2)$:
+in agreement with the turning-point derivation.
+
+Either way, we can now write the eccentricity in terms of $a$ by rearranging $a=p/(1-e^2)$:
 
 $$
 e=\sqrt{1-\frac{\ell^2}{mka}}.
 $$
 
-This is equivalent to $e^2=1+2E\ell^2/(mk^2)$ once $a=-k/(2E)$ is substituted. 
-
-
+This is equivalent to $e^2=1+2E\ell^2/(mk^2)$ once $a=-k/(2E)$ is substituted.
 
 Rearranging $p=a(1-e^2)$ with $p=\ell^2/(mk)$ gives the useful combination
+
 $$
 \frac{\ell^2}{mk}=a(1-e^2),
 $$
@@ -933,16 +847,15 @@ $$
 
 For a planet of negligible mass orbiting a star of mass $M_\star$, $k/m=GM_\star$, and the vis-viva equation becomes the familiar $v^2=GM_\star(2/r-1/a)$.
 
-The **vis-viva equation** gives the speed of an object at any point along its orbit. It shows that the speed depends only on the object’s current distance $r$ from the central body and the semi-major axis $a$ of the orbit. When the object is closer to the central body, it moves faster; when it is farther away, it moves slower. Thus, the equation is a quick way to compute orbital speed without solving the full orbit.
+The vis-viva equation gives the speed at any point of the orbit in terms of the current distance $r$ and the semimajor axis $a$ alone. The object moves faster near the central body and slower far from it, so the equation provides orbital speeds without solving the full orbit.
 
-> **Summary: how $e$, $E$, $\ell$, $k$, $a$, and $p$ fit together.** For the inverse-square force $F=-k/r^2$ with $V=-k/r$ and $k>0$, the orbit is fixed by the two dynamical constants $E$ and $\ell$; the geometric quantities $a$, $p$, and $e$ are functions of them. The useful question is which quantity carries which information.
+> **Summary: how $e$, $E$, $\ell$, $k$, $a$, and $p$ fit together.** For $F=-k/r^2$ and $V=-k/r$, the orbit is fixed by the two dynamical constants $E$ and $\ell$; the geometric quantities $a$, $p$, and $e$ are functions of them.
 >
-> - **$k$ is a property of the system**, not of the orbit: for gravity, $k=Gm_1m_2$ (with $m\to\mu$ in the relative-coordinate form, as in Section 6.4). It sets the overall force scale.
-> - **$p$ is fixed by $\ell$ alone:** $p=\ell^2/(mk)$, equivalently $\ell=\sqrt{mkp}$. Thus $p$ is the geometric face of angular momentum.
-> - **$a$ is fixed by $E$ alone:** for the ellipse $a=-k/(2E)$, equivalently $E=-k/(2a)$. Thus $a$ is the geometric face of energy. With signed $a$ the formula covers all conics: $a>0$ for an ellipse, $a\to\infty$ for a parabola, and $a<0$ for a hyperbola.
-> - **$e$ mixes the two:** $e=\sqrt{1+2E\ell^2/(mk^2)}=\sqrt{1-p/a}$. Since $e\ge0$, it also classifies the orbit: $e=0$ circle, $0<e<1$ ellipse, $e=1$ parabola, $e>1$ hyperbola; equivalently $E<0$, $E=0$, $E>0$.
-> - **The identity linking geometry and dynamics** is $p=a(1-e^2)$, that is, $\ell^2=mkp=mka(1-e^2)$. Use it to convert $(a,e)$ into $\ell$ and back.
-> - **Apsidal distances** follow from either set: $r_{\min}=p/(1+e)=a(1-e)$ and $r_{\max}=p/(1-e)=a(1+e)$, the latter being finite only for $e<1$.
+> - **$k$ is a property of the system**, not of the orbit: for gravity, $k=Gm_1m_2$, with $m\to\mu$ in the relative-coordinate form of Section 6.4.
+> - **$p$ is fixed by $\ell$ alone:** $p=\ell^2/(mk)$, equivalently $\ell=\sqrt{mkp}$.
+> - **$a$ is fixed by $E$ alone:** $a=-k/(2E)$, equivalently $E=-k/(2a)$. With signed $a$ the formula covers all conics: $a>0$ for an ellipse, $a\to\infty$ for a parabola, $a<0$ for a hyperbola.
+> - **$e$ mixes the two:** $e=\sqrt{1+2E\ell^2/(mk^2)}=\sqrt{1-p/a}$. Since $e\ge0$, it classifies the orbit: $e=0$ circle, $0<e<1$ ellipse, $e=1$ parabola, $e>1$ hyperbola; equivalently $E<0$, $E=0$, $E>0$.
+> - **Geometry and dynamics are linked by** $p=a(1-e^2)$, that is, $\ell^2=mkp=mka(1-e^2)$. The apsidal distances are $r_{\min}=p/(1+e)=a(1-e)$ and $r_{\max}=p/(1-e)=a(1+e)$, the latter being finite only for $e<1$.
 
 **Which relation to use.** Give the quantities you know, then read off the rest:
 
@@ -969,7 +882,9 @@ $$
 The area of an ellipse is $A=\pi ab$, with $b=a\sqrt{1-e^2}$. Using $\ell^2/(mk)=a(1-e^2)$,
 
 $$
-A=\pi a^{3/2}\sqrt{\frac{\ell^2}{mk}}.
+b=a\sqrt{1-e^2}=\ell\sqrt{\frac{a}{mk}},
+\qquad
+A=\pi ab=\pi a^{3/2}\sqrt{\frac{\ell^2}{mk}}.
 $$
 
 Therefore
@@ -978,23 +893,24 @@ $$
 \boxed{\tau^2=\frac{4\pi^2m}{k}a^3.}
 $$
 
-Goldstein obtains the same result by integrating the radial equation [Goldstein §3.8](/chapters/ch-19.html#b-p0261-b0015) and states that the square of the period is proportional to the cube of the major axis [Goldstein §3.8](/chapters/ch-19.html#b-p0263-b0002).
+This establishes Kepler's third law: the square of the period is proportional to the cube of the semimajor axis.
 
 For the gravitational two-body problem, restore $m\to\mu$ and $k=Gm_1m_2$: the force constant is unchanged, while the mass of the fictitious one-body particle becomes the reduced mass. Then
+
 $$
 \tau^2=\frac{4\pi^2\mu a^3}{Gm_1m_2}
 =\frac{4\pi^2a^3}{G(m_1+m_2)}.
 $$
 
-When $m_2\gg m_1$, this reduces to $\tau^2\approx4\pi^2a^3/(Gm_2)$, which is the usual form of Kepler's third law for planets around the Sun. Goldstein emphasizes that the exact two-body version requires the reduced mass [Goldstein §3.8](/chapters/ch-19.html#b-p0263-b0002).
+When $m_2\gg m_1$, this reduces to $\tau^2\approx4\pi^2a^3/(Gm_2)$, the usual form of Kepler's third law for planets around the Sun. The exact two-body version retains the reduced mass through the factor $m_1+m_2$.
 
-> The map from the two-body to the one-body problem of Section 2.2 replaces the mass and the coordinate, but it leaves the force law untouched.
+> The map from the two-body to the one-body problem of Section 2.2 changes the mass and the coordinate but leaves the force law untouched:
 >
-> - **The force constant is unchanged.** The interaction between the two bodies is $F=-Gm_1m_2/r^2$, so the same $k=Gm_1m_2$ appears in $V=-k/r$ and in the one-body equation.
-> - **The one-body mass is the reduced mass.** The inertia in $\mu\ddot{\mathbf r}=\mathbf F(r)$ is $\mu=m_1m_2/(m_1+m_2)$, not $m_1$.
-> - **The one-body coordinate is the separation.** $\mathbf r=\mathbf r_1-\mathbf r_2$ is the position of body 1 measured from body 2, so the force center of the equivalent problem sits at body 2's instantaneous position. The equivalent orbit is the orbit of $\mathbf r$; it is not the orbit of body 1 about the center of mass.
-> - **What subtracting $\mathbf R$ does.** The center of mass moves uniformly, and going to the center-of-mass frame removes this overall translation. That does **not** by itself freeze body 2: for finite masses the two bodies each orbit the CM, at radii scaled by $m_2/M$ and $m_1/M$, so the force center moves in the CM frame. The force center is truly at rest only in the limit $m_2\to\infty$, where $\mu\to m_1$ and the fixed-center approximation is recovered. The relative-coordinate formulation needs no such limit: the equation for $\mathbf r$ is exact for finite masses.
-> - **The semimajor axis $a$** in Kepler's third law is the semimajor axis of this relative orbit, not of either body's orbit about the CM.
+> - The force constant is unchanged: $k=Gm_1m_2$.
+> - The one-body inertia is the reduced mass $\mu=m_1m_2/(m_1+m_2)$, not $m_1$.
+> - The one-body coordinate is the separation $\mathbf r=\mathbf r_1-\mathbf r_2$; the equivalent orbit is this relative orbit, and its semimajor axis is the $a$ appearing in Kepler's third law.
+>
+> The center of mass moves uniformly, but in the center-of-mass frame the two bodies still orbit the CM at radii scaled by $m_2/M$ and $m_1/M$. Body 2, the force center of the equivalent problem, is at rest in that frame only in the limit $m_2\to\infty$, where $\mu\to m_1$. The relative-coordinate equation itself is exact for finite masses.
 
 ---
 
@@ -1020,135 +936,51 @@ $$
 =-\frac{k}{r^2}\hat{\mathbf r}\times\mathbf L.
 $$
 
-Using $\mathbf L=m\mathbf r\times\dot{\mathbf r}$ and the vector identity for $\hat{\mathbf r}\times(\mathbf r\times\dot{\mathbf r})$, one finds
+Using $\mathbf L=m\mathbf r\times\dot{\mathbf r}$ and the triple-product identity $\hat{\mathbf r}\times(\mathbf r\times\dot{\mathbf r})=\mathbf r(\hat{\mathbf r}\cdot\dot{\mathbf r})-\dot{\mathbf r}(\hat{\mathbf r}\cdot\mathbf r)$,
+
+$$
+\hat{\mathbf r}\times(\mathbf r\times\dot{\mathbf r})
+=\mathbf r\dot r-r\dot{\mathbf r}
+=-r^2\frac{d\hat{\mathbf r}}{dt},
+$$
+
+where the last step uses $\mathbf r=r\hat{\mathbf r}$ and $\dot{\mathbf r}=\dot r\,\hat{\mathbf r}+r\,d\hat{\mathbf r}/dt$. Therefore
 
 $$
 \frac{d}{dt}\left(\mathbf p\times\mathbf L\right)
+=-\frac{k}{r^2}\hat{\mathbf r}\times\mathbf L
+=-\frac{mk}{r^2}\left[-r^2\frac{d\hat{\mathbf r}}{dt}\right]
 =mk\frac{d\hat{\mathbf r}}{dt}.
 $$
 
-Hence the right-hand side of the definition of $\mathbf A$ has zero time derivative, so $\mathbf A$ is conserved. Goldstein carries out this algebra explicitly [Goldstein §3.9](/chapters/ch-19.html#b-p0265-b0005).
+Since $\mathbf A=\mathbf p\times\mathbf L-mk\hat{\mathbf r}$, it follows that $\dot{\mathbf A}=0$: the LRL vector is conserved.
 
-> Use the vector triple product identity
->
-> $\mathbf A\times(\mathbf B\times \mathbf C) = \mathbf B(\mathbf A\cdot \mathbf C) - \mathbf C(\mathbf A\cdot \mathbf B).$
->
-> Here take
->
-> $\mathbf A=\hat{\mathbf r},\qquad \mathbf B=\mathbf r,\qquad \mathbf C=\dot{\mathbf r}.$
->
-> Then
->
-> $\hat{\mathbf r}\times(\mathbf r\times \dot{\mathbf r}) = \mathbf r(\hat{\mathbf r}\cdot \dot{\mathbf r}) - \dot{\mathbf r}(\hat{\mathbf r}\cdot \mathbf r).$
->
-> Now use $\mathbf r=r\hat{\mathbf r},$ $\hat{\mathbf r}\cdot \mathbf r=r,$ and $\hat{\mathbf r}\cdot \dot{\mathbf r}=\dot r.$
->
-> Therefore, $\hat{\mathbf r}\times(\mathbf r\times \dot{\mathbf r}) = \mathbf r \dot r-r\dot{\mathbf r}.$
->
-> Since $\mathbf r=r\hat{\mathbf r}$, $\mathbf r \dot r = r\dot r\,\hat{\mathbf r}.$
->
-> Also, $\dot{\mathbf r} = \dot r\,\hat{\mathbf r}+r\dot{\hat{\mathbf r}}.$
->
-> Thus, $r\dot{\mathbf r} = r\dot r\,\hat{\mathbf r}+r^2\dot{\hat{\mathbf r}}.$
->
-> So $\mathbf r\dot r-r\dot{\mathbf r} = r\dot r\,\hat{\mathbf r} - \left(r\dot r\,\hat{\mathbf r}+r^2\dot{\hat{\mathbf r}}\right).$
->
-> Hence $\hat{\mathbf r}\times(\mathbf r\times \dot{\mathbf r}) = -r^2\dot{\hat{\mathbf r}}.$
->
-> Now substitute this into the expression: $-\frac{k}{r^2}\hat{\mathbf r}\times \mathbf L = -\frac{k}{r^2}\hat{\mathbf r}\times \left(m\mathbf r\times\dot{\mathbf r}\right).$
->
-> So $-\frac{k}{r^2}\hat{\mathbf r}\times \mathbf L = -\frac{mk}{r^2} \left[ \hat{\mathbf r}\times(\mathbf r\times\dot{\mathbf r}) \right].$
->
-> Using the result above, $-\frac{mk}{r^2} \left(-r^2\dot{\hat{\mathbf r}}\right) = mk\dot{\hat{\mathbf r}}.$
->
-> Therefore,
->
-> $\boxed{ \frac{d}{dt}\left(\mathbf p\times\mathbf L\right) = mk\frac{d\hat{\mathbf r}}{dt} }.$
+Two properties of $\mathbf A$ follow directly.
 
-Two properties of $\mathbf A$ are important:
+1. $\mathbf A\cdot\mathbf L=0$, because $\mathbf L$ is perpendicular to the orbital plane while both $\mathbf p\times\mathbf L$ and $\hat{\mathbf r}$ lie in that plane. Hence $\mathbf A$ lies in the orbital plane.
+2. Its magnitude is $|\mathbf A|=mk e$, and it points toward periapsis. At periapsis $\mathbf p$ is tangential and $\mathbf p\times\mathbf L$ is radial, with
 
-1. $\mathbf A\cdot\mathbf L=0$, so $\mathbf A$ lies in the orbital plane.
-2. Its magnitude is $|\mathbf A|=mk e$; it points toward periapsis.
+$$
+|\mathbf p\times\mathbf L|=\frac{\ell^2}{r_{\min}}=mk(1+e),
+$$
 
-Thus the LRL vector encodes both the orientation and the eccentricity of the Kepler ellipse. It exists only for the inverse-square force; a general central force does not possess such an algebraic conserved vector. This extra symmetry is the deeper reason why Kepler orbits close.  In simple words, **the Laplace–Runge–Lenz vector tells us where the ellipse points and how stretched it is**.
+using $r_{\min}=\dfrac{p}{1+e}=\dfrac{\ell^2}{mk(1+e)}$. Therefore
 
-![LRL vectors](CentralForceImage/goldstein-3.18-lrl-vectors.jpg)
+$$
+\mathbf A=\left[mk(1+e)-mk\right]\hat{\mathbf r}=mk e\,\hat{\mathbf r}.
+$$
 
-**Figure 7.** The vectors $\mathbf p$, $\mathbf L$, and $\mathbf A$ at three positions on a Kepler orbit. The LRL vector $\mathbf A$ always points in the same direction (toward periapsis) and has magnitude $mk e$; at perihelion $|\mathbf p\times\mathbf L|=mk(1+e)$ and at aphelion $|\mathbf p\times\mathbf L|=mk(1-e)$. (Goldstein, *Classical Mechanics*, Fig. 3.18.)
+Thus the LRL vector encodes both the orientation and the eccentricity of the Kepler ellipse. It exists only for the inverse-square force; a general central force does not possess such an algebraic conserved vector. This extra symmetry is the deeper reason why Kepler orbits close: **the Laplace–Runge–Lenz vector tells us where the ellipse points and how stretched it is**.
+
+![LRL vectors](CentralForceImage/lrl-vectors.jpg)
+
+**Figure 8.** The vectors $\mathbf p$, $\mathbf L$, and $\mathbf A$ at three positions on a Kepler orbit. The LRL vector $\mathbf A$ always points in the same direction (toward periapsis) and has magnitude $mk e$; at perihelion $|\mathbf p\times\mathbf L|=mk(1+e)$ and at aphelion $|\mathbf p\times\mathbf L|=mk(1-e)$.
 
 ---
 
-## 7. Bertrand's Theorem and Closed Orbits
+## 7. A Tangential Impulse from a Circular Orbit
 
-A **closed orbit** (闭轨道) is one that eventually retraces its own path. Circular orbits are trivially closed. The nontrivial question is: for which central forces are *all* bound orbits closed?
-
-Goldstein frames the problem exactly this way: it is possible to derive a theorem on the types of attractive central forces that lead to closed orbits, that is, orbits in which the particle eventually retraces its own footsteps [Goldstein §3.6](/chapters/ch-19.html#b-p0251-b0003). The answer is **Bertrand's theorem** (贝特朗定理):
-
-> **Bertrand's theorem.** The only central forces that result in closed orbits for all bound particles are the inverse-square law and Hooke's law.
-
-Goldstein states the theorem in precisely this form [Goldstein §3.6](/chapters/ch-19.html#b-p0254-b0004).
-
-For the power-law family $F=-kr^n$, the two cases are:
-
-- $n=-2$: the inverse-square law, $F=-k/r^2$.
-- $n=1$: Hooke's law, $F=-kr$.
-
-The inverse-square orbits are ellipses with the force center at a focus. The Hooke-law orbits are ellipses with the force center at the center of the ellipse. Both families are closed for all bound energies.
-
-The near-circular analysis of Section 4.3 explains the mechanism. The language of apsides makes the statement precise. An **apsis** (plural **apsides**, 拱点) is a point of a bound orbit where the radial velocity vanishes, $\dot r=0$, so the distance from the force center is momentarily stationary. A **pericenter** (近心点), also called a **periapsis** (近拱点), is an apsis where the distance is a minimum, $r=r_{\min}$; an **apocenter** (远心点), also called an **apoapsis** (远拱点), is an apsis where the distance is a maximum, $r=r_{\max}$. For orbits about the Sun these are the perihelion (近日点) and aphelion (远日点); for orbits about Earth they are the perigee (近地点) and apogee (远地点). A pericenter is therefore the point of closest approach, and *successive pericenters* are the same closest-approach point visited once per radial cycle.
-
-The **apsidal angle** (拱点角) is the angle swept through between one apsis and the next—for example, from a pericenter to the following apocenter. It is half the angle between successive pericenters (or between successive apocenters). Some texts call the full pericenter-to-pericenter angle the apsidal angle; here we use the apsis-to-next-apsis convention.
-
-For a power law, the radial and angular frequencies satisfy $\omega_r/\omega_\theta=\sqrt{n+3}$. One full radial oscillation carries the radius through $r_{\min}\to r_{\max}\to r_{\min}$, so half an oscillation carries it from pericenter to apocenter. Therefore
-
-$$
-\Delta\theta_{\text{apse}}=\frac{\pi\omega_\theta}{\omega_r}=\frac{\pi}{\sqrt{n+3}}.
-$$
-
-The angle swept between successive pericenters is twice this:
-
-$$
-\Delta\theta_{\text{peri}\to\text{peri}}=\frac{2\pi}{\sqrt{n+3}}.
-$$
-
-After one radial cycle the angle has advanced by $2\pi/\sqrt{n+3}$ rather than $2\pi$, so the precession per radial cycle is
-
-$$
-\Delta\theta_{\text{prec}}=\frac{2\pi}{\sqrt{n+3}}-2\pi=2\pi\left(\frac{1}{\sqrt{n+3}}-1\right).
-$$
-
-A positive value means advance in the direction of motion; a negative value means backward precession. The orbit closes after a finite number of radial cycles exactly when the pericenter-to-pericenter advance is a rational multiple of $2\pi$, which in the near-circular approximation means that $\sqrt{n+3}$ is rational.
-
-![Closed orbit](CentralForceImage/taylor-8.7a-closed-orbit.jpg)
-
-**Figure 8(a).** For any inverse-square force, $r$ returns from $r_{\min}$ to $r_{\max}$ and back to $r_{\min}$ in exactly the time required for the angle to advance by $360^\circ$, so the orbit closes after one revolution. (Taylor, *Classical Mechanics*, Fig. 8.7a.)
-
-![Precessing orbit](CentralForceImage/taylor-8.7b-precessing-orbit.jpg)
-
-**Figure 8(b).** For a general central force the radial period differs from the angular period, so the orbit does not close after one revolution; here the radial cycle repeats while the angle advances by about $330^\circ$. (Taylor, *Classical Mechanics*, Fig. 8.7b.)
-
-![Apsidal angles](CentralForceImage/apsidal-angles.png)
-
-**Figure 9.** The three angle bookkeeping quantities, drawn for a near-circular orbit with $r_{\min}=0.82\,r_0$. **(a)** The orbit for $F=-k/r$ ($n=-1$), integrated exactly from the Binet equation. The dark segment is the first radial cycle; it runs from the pericenter $P_1$ through the apocenter $A_1$ to the next pericenter $P_2$, and the faint curve continues the rosette through $P_3$, $P_4$, $P_5$ (only $A_1$ among the four apocenters is labelled). The green arc is the apsidal angle $\Delta\theta_{\text{apse}}=\pi/\sqrt{n+3}$ swept from $P_1$ to $A_1$; the dark-blue arc is the pericenter-to-pericenter angle $\Delta\theta_{\text{peri}\to\text{peri}}=2\pi/\sqrt{n+3}$ swept from $P_1$ to $P_2$; the orange wedge is the precession $\Delta\theta_{\text{prec}}=2\pi/\sqrt{n+3}-2\pi$ left over before the orbit returns to the same ray. **(b)** The same three angles laid out on a linear ruler. For the inverse-square law ($n=-2$) the apocenter sits at $\pi$ and the next pericenter lands exactly at $2\pi$, so $\Delta\theta_{\text{prec}}=0$ and the orbit closes. For $F=-k/r$ ($n=-1$) the apocenter sits at $\pi/\sqrt{2}\approx 127.3^\circ$ and the next pericenter at $2\pi/\sqrt{2}\approx 254.6^\circ$, short of $2\pi$: the orbit precesses backward. Numerically, the exact turning points of the drawn orbit give $\Delta\theta_{\text{apse}}\approx 126.6^\circ$ and $\Delta\theta_{\text{peri}\to\text{peri}}\approx 253.4^\circ$, hence $\Delta\theta_{\text{prec}}\approx -106.6^\circ$, within about $1^\circ$ of the near-circular values $127.28^\circ$, $254.56^\circ$, and $-105.44^\circ$.
-
-The two Bertrand cases are summarized in the following table.
-
-| Force law | $n$ | $\omega_r/\omega_\theta$ | Apsidal angle $\Delta\theta_{\text{apse}}$ | Pericenter to pericenter | Closes after |
-|---|---|---|---|---|---|
-| inverse-square, $F=-k/r^2$ | $-2$ | $1$ | $\pi$ | $2\pi$ | one radial cycle |
-| Hooke, $F=-kr$ | $1$ | $2$ | $\pi/2$ | $\pi$ | two radial cycles |
-
-For $n=-2$, the next pericenter occurs after $2\pi$, so it coincides with the first and there is no precession. For $n=1$, the next pericenter lies on the opposite side of the force center, after $\pi$; two radial cycles bring the angle to $2\pi$, so the orbit closes as the familiar centered ellipse of the isotropic oscillator. In both cases the total angle over the closed cycle is $2\pi$, so the net precession is zero.
-
-> **Limits of the statement.** Bertrand's theorem concerns attractive, analytic central forces and *all* bound orbits. A particular near-circular orbit can be closed for a rational frequency ratio even when the force law is not one of the two Bertrand cases. The theorem does not say that every individual orbit of every other force law is open; it says that the force law cannot make *all* bound orbits closed.
-
----
-
-## 10. Worked Examples
-
-### 10.1 A Tangential Impulse from a Circular Orbit
-
-A particle of mass $m$ moves in a circular orbit of radius $r_0$ under an attractive inverse-square force $F=-k/r^2$. At one instant a tangential impulse changes its speed from the circular value $v_c$ to $v=\alpha v_c$, without changing its position or the direction of its velocity.
+Let $P$ be the point of a circular orbit of radius $r_0$ at which the impulse is applied. A particle of mass $m$ moves under the attractive inverse-square force $F=-k/r^2$. An instantaneous tangential impulse at $P$ changes the speed from the circular value $v_c$ to $v=\alpha v_c$ with $\alpha>0$, without changing the particle's position or the direction of its velocity.
 
 **Step 1: Circular speed.** From the circular-orbit condition with $F=-k/r_0^2$,
 
@@ -1159,6 +991,8 @@ $$
 \qquad
 v_c=\frac{\ell_c}{mr_0}=\sqrt{\frac{k}{mr_0}}.
 $$
+
+On the circular orbit $\dot r=0$, so the velocity is purely tangential and $v_c=r_0\dot\theta_c$. This is the same speed that enters the kinetic energy below.
 
 **Step 2: New constants.** After the impulse, the radius is still $r_0$ and the radial velocity is still zero, but
 
@@ -1175,6 +1009,8 @@ $$
 a=-\frac{k}{2E}=\frac{r_0}{2-\alpha^2}.
 $$
 
+For $E<0$ this is the ordinary semimajor axis. For $E>0$ ($\alpha>\sqrt2$) the right-hand side is negative: this is the signed semimajor axis of the hyperbola, and the positive semi-transverse axis is $|a|$.
+
 **Step 4: Eccentricity.** Using the eccentricity–energy relation,
 
 $$
@@ -1189,127 +1025,48 @@ $$
 \boxed{e=\left|1-\alpha^2\right|.}
 $$
 
-**Step 5: Interpretation.**
+**Step 5: Interpretation.** Two independent signs control the classification. The sign of $E$ determines whether the orbit is bound, while the sign of the radial acceleration at $P$ determines whether $P$ is an apoapsis or a periapsis.
 
-- If $\alpha=1$, then $e=0$: the orbit remains circular.
-- If $0<\alpha<1$, the speed is reduced, the burn point becomes the apoapsis, and $e=1-\alpha^2$. The orbit is an ellipse with $r_{\max}=r_0$.
-- If $1<\alpha<\sqrt2$, the speed is increased but the energy is still negative; the burn point becomes the periapsis, and $e=\alpha^2-1$. The orbit is an ellipse with $r_{\min}=r_0$.
-- If $\alpha=\sqrt2$, then $E=0$ and $e=1$: the orbit is a parabola.
-- If $\alpha>\sqrt2$, then $E>0$ and $e>1$: the orbit is a hyperbola.
 
-![Forward impulse](CentralForceImage/taylor-8.12a-forward-impulse.jpg)
 
-**Figure 10(a).** Changing a circular orbit by a forward tangential impulse at $P$: the speed increases, $P$ remains the periapsis, and the new orbit is a larger ellipse drawn dashed outside the original solid orbit. (Taylor, *Classical Mechanics*, Fig. 8.12a.)
-
-![Backward impulse](CentralForceImage/taylor-8.12b-backward-impulse.jpg)
-
-**Figure 10(b).** A backward tangential impulse at $P$: the speed decreases and the new orbit is a smaller ellipse drawn dashed inside the original orbit. For the right impulse the new orbit becomes circular; a still stronger backward impulse makes $P$ the apoapsis. (Taylor, *Classical Mechanics*, Fig. 8.12b.)
-
-**Checks.** At $\alpha=1$, the semimajor axis is $a=r_0$ and the eccentricity is $e=0$, consistent with the original circle. At $\alpha\to\sqrt2$, $a\to\infty$ and $e\to1$, consistent with the parabolic threshold. The periapsis and apoapsis formulas reproduce $r_0$ in both the $\alpha<1$ and $\alpha>1$ cases, as they must because the burn point is a turning point.
-
----
-
-### 10.2 Circular Orbits in a Power-Law Potential
-
-Consider the attractive power-law force
+At $P$ the radial velocity is zero, so $P$ is a turning point. Its character follows from the radial acceleration there. Using $F(r_0)=-k/r_0^2$ and $\ell^2=\alpha^2mkr_0$,
 
 $$
-F(r)=-kr^n,
-\qquad k>0,
-\qquad n\ne-1.
+\ddot r(P)
+=\frac{F(r_0)}{m}+\frac{\ell^2}{m^2r_0^3}
+=-\frac{k}{mr_0^2}+\frac{\alpha^2k}{mr_0^2}
+=\frac{k}{mr_0^2}\left(\alpha^2-1\right).
 $$
 
-Its potential, with the zero chosen at infinity when $n<-1$, is
+If $0<\alpha<1$, then $\ddot r(P)<0$: the particle is pulled inward from rest, so $r$ has a local maximum at $P$ and $P$ is the **apoapsis**. If $\alpha>1$, then $\ddot r(P)>0$: the particle moves outward from rest, so $P$ is the **periapsis**. At $\alpha=1$ the acceleration vanishes and the original circle is preserved.
+
+The same conclusion follows from the effective potential. With the new angular momentum, the effective potential is
 
 $$
-V(r)=\frac{k}{n+1}r^{n+1}.
-$$
-
-**Step 1: Circular radius.** The circular-orbit condition gives
-
-$$
-kr_0^n=\frac{\ell^2}{mr_0^3}
-\quad\Longrightarrow\quad
-\boxed{\ell^2=mkr_0^{n+3}.}
-$$
-
-**Step 2: Energy.** Substituting the circular-orbit angular momentum into the energy of the circular orbit,
-
-$$
-E=\frac{k}{n+1}r_0^{n+1}+\frac{k}{2}r_0^{n+1}
-=\boxed{\frac{k(n+3)}{2(n+1)}r_0^{n+1}.}
-$$
-
-**Step 3: Stability.** From the stability condition $n>-3$, the orbit is stable for $n>-3$. The second derivative of the effective potential is
-
-$$
-V_{\text{eff}}''(r_0)=k(n+3)r_0^{n-1}.
-$$
-
-**Step 4: Frequencies.** The radial and angular frequencies are
-
-$$
-\omega_r^2=\frac{k(n+3)r_0^{n-1}}{m},
+V_{\text{eff}}(r)=-\frac{k}{r}+\frac{\ell^2}{2mr^2},
 \qquad
-\omega_\theta^2=\frac{k}{m}r_0^{n-1},
-\qquad
-\frac{\omega_r}{\omega_\theta}=\sqrt{n+3}.
+V_{\text{eff}}'(r)=\frac{k}{r^2}-\frac{\ell^2}{mr^3}.
 $$
 
-**Step 5: Special cases.**
+Setting $V_{\text{eff}}'(r)=0$ gives the radius of the circular orbit that would have this angular momentum:
 
-- **Inverse-square law, $n=-2$.** Then $\ell^2=mkr_0$, $E=-k/(2r_0)$, and $\omega_r/\omega_\theta=1$. The circular orbit is stable, and the near-circular orbit closes after one revolution.
-- **Hooke's law, $n=1$.** Then $\ell^2=mkr_0^4$, $E=kr_0^2$, and $\omega_r/\omega_\theta=2$. The near-circular orbit closes after two radial oscillations, corresponding to the centered ellipse.
-- **Constant force, $n=0$.** Then $\ell^2=mkr_0^3$, $E=3kr_0/2$, and $\omega_r/\omega_\theta=\sqrt3$. The ratio is irrational, so near-circular orbits do not close; the pericenters precess.
+$$
+r_c=\frac{\ell^2}{mk}=\alpha^2r_0.
+$$
 
-**Checks.** For $n=-2$, the circular energy is $E=-k/(2r_0)$, in agreement with $a=r_0$ for a circular orbit. For $n=1$, the potential is $V=\frac12kr^2$ and the circular energy is $E=kr_0^2$, which equals $V(r_0)+\frac12mv_\theta^2$ because the kinetic and potential contributions are equal for a circular Hooke orbit.
+Since $V_{\text{eff}}''(r_c)=k/r_c^3>0$, $r_c$ is the bottom of the effective-potential well. The particle is at $r_0$ with $\dot r=0$, so $r_0$ is a turning point of the new radial motion. For $\alpha<1$, $r_c=\alpha^2r_0<r_0$: the turning point lies on the outer side of the well, hence $r_0=r_{\max}$ and $P$ is the apoapsis. For $\alpha>1$, $r_c>r_0$: the turning point lies on the inner side, hence $r_0=r_{\min}$ and $P$ is the periapsis.
 
----
+In summary:
 
-## 12. Summary
+- If $0<\alpha<1$, the speed is reduced and $E<0$. The impulse point $P$ is the apoapsis, $e=1-\alpha^2$, and the orbit is an ellipse inside the original circle with $r_{\max}=r_0$ and $r_{\min}=r_0\alpha^2/(2-\alpha^2)$.
+- If $\alpha=1$, then $e=0$ and the orbit remains the original circle.
+- If $1<\alpha<\sqrt2$, the speed is increased but $E$ is still negative. $P$ is the periapsis, $e=\alpha^2-1$, and the orbit is an ellipse outside the original circle with $r_{\min}=r_0$ and $r_{\max}=r_0\alpha^2/(2-\alpha^2)$.
+- If $\alpha=\sqrt2$, then $E=0$ and $e=1$: the orbit is a parabola with $P$ at its pericenter.
+- If $\alpha>\sqrt2$, then $E>0$ and $e>1$: the orbit is a hyperbola with $P$ at its pericenter.
 
-The central-force problem is solvable because two conservation laws reduce it to one effective dimension.
+The limiting case $\alpha=0$ gives $\ell=0$: the conic degenerates to a line segment, with $e=1$ and $a=r_0/2$, and the particle falls radially toward the force center.
 
-- **Two-body reduction.** An isolated pair with a mutual central potential reduces to a one-body problem with the reduced mass $\mu=m_1m_2/(m_1+m_2)$:
-  $$
-  \mu\ddot{\mathbf r}=F(r)\hat{\mathbf r}.
-  $$
-- **Angular momentum.** A central force exerts no torque about the force center, so
-  $$
-  \boxed{\mathbf L=\mathbf r\times\mathbf p=\text{constant}.}
-  $$
-  The motion is planar, and the areal velocity is constant:
-  $$
-  \boxed{\frac{dA}{dt}=\frac{\ell}{2m}.}
-  $$
-- **Effective potential.** The radial motion is one-dimensional:
-  $$
-  \boxed{V_{\text{eff}}(r)=V(r)+\frac{\ell^2}{2mr^2},
-  \qquad
-  m\ddot r=-\frac{dV_{\text{eff}}}{dr}.}
-  $$
-- **Orbit equation.** With $u=1/r$,
-  $$
-  \boxed{\frac{d^2u}{d\theta^2}+u
-  =-\frac{m}{\ell^2u^2}F\!\left(\frac1u\right).}
-  $$
-- **Kepler orbits.** For $F=-k/r^2$,
-  $$
-  \boxed{r=\frac{p}{1+e\cos(\theta-\theta')},
-  \qquad
-  p=\frac{\ell^2}{mk},
-  \qquad
-  e=\sqrt{1+\frac{2E\ell^2}{mk^2}}.}
-  $$
-  The orbit is an ellipse for $E<0$, a parabola for $E=0$, and a hyperbola for $E>0$.
-- **Energy and period.** For the ellipse,
-  $$
-  \boxed{a=-\frac{k}{2E},
-  \qquad
-  v^2=\frac{k}{m}\left(\frac{2}{r}-\frac{1}{a}\right),
-  \qquad
-  \tau^2=\frac{4\pi^2m}{k}a^3.}
-  $$
-  For gravity, $m\to\mu$, $k=Gm_1m_2$, and $\tau^2=4\pi^2a^3/[G(m_1+m_2)]$.
-- **Apsides and precession.** An apsis (拱点) is a turning point of the radial motion; a pericenter (近心点) is the closest apsis and an apocenter (远心点) the farthest. For a power law $F=-kr^n$, the apsidal angle (拱点角) from one apsis to the next is $\pi/\sqrt{n+3}$. Successive pericenters are separated by $2\pi/\sqrt{n+3}$, so the precession per radial cycle is $2\pi(1/\sqrt{n+3}-1)$.
-- **Bertrand's theorem.** The only central forces that close all bound orbits are the inverse-square law and Hooke's law.
+![Five cases of alpha](CentralForceImage/tangential-impulse-alpha-cases.png)
+
+**Figure 9.** The five cases for the speed ratio $\alpha=v/v_c$ after a tangential impulse at $P$ in a circular inverse-square orbit. **(a)** Representative orbits: $\alpha=0.7$ (blue, ellipse inside the circle with $P$ as apoapsis), $\alpha=1$ (grey dashed circle), $\alpha=1.2$ (orange, ellipse outside the circle with $P$ as periapsis), $\alpha=\sqrt2$ (green parabola), and $\alpha=1.7$ (purple hyperbola). All orbits pass through $P$ at distance $r_0$ from the force center $O$; parts that leave the frame are clipped. **(b)** Eccentricity $e=|1-\alpha^2|$ and the classification: $E<0$ for $\alpha<\sqrt2$ (ellipse), $E=0$ at $\alpha=\sqrt2$ (parabola), and $E>0$ for $\alpha>\sqrt2$ (hyperbola). The vertical dotted lines mark $\alpha=1$ (circle) and $\alpha=\sqrt2$ (parabolic threshold). The degenerate limit $\alpha=0$ ($\ell=0$, pure radial infall) is not one of the five cases and is not shown: panel (b) begins at $\alpha=0.2$.
+

@@ -98,7 +98,7 @@ is the distance from the focus to the directrix.
 - For $e>1$, the directrix distance grows more slowly than the focus distance as the curve recedes; the curve is open.
 - At $e=0$ the construction degenerates, since $d\to\infty$: the focus-distance condition alone fixes a circle.
 
-> **Why $p$ is the natural scale.** The energy fixes only $e$ (Section 5), while the angular momentum fixes $p$. For fixed $\ell$, all conics of the family share the same $p$ and differ only in $e$.
+> **Why $p$ is the natural scale.** For the Kepler problem the energy fixes the eccentricity $e$, while the angular momentum fixes $p$. For fixed $\ell$, all conics of the family share the same $p$ and differ only in $e$.
 
 ------
 
@@ -106,9 +106,9 @@ is the distance from the focus to the directrix.
 
 The four classes differ only in the eccentricity $e$. To compare their shapes, give them the same periapsis distance $r_{\min}=1$; since $r_{\min}=p/(1+e)$, this fixes $p=1+e$ for each curve.
 
-![Kepler conics](CentralForceImage/kepler-conic-classes.png)
+<img src="CentralForceImage/kepler-conic-classes.png" alt="Kepler conics" style="zoom:50%;" />
 
-**Figure 2.** The four classes of Kepler orbit with a common periapsis. The focus $F$ is at the origin and the periapsis direction is $+x$, so every curve passes through the same point, marked by the ring; all four panels share the same scale. The semi-latus rectum is chosen as $p=r_{\min}(1+e)$, giving $p=1$ for the circle ($e=0$), $p=1.6$ for the ellipse ($e=0.6$), $p=2$ for the parabola ($e=1$), and $p=2.5$ for the hyperbola ($e=1.5$). For the hyperbola only the physical branch $r>0$ is shown. As $e$ increases, the curve opens from a closed circle to an ellipse, a parabola, and finally a hyperbola.
+**Figure 2.** The four classes of Kepler orbit with a common periapsis. The focus $F$ is at the origin and the periapsis direction is $+x$, so every curve passes through the same point, marked by the ring; all four curves share the same scale. The semi-latus rectum is chosen as $p=r_{\min}(1+e)$, giving $p=1$ for the circle ($e=0$), $p=1.6$ for the ellipse ($e=0.6$), $p=2$ for the parabola ($e=1$), and $p=2.5$ for the hyperbola ($e=1.5$). For the hyperbola only the physical branch $r>0$ is shown. As $e$ increases, the curve opens from a closed circle to an ellipse, a parabola, and finally a hyperbola.
 
 ### 3.1 Circle
 
@@ -120,7 +120,7 @@ $$
 
 for every $\phi$. The distance from the focus is constant, so the curve is a **circle** (圆) of radius $p$ centered on the force center. The two foci coincide at the center, every direction is a periapsis, and $\theta'$ has no geometric meaning.
 
-The circle is the minimum-energy orbit for a given $\ell$; see Section 5.
+For fixed $\ell$, the circle is the minimum of the effective potential.
 
 ------
 
@@ -180,15 +180,15 @@ $$
 At $T$ the focus-directrix relation from Section 2 gives
 
 $$
-|TF|=e\,\mathrm{dist}(T,\ell),
+|TF|=e\,\mathrm{dist}(T,\mathcal{L}),
 $$
 
-where $F$ is the focus at the origin and $\ell$ is the directrix $x=d=p/e$. Now
+where $F$ is the focus at the origin and $\mathcal{L}$ is the directrix $x=d=p/e$. Now
 
 $$
 |TF|=\sqrt{(ae)^2+b^2},
 \qquad
-\mathrm{dist}(T,\ell)=d-x_T=\frac{p}{e}+ae.
+\mathrm{dist}(T,\mathcal{L})=d-x_T=\frac{p}{e}+ae.
 $$
 
 Substituting,
@@ -270,13 +270,13 @@ There is no apoapsis and no finite semimajor axis. The parameter $p$ is twice th
 
 #### 3.3.1 From the focus–directrix definition to $x^2=4ay$
 
-Set the turning point (the **vertex**, which for the orbit is the periapsis) at the origin $(0,0)$, take the axis of the parabola along the $y$-axis with the curve opening upward, and put the focus at $(0,a)$. The focus–vertex distance is the **focal length** of $a$. Because $e=1$, the focus–directrix definition applied at the vertex says the vertex is equally far from the focus and from the directrix:
+Set the turning point (the **vertex**, which for the orbit is the periapsis) at the origin $(0,0)$, take the axis of the parabola along the $y$-axis with the curve opening upward, and put the focus at $(0,a)$. The focus–vertex distance is the **focal length** $a$. Because $e=1$, the focus–directrix definition applied at the vertex says the vertex is equally far from the focus and from the directrix:
 
 $$
-|FV|=\operatorname{dist}(V,\ell).
+|FV|=\operatorname{dist}(V,\mathcal{L}).
 $$
 
-Thus $\operatorname{dist}(V,\ell)=a$, the directrix is the horizontal line $y=-a$, and the focus–directrix distance is $d=2a$. For $e=1$ the general relation $d=p/e$ from Section 2 gives $d=p$; therefore
+Thus $\operatorname{dist}(V,\mathcal{L})=a$, the directrix is the horizontal line $y=-a$, and the focus–directrix distance is $d=2a$. For $e=1$ the general relation $d=p/e$ from Section 2 gives $d=p$; therefore
 
 $$
 p=2a.
@@ -288,7 +288,7 @@ $$
 \sqrt{x^2+(y-a)^2}=|y+a|.
 $$
 
-The parabola lies above the directrix, so $y+a\ge0$ (it vanishes only at the vertex). Hence $|y+a|=y+a$, and squaring is reversible:
+The parabola lies strictly above the directrix, so $y+a>0$; squaring is therefore reversible:
 
 $$
 x^2+(y-a)^2=(y+a)^2
@@ -304,7 +304,7 @@ $$
 
 The parabola is the marginal case between bound and unbound motion. A particle on it reaches infinity with zero speed, which corresponds to $E=0$.
 
-**The motion is a single pass**: the particle comes in from infinity along one arm, passes the periapsis at $\phi=0$, and recedes to infinity along the other arm. Since the denominator vanishes at $\phi=\pm\pi$, **both arms approach the direction of the negative $x$-axis**, so the parabola is asymptotic to a line parallel to its own axis. Unlike the hyperbola, it has no pair of distinct asymptotes and hence no scattering angle.
+**The motion is a single pass**: the particle comes in from infinity along one arm, passes the periapsis at $\phi=0$, and recedes to infinity along the other arm. Since the denominator vanishes at $\phi=\pm\pi$, **both arms approach the direction of the negative $x$-axis**, so the parabola is asymptotic to a line parallel to its own axis. Its two limiting directions coincide, so a parabolic orbit has no pair of distinct asymptotes and no finite scattering angle.
 
 ------
 
@@ -367,11 +367,12 @@ For the ellipse, $a$ and $b$ are semiaxes that the curve actually reaches, and t
 **Figure 5.** The two frames for the Kepler hyperbola ($e>1$). (a) Focus-centered frame $(x,y)$: the focus $F$ is the origin and $+x$ points toward the periapsis vertex $V$, with $x_F=0$, $x_V=r_{\min}=p/(1+e)$, and the center $C$ at $x_C=ae$. Reading inward from $C$ along the transverse axis, the order is $C,V,F$, with $a=|CV|$ and $c=|CF|=a+r_{\min}$. The physical branch ($r>0$, $x\le r_{\min}$) is solid and wraps around $F$; the second branch is dashed. The scale bar records $|FV|=r_{\min}$, $|VC|=|CV'|=a$, and $|V'F'|=r_{\min}$, so that $c=a+r_{\min}$. (b) Center-centered frame $(X,Y)=(x-ae,y)$: the focus, vertices, and second focus lie at $X=-c,-a,+a,+c$, and $C$ is at $X=0$. The standard form is $X^2/a^2-Y^2/b^2=1$ with $c^2=a^2+b^2$, and the physical branch is $X\le -a$. The fundamental rectangle has corners $(\pm a,\pm b)$ on the asymptotes, and the diagonal from $C$ to $(a,b)$ has length $c$. The conjugate axis $X=0$ is never reached: at $X=-a$ the asymptote is at $Y=\pm b$, so $b$ is the asymptote height, not a point on the curve---the curve passes through $(-a,0)$, not $(-a,\pm b)$. The semi-latus rectum $p=b^2/a$ is the vertical chord through $F$ at $X=-c$. Drawn for $e=1.5$, $p=2$: $a=1.6$, $b\approx1.789$, $c=2.4$, $r_{\min}=0.8$.
 
 **Focus-centered frame and the order of the points.** In the frame $(x,y)$ of the orbit equation, the focus $F$ is the origin and $+x$ points toward the periapsis vertex $V$, at
+
 $$
 x_V=r_{\min}=\frac{p}{1+e}.
 $$
 
-The line through $F$ and $V$ is the **transverse axis**. The center $C$ is the intersection of the two asymptotes. The branch wraps around the focus and opens toward it, while the asymptotes cross at the center on the opposite side of the vertex; along the transverse axis the order is therefore
+The line through $F$ and $V$ is the **transverse axis**. The center $C$ is the intersection of the two asymptotes. The branch bends around the focus and opens away from the center, on the same side as $F$, while the asymptotes cross at the center on the opposite side of the vertex. Moving inward along the transverse axis from the far side toward the focus, the order is therefore
 
 $$
 C,\qquad V,\qquad F.
@@ -385,7 +386,8 @@ $$
 
 For the ellipse the curve surrounds the focus and the order is $C,F,V$, so that $c=a-r_{\min}$.
 
-**Value of $a$ and $c$.** The eccentricity is $e=c/a$ (the same $e$ as in the orbit equation), and $e>1$ precisely because $c>a$. Combining $c=ae$ with $c=a+r_{\min}$ and $r_{\min}=p/(1+e)$,
+**Value of $a$ and $c$.** The geometric eccentricity is defined by $e=c/a$; it is the same $e$ as in the orbit equation, as the asymptote calculation below confirms. For the hyperbola $e>1$ precisely because $c>a$. Combining $c=ae$ with $c=a+r_{\min}$ and $r_{\min}=p/(1+e)$,
+
 $$
 ae=a+\frac{p}{1+e}
 \quad\Longrightarrow\quad
@@ -399,6 +401,7 @@ $$
 Since $C$ lies on the far side of $V$, its coordinate in the focus frame is $x_C=c=ae$.
 
 **Center-centered frame.** Move the origin to $C$. Define
+
 $$
 X=x-ae,\qquad Y=y.
 $$
@@ -464,6 +467,8 @@ $$
 c^2=a^2+b^2.
 $$
 
+Equivalently, $c/a=\sqrt{1+b^2/a^2}=\sqrt{1+(e^2-1)}=e$, confirming that the geometric ratio $c/a$ is the same eccentricity as in the orbit equation.
+
 This is the hyperbola counterpart of the ellipse relation $a^2=b^2+c^2$. The sign difference reflects the geometry: for the ellipse the focus is inside the vertex ($c<a$), so $b^2=a^2-c^2$; for the hyperbola the focus is outside the vertex ($c>a$), so $b^2=c^2-a^2$.
 
 **The semi-latus rectum in both frames.** In the focus frame the orbit equation already defines the semi-latus rectum as the perpendicular distance from $F$ to the curve, attained at $\phi=\pi/2$, where $r=p$. In the focus frame this chord is the line $x=0$; in the center frame it is the vertical line through the focus, $X=-c$. Setting $X=-c$ in the standard form,
@@ -519,7 +524,7 @@ $$
 (1-e^2)x^2+y^2+2pex-p^2=0,
 $$
 
-which contains all four cases. Completing the square differs according to the sign of $1-e^2$.
+which contains all four cases. Since the equation was obtained by squaring, it also contains points with $p-ex<0$; only the subset with $p-ex\ge0$ satisfies the original orbit equation. For the hyperbola this selects the physical branch. Completing the square differs according to the sign of $1-e^2$.
 
 **Circle, $e=0$.** The equation reduces to
 
@@ -581,149 +586,132 @@ The table collects the geometric parameters.
 
 ## 5. Understanding Conic Sections Through the General Quadratic Equation
 
-A conic section can be understood as the graph of a **general second-degree equation** in two variables:
+A conic section is the zero set of a **general second-degree equation** in two variables:
 
 $$
-Ax^2+Bxy+Cy^2+Dx+Ey+F=0.
+Ax^2+Bxy+Cy^2+Dx+Ey+G=0,
+\qquad (A,B,C)\neq(0,0,0).
 $$
 
-This equation is called a **general quadratic equation**. Different choices of the coefficients $A,B,C,D,E,F$ produce different conic sections: **circles, ellipses, parabolas, and hyperbolas**.
+Different choices of the coefficients produce a **circle, ellipse, parabola, or hyperbola**. Degenerate choices produce a point, a line, or a pair of lines; we consider only nondegenerate conics.
 
-The terms $Ax^2$, $Bxy$, and $Cy^2$ are the **quadratic terms**. They mainly determine the basic type and orientation of the conic. The terms $Dx$ and $Ey$ are the **linear terms**. They often shift the graph away from the origin. The constant term $F$ affects the size and position of the conic.
+The **quadratic terms** $Ax^2$, $Bxy$, $Cy^2$ determine the type and orientation of the conic. The **linear terms** $Dx$, $Ey$ translate it, and the constant $G$ fixes its scale and position.
 
 ------
 
 ### 5.1 Standard Forms and the Role of Quadratic Terms
 
-For conics whose axes are aligned with the coordinate axes, the equation usually has no $xy$ term. Then it has the simpler form:
+The quadratic part $Ax^2+Bxy+Cy^2$ is a symmetric quadratic form, so a rotation of axes removes the $xy$ term. In the rotated coordinates $(X,Y)$ the equation becomes
 
 $$
-Ax^2+Cy^2+Dx+Ey+F=0.
+A'X^2+C'Y^2+D'X+E'Y+G'=0.
 $$
 
-For example, an ellipse may look like
+The discriminant
 
 $$
-\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,
+\Delta=B^2-4AC=-4A'C'
 $$
 
-a hyperbola may look like
+is invariant under rotation. It classifies the conic:
+
+- $\Delta<0$ ($A'$ and $C'$ of the same sign): **ellipse**, or **circle** when $A'=C'$;
+- $\Delta=0$ (one of $A'$, $C'$ zero): **parabola**;
+- $\Delta>0$ ($A'$ and $C'$ of opposite signs): **hyperbola**.
+
+Thus ellipses and hyperbolas have two squared variables after rotation, whereas a parabola has one squared and one linear variable:
 
 $$
-\frac{x^2}{a^2}-\frac{y^2}{b^2}=1,
+\frac{X^2}{a^2}+\frac{Y^2}{b^2}=1,
+\qquad
+\frac{X^2}{a^2}-\frac{Y^2}{b^2}=1,
+\qquad
+Y^2=4aX.
 $$
-
-and a parabola may look like
-
-$$
-y^2=4ax
-\qquad\text{or}\qquad
-x^2=4ay.
-$$
-
-A key difference is that ellipses and hyperbolas usually have **two squared variables**, while a parabola has only **one squared variable** and one linear variable.
 
 ------
 
 ### 5.2 What Is the Center of a Conic?
 
-The **center** of a conic is a point about which the graph has **central symmetry**. This means that if a point $(x,y)$ lies on the conic, then the point directly opposite it through the center also lies on the conic. For example, if the center is $(h,k)$, then for every point $(x,y)$ on the conic, the reflected point $(2h-x,\ 2k-y)$ is also on the conic.
+The **center** of a conic is a point of **central symmetry**: if $(x,y)$ lies on the conic, so does its reflection $(2h-x,\,2k-y)$ through the center $(h,k)$.
 
-Ellipses and hyperbolas have centers. For example,
-
-$$
-\frac{(x-h)^2}{a^2}+\frac{(y-k)^2}{b^2}=1
-$$
-
-has center $(h,k)$, and
+In the rotated frame, shifting the origin to $(h,k)$ removes the linear terms exactly when
 
 $$
-\frac{(x-h)^2}{a^2}-\frac{(y-k)^2}{b^2}=1
+2A'h+D'=0,
+\qquad
+2C'k+E'=0.
 $$
 
-also has center $(h,k)$.
+This system has a unique solution precisely when $A'C'\neq0$, that is, when $\Delta\neq0$. Therefore:
+
+- ellipses and hyperbolas ($\Delta\neq0$) have a unique center;
+- parabolas ($\Delta=0$) have no center.
+
+For a centered conic the equation reduces to
+
+$$
+A'(X-h)^2+C'(Y-k)^2=K.
+$$
 
 ------
 
 ### 5.3 Why Parabolas Do Not Have Centers
 
-A parabola does **not** have a center. It has a **vertex**, but not a center. For example,
+For a parabola $\Delta=0$, so after rotation one quadratic coefficient vanishes. Taking $C'=0$ and $A'\neq0$, the equation is
 
 $$
-y^2=4ax
+A'X^2+D'X+E'Y+G'=0,
+\qquad E'\neq0.
 $$
 
-has vertex $(0,0)$. However, it opens only in one direction. If a point lies on the parabola, reflecting it through the vertex usually does not give another point on the parabola.
+A translation can remove the linear $X$ term, but it cannot remove the linear $Y$ term. The surviving linear term is what makes the curve open in one direction.
 
-For instance, if $(x,y)$ is on $y^2=4ax$, then the reflected point through the origin is $(-x,-y)$. But substituting into the equation gives
-
-$$
-(-y)^2=4a(-x),
-$$
-
-which becomes
-
-$$
-y^2=-4ax.
-$$
-
-This is generally not true if $y^2=4ax$. Therefore, the origin is not a center.
-
-So a parabola has a **turning point**, called the vertex, but it does not have central symmetry.
+Geometrically, reflection through a point reverses the opening direction of a parabola. A single parabola cannot coincide with its reflected image through any finite point, so it has no central symmetry. It has a **vertex**, the turning point of the curve, but no center.
 
 ------
 
 ### 5.4 How the General Quadratic Equation Shows the Difference
 
-The general conic equation is
+Completing the square in the rotated frame gives the standard forms:
+
+- **Ellipse** ($\Delta<0$):
 
 $$
-Ax^2+Bxy+Cy^2+Dx+Ey+F=0.
+\frac{(X-h)^2}{a^2}+\frac{(Y-k)^2}{b^2}=1.
 $$
 
-A conic with a center usually can be shifted to remove the linear terms and written mainly in terms of squared variables:
+- **Hyperbola** ($\Delta>0$):
 
 $$
-A'x^2+C'y^2+F'=0,
+\frac{(X-h)^2}{a^2}-\frac{(Y-k)^2}{b^2}=1.
 $$
 
-or, after shifting the origin to its center,
-
-$$
-A'X^2+C'Y^2=1
-\qquad\text{or}\qquad
-A'X^2-C'Y^2=1.
-$$
-
-This gives ellipses or hyperbolas.
-
-For a parabola, after shifting to its vertex, one linear term remains. For example,
+- **Parabola** ($\Delta=0$): after rotation and translation,
 
 $$
 Y^2=4aX.
 $$
 
-This remaining linear term is what makes the graph open in one direction and prevents it from having a center.
+In the first two cases the equation is invariant under reflection through $(h,k)$, so the center exists and both squared variables appear. In the parabolic case the linear term remains; the curve opens in one direction and has no center.
 
 ------
 
 ### 5.5 Summary
 
-A conic section is described by a general quadratic equation:
+A conic section is described by a general quadratic equation
 
 $$
-Ax^2+Bxy+Cy^2+Dx+Ey+F=0.
+Ax^2+Bxy+Cy^2+Dx+Ey+G=0.
 $$
 
-Ellipses and hyperbolas have centers because they have central symmetry. Their equations can usually be shifted so that only squared terms remain. Parabolas do not have centers. They have vertices instead. A parabola cannot be written in the same form as an ellipse or hyperbola because it contains one squared variable and one linear variable.
+Its type is fixed by the discriminant $\Delta=B^2-4AC$ of the quadratic part. Ellipses and hyperbolas have $\Delta\neq0$, a unique center, and central symmetry; their equations reduce, after rotation and translation, to a relation between two squared variables. Parabolas have $\Delta=0$, no center, and a vertex; their equations necessarily retain one linear variable.
 
-In short:
+| Conic | Discriminant | Center | Key feature |
+|---|---|---|---|
+| circle | $\Delta<0$ | yes | special ellipse with $A'=C'$ |
+| ellipse | $\Delta<0$ | yes | closed curve with central symmetry |
+| hyperbola | $\Delta>0$ | yes | two branches with central symmetry |
+| parabola | $\Delta=0$ | no | one vertex, opens in one direction |
 
-| Conic | Has a center? | Key feature |
-|---|---|---|
-| circle | Yes | Special ellipse |
-| ellipse | Yes | Closed curve with central symmetry |
-| hyperbola | Yes | Two branches with central symmetry |
-| parabola | No | One vertex, opens in one direction |
-
-The idea of a **center** is therefore closely related to whether the conic has **central symmetry**.
+The existence of a center is therefore exactly the condition that the quadratic part be nondegenerate, $\Delta\neq0$.
