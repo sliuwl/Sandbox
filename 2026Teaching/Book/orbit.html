@@ -1,0 +1,579 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two-body Motion and Relative Orbit</title>
+  <style>
+    :root {
+      --bg: #080b12;
+      --panel: #111827;
+      --panel2: #172033;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --blue: #60a5fa;
+      --orange: #fb923c;
+      --green: #34d399;
+      --yellow: #facc15;
+      --purple: #c084fc;
+      --grid: rgba(255,255,255,0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, #1f2937 0%, #111827 35%, #030712 100%);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      max-width: 1100px;
+      padding: 24px 16px 12px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.35rem, 4vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      margin: 0 auto;
+      max-width: 850px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.98rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      padding: 12px 16px 24px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .canvas-card {
+      background: rgba(17, 24, 39, 0.78);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: min(68vh, 680px);
+      min-height: 430px;
+      background:
+        linear-gradient(to right, var(--grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid) 1px, transparent 1px),
+        radial-gradient(circle at center, #111827 0%, #050816 72%);
+      background-size: 40px 40px, 40px 40px, 100% 100%;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      background: rgba(17, 24, 39, 0.9);
+      padding: 14px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .control {
+      background: rgba(31, 41, 55, 0.8);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .control label {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .control strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--blue);
+    }
+
+    button {
+      width: 100%;
+      height: 38px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(96, 165, 250, 0.25);
+    }
+
+    button:hover {
+      filter: brightness(1.08);
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .box {
+      background: rgba(17, 24, 39, 0.75);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 16px;
+      line-height: 1.55;
+    }
+
+    .box h2 {
+      font-size: 1rem;
+      margin: 0 0 8px;
+    }
+
+    .box p {
+      margin: 8px 0;
+      color: var(--muted);
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .blue { background: var(--blue); }
+    .orange { background: var(--orange); }
+    .green { background: var(--green); }
+    .yellow { background: var(--yellow); }
+    .purple { background: var(--purple); }
+
+    code {
+      color: #bfdbfe;
+      background: rgba(96,165,250,0.12);
+      padding: 1px 5px;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 820px) {
+      .controls {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .info {
+        grid-template-columns: 1fr;
+      }
+
+      canvas {
+        min-height: 440px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .controls {
+        grid-template-columns: 1fr;
+      }
+
+      canvas {
+        height: 560px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Two-body motion: relative ellipse vs. actual particle orbits</h1>
+    <p class="subtitle">
+      The relative coordinate <code>r = r1 - r2</code> follows a Kepler ellipse.
+      But in the center-of-mass frame, both particles move: neither particle is fixed unless one mass is taken to infinity.
+    </p>
+  </header>
+
+  <main class="container">
+    <section class="canvas-card">
+      <canvas id="canvas"></canvas>
+
+      <div class="controls">
+        <div class="control">
+          <label>
+            <span>mass ratio <code>m2/m1</code></span>
+            <strong id="ratioLabel">3.0</strong>
+          </label>
+          <input id="ratio" type="range" min="1" max="20" step="0.1" value="3">
+        </div>
+
+        <div class="control">
+          <label>
+            <span>eccentricity <code>e</code></span>
+            <strong id="eccLabel">0.55</strong>
+          </label>
+          <input id="ecc" type="range" min="0" max="0.85" step="0.01" value="0.55">
+        </div>
+
+        <div class="control">
+          <label>
+            <span>animation speed</span>
+            <strong id="speedLabel">1.0×</strong>
+          </label>
+          <input id="speed" type="range" min="0.1" max="3" step="0.1" value="1">
+        </div>
+
+        <div class="control">
+          <label>
+            <span>control</span>
+            <strong id="stateLabel">running</strong>
+          </label>
+          <button id="pauseBtn">Pause</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="info">
+      <div class="box">
+        <h2>What the animation shows</h2>
+        <p>
+          The green point is the <strong>center of mass</strong>, fixed here because we are viewing the center-of-mass inertial frame.
+          The blue and orange particles orbit this point on scaled ellipses.
+        </p>
+        <p>
+          The purple dashed ellipse is the orbit of the relative coordinate <code>r</code>. It is not the same as the orbit of either particle about the center of mass.
+        </p>
+        <div class="legend">
+          <span class="item"><span class="dot blue"></span> particle 1</span>
+          <span class="item"><span class="dot orange"></span> particle 2</span>
+          <span class="item"><span class="dot green"></span> center of mass</span>
+          <span class="item"><span class="dot purple"></span> relative orbit</span>
+          <span class="item"><span class="dot yellow"></span> separation vector</span>
+        </div>
+      </div>
+
+      <div class="box">
+        <h2>Relations being visualized</h2>
+        <p>
+          With <code>M = m1 + m2</code> and center of mass at the origin,
+        </p>
+        <p>
+          <code>r1 = (m2/M) r</code>, &nbsp;
+          <code>r2 = -(m1/M) r</code>.
+        </p>
+        <p>
+          The minus sign is important: particle 2 is always on the opposite side of the center of mass from particle 1.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const ratioInput = document.getElementById("ratio");
+    const eccInput = document.getElementById("ecc");
+    const speedInput = document.getElementById("speed");
+    const ratioLabel = document.getElementById("ratioLabel");
+    const eccLabel = document.getElementById("eccLabel");
+    const speedLabel = document.getElementById("speedLabel");
+    const pauseBtn = document.getElementById("pauseBtn");
+    const stateLabel = document.getElementById("stateLabel");
+
+    let running = true;
+    let t = 0;
+    let last = performance.now();
+
+    pauseBtn.addEventListener("click", () => {
+      running = !running;
+      pauseBtn.textContent = running ? "Pause" : "Resume";
+      stateLabel.textContent = running ? "running" : "paused";
+    });
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(rect.width * dpr);
+      canvas.height = Math.floor(rect.height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+
+    function solveKepler(M, e) {
+      let E = M;
+      for (let i = 0; i < 8; i++) {
+        E = E - (E - e * Math.sin(E) - M) / (1 - e * Math.cos(E));
+      }
+      return E;
+    }
+
+    function ellipsePointFromE(E, a, e) {
+      const b = a * Math.sqrt(1 - e * e);
+      return {
+        x: a * (Math.cos(E) - e),
+        y: b * Math.sin(E)
+      };
+    }
+
+    function drawOrbitFromTransform(transform, a, e, color, dash, width, label, labelE) {
+      ctx.save();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width;
+      ctx.setLineDash(dash || []);
+      ctx.beginPath();
+
+      for (let i = 0; i <= 480; i++) {
+        const E = (i / 480) * Math.PI * 2;
+        const p = ellipsePointFromE(E, a, e);
+        const q = transform(p);
+        if (i === 0) ctx.moveTo(q.x, q.y);
+        else ctx.lineTo(q.x, q.y);
+      }
+
+      ctx.closePath();
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      if (label) {
+        const Elabel = labelE ?? Math.PI / 4;
+        const p = ellipsePointFromE(Elabel, a, e);
+        const q = transform(p);
+        ctx.fillStyle = color;
+        ctx.font = "13px system-ui, sans-serif";
+        ctx.fillText(label, q.x + 8, q.y - 8);
+      }
+
+      ctx.restore();
+    }
+
+    function drawPoint(x, y, radius, color, stroke, label, labelDx, labelDy) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.fillStyle = color;
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (stroke) {
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = stroke;
+        ctx.stroke();
+      }
+
+      ctx.fillStyle = "#e5e7eb";
+      ctx.font = "bold 13px system-ui, sans-serif";
+      ctx.fillText(label, x + labelDx, y + labelDy);
+      ctx.restore();
+    }
+
+    function drawArrow(x1, y1, x2, y2, color, label) {
+      const angle = Math.atan2(y2 - y1, x2 - x1);
+      const head = 10;
+
+      ctx.save();
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(x2, y2);
+      ctx.lineTo(x2 - head * Math.cos(angle - Math.PI / 6), y2 - head * Math.sin(angle - Math.PI / 6));
+      ctx.lineTo(x2 - head * Math.cos(angle + Math.PI / 6), y2 - head * Math.sin(angle + Math.PI / 6));
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.font = "bold 13px system-ui, sans-serif";
+      ctx.fillText(label, (x1 + x2) / 2 + 8, (y1 + y2) / 2 - 8);
+      ctx.restore();
+    }
+
+    function drawAxes(w, h) {
+      ctx.save();
+      ctx.strokeStyle = "rgba(255,255,255,0.18)";
+      ctx.lineWidth = 1;
+      ctx.setLineDash([5, 8]);
+
+      ctx.beginPath();
+      ctx.moveTo(-w, 0);
+      ctx.lineTo(w, 0);
+      ctx.moveTo(0, -h);
+      ctx.lineTo(0, h);
+      ctx.stroke();
+
+      ctx.setLineDash([]);
+      ctx.fillStyle = "rgba(229,231,235,0.65)";
+      ctx.font = "12px system-ui, sans-serif";
+      ctx.fillText("CM frame: center of mass fixed at origin", 12, -h / 2 + 22);
+      ctx.restore();
+    }
+
+    function loop(now) {
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+
+      const rect = canvas.getBoundingClientRect();
+      const w = rect.width;
+      const h = rect.height;
+
+      if (running) {
+        t += dt * Number(speedInput.value);
+      }
+
+      const q = Number(ratioInput.value);
+      const e = Number(eccInput.value);
+
+      ratioLabel.textContent = q.toFixed(1);
+      eccLabel.textContent = e.toFixed(2);
+      speedLabel.textContent = Number(speedInput.value).toFixed(1) + "×";
+
+      const m1 = 1;
+      const m2 = q;
+      const Mtot = m1 + m2;
+
+      const s1 = m2 / Mtot;
+      const s2 = m1 / Mtot;
+
+      const a = Math.min(w, h) * 0.31;
+      const meanAnomaly = (t * 1.05) % (Math.PI * 2);
+      const E = solveKepler(meanAnomaly, e);
+      const rel = ellipsePointFromE(E, a, e);
+
+      const r1 = {
+        x: s1 * rel.x,
+        y: s1 * rel.y
+      };
+
+      const r2 = {
+        x: -s2 * rel.x,
+        y: -s2 * rel.y
+      };
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.save();
+      ctx.translate(w / 2, h / 2);
+
+      drawAxes(w, h);
+
+      drawOrbitFromTransform(
+        p => ({ x: p.x, y: p.y }),
+        a,
+        e,
+        "rgba(192,132,252,0.75)",
+        [10, 8],
+        2.4,
+        "relative orbit of r",
+        Math.PI / 3
+      );
+
+      drawOrbitFromTransform(
+        p => ({ x: s1 * p.x, y: s1 * p.y }),
+        a,
+        e,
+        "rgba(96,165,250,0.45)",
+        [],
+        1.8,
+        "particle 1 orbit",
+        Math.PI / 2
+      );
+
+      drawOrbitFromTransform(
+        p => ({ x: -s2 * p.x, y: -s2 * p.y }),
+        a,
+        e,
+        "rgba(251,146,60,0.55)",
+        [],
+        1.8,
+        "particle 2 orbit",
+        Math.PI * 1.25
+      );
+
+      ctx.save();
+      ctx.strokeStyle = "rgba(250,204,21,0.75)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(r2.x, r2.y);
+      ctx.lineTo(r1.x, r1.y);
+      ctx.stroke();
+      ctx.restore();
+
+      drawArrow(r2.x, r2.y, r1.x, r1.y, "rgba(250,204,21,0.9)", "r = r1 - r2");
+
+      ctx.save();
+      ctx.strokeStyle = "rgba(229,231,235,0.25)";
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 6]);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(r1.x, r1.y);
+      ctx.moveTo(0, 0);
+      ctx.lineTo(r2.x, r2.y);
+      ctx.stroke();
+      ctx.restore();
+
+      drawPoint(0, 0, 6, "#34d399", "#d1fae5", "center of mass", 10, -10);
+
+      const radius1 = 10;
+      const radius2 = 10;
+
+      drawPoint(r1.x, r1.y, radius1, "#60a5fa", "#dbeafe", "particle 1", 12, -12);
+      drawPoint(r2.x, r2.y, radius2, "#fb923c", "#ffedd5", "particle 2", 12, 18);
+
+      ctx.save();
+      ctx.fillStyle = "rgba(229,231,235,0.9)";
+      ctx.font = "13px system-ui, sans-serif";
+      ctx.fillText("m1 = 1", -w / 2 + 18, h / 2 - 78);
+      ctx.fillText("m2 = " + q.toFixed(1), -w / 2 + 18, h / 2 - 56);
+      ctx.fillText("r1 = (m2/M) r", -w / 2 + 18, h / 2 - 34);
+      ctx.fillText("r2 = -(m1/M) r", -w / 2 + 18, h / 2 - 12);
+      ctx.restore();
+
+      ctx.restore();
+
+      requestAnimationFrame(loop);
+    }
+
+    requestAnimationFrame(loop);
+  </script>
+
+
+</body></html>
