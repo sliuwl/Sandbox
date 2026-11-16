@@ -372,7 +372,7 @@ The qualitative classification of orbits now follows from the shape of $V_{\text
 
 - **Turning points.** Radial motion is possible only where $E\ge V_{\text{eff}}(r)$. The roots $E=V_{\text{eff}}(r)$ are the turning points, where the velocity is zero $\dot r=0$.
 - **Circular orbit.** If $E$ equals the value of $V_{\text{eff}}$ at an extremum $r_0$, then $r=r_0$ for all time.
-- **Bound orbit.** If the allowed interval of $r$ is bounded, the particle oscillates between a minimum radius (periapsis, 近日点) and a maximum radius (apoapsis, 远日点).
+- **Bound orbit.** If the allowed interval of $r$ is bounded, the particle oscillates between a minimum radius (periapsis, 近拱点) and a maximum radius (apoapsis, 远拱点).
 - **Unbound orbit.** If $E$ exceeds the asymptotic value of $V_{\text{eff}}$ at infinity, the particle escapes to $r\to\infty$.
 - **Radial fall.** If $\ell=0$, then $V_{\text{eff}}=V$ and the centrifugal barrier is absent; an attractive force can pull the particle through the origin.
 
@@ -515,7 +515,7 @@ $$
 \frac{\omega_r}{\omega_\theta}=\sqrt{n+3}.
 $$
 
-The orbit is closed after one radial oscillation only if **$\omega_r/\omega_\theta$ is rational**; otherwise the successive pericenters precess. This observation is the seed of Bertrand's theorem in Section 7.
+The orbit closes after a finite number of radial oscillations exactly when **$\omega_r/\omega_\theta$ is rational**; otherwise the successive pericenters precess. This observation is the seed of Bertrand's theorem in Section 7.
 
 ---
 
@@ -734,7 +734,11 @@ The constant $p$ is the **semi-latus rectum** (半通径) and $e$ is the **eccen
 >
 > Since the center is at $(-ae,0)$, one focus is at $(-ae+c,0)=(0,0).$
 >
-> So **the polar origin is a focus, not the center**. 
+> So **the polar origin is a focus, not the center**.
+
+![Ellipse geometry](CentralForceImage/ellipse-abc-p.png)
+
+**Figure 5.** Geometry of a bound Kepler ellipse with the force center at the focus $F$ (the origin). The geometric center is $C$, and $F'$ is the second focus; only $F$ is the force center. The semimajor axis $a$ runs from $C$ to the periapsis vertex, the semiminor axis $b$ from $C$ to the top vertex, and the focal distance $c$ from $C$ to $F$. The semi-latus rectum $p$ is the distance from $F$ to the curve perpendicular to the major axis; the full latus rectum is the chord of length $2p$. The dashed segment from $F$ to the top vertex has length $a$, so $CFT$ is a right triangle with $b^2+c^2=a^2$. The figure is drawn for $e=0.6$, with $a=1$, $b=0.8$, $c=0.6$, and $p=0.64$. The right vertex is the periapsis ($r_{\min}=a(1-e)$) and the left vertex is the apoapsis ($r_{\max}=a(1+e)$).
 
 ---
 
@@ -769,9 +773,9 @@ The classification of orbits follows:
 | $0<e<1$ | $E<0$ | ellipse (椭圆) |
 | $e=0$ | $E=-\dfrac{mk^2}{2\ell^2}$ | circle (圆) |
 
-![Kepler conics](CentralForceImage/taylor-8.11-kepler-conics.jpg)
+<img src="CentralForceImage/kepler-conic-classes.png" alt="Kepler conics" style="zoom: 50%;" />
 
-**Figure 5.** The four classes of Kepler orbit: circle ($e=0$), ellipse ($0<e<1$), parabola ($e=1$), and hyperbola ($e>1$). The four orbits are drawn with the same periapsis distance and the same direction of closest approach. (Taylor, *Classical Mechanics*, Fig. 8.11.)
+**Figure 6.** The four classes of Kepler orbit drawn on one set of axes: circle ($e=0$), ellipse ($0<e<1$), parabola ($e=1$), and hyperbola ($e>1$). All four have the same force center, the focus at the origin, and the same periapsis distance $q$; their periapsis is therefore the common point on the far right where the curves meet. The semi-latus rectum is $p=q(1+e)$, which differs from orbit to orbit, so the curves coincide only at periapsis and separate elsewhere. Redrawn in the style of Taylor, *Classical Mechanics*, Fig. 8.11.
 
 The circular case is the minimum of the effective potential for fixed $\ell$; its radius is
 
@@ -914,10 +918,6 @@ r_{\min}=a(1-e),
 \qquad
 r_{\max}=a(1+e).
 $$
-
-![Kepler ellipse](CentralForceImage/taylor-8.10-kepler-ellipse.jpg)
-
-**Figure 6.** A bound Kepler orbit is an ellipse with the force center at one focus $O$, not at the geometric center $C$. Here $a$ and $b$ are the semimajor and semiminor axes, the semi-latus rectum $p=\ell^2/(mk)$ is the value of $r$ at $\phi=90^\circ$, and $r_{\min}=a(1-e)$, $r_{\max}=a(1+e)$ are the periapsis and apoapsis distances. (Taylor, *Classical Mechanics*, Fig. 8.10.)
 
 The **vis-viva equation** (活力公式) follows from energy conservation. Since $E=\frac12mv^2-k/r$ and $E=-k/(2a)$,
 
@@ -1095,17 +1095,29 @@ For the power-law family $F=-kr^n$, the two cases are:
 
 The inverse-square orbits are ellipses with the force center at a focus. The Hooke-law orbits are ellipses with the force center at the center of the ellipse. Both families are closed for all bound energies.
 
-The near-circular analysis of Section 4.3 explains the mechanism. For a power law, the radial and angular frequencies satisfy $\omega_r/\omega_\theta=\sqrt{n+3}$. A near-circular orbit closes only when this ratio is rational, and the apsidal angle is
+The near-circular analysis of Section 4.3 explains the mechanism. The language of apsides makes the statement precise. An **apsis** (plural **apsides**, 拱点) is a point of a bound orbit where the radial velocity vanishes, $\dot r=0$, so the distance from the force center is momentarily stationary. A **pericenter** (近心点), also called a **periapsis** (近拱点), is an apsis where the distance is a minimum, $r=r_{\min}$; an **apocenter** (远心点), also called an **apoapsis** (远拱点), is an apsis where the distance is a maximum, $r=r_{\max}$. For orbits about the Sun these are the perihelion (近日点) and aphelion (远日点); for orbits about Earth they are the perigee (近地点) and apogee (远地点). A pericenter is therefore the point of closest approach, and *successive pericenters* are the same closest-approach point visited once per radial cycle.
+
+The **apsidal angle** (拱点角) is the angle swept through between one apsis and the next—for example, from a pericenter to the following apocenter. It is half the angle between successive pericenters (or between successive apocenters). Some texts call the full pericenter-to-pericenter angle the apsidal angle; here we use the apsis-to-next-apsis convention.
+
+For a power law, the radial and angular frequencies satisfy $\omega_r/\omega_\theta=\sqrt{n+3}$. One full radial oscillation carries the radius through $r_{\min}\to r_{\max}\to r_{\min}$, so half an oscillation carries it from pericenter to apocenter. Therefore
 
 $$
-\Delta\theta_{\text{apse}}=\frac{\pi}{\sqrt{n+3}}.
+\Delta\theta_{\text{apse}}=\frac{\pi\omega_\theta}{\omega_r}=\frac{\pi}{\sqrt{n+3}}.
 $$
 
-The angular advance between successive pericenters is $\pi/\sqrt{n+3}$, so the precession per radial cycle, measured relative to $2\pi$, is
+The angle swept between successive pericenters is twice this:
 
 $$
-\Delta\theta_{\text{prec}}=2\pi\left(\frac{1}{\sqrt{n+3}}-1\right).
+\Delta\theta_{\text{peri}\to\text{peri}}=\frac{2\pi}{\sqrt{n+3}}.
 $$
+
+After one radial cycle the angle has advanced by $2\pi/\sqrt{n+3}$ rather than $2\pi$, so the precession per radial cycle is
+
+$$
+\Delta\theta_{\text{prec}}=\frac{2\pi}{\sqrt{n+3}}-2\pi=2\pi\left(\frac{1}{\sqrt{n+3}}-1\right).
+$$
+
+A positive value means advance in the direction of motion; a negative value means backward precession. The orbit closes after a finite number of radial cycles exactly when the pericenter-to-pericenter advance is a rational multiple of $2\pi$, which in the near-circular approximation means that $\sqrt{n+3}$ is rational.
 
 ![Closed orbit](CentralForceImage/taylor-8.7a-closed-orbit.jpg)
 
@@ -1115,133 +1127,24 @@ $$
 
 **Figure 8(b).** For a general central force the radial period differs from the angular period, so the orbit does not close after one revolution; here the radial cycle repeats while the angle advances by about $330^\circ$. (Taylor, *Classical Mechanics*, Fig. 8.7b.)
 
-The orbit closes after a finite number of radial cycles exactly when $\sqrt{n+3}$ is rational. For $n=-2$, $\sqrt{n+3}=1$ and the apsidal angle is $\pi$: the orbit closes after one revolution. For $n=1$, $\sqrt{n+3}=2$ and the apsidal angle is $\pi/2$: the orbit closes after two radial cycles, which is the familiar centered ellipse of the isotropic oscillator. In both Bertrand cases the net precession over the full closed cycle is zero.
+![Apsidal angles](CentralForceImage/apsidal-angles.png)
+
+**Figure 9.** The three angle bookkeeping quantities, drawn for a near-circular orbit with $r_{\min}=0.82\,r_0$. **(a)** The orbit for $F=-k/r$ ($n=-1$), integrated exactly from the Binet equation. The dark segment is the first radial cycle; it runs from the pericenter $P_1$ through the apocenter $A_1$ to the next pericenter $P_2$, and the faint curve continues the rosette through $P_3$, $P_4$, $P_5$ (only $A_1$ among the four apocenters is labelled). The green arc is the apsidal angle $\Delta\theta_{\text{apse}}=\pi/\sqrt{n+3}$ swept from $P_1$ to $A_1$; the dark-blue arc is the pericenter-to-pericenter angle $\Delta\theta_{\text{peri}\to\text{peri}}=2\pi/\sqrt{n+3}$ swept from $P_1$ to $P_2$; the orange wedge is the precession $\Delta\theta_{\text{prec}}=2\pi/\sqrt{n+3}-2\pi$ left over before the orbit returns to the same ray. **(b)** The same three angles laid out on a linear ruler. For the inverse-square law ($n=-2$) the apocenter sits at $\pi$ and the next pericenter lands exactly at $2\pi$, so $\Delta\theta_{\text{prec}}=0$ and the orbit closes. For $F=-k/r$ ($n=-1$) the apocenter sits at $\pi/\sqrt{2}\approx 127.3^\circ$ and the next pericenter at $2\pi/\sqrt{2}\approx 254.6^\circ$, short of $2\pi$: the orbit precesses backward. Numerically, the exact turning points of the drawn orbit give $\Delta\theta_{\text{apse}}\approx 126.6^\circ$ and $\Delta\theta_{\text{peri}\to\text{peri}}\approx 253.4^\circ$, hence $\Delta\theta_{\text{prec}}\approx -106.6^\circ$, within about $1^\circ$ of the near-circular values $127.28^\circ$, $254.56^\circ$, and $-105.44^\circ$.
+
+The two Bertrand cases are summarized in the following table.
+
+| Force law | $n$ | $\omega_r/\omega_\theta$ | Apsidal angle $\Delta\theta_{\text{apse}}$ | Pericenter to pericenter | Closes after |
+|---|---|---|---|---|---|
+| inverse-square, $F=-k/r^2$ | $-2$ | $1$ | $\pi$ | $2\pi$ | one radial cycle |
+| Hooke, $F=-kr$ | $1$ | $2$ | $\pi/2$ | $\pi$ | two radial cycles |
+
+For $n=-2$, the next pericenter occurs after $2\pi$, so it coincides with the first and there is no precession. For $n=1$, the next pericenter lies on the opposite side of the force center, after $\pi$; two radial cycles bring the angle to $2\pi$, so the orbit closes as the familiar centered ellipse of the isotropic oscillator. In both cases the total angle over the closed cycle is $2\pi$, so the net precession is zero.
 
 > **Limits of the statement.** Bertrand's theorem concerns attractive, analytic central forces and *all* bound orbits. A particular near-circular orbit can be closed for a rational frequency ratio even when the force law is not one of the two Bertrand cases. The theorem does not say that every individual orbit of every other force law is open; it says that the force law cannot make *all* bound orbits closed.
 
 ---
 
-## 8. Scattering in a Central Field
-
-### 8.1 Impact Parameter and Deflection Angle
-
-In a scattering problem a particle comes in from infinity with speed $v_0$ and **impact parameter** (碰撞参数) $b$, the perpendicular distance between the initial velocity line and the force center. Its energy and angular momentum are
-
-$$
-E=\frac12mv_0^2,
-\qquad
-\ell=mv_0b=b\sqrt{2mE}.
-$$
-
-Goldstein defines the impact parameter in this way and writes $\ell=mv_0s$, using $s$ for the impact parameter [Goldstein §3.10](/chapters/ch-19.html#b-p0269-b0003). We use $b$ here and note that Goldstein's $s$ is the same quantity.
-
-For a repulsive central potential, the particle reaches a distance of closest approach $r_m$ and then recedes. The angle between the incoming and outgoing asymptotes is the **scattering angle** (散射角) $\Theta$. Goldstein writes
-
-$$
-\Theta=\pi-2\Psi,
-$$
-
-where
-
-$$
-\Psi=\int_{r_m}^{\infty}
-\frac{dr}{r^2\sqrt{\dfrac{2mE}{\ell^2}-\dfrac{2mV}{\ell^2}-\dfrac{1}{r^2}}}.
-$$
-
-In terms of the impact parameter,
-
-$$
-\Theta(b)=\pi-2\int_{r_m}^{\infty}
-\frac{b\,dr}{r\sqrt{r^2\left(1-\dfrac{V(r)}{E}\right)-b^2}}.
-$$
-
-Goldstein gives these expressions [Goldstein §3.10](/chapters/ch-19.html#b-p0270-b0008). The closest-approach radius $r_m$ is the relevant root of
-
-$$
-E=V_{\text{eff}}(r_m)=V(r_m)+\frac{\ell^2}{2mr_m^2}.
-$$
-
-![Scattering geometry](CentralForceImage/goldstein-3.20-scattering-geometry.jpg)
-
-**Figure 9.** Geometry of repulsive scattering. The particle approaches from infinity, reaches the distance of closest approach $r_m$, and recedes. The angle $\Psi$ is measured between $r_m$ and the symmetry axis, and the scattering angle is $\Theta=\pi-2\Psi$. (Goldstein, *Classical Mechanics*, Fig. 3.20.)
-
-For an attractive potential, the same formulas apply with the sign of $V$ reversed, but additional phenomena such as orbiting and glory scattering can occur.
-
----
-
-### 8.2 The Differential Cross Section and Rutherford Scattering
-
-Let $I$ be the incident flux (particles per unit area per unit time). The number of particles scattered into a solid angle $d\Omega$ per unit time is $I\,\sigma(\Theta)\,d\Omega$, where $\sigma(\Theta)$ is the **differential cross section** (微分散射截面). Since particles with impact parameters between $b$ and $b+db$ scatter into angles between $\Theta$ and $\Theta+d\Theta$,
-
-$$
-2\pi I b\,|db|=2\pi I\,\sigma(\Theta)\sin\Theta\,|d\Theta|.
-$$
-
-Hence
-
-$$
-\boxed{\sigma(\Theta)=\frac{b}{\sin\Theta}\left|\frac{db}{d\Theta}\right|.}
-$$
-
-Goldstein derives this relation from the conservation of particle number [Goldstein §3.10](/chapters/ch-19.html#b-p0269-b0005).
-
-For the repulsive Coulomb problem,
-
-$$
-F(r)=\frac{\kappa}{r^2},
-\qquad
-V(r)=\frac{\kappa}{r},
-\qquad \kappa>0,
-$$
-
-where $\kappa=ZZ'e^2$ in Gaussian units, or $\kappa=ZZ'e^2/(4\pi\varepsilon_0)$ in SI units. The orbit is a hyperbola with eccentricity
-
-$$
-e=\sqrt{1+\left(\frac{2Eb}{\kappa}\right)^2},
-$$
-
-and the scattering angle satisfies
-
-$$
-\sin\frac{\Theta}{2}=\frac{1}{e}.
-$$
-
-Combining these two relations gives
-
-$$
-\boxed{b=\frac{\kappa}{2E}\cot\frac{\Theta}{2}.}
-$$
-
-Then
-
-$$
-\left|\frac{db}{d\Theta}\right|
-=\frac{\kappa}{4E}\csc^2\frac{\Theta}{2},
-$$
-
-and substituting into the cross-section formula yields the **Rutherford scattering cross section** (卢瑟福散射截面):
-
-$$
-\boxed{\sigma(\Theta)=\left(\frac{\kappa}{4E}\right)^2
-\csc^4\frac{\Theta}{2}.}
-$$
-
-Goldstein derives this famous result and notes that the nonrelativistic quantum-mechanical cross section is identical to the classical one [Goldstein §3.10](/chapters/ch-19.html#b-p0272-b0003).
-
-Several features deserve comment:
-
-- The cross section is strongly forward-peaked: $\sigma\to\infty$ as $\Theta\to0$.
-- The total cross section $\sigma_T=\int\sigma(\Theta)\,d\Omega$ diverges for a pure Coulomb potential [Goldstein §3.10](/chapters/ch-19.html#b-p0272-b0006). In a physical plasma or solid, screening cuts off the potential at large distances and makes $\sigma_T$ finite.
-- At $\Theta=\pi$ (backscattering), $b=0$: a head-on collision reverses the particle.
-- For a given energy, the deflection at $90^\circ$ occurs at $b=\kappa/(2E)$.
-
-Goldstein also discusses attractive scattering, where the effective potential can produce orbiting and non-monotonic deflection; in those cases several impact parameters may lead to the same scattering angle, and the cross section must be summed over branches [Goldstein §3.10](/chapters/ch-19.html#b-p0275-b0002) [Goldstein §3.10](/chapters/ch-19.html#b-p0275-b0005).
-
----
-
 ## 10. Worked Examples
-
-The following examples are **self-authored** (自编例题). They are not taken from the reference books, although they use the general results derived above.
 
 ### 10.1 A Tangential Impulse from a Circular Orbit
 
@@ -1408,40 +1311,5 @@ The central-force problem is solvable because two conservation laws reduce it to
   \tau^2=\frac{4\pi^2m}{k}a^3.}
   $$
   For gravity, $m\to\mu$, $k=Gm_1m_2$, and $\tau^2=4\pi^2a^3/[G(m_1+m_2)]$.
+- **Apsides and precession.** An apsis (拱点) is a turning point of the radial motion; a pericenter (近心点) is the closest apsis and an apocenter (远心点) the farthest. For a power law $F=-kr^n$, the apsidal angle (拱点角) from one apsis to the next is $\pi/\sqrt{n+3}$. Successive pericenters are separated by $2\pi/\sqrt{n+3}$, so the precession per radial cycle is $2\pi(1/\sqrt{n+3}-1)$.
 - **Bertrand's theorem.** The only central forces that close all bound orbits are the inverse-square law and Hooke's law.
-- **Scattering.** For a repulsive Coulomb potential,
-  $$
-  \boxed{\sigma(\Theta)=\left(\frac{\kappa}{4E}\right)^2
-  \csc^4\frac{\Theta}{2}.}
-  $$
-
-The derivations assume point masses, an isolated two-body system, a conservative central potential, and nonrelativistic mechanics. Relativistic precession, many-body perturbations, and dissipative effects require separate treatment.
-
----
-
-## 13. Sources
-
-The page numbers below are PDF physical pages as indexed in the reading edition; the clickable anchors point to the exact source paragraphs.
-
-### Primary treatments of the central-force problem
-
-- **Herbert Goldstein, *Classical Mechanics*, Chapter 3, “The Central Force Problem.”** Two-body reduction [p. 89–90](/chapters/ch-19.html#b-p0232-b0002); angular momentum and planar motion [p. 91](/chapters/ch-19.html#b-p0234-b0005); areal velocity [p. 92](/chapters/ch-19.html#b-p0235-b0008); effective potential [p. 96](/chapters/ch-19.html#b-p0239-b0001); orbit equation [p. 106](/chapters/ch-19.html#b-p0249-b0005); Bertrand's theorem [p. 108–111](/chapters/ch-19.html#b-p0254-b0004); Kepler orbits [p. 111–116](/chapters/ch-19.html#b-p0256-b0006); Kepler's third law [p. 118–120](/chapters/ch-19.html#b-p0261-b0015); LRL vector [p. 121–123](/chapters/ch-19.html#b-p0265-b0005); scattering and Rutherford cross section [p. 125–132](/chapters/ch-19.html#b-p0272-b0003); three-body problem [p. 140](/chapters/ch-19.html#b-p0283-b0002).
-- **John R. Taylor, *Classical Mechanics*, Chapter 8, “Two-Body Central-Force Problems.”** Central-force definition and conservative/spherically-symmetric equivalence [§4.8, p. 148–164](/chapters/ch-75.html#b-p2406-b0003); relative coordinate and reduced mass [§8.2, p. 310](/chapters/ch-79.html#b-p2567-b0004); equations of motion [§8.3, p. 312–315](/chapters/ch-79.html#b-p2569-b0003); equivalent one-dimensional problem [§8.4, p. 315–320](/chapters/ch-79.html#b-p2575-b0002); orbit equation [§8.5, p. 320–323](/chapters/ch-79.html#b-p2577-b0005); Kepler orbits [§8.6, p. 323–330](/chapters/ch-79.html#b-p2580-b0003).
-- **David Tong, *Classical Mechanics*.** Central force and angular-momentum conservation in Chapter 2, “Forces” [§2.2.3, p. 65](/chapters/ch-94.html#b-p3130-b0006); polar coordinates and the effective potential in Chapter 5, “The Two-Body Problem” [§5.3, p. 191–195](/chapters/ch-97.html#b-p3256-b0002); angular-momentum barrier [p. 195](/chapters/ch-97.html#b-p3260-b0001); orbit equation [§5.4, p. 201–203](/chapters/ch-97.html#b-p3268-b0004); Kepler problem [§5.4.1, p. 203–211](/chapters/ch-97.html#b-p3269-b0002).
-- **T. M. Helliwell, *Modern Classical Mechanics*, Chapter 7, “Central Forces.”** Definition of a central force [§7.1, p. 297](/chapters/ch-41.html#b-p1105-b0005); two-body problem and reduced mass [§7.2, p. 299–302](/chapters/ch-41.html#b-p1109-b0001); effective potential [§7.3, p. 302–306](/chapters/ch-41.html#b-p1110-b0004); orbit shapes [§7.4, p. 306–312](/chapters/ch-41.html#b-p1114-b0008); Bertrand's theorem [§7.5, p. 315](/chapters/ch-41.html#b-p1123-b0002).
-- **David Morin, *Introduction to Classical Mechanics*, Chapter 7, “Central forces.”** Definition and conservation of angular momentum [§7.1, p. 300–301](/chapters/ch-61.html#b-p1818-b0006); effective potential [§7.2, p. 302–304](/chapters/ch-61.html#b-p1820-b0001); solving the equations of motion [§7.3, p. 304–306](/chapters/ch-61.html#b-p1822-b0012); gravity and Kepler's laws [§7.4, p. 306–312](/chapters/ch-61.html#b-p1824-b0002).
-
-### Cross-book relations used in this chapter
-
-The knowledge graph links these treatments as follows. They are navigation aids, not proofs that the books use identical assumptions or notation.
-
-- Central force motion explains angular-momentum conservation [Goldstein relation `edge-bd34d57abd0b96d6c812`].
-- The two-body problem is used for central-force motion [Goldstein relation `edge-baeadc61b16b516bf2dc`].
-- The Kepler problem requires a central force [Goldstein relation `edge-89a5b4eaf6c4345a6ddc`; Taylor relation `edge-14380a1f68e04c0674ec`; Tong relation `edge-02bc7760aa096fff626a`].
-- Effective potential is used for central-force motion [Helliwell relation `edge-c8bccab315d19e613b9c`; Taylor relation `edge-448d864dcee077267852`].
-- Scattering and gravitation are used for central-force motion [Goldstein relations `edge-4cd8c9d60acbb2da466c`, `edge-bcb515e6c79d68cc7330`].
-- The LRL vector is used for the Kepler problem [Goldstein relation `edge-4358763862f53559c0e5`; Tong relation `edge-6d794c434c6e0a984401`].
-
-### Editorial note
-
-The original Markdown, PDFs, images, source IDs, and published chapter IDs of the five reference books are preserved. This chapter is newly authored lecture material; the quoted sentences are attributed to their source paragraphs, while the derivations, self-authored examples, and exercises are the author's exposition. No page number, graph ID, quotation, or review conclusion in this chapter is fabricated.
