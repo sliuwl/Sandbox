@@ -1,7 +1,5 @@
 # Conic Sections and the Kepler Orbit Equation
 
-**Reading material:** Section 8.6 of *Classical Mechanics* by John R. Taylor; §3.7 of *Classical Mechanics* by Herbert Goldstein.
-
 ## Table of Contents
 
 1. [The Orbit Equation as a Conic](#1-the-orbit-equation-as-a-conic)
@@ -12,8 +10,12 @@
    - [3.3 Parabola](#33-parabola)
    - [3.4 Hyperbola](#34-hyperbola)
 4. [Cartesian Forms and Standard Parameters](#4-cartesian-forms-and-standard-parameters)
-5. [Eccentricity and Energy](#5-eccentricity-and-energy)
-6. [Summary](#6-summary)
+5. [Understanding Conic Sections Through the General Quadratic Equation](#5-understanding-conic-sections-through-the-general-quadratic-equation)
+   - [5.1 Standard Forms and the Role of Quadratic Terms](#51-standard-forms-and-the-role-of-quadratic-terms)
+   - [5.2 What Is the Center of a Conic?](#52-what-is-the-center-of-a-conic)
+   - [5.3 Why Parabolas Do Not Have Centers](#53-why-parabolas-do-not-have-centers)
+   - [5.4 How the General Quadratic Equation Shows the Difference](#54-how-the-general-quadratic-equation-shows-the-difference)
+   - [5.5 Summary](#55-summary)
 
 ---
 
@@ -358,10 +360,13 @@ and it grows without bound as $\phi\to\pm\phi_\infty$. There is therefore no apo
 
 #### 3.4.3 The parameters from conic geometry
 
-For the ellipse, $a$ and $b$ are semiaxes that the curve actually reaches, and the focus lies inside the curve. For the hyperbola the curve never crosses the conjugate axis, so $b$ is fixed by the asymptotes rather than by a point on the curve. This difference is the geometric reason for the sign change between $c^2=a^2-b^2$ (ellipse) and $c^2=a^2+b^2$ (hyperbola).
+For the ellipse, $a$ and $b$ are semiaxes that the curve actually reaches, and the focus lies inside the curve. For the hyperbola the curve never crosses the conjugate axis, so $b$ is fixed by the asymptotes (渐近线) rather than by a point on the curve. This difference is the geometric reason for the sign change between $c^2=a^2-b^2$ (ellipse) and $c^2=a^2+b^2$ (hyperbola).
+
+![Hyperbola geometry](CentralForceImage/hyperbola-geometry.png)
+
+**Figure 5.** The two frames for the Kepler hyperbola ($e>1$). (a) Focus-centered frame $(x,y)$: the focus $F$ is the origin and $+x$ points toward the periapsis vertex $V$, with $x_F=0$, $x_V=r_{\min}=p/(1+e)$, and the center $C$ at $x_C=ae$. Reading inward from $C$ along the transverse axis, the order is $C,V,F$, with $a=|CV|$ and $c=|CF|=a+r_{\min}$. The physical branch ($r>0$, $x\le r_{\min}$) is solid and wraps around $F$; the second branch is dashed. The scale bar records $|FV|=r_{\min}$, $|VC|=|CV'|=a$, and $|V'F'|=r_{\min}$, so that $c=a+r_{\min}$. (b) Center-centered frame $(X,Y)=(x-ae,y)$: the focus, vertices, and second focus lie at $X=-c,-a,+a,+c$, and $C$ is at $X=0$. The standard form is $X^2/a^2-Y^2/b^2=1$ with $c^2=a^2+b^2$, and the physical branch is $X\le -a$. The fundamental rectangle has corners $(\pm a,\pm b)$ on the asymptotes, and the diagonal from $C$ to $(a,b)$ has length $c$. The conjugate axis $X=0$ is never reached: at $X=-a$ the asymptote is at $Y=\pm b$, so $b$ is the asymptote height, not a point on the curve---the curve passes through $(-a,0)$, not $(-a,\pm b)$. The semi-latus rectum $p=b^2/a$ is the vertical chord through $F$ at $X=-c$. Drawn for $e=1.5$, $p=2$: $a=1.6$, $b\approx1.789$, $c=2.4$, $r_{\min}=0.8$.
 
 **Focus-centered frame and the order of the points.** In the frame $(x,y)$ of the orbit equation, the focus $F$ is the origin and $+x$ points toward the periapsis vertex $V$, at
-
 $$
 x_V=r_{\min}=\frac{p}{1+e}.
 $$
@@ -381,7 +386,6 @@ $$
 For the ellipse the curve surrounds the focus and the order is $C,F,V$, so that $c=a-r_{\min}$.
 
 **Value of $a$ and $c$.** The eccentricity is $e=c/a$ (the same $e$ as in the orbit equation), and $e>1$ precisely because $c>a$. Combining $c=ae$ with $c=a+r_{\min}$ and $r_{\min}=p/(1+e)$,
-
 $$
 ae=a+\frac{p}{1+e}
 \quad\Longrightarrow\quad
@@ -394,8 +398,7 @@ $$
 
 Since $C$ lies on the far side of $V$, its coordinate in the focus frame is $x_C=c=ae$.
 
-**Center-centered frame.** Move the origin to $C$ and let $+X$ point along the transverse axis from the physical branch toward the second branch. Define
-
+**Center-centered frame.** Move the origin to $C$. Define
 $$
 X=x-ae,\qquad Y=y.
 $$
@@ -415,9 +418,15 @@ $$
 \frac{X^2}{a^2}-\frac{Y^2}{b^2}=1.
 $$
 
-The line $X=0$ through $C$, perpendicular to the transverse axis, is the **conjugate axis**. The physical branch is the left branch $X\le -a$.
+**The asymptotes.** At large distance the constant on the right-hand side of the standard form is negligible compared with the quadratic terms, so the asymptotic directions satisfy
 
-**Why $b$ is not a point on the curve.** In the center frame draw the line $X=-a$ through the physical vertex $V$, perpendicular to the transverse axis. The asymptote crosses this line at $Y=\pm b$; this height is the **conjugate semiaxis**. The curve passes through the vertex $(-a,0)$ but not through the rectangle corners $(-a,\pm b)$: the conjugate axis $X=0$ is never reached, since setting $X=0$ in the standard form would require $Y^2=-b^2$, which has no real solution. For the ellipse, by contrast, the curve does pass through $(0,\pm b)$. Thus $b$ measures the asymptote, not a semiaxis of the hyperbola itself.
+$$
+\frac{X^2}{a^2}-\frac{Y^2}{b^2}=0,
+$$
+
+which gives $Y=\pm(b/a)X$. Equivalently, solving the standard form for $Y$ gives $Y=\pm(b/a)X\sqrt{1-a^2/X^2}$, and the square root tends to $1$ as $|X|\to\infty$. The curve therefore approaches the two lines through $C$ with these slopes; they are its asymptotes, not part of the curve.
+
+The line $X=0$ through $C$, perpendicular to the transverse axis, is the **conjugate axis**. The physical branch is the left branch $X\le -a$. In the center frame draw the line $X=-a$ through the physical vertex $V$, perpendicular to the transverse axis. The asymptote crosses this line at $Y=\pm b$; this height is the **conjugate semiaxis**.
 
 **Value of $b$.** Let $\theta$ be the angle between an asymptote and the transverse axis, measured on the side of the physical branch. In the focus frame the asymptote direction is the limiting polar angle
 
@@ -492,25 +501,7 @@ b=\frac{p}{\sqrt{e^2-1}},
 c=ae.}
 $$
 
-Returning to the focus frame, the physical vertex is at
-
-$$
-x_V=x_C-a=ae-a=\frac{p}{e^2-1}(e-1)=\frac{p}{1+e}=r_{\min},
-$$
-
-consistent with Section 3.4.2. The second vertex is at $x=x_C+a$, and the second focus is at $x=2c=2ae$. The polar orbit with $r>0$ traces only the left branch: $r=p-ex>0$ requires $x<d=p/e$, whereas the second branch begins at $x=p/(e-1)>d$. In the focus frame the asymptotes are
-
-$$
-y=\pm\frac{b}{a}(x-x_C).
-$$
-
-Here $a$ is the **transverse semiaxis** (实半轴) and $b$ the **conjugate semiaxis** (虚半轴); the eccentricity is $e=c/a$.
-
-![Hyperbola geometry](CentralForceImage/hyperbola-geometry.png)
-
-**Figure 5.** Geometry of the Kepler hyperbola ($e>1$). (a) The focus-centered frame: the force center is the focus $F$ at the origin, the physical branch ($r>0$) is the solid curve, and the second branch is dashed. The center $C$ is at $x=ae$, and the vertex $V$ at $x=p/(1+e)$ is the periapsis. The asymptotes lie in the limiting directions $\phi=\pm\phi_\infty$, and the dashed segment from the point $L$ on the latus rectum to the directrix $x=d$ verifies $r=e(d-x)$; the arrows show the incoming and outgoing directions of a scattered particle. (b) The same curve with the origin at the center: both branches, the fundamental rectangle, the transverse semiaxis $a$, the conjugate semiaxis $b$, the focal distance $c$, and the semi-latus rectum $p$ through the left focus. The standard form is $X^2/a^2-Y^2/b^2=1$ with $c^2=a^2+b^2$. The figure is drawn for $e=1.5$ and $p=2$, so $a=1.6$, $b\approx1.789$, $c=2.4$, $d\approx1.333$, and $r_{\min}=0.8$.
-
-> **Scattering.** The repulsive Coulomb orbit is the branch of this hyperbola with the force center at the focus. The particle comes from infinity, reaches $r_{\min}$, and recedes along the other asymptote. The angle between the asymptotes determines the scattering angle; see Section 8 of the central-force chapter.
+> **Scattering.** The repulsive Coulomb orbit is the branch of this hyperbola with the force center at the focus. The particle comes from infinity, reaches $r_{\min}$, and recedes along the other asymptote. The angle between the asymptotes determines the scattering angle.
 
 ------
 
@@ -588,72 +579,151 @@ The table collects the geometric parameters.
 
 ------
 
-## 5. Eccentricity and Energy
+## 5. Understanding Conic Sections Through the General Quadratic Equation
 
-Evaluating the energy at periapsis in the central-force chapter gives
-
-$$
-E=\frac{mk^2}{2\ell^2}\left(e^2-1\right).
-$$
-
-Using $p=\ell^2/(mk)$, this becomes
+A conic section can be understood as the graph of a **general second-degree equation** in two variables:
 
 $$
-\boxed{E=\frac{k}{2p}\left(e^2-1\right).}
+Ax^2+Bxy+Cy^2+Dx+Ey+F=0.
 $$
 
-Since $k>0$ and $p>0$, the sign of the energy is the sign of $e^2-1$:
+This equation is called a **general quadratic equation**. Different choices of the coefficients $A,B,C,D,E,F$ produce different conic sections: **circles, ellipses, parabolas, and hyperbolas**.
 
-| Eccentricity | Energy | Conic | Motion |
-|---|---|---|---|
-| $e=0$ | $E=-\dfrac{k}{2p}$ | circle | bound |
-| $0<e<1$ | $E<0$ | ellipse | bound |
-| $e=1$ | $E=0$ | parabola | marginal |
-| $e>1$ | $E>0$ | hyperbola | unbound |
-
-For the ellipse, $p/a=1-e^2$, so
-
-$$
-E=-\frac{k}{2a},
-$$
-
-which is the energy–semimajor-axis relation derived in Section 6.3 of the central-force chapter. For the hyperbola, $p/a=e^2-1$, so
-
-$$
-E=+\frac{k}{2a}.
-$$
-
-If $a$ is allowed to be signed — positive for the ellipse and negative for the hyperbola, $a=-p/(e^2-1)$ — both cases collapse to the single relation
-
-$$
-E=-\frac{k}{2a}.
-$$
-
-For fixed $\ell$, $p$ is fixed and the circular orbit has the minimum energy $E=-k/(2p)$. Raising the energy increases $e$; the conic changes from ellipse to parabola to hyperbola as $E$ passes through zero.
+The terms $Ax^2$, $Bxy$, and $Cy^2$ are the **quadratic terms**. They mainly determine the basic type and orientation of the conic. The terms $Dx$ and $Ey$ are the **linear terms**. They often shift the graph away from the origin. The constant term $F$ affects the size and position of the conic.
 
 ------
 
-## 6. Summary
+### 5.1 Standard Forms and the Role of Quadratic Terms
 
-The Kepler orbit equation
-
-$$
-\boxed{r(\theta)=\frac{p}{1+e\cos(\theta-\theta')},
-\qquad
-p=\frac{\ell^2}{mk}.}
-$$
-
-is the polar equation of a conic with one focus at the force center. The parameter $p$ sets the scale and $e$ sets the shape:
-
-- **Circle** ($e=0$): $r=p$ for all angles; center at the focus; minimum energy for given $\ell$.
-- **Ellipse** ($0<e<1$): bounded orbit with $r_{\min}=p/(1+e)$ and $r_{\max}=p/(1-e)$; $a=p/(1-e^2)$, $b=p/\sqrt{1-e^2}$, $c=ae$.
-- **Parabola** ($e=1$): $r=p/(1+\cos\phi)$; one apsis at $r=p/2$; $E=0$; escapes to infinity with zero speed.
-- **Hyperbola** ($e>1$): one apsis at $r=p/(1+e)$; asymptotes at $\phi=\pm\arccos(-1/e)$; $E>0$; unbound.
-
-The eccentricity and the energy are related by
+For conics whose axes are aligned with the coordinate axes, the equation usually has no $xy$ term. Then it has the simpler form:
 
 $$
-\boxed{E=\frac{k}{2p}\left(e^2-1\right)},
+Ax^2+Cy^2+Dx+Ey+F=0.
 $$
 
-so $E<0$, $E=0$, and $E>0$ correspond respectively to $e<1$, $e=1$, and $e>1$.
+For example, an ellipse may look like
+
+$$
+\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,
+$$
+
+a hyperbola may look like
+
+$$
+\frac{x^2}{a^2}-\frac{y^2}{b^2}=1,
+$$
+
+and a parabola may look like
+
+$$
+y^2=4ax
+\qquad\text{or}\qquad
+x^2=4ay.
+$$
+
+A key difference is that ellipses and hyperbolas usually have **two squared variables**, while a parabola has only **one squared variable** and one linear variable.
+
+------
+
+### 5.2 What Is the Center of a Conic?
+
+The **center** of a conic is a point about which the graph has **central symmetry**. This means that if a point $(x,y)$ lies on the conic, then the point directly opposite it through the center also lies on the conic. For example, if the center is $(h,k)$, then for every point $(x,y)$ on the conic, the reflected point $(2h-x,\ 2k-y)$ is also on the conic.
+
+Ellipses and hyperbolas have centers. For example,
+
+$$
+\frac{(x-h)^2}{a^2}+\frac{(y-k)^2}{b^2}=1
+$$
+
+has center $(h,k)$, and
+
+$$
+\frac{(x-h)^2}{a^2}-\frac{(y-k)^2}{b^2}=1
+$$
+
+also has center $(h,k)$.
+
+------
+
+### 5.3 Why Parabolas Do Not Have Centers
+
+A parabola does **not** have a center. It has a **vertex**, but not a center. For example,
+
+$$
+y^2=4ax
+$$
+
+has vertex $(0,0)$. However, it opens only in one direction. If a point lies on the parabola, reflecting it through the vertex usually does not give another point on the parabola.
+
+For instance, if $(x,y)$ is on $y^2=4ax$, then the reflected point through the origin is $(-x,-y)$. But substituting into the equation gives
+
+$$
+(-y)^2=4a(-x),
+$$
+
+which becomes
+
+$$
+y^2=-4ax.
+$$
+
+This is generally not true if $y^2=4ax$. Therefore, the origin is not a center.
+
+So a parabola has a **turning point**, called the vertex, but it does not have central symmetry.
+
+------
+
+### 5.4 How the General Quadratic Equation Shows the Difference
+
+The general conic equation is
+
+$$
+Ax^2+Bxy+Cy^2+Dx+Ey+F=0.
+$$
+
+A conic with a center usually can be shifted to remove the linear terms and written mainly in terms of squared variables:
+
+$$
+A'x^2+C'y^2+F'=0,
+$$
+
+or, after shifting the origin to its center,
+
+$$
+A'X^2+C'Y^2=1
+\qquad\text{or}\qquad
+A'X^2-C'Y^2=1.
+$$
+
+This gives ellipses or hyperbolas.
+
+For a parabola, after shifting to its vertex, one linear term remains. For example,
+
+$$
+Y^2=4aX.
+$$
+
+This remaining linear term is what makes the graph open in one direction and prevents it from having a center.
+
+------
+
+### 5.5 Summary
+
+A conic section is described by a general quadratic equation:
+
+$$
+Ax^2+Bxy+Cy^2+Dx+Ey+F=0.
+$$
+
+Ellipses and hyperbolas have centers because they have central symmetry. Their equations can usually be shifted so that only squared terms remain. Parabolas do not have centers. They have vertices instead. A parabola cannot be written in the same form as an ellipse or hyperbola because it contains one squared variable and one linear variable.
+
+In short:
+
+| Conic | Has a center? | Key feature |
+|---|---|---|
+| circle | Yes | Special ellipse |
+| ellipse | Yes | Closed curve with central symmetry |
+| hyperbola | Yes | Two branches with central symmetry |
+| parabola | No | One vertex, opens in one direction |
+
+The idea of a **center** is therefore closely related to whether the conic has **central symmetry**.
