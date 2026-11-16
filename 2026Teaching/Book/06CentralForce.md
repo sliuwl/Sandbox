@@ -442,15 +442,59 @@ $$
 
 the condition becomes $n>-3$. A power-law attractive potential varying more slowly than $1/r^2$ is therefore capable of stable circular orbits [Goldstein §3.6](/chapters/ch-19.html#b-p0252-b0002).
 
-For small radial oscillations about $r_0$, write $r=r_0+x$. Then
+For small radial oscillations about $r_0$, write
 
 $$
-m\ddot x=-V_{\text{eff}}''(r_0)\,x,
-\qquad
-\omega_r^2=\frac{V_{\text{eff}}''(r_0)}{m}.
+r(t)=r_0+x(t),
 $$
 
-For the power law $F=-kr^n$, substituting $F'=-knr^{n-1}$ and $\ell^2=mkr_0^{n+3}$ into the expression for $V_{\text{eff}}''(r_0)$ gives
+where $x(t)$ is the small radial displacement from the circular orbit. Because $r_0$ is constant, $\ddot r=\ddot x$. The radial equation of motion is
+
+$$
+m\ddot r=F_{\text{eff}}(r)\equiv -V_{\text{eff}}'(r)=F(r)+\frac{\ell^2}{mr^3}.
+$$
+
+A circular orbit is an equilibrium point of the equivalent one-dimensional problem, so the effective force vanishes there:
+
+$$
+F_{\text{eff}}(r_0)=-V_{\text{eff}}'(r_0)=0,
+$$
+
+which is precisely the circular-orbit condition $F(r_0)=-\ell^2/(mr_0^3)$ derived above. For small displacements the restoring force is the linear term in the Taylor expansion of $F_{\text{eff}}$ about $r_0$:
+
+$$
+F_{\text{eff}}(r_0+x)
+=F_{\text{eff}}(r_0)+F_{\text{eff}}'(r_0)\,x+O(x^2)
+=-V_{\text{eff}}''(r_0)\,x+O(x^2),
+$$
+
+where $F_{\text{eff}}'=-V_{\text{eff}}''$ and the constant term vanishes by the equilibrium condition. Substituting $r=r_0+x$ into $m\ddot r=F_{\text{eff}}(r)$ gives
+
+$$
+m\ddot x=-V_{\text{eff}}''(r_0)\,x+O(x^2).
+$$
+
+Dropping the quadratic and higher-order terms leaves the **linearized equation of motion**
+
+$$
+\boxed{m\ddot x=-V_{\text{eff}}''(r_0)\,x,}
+$$
+
+which is the equation of a simple harmonic oscillator with effective stiffness $V_{\text{eff}}''(r_0)$. Comparing with the standard form $m\ddot x=-kx$ identifies the **radial oscillation frequency**
+
+$$
+\boxed{\omega_r^2=\frac{V_{\text{eff}}''(r_0)}{m}.}
+$$
+
+The solution is
+
+$$
+x(t)=A\cos(\omega_r t+\phi),
+$$
+
+so the orbit oscillates radially about the circular orbit with period $T_r=2\pi/\omega_r$. The amplitude $A$ is fixed by the initial energy. 
+
+For the power law $F=-kr^n$, substituting $F'=-knr^{n-1}$ and $\ell^2=mkr_0^{n+3}$ into the expression for $V_{\text{eff}}''(r_0)=-F'(r_0)+\frac{3\ell^2}{mr_0^4}$ gives
 
 $$
 V_{\text{eff}}''(r_0)=k(n+3)r_0^{n-1},
@@ -553,6 +597,12 @@ $$
 $$
 
 This is the orbit first integral. Turning points of the orbit occur where $du/d\theta=0$ (the radial kinetic energy is zero), that is, where $E=V_{\text{eff}}(r)$. The orbit equation is symmetric about two adjacent turning points: if $u(\theta)$ solves the first integral, so does $u(-\theta)$, so the orbit has the same shape on both sides of an apse (拱点，复数为apsis). Goldstein proves this symmetry and then integrates the first integral by quadrature [Goldstein §3.5](/chapters/ch-19.html#b-p0249-b0007).
+
+> **Binet's equation or the first integral?** The two describe the same orbit $u(\theta)$ and use the same conserved $\ell$, so the choice is a practical one: it depends on what is given and what one wants.
+>
+> - **Use Binet's equation** when the force law is the input and the orbit is the output. It is a second-order equation for $u(\theta)$, with the two integration constants fixed by the initial position and velocity. It is the natural tool for *deriving* the orbit from a given force.
+> - **Use the first integral** when $E$ and $\ell$ are the input. It gives $(du/d\theta)^2$ explicitly as a function of $u$ and the constants $E$ and $\ell$ — the derivative is already isolated, with no differential equation to solve for it — so it is the natural tool for turning points and apsidal distances (set $du/d\theta=0$), energy–orbit relations such as the vis-viva equation in Section 6.3, radial periods, scattering angles, and the orbit by quadrature.
+> - **The two are equivalent.** Differentiating the first integral with respect to $\theta$ and dividing by $2\,du/d\theta$ returns Binet's equation; multiplying Binet's equation by $2\,du/d\theta$ and integrating once returns the first integral with integration constant $2mE/\ell^2$. Binet's equation follows from the radial equation, the first integral from energy conservation, and both use angular-momentum conservation.
 
 ---
 
@@ -885,6 +935,27 @@ For a planet of negligible mass orbiting a star of mass $M_\star$, $k/m=GM_\star
 
 The **vis-viva equation** gives the speed of an object at any point along its orbit. It shows that the speed depends only on the object’s current distance $r$ from the central body and the semi-major axis $a$ of the orbit. When the object is closer to the central body, it moves faster; when it is farther away, it moves slower. Thus, the equation is a quick way to compute orbital speed without solving the full orbit.
 
+> **Summary: how $e$, $E$, $\ell$, $k$, $a$, and $p$ fit together.** For the inverse-square force $F=-k/r^2$ with $V=-k/r$ and $k>0$, the orbit is fixed by the two dynamical constants $E$ and $\ell$; the geometric quantities $a$, $p$, and $e$ are functions of them. The useful question is which quantity carries which information.
+>
+> - **$k$ is a property of the system**, not of the orbit: for gravity, $k=Gm_1m_2$ (with $m\to\mu$ in the relative-coordinate form, as in Section 6.4). It sets the overall force scale.
+> - **$p$ is fixed by $\ell$ alone:** $p=\ell^2/(mk)$, equivalently $\ell=\sqrt{mkp}$. Thus $p$ is the geometric face of angular momentum.
+> - **$a$ is fixed by $E$ alone:** for the ellipse $a=-k/(2E)$, equivalently $E=-k/(2a)$. Thus $a$ is the geometric face of energy. With signed $a$ the formula covers all conics: $a>0$ for an ellipse, $a\to\infty$ for a parabola, and $a<0$ for a hyperbola.
+> - **$e$ mixes the two:** $e=\sqrt{1+2E\ell^2/(mk^2)}=\sqrt{1-p/a}$. Since $e\ge0$, it also classifies the orbit: $e=0$ circle, $0<e<1$ ellipse, $e=1$ parabola, $e>1$ hyperbola; equivalently $E<0$, $E=0$, $E>0$.
+> - **The identity linking geometry and dynamics** is $p=a(1-e^2)$, that is, $\ell^2=mkp=mka(1-e^2)$. Use it to convert $(a,e)$ into $\ell$ and back.
+> - **Apsidal distances** follow from either set: $r_{\min}=p/(1+e)=a(1-e)$ and $r_{\max}=p/(1-e)=a(1+e)$, the latter being finite only for $e<1$.
+
+**Which relation to use.** Give the quantities you know, then read off the rest:
+
+| If you know | Use | To get |
+|---|---|---|
+| $E,\ \ell$ | $a=-k/(2E)$, $p=\ell^2/(mk)$ | $a,\ p$, then $e=\sqrt{1-p/a}$ |
+| $a,\ e$ | $p=a(1-e^2)$, $\ell^2=mkp$ | $p,\ \ell$, then $E=-k/(2a)$ |
+| $p,\ e$ | $a=p/(1-e^2)$ | $a$, then $E=-k/(2a)$ |
+| $r,\ v$ at one point | $E=\frac12mv^2-k/r$, $\ell=mrv_\perp$ | $E,\ \ell$ |
+| $r,\ a$ (speed wanted) | vis-viva $v^2=\frac{k}{m}\left(\frac2r-\frac1a\right)$ | $v$ |
+
+Here $\ell=|\mathbf L|$ and $v_\perp$ is the velocity component perpendicular to $\mathbf r$. For the circular orbit, $e=0$, and the relations collapse to $p=a=r_0$, $\ell^2=mkr_0$, and $E=-k/(2r_0)$.
+
 ---
 
 ### 6.4 Kepler's Third Law
@@ -909,14 +980,21 @@ $$
 
 Goldstein obtains the same result by integrating the radial equation [Goldstein §3.8](/chapters/ch-19.html#b-p0261-b0015) and states that the square of the period is proportional to the cube of the major axis [Goldstein §3.8](/chapters/ch-19.html#b-p0263-b0002).
 
-For the gravitational two-body problem, restore $m\to\mu$ and $k=Gm_1m_2$. Then
-
+For the gravitational two-body problem, restore $m\to\mu$ and $k=Gm_1m_2$: the force constant is unchanged, while the mass of the fictitious one-body particle becomes the reduced mass. Then
 $$
 \tau^2=\frac{4\pi^2\mu a^3}{Gm_1m_2}
 =\frac{4\pi^2a^3}{G(m_1+m_2)}.
 $$
 
 When $m_2\gg m_1$, this reduces to $\tau^2\approx4\pi^2a^3/(Gm_2)$, which is the usual form of Kepler's third law for planets around the Sun. Goldstein emphasizes that the exact two-body version requires the reduced mass [Goldstein §3.8](/chapters/ch-19.html#b-p0263-b0002).
+
+> The map from the two-body to the one-body problem of Section 2.2 replaces the mass and the coordinate, but it leaves the force law untouched.
+>
+> - **The force constant is unchanged.** The interaction between the two bodies is $F=-Gm_1m_2/r^2$, so the same $k=Gm_1m_2$ appears in $V=-k/r$ and in the one-body equation.
+> - **The one-body mass is the reduced mass.** The inertia in $\mu\ddot{\mathbf r}=\mathbf F(r)$ is $\mu=m_1m_2/(m_1+m_2)$, not $m_1$.
+> - **The one-body coordinate is the separation.** $\mathbf r=\mathbf r_1-\mathbf r_2$ is the position of body 1 measured from body 2, so the force center of the equivalent problem sits at body 2's instantaneous position. The equivalent orbit is the orbit of $\mathbf r$; it is not the orbit of body 1 about the center of mass.
+> - **What subtracting $\mathbf R$ does.** The center of mass moves uniformly, and going to the center-of-mass frame removes this overall translation. That does **not** by itself freeze body 2: for finite masses the two bodies each orbit the CM, at radii scaled by $m_2/M$ and $m_1/M$, so the force center moves in the CM frame. The force center is truly at rest only in the limit $m_2\to\infty$, where $\mu\to m_1$ and the fixed-center approximation is recovered. The relative-coordinate formulation needs no such limit: the equation for $\mathbf r$ is exact for finite masses.
+> - **The semimajor axis $a$** in Kepler's third law is the semimajor axis of this relative orbit, not of either body's orbit about the CM.
 
 ---
 
