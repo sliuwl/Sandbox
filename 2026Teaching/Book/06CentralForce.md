@@ -26,6 +26,11 @@
    - [6.4 Kepler's Third Law](#64-keplers-third-law)
    - [6.5 The Laplace–Runge–Lenz Vector](#65-the-laplace-runge-lenz-vector)
 7. [A Tangential Impulse from a Circular Orbit](#7-a-tangential-impulse-from-a-circular-orbit)
+8. [The Virial Theorem in Astrophysics](#8-the-virial-theorem-in-astrophysics)
+   - [8.1 Time Averages and the Virial Theorem](#81-time-averages-and-the-virial-theorem)
+   - [8.2 Power-Law Forces and Bound Orbits](#82-power-law-forces-and-bound-orbits)
+   - [8.3 A System of Gravitating Particles](#83-a-system-of-gravitating-particles)
+   - [8.4 Cluster Masses and Dark Matter](#84-cluster-masses-and-dark-matter)
 
 ---
 
@@ -873,8 +878,7 @@ Here $\ell=|\mathbf L|$ and $v_\perp$ is the velocity component perpendicular to
 
 ### 6.4 Kepler's Third Law
 
-The orbital period is the time required to sweep out the area of the ellipse at the constant areal velocity $\ell/(2m)$:
-
+By Kepler’s second law, the radius vector sweeps out equal areas in equal times. Therefore, the orbital period is the time required to sweep out the entire area of the ellipse at the constant areal velocity $\ell/(2m)$:
 $$
 \tau=\frac{2m}{\ell}A.
 $$
@@ -982,8 +986,7 @@ Thus the LRL vector encodes both the orientation and the eccentricity of the Kep
 
 Let $P$ be the point of a circular orbit of radius $r_0$ at which the impulse is applied. A particle of mass $m$ moves under the attractive inverse-square force $F=-k/r^2$. An instantaneous tangential impulse at $P$ changes the speed from the circular value $v_c$ to $v=\alpha v_c$ with $\alpha>0$, without changing the particle's position or the direction of its velocity.
 
-**Step 1: Circular speed.** From the circular-orbit condition with $F=-k/r_0^2$,
-
+**Step 1: Circular speed.** From the circular-orbit condition with $F=-k/r_0^2$, 
 $$
 \frac{k}{r_0^2}=\frac{\ell_c^2}{mr_0^3}
 \quad\Longrightarrow\quad
@@ -994,8 +997,11 @@ $$
 
 On the circular orbit $\dot r=0$, so the velocity is purely tangential and $v_c=r_0\dot\theta_c$. This is the same speed that enters the kinetic energy below.
 
-**Step 2: New constants.** After the impulse, the radius is still $r_0$ and the radial velocity is still zero, but
+> Using language familiar to high school students, the gravitational force $k/r_0^2$ provides the centripetal force $mv_c^2/r_0$. Since $\ell_c = mr_0v_c$, we have $\frac{k}{r_0^2} = \frac{mv_c^2}{r_0} = \frac{\ell_c^2}{mr_0^3}.$
+>
+> In this course, this is the same as saying that at $r_0$, the effective potential energy is stationary: the attractive central force is balanced by the outward effect of the angular barrier.
 
+**Step 2: New constants.** After the impulse, the radius is still $r_0$ and the radial velocity is still zero, but
 $$
 \ell=\alpha\ell_c=\alpha\sqrt{mkr_0},
 \qquad
@@ -1074,3 +1080,269 @@ The limiting case $\alpha=0$ gives $\ell=0$: the conic degenerates to a line seg
 
 **Figure 10.** The five cases for the speed ratio $\alpha=v/v_c$ after a tangential impulse at $P$ in a circular inverse-square orbit. **(a)** Representative orbits: $\alpha=0.7$ (blue, ellipse inside the circle with $P$ as apoapsis), $\alpha=1$ (grey dashed circle), $\alpha=1.2$ (orange, ellipse outside the circle with $P$ as periapsis), $\alpha=\sqrt2$ (green parabola), and $\alpha=1.7$ (purple hyperbola). All orbits pass through $P$ at distance $r_0$ from the force center $O$; parts that leave the frame are clipped. **(b)** Eccentricity $e=|1-\alpha^2|$ and the classification: $E<0$ for $\alpha<\sqrt2$ (ellipse), $E=0$ at $\alpha=\sqrt2$ (parabola), and $E>0$ for $\alpha>\sqrt2$ (hyperbola). The vertical dotted lines mark $\alpha=1$ (circle) and $\alpha=\sqrt2$ (parabolic threshold). The degenerate limit $\alpha=0$ ($\ell=0$, pure radial infall) is not one of the five cases and is not shown: panel (b) begins at $\alpha=0.2$.
 
+---
+
+## 8. The Virial Theorem in Astrophysics
+
+A planet speeds up and slows down along an elliptical orbit, so its kinetic and potential energies change even though their sum is constant. The **virial theorem** (/ˈvɪriəl/维里定理) gives a simple relation between their **time averages**. The same idea applies to a cluster of stars or galaxies, even when the individual paths are too complicated to calculate. This makes the theorem useful for estimating how much mass holds a gravitational system together.
+
+### 8.1 Time Averages and the Virial Theorem
+
+We first consider the equivalent one-body problem: the particle has mass $m$, momentum $\mathbf p=m\dot{\mathbf r}$, and kinetic energy $T=\frac12m\dot{\mathbf r}^{\,2}$. Define the scalar
+
+$$
+\mathcal G=\mathbf p\cdot\mathbf r.
+$$
+
+Here $\mathcal G$ is an auxiliary quantity; $G$ without the calligraphic font remains Newton's gravitational constant. Since
+
+$$
+\mathcal G=m\mathbf r\cdot\dot{\mathbf r}
+=\frac12\frac{d}{dt}(mr^2),
+$$
+
+it measures whether the particle's squared distance from the force center is increasing or decreasing. Differentiating once more and using $\dot{\mathbf p}=\mathbf F$,
+
+$$
+\frac{d\mathcal G}{dt}
+=\dot{\mathbf p}\cdot\mathbf r+\mathbf p\cdot\dot{\mathbf r}
+=\mathbf F\cdot\mathbf r+2T.
+$$
+
+We now define the **time average** (时间平均) of any quantity $f(t)$ over an interval $t_{\mathrm{av}}$ by
+
+$$
+\langle f\rangle_{t_{\mathrm{av}}}
+=\frac{1}{t_{\mathrm{av}}}\int_0^{t_{\mathrm{av}}}f(t)\,dt.
+$$
+
+Averaging the derivative gives an endpoint difference:
+
+$$
+\frac{\mathcal G(t_{\mathrm{av}})-\mathcal G(0)}{t_{\mathrm{av}}}
+=2\langle T\rangle_{t_{\mathrm{av}}}
++\langle\mathbf F\cdot\mathbf r\rangle_{t_{\mathrm{av}}}.
+$$
+
+For a periodic orbit, we can choose $t_{\mathrm{av}}=\tau$, the orbital period. The particle returns to the same position and momentum, so the left-hand side is exactly zero. More generally, if $\mathcal G$ stays bounded, its endpoint difference divided by an increasingly long averaging time tends to zero. Bounded positions and momenta are sufficient for this condition.
+
+Writing $\langle\cdot\rangle$ for an average over a complete period or for the long-time limit when it exists, we obtain
+
+$$
+\boxed{2\langle T\rangle=-\langle\mathbf F\cdot\mathbf r\rangle.}
+$$
+
+For a conservative central force, $\mathbf F=-(dV/dr)\hat{\mathbf r}$ and $\mathbf r=r\hat{\mathbf r}$, so
+
+$$
+\boxed{2\langle T\rangle
+=\left\langle r\frac{dV}{dr}\right\rangle.}
+$$
+
+The physical idea is that a bounded system cannot keep increasing or decreasing its size indefinitely. Over a sufficiently long time, the positive kinetic-energy contribution to $d\mathcal G/dt$ balances the contribution from the confining force.
+
+> **Which energies enter?** Here $T=\frac12m(\dot r^2+r^2\dot\theta^2)$ includes both radial and angular motion, and $V$ is the physical potential energy. We do not replace $V$ by $V_{\text{eff}}$. The vanishing endpoint term must also be justified; it cannot simply be assumed for an escaping particle or a system undergoing sustained expansion or collapse.
+
+---
+
+### 8.2 Power-Law Forces and Bound Orbits
+
+Use the same force-law convention as in Section 4.3:
+
+$$
+F(r)=-kr^n,
+\qquad k>0.
+$$
+
+For $n\ne-1$, choose the additive constant in the potential so that
+
+$$
+V(r)=\frac{k}{n+1}r^{n+1}.
+$$
+
+Then
+
+$$
+r\frac{dV}{dr}=kr^{n+1}=(n+1)V,
+$$
+
+and the virial theorem becomes
+
+$$
+\boxed{2\langle T\rangle=(n+1)\langle V\rangle.}
+$$
+
+This relation applies when the averaging condition in Section 8.1 is satisfied. 
+
+Two useful examples are:
+
+| Interaction | Potential energy | Virial relation |
+|---|---|---|
+| Inverse-square attraction, $n=-2$ | $V=-k/r$ | $2\langle T\rangle=-\langle V\rangle$ |
+| Isotropic spring with zero natural length, $n=1$ | $V=\frac12\kappa r^2$ | $\langle T\rangle=\langle V\rangle$ |
+
+For the spring we use $\kappa$, as in Section 1.1. The equality of average energies requires this purely quadratic potential; a spring with nonzero natural length has $V=\frac12\kappa(r-l_0)^2$ instead.
+
+> **Potential-energy reference.** The power-law formula uses the stated choice of additive constant. If $V$ is shifted by a constant $V_0$, the force is unchanged, and the formula becomes $2\langle T\rangle=(n+1)\langle V-V_0\rangle$. For the exceptional force $F=-k/r$, the potential is $V=k\ln(r/r_*)$, where $r_*$ is a fixed reference length, and the general theorem gives $2\langle T\rangle=k$.
+
+**Check for a circular Kepler orbit.** At radius $r_0$, the centripetal-force condition gives
+
+$$
+\frac{mv_c^2}{r_0}=\frac{k}{r_0^2}
+\quad\Longrightarrow\quad
+T=\frac{k}{2r_0},
+\qquad
+V=-\frac{k}{r_0}.
+$$
+
+Thus $2T=-V$ at every instant. **For an elliptical orbit, the same relation holds only after time averaging.**
+
+**Average energies on a Kepler ellipse.** Since $E=T+V$ is conserved,
+
+$$
+E=\langle T\rangle+\langle V\rangle
+=-\langle T\rangle
+=\frac12\langle V\rangle.
+$$
+
+Combining this with $E=-k/(2a)$ from Section 6.3,
+
+$$
+\boxed{\langle T\rangle=\frac{k}{2a},
+\qquad
+\langle V\rangle=-\frac{k}{a},
+\qquad
+\left\langle\frac1r\right\rangle=\frac1a.}
+$$
+
+These averages depend on the semimajor axis $a$, even though the speed and distance vary around the ellipse. The last equality concerns the average of $1/r$; it does not say that $\langle r\rangle=a$. A time average gives more weight to parts of the orbit where the particle moves slowly, because the particle spends more time there.
+
+For a genuine two-body system, restore $m\to\mu$ and $V\to U$, with $k=Gm_1m_2$. The kinetic energy $T=\frac12\mu\dot{\mathbf r}^{\,2}$ is then the total kinetic energy of the two bodies in their center-of-mass frame.
+
+---
+
+### 8.3 A System of Gravitating Particles
+
+Now consider $N$ nonrelativistic particles interacting only through their mutual Newtonian gravity. We work in the inertial center-of-mass frame, so the kinetic energy describes motion within the system. Let
+
+$$
+T=\sum_i\frac12m_i\dot{\mathbf r}_i^{\,2},
+\qquad
+\mathcal G=\sum_i\mathbf p_i\cdot\mathbf r_i,
+\qquad
+\mathbf p_i=m_i\dot{\mathbf r}_i.
+$$
+
+Applying the same differentiation to each particle gives
+
+$$
+\frac{d\mathcal G}{dt}
+=2T+\sum_i\mathbf r_i\cdot\mathbf F_i,
+$$
+
+where $\mathbf F_i$ is the net force on particle $i$. Under the same averaging condition as before,
+
+$$
+2\langle T\rangle
+=-\left\langle\sum_i\mathbf r_i\cdot\mathbf F_i\right\rangle.
+$$
+
+To evaluate the force sum, group the interactions into pairs. Define
+
+$$
+\mathbf r_{ij}=\mathbf r_i-\mathbf r_j,
+\qquad
+r_{ij}=|\mathbf r_{ij}|,
+\qquad
+U_{ij}=-\frac{Gm_im_j}{r_{ij}}.
+$$
+
+Here $\mathbf F_{ij}$ denotes the force on particle $i$ due to particle $j$. Newton's third law gives $\mathbf F_{ji}=-\mathbf F_{ij}$, so the two terms belonging to one pair combine as
+
+$$
+\begin{aligned}
+\mathbf r_i\cdot\mathbf F_{ij}+\mathbf r_j\cdot\mathbf F_{ji}
+&=(\mathbf r_i-\mathbf r_j)\cdot\mathbf F_{ij} \\
+&=\mathbf r_{ij}\cdot\left(-\frac{Gm_im_j}{r_{ij}^3}\mathbf r_{ij}\right) \\
+&=-\frac{Gm_im_j}{r_{ij}}=U_{ij}.
+\end{aligned}
+$$
+
+Summing over distinct pairs therefore gives
+
+$$
+\sum_i\mathbf r_i\cdot\mathbf F_i
+=\sum_{i<j}U_{ij}=U,
+$$
+
+where $U$ is the total interaction potential energy, with zero at infinite separation. The notation $i<j$ counts each pair once: for three particles, $U=U_{12}+U_{13}+U_{23}$.
+
+Thus an isolated, bounded gravitational system satisfies
+
+$$
+\boxed{2\langle T\rangle+\langle U\rangle=0,}
+\qquad
+\boxed{E=-\langle T\rangle=\frac12\langle U\rangle<0.}
+$$
+
+Each pairwise force is central, but the net force on a particle need not point toward the center of mass. The particles need not follow closed Kepler orbits for this result to hold.
+
+We can also express the result in terms of the system's size. Define
+
+$$
+I=\sum_i m_i r_i^2.
+$$
+
+Since $\dot I=2\mathcal G$, the exact instantaneous identity is
+
+$$
+\frac12\ddot I=2T+U.
+$$
+
+A system in **virial equilibrium** (维里平衡) has no sustained change in $\dot I$, so the average of $\ddot I$ vanishes. Its stars may still move rapidly; equilibrium here refers to the system's overall statistical properties.
+
+---
+
+### 8.4 Cluster Masses and Dark Matter
+
+The virial theorem lets us estimate a cluster's mass from its size and the speeds of its members. For a cluster close to virial equilibrium, observations of many representative members can be used to estimate the averages, without following each orbit for a complete period.
+
+Let $M=\sum_i m_i$ be the total cluster mass and $R_{\mathrm c}$ a characteristic cluster radius. Write the average potential energy approximately as
+
+$$
+\langle U\rangle\simeq-C\frac{GM^2}{R_{\mathrm c}},
+$$
+
+where $C$ is a positive, dimensionless factor determined by the mass distribution and by how $R_{\mathrm c}$ is defined. For example, a smooth uniform sphere with outer radius $R_{\mathrm c}$ has $C=3/5$. Define the mass-weighted mean-square speed in the center-of-mass frame by
+
+$$
+v_{\mathrm{rms}}^2=\frac{1}{M}\sum_i m_i\langle v_i^2\rangle,
+\qquad
+\langle T\rangle=\frac12Mv_{\mathrm{rms}}^2.
+$$
+
+Substitution into $2\langle T\rangle+\langle U\rangle=0$ yields
+
+$$
+Mv_{\mathrm{rms}}^2\simeq C\frac{GM^2}{R_{\mathrm c}}
+\quad\Longrightarrow\quad
+\boxed{M\simeq\frac{R_{\mathrm c}v_{\mathrm{rms}}^2}{CG}.}
+$$
+
+At a given size, a larger typical speed requires more mass to provide the gravitational attraction that holds the cluster together.
+
+Astronomers measure velocities along the line of sight from Doppler shifts. After subtracting the cluster's bulk velocity, let $\sigma_{\mathrm{los}}$ denote the **line-of-sight velocity dispersion** (视向速度弥散), the root-mean-square residual velocity. If motions are statistically the same in all directions, the three components contribute equally to the mean-square speed:
+
+$$
+v_{\mathrm{rms}}^2\simeq3\sigma_{\mathrm{los}}^2,
+\qquad
+\boxed{M\simeq\frac{3R_{\mathrm c}\sigma_{\mathrm{los}}^2}{CG}.}
+$$
+
+Using observed galaxies or stars in this estimate assumes that their velocities fairly represent the motions supporting the cluster. The factor $C$, the velocity distribution, and the equilibrium assumption must be considered when interpreting the inferred mass.
+
+In 1933, Fritz Zwicky applied the virial theorem to the Coma Cluster of galaxies. The galaxies moved too rapidly for the mass estimated from their light to account for the cluster's apparent confinement. A much larger gravitating mass was needed. This was early evidence for **dark matter** (暗物质): matter inferred through its gravity rather than through emitted light.
+
+The scaling explains why additional mass helps. At fixed size and characteristic speed, kinetic energy scales as $M$, while the magnitude of gravitational potential energy scales as $M^2$. Increasing the mass therefore strengthens gravitational binding faster than it increases kinetic energy.
+
+> **Scope of the estimate.** The simple cluster formula assumes approximate virial equilibrium and negligible external forces. A cluster in the middle of a merger, for example, need not satisfy $2T+U\simeq0$ at the observed instant. A mass discrepancy is evidence for unseen gravitating matter when the dynamical assumptions are justified.
