@@ -142,18 +142,12 @@ $$
 Therefore
 
 $$
-\boxed{T=\frac12 M\dot{\mathbf R}^{\,2}+\frac12\mu\dot{\mathbf r}^{\,2}}.
-$$
-
-The kinetic energy separates into center-of-mass and relative parts:
-
-$$
-T=\frac12 M\dot{\mathbf R}^{\,2}+\frac12\mu\dot{\mathbf r}^{\,2},
+\boxed{T=\frac12 M\dot{\mathbf R}^{\,2}+\frac12\mu\dot{\mathbf r}^{\,2}},
 \qquad
 \mu=\frac{m_1m_2}{m_1+m_2}.
 $$
 
-The quantity $\mu$ is the **reduced mass** (约化质量). It is smaller than either $m_1$ or $m_2$, and it satisfies
+The kinetic energy therefore separates into center-of-mass and relative parts. The quantity $\mu$ is the **reduced mass** (约化质量); it is smaller than either mass and satisfies
 
 $$
 \frac{1}{\mu}=\frac{1}{m_1}+\frac{1}{m_2}.
@@ -592,11 +586,11 @@ $$
 
 This is the orbit first integral. Turning points of the orbit occur where $du/d\theta=0$ (the radial kinetic energy is zero), that is, where $E=V_{\text{eff}}(r)$. The first integral depends on $du/d\theta$ only through its square, so if $\theta=0$ is taken at a turning point, then $u(\theta)=u(-\theta)$: the orbit has the same shape on both sides of an apse (拱点，复数为 apsides).
 
-> **Binet's equation or the first integral?** The two describe the same orbit $u(\theta)$ and use the same conserved $\ell$, so the choice is a practical one: it depends on what is given and what one wants.
+> **Binet's equation or the first integral?** Both describe the same orbit and use the same conserved $\ell$; the choice is practical.
 >
-> - **Use Binet's equation** when the force law is the input and the orbit is the output. It is a second-order equation for $u(\theta)$, with the two integration constants fixed by the initial position and velocity. It is the natural tool for *deriving* the orbit from a given force.
-> - **Use the first integral** when $E$ and $\ell$ are the input. It gives $(du/d\theta)^2$ explicitly as a function of $u$ and the constants $E$ and $\ell$ — the derivative is already isolated, with no differential equation to solve for it — so it is the natural tool for turning points and apsidal distances (set $du/d\theta=0$), energy–orbit relations such as the vis-viva equation in Section 6.3, radial periods, scattering angles, and the orbit by quadrature.
-> - **The two are equivalent.** Differentiating the first integral with respect to $\theta$ and dividing by $2\,du/d\theta$ returns Binet's equation; multiplying Binet's equation by $2\,du/d\theta$ and integrating once returns the first integral with integration constant $2mE/\ell^2$. Binet's equation follows from the radial equation, the first integral from energy conservation, and both use angular-momentum conservation.
+> - **Binet's equation** takes the force law as input and returns the orbit. It is a second-order equation whose two constants are fixed by the initial position and velocity.
+> - **The first integral** takes $E$ and $\ell$ as input and gives $(du/d\theta)^2$ explicitly, so it is the natural tool for turning points, apsidal distances, the vis-viva relation, radial periods, scattering angles, and quadrature.
+> - **They are equivalent.** Differentiating the first integral returns Binet's equation; integrating Binet's equation once returns the first integral. Both rest on angular-momentum conservation.
 
 ---
 
@@ -690,7 +684,7 @@ Thus $e=c/a$ is the eccentricity, and the center lies at $x=-ae$. Again, the foc
 
 ### 6.2 Conic Sections and Eccentricity
 
-The orbit equation is the polar equation of a **conic section** (圆锥曲线) with one focus at the force center. The dimensionless constant $e$ is the **eccentricity** (偏心率); the orbit is always a conic section because the integrated solution has exactly the standard conic form.
+The orbit equation is the polar equation of a **conic section** (圆锥曲线) with one focus at the force center. The dimensionless constant $e$ is the **eccentricity** (偏心率); the orbit is therefore always a conic section.
 
 To relate $e$ to the energy, evaluate the energy at periapsis, where $\dot r=0$ and $u=u_{\max}$. With $du/d\theta=0$ (the radial kinetic energy is zero),
 
@@ -818,28 +812,7 @@ $$
 
 This is equivalent to $e^2=1+2E\ell^2/(mk^2)$ once $a=-k/(2E)$ is substituted.
 
-Rearranging $p=a(1-e^2)$ with $p=\ell^2/(mk)$ gives the useful combination
-
-$$
-\frac{\ell^2}{mk}=a(1-e^2),
-$$
-
-so the orbit equation becomes
-
-$$
-r(\theta)=\frac{a(1-e^2)}{1+e\cos(\theta-\theta')}.
-$$
-
-At periapsis and apoapsis,
-
-$$
-r_{\min}=a(1-e),
-\qquad
-r_{\max}=a(1+e).
-$$
-
 The **vis-viva equation** (活力公式) follows from energy conservation. Since $E=\frac12mv^2-k/r$ and $E=-k/(2a)$,
-
 $$
 \frac12mv^2-\frac{k}{r}=-\frac{k}{2a},
 $$
@@ -962,10 +935,12 @@ Since $\mathbf A=\mathbf p\times\mathbf L-mk\hat{\mathbf r}$, it follows that $\
 Two properties of $\mathbf A$ follow directly.
 
 1. $\mathbf A\cdot\mathbf L=0$, because $\mathbf L$ is perpendicular to the orbital plane while both $\mathbf p\times\mathbf L$ and $\hat{\mathbf r}$ lie in that plane. Hence $\mathbf A$ lies in the orbital plane.
-2. Its magnitude is $|\mathbf A|=mk e$, and it points toward periapsis. At periapsis $\mathbf p$ is tangential and $\mathbf p\times\mathbf L$ is radial, with
+2. Its magnitude is $|\mathbf A|=mk e$, and it points toward periapsis.
+
+The magnitude of $\mathbf A$ is derived as follows. At periapsis $\mathbf p$ is tangential so $|\mathbf p|=l/r_{\min}$. Since $\mathbf p$ is perpendicular to $\mathbf L$, the vector $\mathbf p\times\mathbf L$ is radial, and its magnitude is
 
 $$
-|\mathbf p\times\mathbf L|=\frac{\ell^2}{r_{\min}}=mk(1+e),
+|\mathbf p\times\mathbf L|= |\mathbf p| \times|\mathbf L|=\frac{\ell^2}{r_{\min}}=mk(1+e),
 $$
 
 using $r_{\min}=\dfrac{p}{1+e}=\dfrac{\ell^2}{mk(1+e)}$. Therefore
@@ -986,7 +961,7 @@ Thus the LRL vector encodes both the orientation and the eccentricity of the Kep
 
 Let $P$ be the point of a circular orbit of radius $r_0$ at which the impulse is applied. A particle of mass $m$ moves under the attractive inverse-square force $F=-k/r^2$. An instantaneous tangential impulse at $P$ changes the speed from the circular value $v_c$ to $v=\alpha v_c$ with $\alpha>0$, without changing the particle's position or the direction of its velocity.
 
-**Step 1: Circular speed.** From the circular-orbit condition with $F=-k/r_0^2$, 
+**Step 1: Circular speed.** From the circular-orbit condition with $F=-k/r_0^2$,
 $$
 \frac{k}{r_0^2}=\frac{\ell_c^2}{mr_0^3}
 \quad\Longrightarrow\quad
@@ -1031,11 +1006,9 @@ $$
 \boxed{e=\left|1-\alpha^2\right|.}
 $$
 
-**Step 5: Interpretation.** Two independent signs control the classification. The sign of $E$ determines whether the orbit is bound, while the sign of the radial acceleration at $P$ determines whether $P$ is an apoapsis or a periapsis.
+**Step 5: Interpretation.** Two independent signs control the classification: the sign of $E$ decides whether the orbit is bound, while the sign of the radial acceleration at $P$ decides whether $P$ is an apoapsis or a periapsis.
 
-
-
-At $P$ the radial velocity is zero, so $P$ is a turning point. Its character follows from the radial acceleration there. Using $F(r_0)=-k/r_0^2$ and $\ell^2=\alpha^2mkr_0$,
+At $P$ the radial velocity is zero, so $P$ is a turning point. Using $F(r_0)=-k/r_0^2$ and $\ell^2=\alpha^2mkr_0$,
 
 $$
 \ddot r(P)
@@ -1060,7 +1033,7 @@ $$
 r_c=\frac{\ell^2}{mk}=\alpha^2r_0.
 $$
 
-Since $V_{\text{eff}}''(r_c)=k/r_c^3>0$, $r_c$ is the bottom of the effective-potential well. The particle is at $r_0$ with $\dot r=0$, so $r_0$ is a turning point of the new radial motion. For $\alpha<1$, $r_c=\alpha^2r_0<r_0$: the turning point lies on the outer side of the well, hence $r_0=r_{\max}$ and $P$ is the apoapsis. For $\alpha>1$, $r_c>r_0$: the turning point lies on the inner side, hence $r_0=r_{\min}$ and $P$ is the periapsis.
+Since $V_{\text{eff}}''(r_c)=k/r_c^3>0$, $r_c$ is the bottom of the effective-potential well. The particle is at $r_0$ with $\dot r=0$, so $r_0$ is a turning point of the new radial motion. For $\alpha<1$, $r_c=\alpha^2r_0<r_0$, so the turning point lies on the outer side of the well and $r_0=r_{\max}$, making $P$ the apoapsis. For $\alpha>1$, $r_c>r_0$, so it lies on the inner side and $r_0=r_{\min}$, making $P$ the periapsis.
 
 ![Effective potential after a tangential impulse](CentralForceImage/effective-potential-tangential-impulse.png)
 
@@ -1172,7 +1145,7 @@ $$
 \boxed{2\langle T\rangle=(n+1)\langle V\rangle.}
 $$
 
-This relation applies when the averaging condition in Section 8.1 is satisfied. 
+This relation applies when the averaging condition in Section 8.1 is satisfied.
 
 Two useful examples are:
 
@@ -1182,8 +1155,6 @@ Two useful examples are:
 | Isotropic spring with zero natural length, $n=1$ | $V=\frac12\kappa r^2$ | $\langle T\rangle=\langle V\rangle$ |
 
 For the spring we use $\kappa$, as in Section 1.1. The equality of average energies requires this purely quadratic potential; a spring with nonzero natural length has $V=\frac12\kappa(r-l_0)^2$ instead.
-
-> **Potential-energy reference.** The power-law formula uses the stated choice of additive constant. If $V$ is shifted by a constant $V_0$, the force is unchanged, and the formula becomes $2\langle T\rangle=(n+1)\langle V-V_0\rangle$. For the exceptional force $F=-k/r$, the potential is $V=k\ln(r/r_*)$, where $r_*$ is a fixed reference length, and the general theorem gives $2\langle T\rangle=k$.
 
 **Check for a circular Kepler orbit.** At radius $r_0$, the centripetal-force condition gives
 
@@ -1247,8 +1218,20 @@ $$
 =-\left\langle\sum_i\mathbf r_i\cdot\mathbf F_i\right\rangle.
 $$
 
-To evaluate the force sum, group the interactions into pairs. Define
+To evaluate the force sum, first decompose the net force on each particle into the sum of pairwise forces:
+$$
+\mathbf F_i=\sum_{j\ne i}\mathbf F_{ij},
+$$
+where $\mathbf F_{ij}$ denotes the force on particle $i$ due to particle $j$. Hence
+$$
+\sum_i\mathbf r_i\cdot\mathbf F_i
+=
+\sum_i\mathbf r_i\cdot\sum_{j\ne i}\mathbf F_{ij}
+=
+\sum_i\sum_{j\ne i}\mathbf r_i\cdot\mathbf F_{ij}.
+$$
 
+Now group the double sum into distinct interacting pairs. Define
 $$
 \mathbf r_{ij}=\mathbf r_i-\mathbf r_j,
 \qquad
@@ -1256,26 +1239,76 @@ r_{ij}=|\mathbf r_{ij}|,
 \qquad
 U_{ij}=-\frac{Gm_im_j}{r_{ij}}.
 $$
-
-Here $\mathbf F_{ij}$ denotes the force on particle $i$ due to particle $j$. Newton's third law gives $\mathbf F_{ji}=-\mathbf F_{ij}$, so the two terms belonging to one pair combine as
-
+For each unordered pair $(i,j)$, the two terms appearing in the double sum are
+$$
+\mathbf r_i\cdot\mathbf F_{ij}
++
+\mathbf r_j\cdot\mathbf F_{ji}.
+$$
+Since
+$$
+\mathbf F_{ij}
+=
+-\frac{Gm_im_j}{r_{ij}^3}\mathbf r_{ij},
+$$
+and Newton's third law gives
+$$
+\mathbf F_{ji}=-\mathbf F_{ij},
+$$
+we have
 $$
 \begin{aligned}
-\mathbf r_i\cdot\mathbf F_{ij}+\mathbf r_j\cdot\mathbf F_{ji}
-&=(\mathbf r_i-\mathbf r_j)\cdot\mathbf F_{ij} \\
-&=\mathbf r_{ij}\cdot\left(-\frac{Gm_im_j}{r_{ij}^3}\mathbf r_{ij}\right) \\
-&=-\frac{Gm_im_j}{r_{ij}}=U_{ij}.
+\mathbf r_i\cdot\mathbf F_{ij}
++\mathbf r_j\cdot\mathbf F_{ji}
+&=
+\mathbf r_i\cdot\mathbf F_{ij}
+-\mathbf r_j\cdot\mathbf F_{ij} \\
+&=
+(\mathbf r_i-\mathbf r_j)\cdot\mathbf F_{ij} \\
+&=
+\mathbf r_{ij}\cdot
+\left(
+-\frac{Gm_im_j}{r_{ij}^3}\mathbf r_{ij}
+\right) \\
+&=
+-\frac{Gm_im_j}{r_{ij}} \\
+&=
+U_{ij}.
 \end{aligned}
 $$
 
-Summing over distinct pairs therefore gives
-
+Therefore,
+$$
+\begin{aligned}
+\sum_i \mathbf r_i\cdot\mathbf F_i
+&=
+\sum_i\sum_{j\ne i}\mathbf r_i\cdot\mathbf F_{ij} \\
+&=
+\sum_{i<j}\mathbf r_i\cdot\mathbf F_{ij}
++
+\sum_{j<i}\mathbf r_i\cdot\mathbf F_{ij} \\
+&=
+\sum_{i<j}\mathbf r_i\cdot\mathbf F_{ij}
++
+\sum_{i<j}\mathbf r_j\cdot\mathbf F_{ji} \\
+&=
+\sum_{i<j}
+\left(
+\mathbf r_i\cdot\mathbf F_{ij}
++
+\mathbf r_j\cdot\mathbf F_{ji}
+\right) \\
+&=
+\sum_{i<j}U_{ij}
+=
+U .
+\end{aligned}
+$$
+Here $\sum_{i<j}$ denotes a sum over all unordered pairs with $i<j$, not a nested sum. We have proved:
 $$
 \sum_i\mathbf r_i\cdot\mathbf F_i
 =\sum_{i<j}U_{ij}=U,
 $$
-
-where $U$ is the total interaction potential energy, with zero at infinite separation. The notation $i<j$ counts each pair once: for three particles, $U=U_{12}+U_{13}+U_{23}$.
 
 Thus an isolated, bounded gravitational system satisfies
 
@@ -1286,20 +1319,6 @@ $$
 $$
 
 Each pairwise force is central, but the net force on a particle need not point toward the center of mass. The particles need not follow closed Kepler orbits for this result to hold.
-
-We can also express the result in terms of the system's size. Define
-
-$$
-I=\sum_i m_i r_i^2.
-$$
-
-Since $\dot I=2\mathcal G$, the exact instantaneous identity is
-
-$$
-\frac12\ddot I=2T+U.
-$$
-
-A system in **virial equilibrium** (维里平衡) has no sustained change in $\dot I$, so the average of $\ddot I$ vanishes. Its stars may still move rapidly; equilibrium here refers to the system's overall statistical properties.
 
 ---
 
@@ -1313,36 +1332,38 @@ $$
 \langle U\rangle\simeq-C\frac{GM^2}{R_{\mathrm c}},
 $$
 
-where $C$ is a positive, dimensionless factor determined by the mass distribution and by how $R_{\mathrm c}$ is defined. For example, a smooth uniform sphere with outer radius $R_{\mathrm c}$ has $C=3/5$. Define the mass-weighted mean-square speed in the center-of-mass frame by
+where $C$ is a positive, dimensionless factor determined by the mass distribution and by how $R_{\mathrm c}$ is defined. For example, a smooth uniform sphere with outer radius $R_{\mathrm c}$ has $C=3/5$.
 
+It is useful to express the total kinetic energy in terms of a single characteristic speed for the whole cluster. Since kinetic energy is weighted by mass, the appropriate average is the mass-weighted mean-square speed. We therefore define
 $$
-v_{\mathrm{rms}}^2=\frac{1}{M}\sum_i m_i\langle v_i^2\rangle,
-\qquad
-\langle T\rangle=\frac12Mv_{\mathrm{rms}}^2.
+v_{\mathrm{rms}}^2
+=
+\frac{1}{M}\sum_i m_i\langle v_i^2\rangle,
+$$
+so that
+$$
+\langle T\rangle
+=
+\frac12\sum_i m_i\langle v_i^2\rangle
+=
+\frac12 Mv_{\mathrm{rms}}^2.
 $$
 
 Substitution into $2\langle T\rangle+\langle U\rangle=0$ yields
 
 $$
-Mv_{\mathrm{rms}}^2\simeq C\frac{GM^2}{R_{\mathrm c}}
-\quad\Longrightarrow\quad
-\boxed{M\simeq\frac{R_{\mathrm c}v_{\mathrm{rms}}^2}{CG}.}
+Mv_{\mathrm{rms}}^2
+\simeq
+C\frac{GM^2}{R_{\mathrm c}},
 $$
-
-At a given size, a larger typical speed requires more mass to provide the gravitational attraction that holds the cluster together.
-
-Astronomers measure velocities along the line of sight from Doppler shifts. After subtracting the cluster's bulk velocity, let $\sigma_{\mathrm{los}}$ denote the **line-of-sight velocity dispersion** (视向速度弥散), the root-mean-square residual velocity. If motions are statistically the same in all directions, the three components contribute equally to the mean-square speed:
-
+and hence
 $$
-v_{\mathrm{rms}}^2\simeq3\sigma_{\mathrm{los}}^2,
-\qquad
-\boxed{M\simeq\frac{3R_{\mathrm c}\sigma_{\mathrm{los}}^2}{CG}.}
+\boxed{
+M\simeq\frac{R_{\mathrm c}v_{\mathrm{rms}}^2}{CG}
+}.
 $$
+This relation shows that, for a cluster of fixed size, **a larger typical speed requires a larger total mass**. The reason is that stronger gravity is needed to keep faster-moving objects gravitationally bound.
 
-Using observed galaxies or stars in this estimate assumes that their velocities fairly represent the motions supporting the cluster. The factor $C$, the velocity distribution, and the equilibrium assumption must be considered when interpreting the inferred mass.
+This virial estimate provides a way to infer the mass of a galaxy cluster from its size and the motions of its members. In 1933, Fritz Zwicky used this idea for the Coma Cluster and found that **the galaxies were moving too fast to be bound by the mass visible in starlight alone**. The cluster therefore required much more gravitating matter than was directly observed. This was one of the earliest indications of **dark matter**.
 
-In 1933, Fritz Zwicky applied the virial theorem to the Coma Cluster of galaxies. The galaxies moved too rapidly for the mass estimated from their light to account for the cluster's apparent confinement. A much larger gravitating mass was needed. This was early evidence for **dark matter** (暗物质): matter inferred through its gravity rather than through emitted light.
-
-The scaling explains why additional mass helps. At fixed size and characteristic speed, kinetic energy scales as $M$, while the magnitude of gravitational potential energy scales as $M^2$. Increasing the mass therefore strengthens gravitational binding faster than it increases kinetic energy.
-
-> **Scope of the estimate.** The simple cluster formula assumes approximate virial equilibrium and negligible external forces. A cluster in the middle of a merger, for example, need not satisfy $2T+U\simeq0$ at the observed instant. A mass discrepancy is evidence for unseen gravitating matter when the dynamical assumptions are justified.
+At fixed size, the kinetic energy scales like $M$ while the gravitational binding energy scales like $M^2$, so a more massive system is bound more tightly.
