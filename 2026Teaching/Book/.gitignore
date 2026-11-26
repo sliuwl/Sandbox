@@ -13,3 +13,14 @@
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
+
+# Reference textbooks and course materials (kept local, not synced)
+Goldstein/
+Helliwell/
+HW_Solutions/
+MidTerm/
+Morin/
+Quiz/
+Taylor/
+Tong/
+
